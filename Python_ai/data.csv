@@ -1,0 +1,1324 @@
+Book_Code,Book_Title,Author,Year_Published,Pages,ID_Peminjaman,Tanggal_Peminjaman,Tanggal_Pengembalian,ID_Anggota Peminjam,Nama_Anggota,Alamat,No.Telepon
+911,The Confessions,Jean-Jacques Rousseau,1781,606,PB-2023-001,2024-09-05,2023-09-14,123894,Felicity,Garibaldi Avenue,(021) - 428604
+882,The Art of Loving,Erich Fromm,1956,146,PB-2023-002,2024-09-05,2023-09-14,123881,Melania,81 St,(021) - 428605
+102,The Adventures of Huckleberry Finn,Mark Twain,1884,288,PB-2023-003,2024-09-05,2023-09-14,123878,Magdalena,Elm Dr,(021) - 428606
+378,My Life and Hard Times,James Thurber,1933,115,PB-2023-004,2024-09-05,2023-09-14,123879,Anne-Marie,193 St,(021) - 428607
+842,Romeo and Juliet,William Shakespeare,1596,146,PB-2023-005,2024-09-05,2023-09-14,123880,Bettie,Fairchild Avenue,(021) - 428608
+850,The End of the Road,John Barth,1958,206,PB-2023-006,2024-09-05,2023-09-14,123877,Audrye,60 St,(021) - 428609
+1301,Brave New World,Aldous Huxley,1932,199,PB-2023-007,2024-09-05,2023-09-14,123882,Amara,Broadway,(021) - 428610
+1310,Boyhood with Gurdjieff,Fritz Peters,1964,174,PB-2023-008,2024-09-05,2023-09-14,123883,Bebe,Crotona Av,(021) - 428611
+1105,In Search of the Miraculous,P.D. Ouspensky,1949,389,PB-2023-009,2024-09-05,2023-09-14,123884,Dea,Decatur St,(021) - 428612
+1293,"Johann Sebastian Bach, an Introduction to his Life and Works",Russell H. Miles,1962,164,PB-2023-010,2024-09-05,2023-09-14,123885,Bathsheba,165 St,(021) - 428613
+385,The Beatles,Hunter Davies,1968,340,PB-2023-011,2024-09-05,2023-09-14,123886,Natalee,2 Av,(021) - 428614
+836,The Strange Life of Ivan Osokin,P.D. Ouspensky,1955,166,PB-2023-012,2024-09-05,2023-09-14,123903,Faythe,E 182 St,(021) - 428615
+299,Mount Analogue,René Daumal,1952,106,PB-2023-013,2024-09-05,2023-09-14,123888,Jessi,38 Av,(021) - 428616
+590,The Assistant,Bernard Malamud,1957,192,PB-2023-014,2024-09-05,2023-09-14,123889,Mersey,Holden Blvd,(021) - 428617
+874,"Memories, Dreams, Reflections",C.G. Jung,1961,359,PB-2023-015,2024-09-05,2023-09-14,123890,Kippy,E 175 St,(021) - 428618
+786,"Goodbye, Columbus",Philip Roth,1959,97,PB-2023-016,2024-09-05,2023-09-14,123891,Kalli,Linden Blvd,(021) - 428619
+1184,Autobiography,Malcolm X and Alex Haley,1964,460,PB-2023-017,2024-09-05,2023-09-15,123892,Helaine,E 25 St,(021) - 428620
+171,The World of Ted Serios,"Jule Eisenbud, M.D.",1968,339,PB-2023-018,2024-09-05,2023-09-15,125159,Helen,Walcott Av,(021) - 428621
+28,A State of Change,Penelope Gilliatt,1967,221,PB-2023-019,2024-09-05,2023-09-15,125160,Madelin,W 13 St,(021) - 428622
+547,The Picture of Dorian Gray,Oscar Wilde,1891,234,PB-2023-020,2024-09-05,2023-09-15,125161,Fredra,Buel Av,(021) - 428623
+672,Catch 22,Joseph Heller,1961,463,PB-2023-021,2024-09-05,2023-09-15,125162,Jannel,Ryer Av,(021) - 428624
+332,Candide,Voltaire,1758,144,PB-2023-022,2024-09-05,2023-09-15,125163,Marie,173 St,(021) - 428625
+984,The Great Gatsby,F. Scott Fitzgerald,1925,182,PB-2023-023,2024-09-05,2023-09-15,125164,Caron,E 13 St,(021) - 428626
+709,War and Peace,L.N. Tolstoy,1869,1444,PB-2023-024,2024-09-05,2023-09-15,125165,Elicia,172 St,(021) - 428627
+360,Portnoy's Complaint,Philip Roth,1969,274,PB-2023-025,2024-09-05,2023-09-15,125166,Gavra,Benedict Av,(021) - 428628
+236,Down and Out in Paris and London,George Orwell,1933,155,PB-2023-026,2024-09-05,2023-09-15,125167,Matti,Pelham Parkway South,(021) - 428629
+150,The Brothers Karamazov,Fyodor Dostoyevsky,1881,701,PB-2023-027,2024-09-05,2023-09-15,125168,Inge,Boston Rd,(021) - 428630
+830,Making It,Norman Podhoretz,1967,262,PB-2023-028,2024-09-05,2023-09-15,125169,Francyne,De Lavall Avenue,(021) - 428631
+485,The Theory of Eternal Life,Rodney Collin,1948,123,PB-2023-029,2024-09-05,2023-09-15,125170,Elenore,Newbold Av,(021) - 428632
+50,Miami and the Siege of Chicago,Norman Mailer,1968,223,PB-2023-030,2024-09-05,2023-09-15,125171,Mandy,48 Av,(021) - 428633
+495,Meetings with Remarkable Men,G.I. Gurdjieff,1927,303,PB-2023-031,2024-09-05,2023-09-15,125172,Ingeberg,1 Av,(021) - 428634
+331,Hamlet,William Shakespeare,1602,214,PB-2023-032,2024-09-05,2023-09-15,125173,Maryanna,Crotona Av,(021) - 428635
+862,The Strawberry Statement,James Simon Kunen,1969,151,PB-2023-033,2024-09-05,2023-09-15,125174,Carry,Boston Rd,(021) - 428636
+451,Wuthering Heights,Emily Brontë,1847,320,PB-2023-034,2024-09-05,2023-09-15,123909,Myrtle,Boston Rd,(021) - 428637
+569,Moby Dick,Herman Melville,1851,535,PB-2023-035,2024-09-05,2023-09-16,123910,Jenni,Nassau Blvd,(021) - 428638
+1247,The Sorrows of Young Werther,Johann Wolgang Goethe,1774,199,PB-2023-036,2024-09-05,2023-09-16,123911,Kathlin,207 St,(021) - 428639
+492,Nausea,Jean-Paul Sartre,1938,253,PB-2023-037,2024-09-05,2023-09-16,123912,Leontyne,Seneca Av,(021) - 428640
+811,The Armada,Garrett Mattingly,1959,402,PB-2023-038,2024-09-05,2023-09-16,123913,Jennine,3 Av,(021) - 428641
+545,Eugénie Grandet,Honoré de Balzac,1833,248,PB-2023-039,2024-09-05,2023-09-16,123914,Charlene,Grand Concourse,(021) - 428642
+557,The Conquest of Happiness,Bertrand Russell,1930,180,PB-2023-040,2024-09-05,2023-09-16,123908,Martelle,3 Av,(021) - 428643
+119,Culture and Commitment,Margaret Mead,1970,97,PB-2023-041,2024-09-05,2023-09-16,123916,Blythe,Field Pl,(021) - 428644
+956,Sense and Sensibility,Jane Austen,1811,349,PB-2023-042,2024-09-05,2023-09-16,123917,Klarika,123 St,(021) - 428645
+1134,"Childhood, Boyhood, Youth",L.N. Tolstoy,1857,319,PB-2023-043,2024-09-05,2023-09-16,123918,Joli,East Dr,(021) - 428646
+356,Garbo,Norman Zierold,1969,157,PB-2023-044,2024-09-05,2023-09-16,123919,Babette,E 175 St,(021) - 428647
+1014,Play It as It Lays,Joan Didion,1970,152,PB-2023-045,2024-09-05,2023-09-16,123920,Grier,112 Av,(021) - 428648
+106,Diary,Anais Nin,1934,358,PB-2023-046,2024-09-05,2023-09-16,123921,Clerissa,Forest Av,(021) - 428649
+720,The Counterfeiters,André Gide,1927,397,PB-2023-047,2024-09-05,2023-09-16,123922,Elly,3 Av,(021) - 428650
+513,Sentimental Education,Gustave Flaubert,1869,419,PB-2023-048,2024-09-05,2023-09-16,123923,Felicle,Secor Av,(021) - 428651
+372,Lord Jim,Joseph Conrad,1900,313,PB-2023-049,2024-09-05,2023-09-16,123924,Christine,172 St,(021) - 428652
+496,Othello,William Shakespeare,1602,128,PB-2023-050,2024-09-05,2023-09-16,123935,Becca,W 13 St,(021) - 428653
+1073,Buddenbrooks,Thomas Mann,1901,595,PB-2023-051,2024-09-05,2023-09-16,123926,Austin,Milton St,(021) - 428654
+1175,Listening to America,Bill Moyers,1971,342,PB-2023-052,2024-09-05,2023-09-16,123927,Heloise,E 68 St,(021) - 428655
+498,Future Shock,Alvin Toffer,1970,430,PB-2023-053,2024-09-05,2023-09-16,123928,Linea,Sayres Av,(021) - 428656
+327,Being There,Jerzy Kosinski,1971,140,PB-2023-054,2024-09-05,2023-09-16,123929,Josie,178 St,(021) - 428657
+164,Jane Eyre,Charlotte Brontë,1847,477,PB-2023-055,2024-09-05,2023-09-17,123930,Kasey,Park Ln,(021) - 428658
+379,King Lear,William Shakespeare,1605,138,PB-2023-056,2024-09-05,2023-09-17,123931,Lust,112 Av,(021) - 428659
+817,Elective Affinities,Johann Wolfgang Goethe,1809,300,PB-2023-057,2024-09-05,2023-09-17,123932,Halette,Milton Av,(021) - 428660
+559,Elementary Harmony,William J. Mitchell,1965,230,PB-2023-058,2024-09-05,2023-09-17,123933,Emmeline,E 184 St,(021) - 428661
+588,The Birth of the Republic,Edmund S. Morgan,1956,157,PB-2023-059,2024-09-05,2023-09-17,123934,Georgia,47 Av,(021) - 428662
+1034,"A New England Town, the First One Hundred Years",Kenneth A. Lockridge,1969,180,PB-2023-060,2024-09-05,2023-09-17,123925,Betta,Archer Rd,(021) - 428663
+1101,The Charioteer,Mary Renault,1961,347,PB-2023-061,2024-09-05,2023-09-17,123936,Mehetabel,Crotona Av,(021) - 428664
+350,Anna Karenina,L.N. Tolstoy,1873,852,PB-2023-062,2024-09-05,2023-09-17,123937,Benni,190 St,(021) - 428665
+216,The New Class,Milovan Djilas,1957,214,PB-2023-063,2024-09-05,2023-09-17,123938,Devin,Castle Hill Avenue,(021) - 428666
+857,"J.S. Bach, Vol. 1",Albert Schweitzer,1911,428,PB-2023-064,2024-09-05,2023-09-17,123939,Michel,Eastchester Road,(021) - 428667
+1017,The Wisdom of Insecurity,Alan Watts,1951,152,PB-2023-065,2024-09-05,2023-09-17,123940,Cherlyn,Gates Av,(021) - 428668
+741,All My Friends are Going to Be Strangers,Larry McMurtry,1972,286,PB-2023-066,2024-09-05,2023-09-17,123941,Delphinia,East Houston Street,(021) - 428669
+124,Jonathan Livingston Seagull,Richard Bach,1970,93,PB-2023-067,2024-09-05,2023-09-17,123942,Andree,Cooper Av,(021) - 428670
+345,Look Homeward Angel,Thomas Wolfe,1929,522,PB-2023-068,2024-09-05,2023-09-14,123943,Emmalee,East Dr,(021) - 428671
+1313,Darwin and the Beagle,Alan Moorehead,1969,270,PB-2023-069,2024-09-05,2023-09-14,123944,Cathee,Southern Boulevard,(021) - 428672
+596,David Copperfield,Charles Dickens,1850,850,PB-2023-070,2024-09-05,2023-09-14,123945,Emalia,Beacon Pl,(021) - 428673
+23,American Notes,Charles Dickens,1842,320,PB-2023-071,2024-09-05,2023-09-14,123946,Kimberli,Manor Rd,(021) - 428674
+798,The Mind of the South,W.J. Cash,1941,440,PB-2023-072,2024-09-05,2023-09-14,123947,Cathi,Williamsbridge Road,(021) - 428675
+1115,The Wild Palms,William Faulkner,1939,317,PB-2023-073,2024-09-05,2023-09-14,123948,Lotty,E 214 St,(021) - 428676
+642,Tess of the D'Urbervilles,Thomas Hardy,1902,517,PB-2023-074,2024-09-05,2023-09-14,123949,Kamila,McGraw Av,(021) - 428677
+1263,"Homosexuality, a Psychoanalytic Survey",Irving Bieber,1955,319,PB-2023-075,2024-09-05,2023-09-14,123950,Annmaria,Turnbull Av,(021) - 428678
+188,The Immoralist,André Gide,1903,171,PB-2023-076,2024-09-05,2023-09-14,123951,Genovera,1 Av,(021) - 428679
+598,Bury My Heart at Wounded Knee,Dee Brown,1971,421,PB-2023-077,2024-09-05,2023-09-14,123952,Diahann,168 St,(021) - 428680
+659,One Hundred Years of Solitude,Gabriel Garcia Marques,1970,383,PB-2023-078,2023-04-01,2023-09-14,123953,Eva,E 176 St,(021) - 428681
+828,Pride and Prejudice,Jane Austen,1797,430,PB-2023-079,2023-04-02,2023-09-14,123954,Aindrea,Adams Av,(021) - 428682
+122,The Domestic Life of Thomas Jefferson,Sarah N. Randolph,1939,384,PB-2023-080,2023-04-03,2023-09-14,123955,Adriane,Baxter St,(021) - 428683
+69,The Lost World of Thomas Jefferson,Daniel Boorstin,1948,248,PB-2023-081,2023-04-04,2023-09-14,123956,Hertha,Unionport Road,(021) - 428684
+937,Apple to the Core,Peter McCabe and Robert D. Schonfeld,1972,200,PB-2023-082,2023-04-05,2023-09-14,123957,Jasmina,88 St,(021) - 428685
+858,"Sir Isaac Newton, His Life and Work",E.N. da C. Andrade,1954,136,PB-2023-083,2023-04-06,2023-09-14,123958,Melamie,69 Av,(021) - 428686
+1212,Economics and the Public Purpose,John Kenneth Galbraith,1973,324,PB-2023-084,2023-04-07,2023-09-14,123959,Loren,E 178 St,(021) - 428687
+1037,The Southern Lady,Anne F. Scott,1970,231,PB-2023-085,2023-04-08,2023-09-14,123960,Marci,Manhattan Avenue,(021) - 428688
+294,The Coming of the French Revolution,Georges Lefebvre,1947,220,PB-2023-086,2023-04-09,2023-09-14,123961,Imojean,Arleigh Rd,(021) - 428689
+403,On Aggression,Konrad Lorenz,1966,290,PB-2023-087,2023-04-10,2023-09-14,123962,Ara,41 Av,(021) - 428690
+259,The Lonely Life,Bette Davis,1962,254,PB-2023-088,2023-04-11,2023-09-14,123963,Amelia,Linden Blvd,(021) - 428691
+738,"Plain Speaking, an Oral Biography of Harry S. Truman",Merle Miller,1973,432,PB-2023-089,2023-04-12,2023-09-14,123964,Fortune,Arthur Av,(021) - 428692
+234,Transparent Things,Vladimir Nabokov,1972,158,PB-2023-090,2023-04-13,2023-09-14,123965,Aloise,Douglaston Parkway,(021) - 428693
+620,Persuasion,Jane Austen,1818,254,PB-2023-091,2023-04-14,2023-09-14,123966,Maureen,Boston Rd,(021) - 428694
+1158,Ball Four,Jim Bouton,1970,369,PB-2023-092,2023-04-15,2023-09-14,123967,Kirsti,Marmion Av,(021) - 428695
+981,This Hallowed Ground,Bruce Catton,1956,495,PB-2023-093,2023-04-16,2023-09-14,123968,Courtney,Field Pl,(021) - 428696
+1128,Conundrum,Jan Morris,1974,174,PB-2023-094,2023-04-17,2023-09-14,123969,Lin,179 St,(021) - 428697
+877,The Life of Dylan Thomas,Constantine Fitzgibbon,1965,346,PB-2023-095,2023-04-18,2023-09-14,123970,Laurena,1 Av,(021) - 428698
+1047,Cutting Through Spiritual Materialism,Chogyam Thungpa,1973,322,PB-2023-096,2023-04-19,2023-09-14,123971,Maya,E 61 St,(021) - 428699
+838,Jaws,Peter Benchley,1974,272,PB-2023-097,2023-04-20,2023-09-14,123972,Corabella,Elie Ct,(021) - 428700
+1032,Journey to Ixtlan,Carlos Castaneda,1972,315,PB-2023-098,2023-04-21,2023-09-14,123973,Christin,114 Rd,(021) - 428701
+677,The Chosen,Chaim Potok,1969,416,PB-2023-099,2023-04-22,2023-09-14,123974,Aubrey,Bivona St,(021) - 428702
+1036,The Adventures of Sherlock Holmes,Sir Arthur Conan Doyle,1892,248,PB-2023-100,2023-04-23,2023-09-14,123975,Brandie,73 Av,(021) - 428703
+666,America at 1750,Richard Hofstadter,1973,292,PB-2023-101,2023-04-24,2023-09-14,123976,Adrian,Prospect Av,(021) - 428704
+388,The End of the Affair,Graham Greene,1951,240,PB-2023-102,2023-04-25,2023-09-14,123977,Cathryn,Castle Hill Avenue,(021) - 428705
+520,"Clive, Inside the Record Business",Clive Davis,1974,291,PB-2023-103,2023-04-26,2023-09-14,123978,Jeannie,Seneca Av,(021) - 428706
+1069,The Power Broker,Robert A. Caro,1974,1162,PB-2023-104,2023-04-27,2023-09-14,123979,Ki,61 St,(021) - 428707
+279,Portrait of a Lady,Henry James,1881,545,PB-2023-105,2023-04-28,2023-09-14,123980,Adrien,Waterbury Avenue,(021) - 428708
+444,The Seven Per-Cent Solution,Nicholas Meyer,1974,234,PB-2023-106,2023-04-29,2023-09-14,123981,Lurette,Dorsey St,(021) - 428709
+622,Memoirs of Barry Lyndon,William M. Thackeray,1854,324,PB-2023-107,2023-04-30,2023-09-14,123982,Leoline,70 Av,(021) - 428710
+384,Breakfast of Champions,"Kurt Vonnegut, Jr.",1973,295,PB-2023-108,2024-09-05,2023-09-14,123983,Carroll,East Tremont Avenue,(021) - 428711
+1241,The Last Tycoon,F. Scott Fitzgerald,1941,163,PB-2023-109,2024-09-05,2023-09-14,123984,Jocelyn,Zerega Av,(021) - 428712
+998,The Courage to Create,Rollo May,1975,140,PB-2023-110,2024-09-05,2023-09-14,123985,Lelah,80 Av,(021) - 428713
+1314,Copland on Music,Aaron Copland,1960,280,PB-2023-111,2024-09-05,2023-09-14,123986,Aubry,Boston Rd,(021) - 428714
+1190,The Man in the Roman Street,Harold Mattingly,1966,156,PB-2023-112,2024-09-05,2023-09-14,123987,Imelda,255 St,(021) - 428715
+358,George Sand,Curtis Cate,1975,732,PB-2023-113,2024-09-05,2023-09-14,123988,Darby,Cooper Av,(021) - 428716
+426,Geology Illustrated,John S. Shelton,1966,424,PB-2023-114,2024-09-05,2023-09-14,123989,Melessa,E 176 St,(021) - 428717
+730,To Jerusalem and Back,Saul Bellow,1976,182,PB-2023-115,2024-09-05,2023-09-14,123990,Cornie,214 St,(021) - 428718
+1204,Humboldt's Gift,Saul Bellow,1973,472,PB-2023-116,2024-09-05,2023-09-14,123991,Magna,Boston Rd,(021) - 428719
+1016,"Time On the Cross, the Economics of American Negro Slavery",Robert Wm. Fogel and Stanley L. Engerman,1974,264,PB-2023-117,2024-09-05,2023-09-14,123992,Lorrayne,Clinton Pl,(021) - 428720
+787,The Penguin Atlas of Medieval History,Colin McEvedy,1961,90,PB-2023-118,2024-09-05,2023-09-14,123993,Abigael,70 Av,(021) - 428721
+194,Do You Love Me?,R.D. Laing,1976,86,PB-2023-119,2024-09-05,2023-09-14,123994,Georgianna,E 184 St,(021) - 428722
+1019,The Undiscovered Self,C.G. Jung,1957,125,PB-2023-120,2024-09-05,2023-09-14,123995,Fawna,Hone Av,(021) - 428723
+170,Modern Man in Search of a Soul,C.G. Jung,1933,244,PB-2023-121,2024-09-05,2023-09-14,123996,Claude,Centre St,(021) - 428724
+81,My Autobiography,Charles Chaplin,1964,497,PB-2023-122,2024-09-05,2023-09-14,123997,Dori,Fairview Av,(021) - 428725
+109,A Summer Bird-Cage,Margaret Drabble,1963,208,PB-2023-123,2024-09-05,2023-09-14,123998,Abigale,Castle Hill Avenue,(021) - 428726
+14,Childhood's End,Arthur C. Clarke,1953,218,PB-2023-124,2024-09-05,2023-09-14,123999,,E 26 St,
+662,The Europeans,Henry James,1878,173,PB-2023-125,2024-09-05,2023-09-14,124000,Claudine,W 178 St,(021) - 428728
+1257,The Shining,Stephen King,1977,447,PB-2023-126,2024-09-05,2023-09-14,124001,Allianora,Bleecker St,(021) - 428729
+148,The Ambassadors,Henry James,1903,397,PB-2023-127,2024-09-05,2023-09-14,124002,Bria,40 Rd,(021) - 428730
+1053,Passages,Gail Sheehy,1976,514,PB-2023-129,2024-09-05,2023-09-14,,Fleurette,Madison Av,(021) - 428732
+1053,Passages,Gail Sheehy,1976,514,PB-2023-130,2024-09-06,2023-09-15,,Fleurette,Madison Av,(021) - 428733
+459,Letters from an American Farmer,J. Hector St. John de Crevecoeur,1782,225,PB-2023-131,2024-09-05,2023-09-14,124005,Dolly,171 St,(021) - 428734
+156,"Genius and Lust, a Journey through the Major Writings of Henry Miller",Norman Mailer,1976,476,PB-2023-132,2024-09-05,2023-09-14,124006,Margalit,Buchanan Av,(021) - 428735
+1173,The Origin of Species,Charles Darwin,1859,460,PB-2023-133,2024-09-05,2023-09-14,124007,Bamby,Francis Lewis Boulevard,(021) - 428736
+670,Zen and the Art of Motorcycle Maintenance,Robert M. Pirsig,1974,406,PB-2023-134,2024-09-05,2023-09-14,124008,Keren,Melba St,(021) - 428737
+457,Childhood and Society,Erik Erikson,1950,424,PB-2023-135,2024-09-05,2023-09-14,124009,Ginnifer,112 Av,(021) - 428738
+1244,Swann's Way,Marcel Proust,1928,325,PB-2023-136,2024-09-05,2023-09-14,124010,Katlin,E 184 St,(021) - 428739
+246,"Chapters in Western Civilization, Vol. 1",Columbia College,1954,545,PB-2023-137,2024-09-05,2023-09-14,124011,Jeniece,126 St,(021) - 428740
+1277,"The Last Days of Socrates, Euthyphro, The Apology, Crito, Phaedo",Plato,1955,199,PB-2023-138,2024-09-05,2023-09-14,124012,Missie,213 St,(021) - 428741
+997,Japanese Society,Chie Nakane,1970,151,PB-2023-139,2024-09-05,2023-09-14,124013,Lyndy,Marion Av,(021) - 428742
+90,The Iliad,Homer,1967,459,PB-2023-140,2024-09-05,2023-09-14,124014,Consolata,Elm Pl,(021) - 428743
+493,The Symposium,Plato,1956,122,PB-2023-141,2024-09-05,2023-09-14,124015,Krystalle,Suffolk Av,(021) - 428744
+991,The Idiot,Fyodor Dostoevsky,1869,642,PB-2023-142,2024-09-05,2023-09-14,124016,Carolyn,3 Av,(021) - 428745
+1172,Eminent Victorians,Lytton Strachey,1918,338,PB-2023-143,2024-09-05,2023-09-14,124017,Arabela,188 St,(021) - 428746
+727,Fifth Business,Robertson Davies,1970,268,PB-2023-144,2024-09-05,2023-09-14,124018,Ada,Turnbull Av,(021) - 428747
+702,The Second World War,A.J.P. Taylor,1975,235,PB-2023-145,2024-09-05,2023-09-14,124019,Amanda,Holden Blvd,(021) - 428748
+783,Coming Into the Country,John McPhee,1976,438,PB-2023-146,2024-09-05,2023-09-14,124020,Larisa,Sunset Av,(021) - 428749
+192,The Glory and the Dream,William Manchester,1974,1302,PB-2023-147,2024-09-05,2023-09-14,124021,Lilian,E 183 St,(021) - 428750
+437,Ressurrection,L.N. Tolstoy,1899,568,PB-2023-148,2024-09-05,2023-09-14,124022,Joycelin,E 175 St,(021) - 428751
+972,The Sheltering Sky,Paul Bowles,1949,305,PB-2023-149,2024-09-05,2023-09-14,124023,Karrah,Bruner Av,(021) - 428752
+1256,Heart of Darkness,Joseph Conrad,1902,111,PB-2023-150,2024-09-05,2023-09-14,124024,Jemimah,39 Av,(021) - 428753
+1096,Spring Snow,Yukio Mishima,1968,376,PB-2023-151,2024-09-05,2023-09-14,124025,Ginelle,W 32 St,(021) - 428754
+362,European History since 1870,James Joll,1973,486,PB-2023-152,2024-09-05,2023-09-14,124026,Bernette,1 Av,(021) - 428755
+1031,Marilyn,Norman Mailer,1974,262,PB-2023-153,2024-09-05,2023-09-14,124027,Gertrude,Boston Rd,(021) - 428756
+601,"Good Morning, Midnight",Jean Rhys,1974,190,PB-2023-154,2024-09-05,2023-09-14,124028,Mignon,Myrtle Av,(021) - 428757
+223,The World According to Garp,John Irving,1976,609,PB-2023-155,2024-09-05,2023-09-14,124029,Antonietta,Wood Av,(021) - 428758
+105,"The Protagoras, The Meno",Plato,1945,157,PB-2023-156,2024-09-05,2023-09-14,124030,Loise,Centre St,(021) - 428759
+801,Ladies' Man,Richard Price,1978,264,PB-2023-157,2024-09-05,2023-09-14,124031,Bethanne,80 St,(021) - 428760
+35,The Postman Always Rings Twice,James M. Cain,1934,120,PB-2023-158,2024-09-05,2023-09-14,124032,Bekki,Guerlain St,(021) - 428761
+7,Voyage in the Dark,Jean Rhys,1934,159,PB-2023-159,2024-09-05,2023-09-14,124033,Fenelia,Prospect Av,(021) - 428762
+693,The Wealth of Nations,Adam Smith,1776,347,PB-2023-160,2024-09-05,2023-09-14,124034,Chandra,Myrtle Av,(021) - 428763
+563,New Horizons in Astronomy,John C. Brandt and Stephen P. Maran,1979,533,PB-2023-161,2024-09-05,2023-09-14,124035,Inga,E 66 St,(021) - 428764
+74,Male and Female,Margaret Mead,1949,344,PB-2023-162,2024-09-05,2023-09-14,124036,Dorotea,139 Av,(021) - 428765
+253,Ecco Homo,Friedrich Nietzsche,1888,134,PB-2023-163,2024-09-05,2023-09-14,124037,Fernande,Loomis St,(021) - 428766
+1284,The Savage God,A. Alvarez,1971,272,PB-2023-164,2024-09-05,2023-09-14,124038,Leia,53 Av,(021) - 428767
+549,Jude the Obscure,Thomas Hardy,1896,511,PB-2023-165,2024-09-05,2023-09-14,124039,Melantha,E 23 St,(021) - 428768
+13,The Sense of Beauty,George Santayana,1896,164,PB-2023-166,2024-09-05,2023-09-14,124040,Maisie,263 St,(021) - 428769
+1269,Gulliver's Travels,Jonathan Swift,1726,360,PB-2023-167,2024-09-05,2023-09-14,124041,Chelsae,Harold St,(021) - 428770
+1088,Autobiography,W.B. Yeats,1922,387,PB-2023-168,2024-09-05,2023-09-14,124042,Charlotte,Baychester Avenue,(021) - 428771
+276,Ten Days that Shook the World,John Reed,1926,351,PB-2023-169,2024-09-05,2023-09-14,124043,Elbertine,Canal St,(021) - 428772
+606,The Slave,Isaac Bashevis Singer,1962,287,PB-2023-170,2024-09-05,2023-09-14,124044,Katherina,Cypress Av,(021) - 428773
+482,Liberalism and Social Action,John Dewey,1935,93,PB-2023-171,2024-09-05,2023-09-14,124045,Angie,Murdock Av,(021) - 428774
+558,Working,Studs Turkel,1972,762,PB-2023-172,2024-09-05,2023-09-14,124046,Ariela,Forest Av,(021) - 428775
+1067,Great Expectations,Charles Dickens,1861,512,PB-2023-173,2024-09-05,2023-09-14,124047,Hermina,Monsignor John J Bought Green,(021) - 428776
+1279,"Botany, a study of pure curiosity",Jean-Jacques Rousseau,1781,122,PB-2023-174,2024-09-05,2023-09-14,124048,Ivette,Putnam Av,(021) - 428777
+1207,The American,Henry James,1875,325,PB-2023-175,2024-09-05,2023-09-14,124049,Charmaine,Centre St,(021) - 428778
+743,New Jerusalem,Len Jenkin,1985,204,PB-2023-176,2024-09-05,2023-09-14,124050,Crysta,Livermore Avenue,(021) - 428779
+973,"The Life of Birds, vol. 1",Jean Dorst,1971,341,PB-2023-177,2024-09-05,2023-09-14,124051,Jacki,Gower St,(021) - 428780
+667,Within a Budding Grove,Marcel Proust,1920,386,PB-2023-178,2024-09-05,2023-09-14,124052,Gwenn,Newbold Av,(021) - 428781
+1041,The Zero-Sum Society,Lester C. Thurow,1980,214,PB-2023-179,2024-09-05,2023-09-14,124053,Maurene,Crotona Av,(021) - 428782
+95,An Open Book,John Huston,1980,373,PB-2023-180,2024-09-05,2023-09-14,124054,Frieda,W 31 St,(021) - 428783
+1271,"Joshua, Then and Now",Mordecai Richler,1980,435,PB-2023-181,2024-09-05,2023-09-14,124055,Anjela,Canal St,(021) - 428784
+34,Socrates,W.X.C. Guthrie,1969,187,PB-2023-182,2024-09-05,2023-09-14,124056,Corina,Clinton Av,(021) - 428785
+470,The Body in Question,Jonathan Miller,1978,341,PB-2023-183,2024-09-05,2023-09-14,124057,Charlotta,Tillman St,(021) - 428786
+22,The Decline and Fall of the Roman Empire (Abridged),Edward Gibbon,1787,713,PB-2023-184,2024-09-05,2023-09-14,124058,Em,Cypress Hills Street,(021) - 428787
+593,"The Destinies of Darcy Dancer, Gentleman",J.P. Donleavy,1977,402,PB-2023-185,2024-09-05,2023-09-14,124059,Max,Mapes Av,(021) - 428788
+67,A Portrait of the Artist as a Young Man,James Joyce,1916,253,PB-2023-186,2024-09-05,2023-09-14,124060,Fancie,E 25 St,(021) - 428789
+177,The Acts of King Arthur and His Noble Knights,John Steinbeck,1976,349,PB-2023-187,2024-09-05,2023-09-14,124061,Birgitta,Mott St,(021) - 428790
+104,"uncollected short stories, vol. 2 (containing ""The Inverted Forest"")",J.D. Salinger,1947,107,PB-2023-188,2024-09-05,2023-09-14,124062,Elora,Crotona Av,(021) - 428791
+536,The Dancing Wu Li Masters,Gary Zukav,1979,332,PB-2023-189,2024-09-05,2023-09-14,124063,Liliane,E 175 St,(021) - 428792
+1139,Faust (part one),Johann Wolfgang Goethe,1805,197,PB-2023-190,2024-09-05,2023-09-14,124064,Felice,Roosevelt Avenue,(021) - 428793
+908,The Powers That Be,David Halberstam,1979,1027,PB-2023-191,2024-09-05,2023-09-14,124065,Annamaria,247 St,(021) - 428794
+896,As I Walked Out One Midsummer Morning,Laurie Lee,1969,186,PB-2023-192,2024-09-05,2023-09-14,124066,Brittan,East Dr,(021) - 428795
+746,Autobiography,Benvenuto Cellini,1562,397,PB-2023-193,2024-09-05,2023-09-14,124067,Nancee,Myrtle Av,(021) - 428796
+1085,Lost in America,Isaac Bashevis Singer,1981,259,PB-2023-194,2024-09-05,2023-09-14,124068,Lianna,62 St,(021) - 428797
+603,Nicholas Nickleby,Charles Dickens,1839,934,PB-2023-195,2024-09-05,2023-09-14,124069,Jane,Nassau Blvd,(021) - 428798
+1113,Martin Eden,Jack London,1909,348,PB-2023-196,2024-09-05,2023-09-14,124070,Elisabet,Little Neck Parkway,(021) - 428799
+1283,Washington Square,Henry James,1880,174,PB-2023-197,2024-09-05,2023-09-14,124071,Hyacintha,Cross Bronx Expressway,(021) - 428800
+26,On Poetry and Style,Aristotle,1978,106,PB-2023-198,2024-09-05,2023-09-14,124072,Amelina,60 Ln,(021) - 428801
+519,Confessions,Saint Augustine,1988,347,PB-2023-199,2024-09-05,2023-09-14,124073,Beatrisa,Crotona Av,(021) - 428802
+436,The Politics of International Economic Relations,Joan Edelman Spero,1981,334,PB-2023-200,2024-09-05,2023-09-14,124074,Avis,Grandview Avenue,(021) - 428803
+1259,Gargantua and Pantagruel,Francois Rabelais,1534,712,PB-2023-201,2024-09-05,2023-09-14,124075,Donella,60 Av,(021) - 428804
+19,The Breaks of the Game,David Halberstam,1981,360,PB-2023-202,2024-09-05,2023-09-14,124076,Darice,Crotona Av,(021) - 428805
+790,Foundations of the Metaphysics of Morals,Immanuel Kant,1785,92,PB-2023-203,2024-09-05,2023-09-14,124077,Austine,Crotona Pkwy,(021) - 428806
+619,The Life of Charlemagne,Einhard,1830,67,PB-2023-204,2024-09-05,2023-09-14,124078,Deirdre,Crotona Park North,(021) - 428807
+1080,An Enquiry Concerning Human Understanding,David Hume,1748,124,PB-2023-205,2024-09-05,2023-09-14,124079,Kirstie,Boston Rd,(021) - 428808
+256,Don Quixote,Miguel de Cervantes Saavedra,1604,940,PB-2023-206,2024-09-05,2023-09-14,124080,Easter,Castle Hill Avenue,(021) - 428809
+1178,A Room of One's Own,Virginia Woolf,1929,118,PB-2023-207,2024-09-05,2023-09-14,124081,Andy,Benedict Av,(021) - 428810
+851,The Dictionary of Accepted Ideas,Gustave Flaubert,1882,92,PB-2023-208,2024-09-05,2023-09-14,124082,Elaina,E 175 St,(021) - 428811
+278,The Book of the Courtier,Baldesar Castiglione,1518,345,PB-2023-209,2024-09-05,2023-09-14,124083,Ariadne,73 Av,(021) - 428812
+611,When Knighthood Was in Flower,Charles Major,1898,294,PB-2023-210,2024-09-05,2023-09-14,124084,Kitti,174 St,(021) - 428813
+205,Oration on the Dignity of Man,Giovanni Pico della Mirandola,1487,69,PB-2023-211,2024-09-05,2023-09-14,124085,Dorree,78 Av,(021) - 428814
+986,Nuclear Weapons and World Politics,"David C. Gompert, Michael Mandelbaum, Richard L. Garwin, John H. Barton",1977,354,PB-2023-212,2024-09-05,2023-09-14,124086,Charlean,Cypress Av,(021) - 428815
+1235,The White Hotel,D.M. Thomas,1981,240,PB-2023-213,2024-09-05,2023-09-14,124087,Doralin,Hollis Court Boulevard,(021) - 428816
+1315,Doing Good(The Limits of Benevolence),"Willard Gaylin, Ira Glasser, Steven Marcus, David Rochman",1978,168,PB-2023-214,2024-09-05,2023-09-14,124088,Jeni,Oakville St,(021) - 428817
+1203,Emma,Jane Austen,1816,471,PB-2023-215,2024-09-05,2023-09-14,124089,Mechelle,E 62 St,(021) - 428818
+304,On God and Political Duty,John Calvin,1535,121,PB-2023-216,2024-09-05,2023-09-14,124090,Leonora,80 Av,(021) - 428819
+678,Henry James - The Middle Years: 1882--1895,Leon Edel,1962,389,PB-2023-217,2024-09-05,2023-09-14,124091,Madeleine,Adams Av,(021) - 428820
+36,The Book of Laughter and Forgetting,Milan Kundera,1980,237,PB-2023-218,2024-09-05,2023-09-14,124092,Diannne,Murdock Av,(021) - 428821
+907,Runaway Horses,Yukio Mishima,1969,423,PB-2023-219,2024-09-05,2023-09-14,124093,Beckie,Hylan Blvd,(021) - 428822
+654,The World As I See It,Albert Einstein,1932,112,PB-2023-220,2024-09-05,2023-09-14,124094,Hyacinth,37 Av,(021) - 428823
+181,First Love,Ivan Turgenev,1860,107,PB-2023-221,2024-09-05,2023-09-14,124095,Johnette,E 71 St,(021) - 428824
+1156,The Government and Politics of France,Vincent Wright,1978,253,PB-2023-222,2024-09-05,2023-09-14,124096,Kyrstin,Pelham Parkway North,(021) - 428825
+1216,Wide Sargasso Sea,Jean Rhys,1966,156,PB-2023-223,2024-09-05,2023-09-14,124097,Binny,Waterbury Avenue,(021) - 428826
+808,Sincerity and Authenticity,Lionel Trilling,1971,158,PB-2023-224,2024-09-05,2023-09-14,124098,Dorie,Stuyvesant Avenue,(021) - 428827
+686,Prater Violet,Christopher Isherwood,1945,160,PB-2023-225,2024-09-05,2023-09-14,124099,Betsy,Park Avenue South,(021) - 428828
+504,The Waning of the Middle Ages,Johan Huizinga,1919,335,PB-2023-226,2024-09-05,2023-09-14,124100,Laurice,210 St,(021) - 428829
+785,The Black Sheep,Honoré de Balzac,1842,339,PB-2023-227,2024-09-05,2023-09-14,124101,Margery,Wood Av,(021) - 428830
+32,On Judaism,Martin Buber,1951,231,PB-2023-228,2024-09-05,2023-09-14,124102,Corinne,251 St,(021) - 428831
+500,Napoleon and the French Empire,David Sylvester,1978,90,PB-2023-229,2024-09-05,2023-09-14,124103,Greta,73 Av,(021) - 428832
+120,The Three Ages of the Italian Renaissance,Robert S. Lopez,1970,74,PB-2023-230,2024-09-05,2023-09-14,124104,Debby,114 Rd,(021) - 428833
+1040,Crazy Horse,Marie Sandoz,1942,413,PB-2023-231,2023-09-01,2023-09-14,124105,Kelli,Madison St,(021) - 428834
+57,Indecent Exposure,David McClintick,1982,521,PB-2023-232,2023-09-02,2023-09-14,124106,Aubree,Zerega Av,(021) - 428835
+723,The Adolescent,Fyodor Dostoevsky,1874,599,PB-2023-233,2023-09-03,2023-09-14,124107,Marleah,E 188 St,(021) - 428836
+807,Goodbye to All That,Robert Graves,1929,347,PB-2023-234,2023-09-04,2023-09-14,124108,Cris,Seneca Av,(021) - 428837
+1299,Ebony Kinship,Robert G. Weisbord,1973,220,PB-2023-235,2023-09-05,2023-09-14,124109,Corrina,E 31 St,(021) - 428838
+1276,Feudal Society Vol. 1,Marc Bloch,1940,279,PB-2023-236,2023-09-06,2023-09-14,124110,Lilla,Jefferson Place,(021) - 428839
+802,Bech is Back,John Updike,1982,195,PB-2023-237,2023-09-07,2023-09-14,124111,Candis,Bay St,(021) - 428840
+968,The Book of Job,Bible,1488,63,PB-2023-238,2023-09-08,2023-09-14,124112,Charisse,Crotona Av,(021) - 428841
+539,The Search for Alexander,Robin Lane Fox,1980,441,PB-2023-239,2023-09-09,2023-09-14,124113,Nalani,Ely Av,(021) - 428842
+618,Stephen Hero,James Joyce,1906,253,PB-2023-240,2023-09-10,2023-09-14,124114,Ardith,Police Officer Anthony Sanchez Way,(021) - 428843
+252,Antony and Cleopatra,William Shakespeare,1607,133,PB-2023-241,2023-09-11,2023-09-14,124115,Elonore,115 Av,(021) - 428844
+683,Justine,Lawrence Durrell,1957,245,PB-2023-242,2023-09-12,2023-09-14,124116,Mariel,Oakland Pl,(021) - 428845
+553,The Varieties of Religious Experience,William James,1902,500,PB-2023-243,2023-09-13,2023-09-14,124117,Coleen,Fairmount Place,(021) - 428846
+101,Nadja,André Breton,1928,160,PB-2023-244,2023-09-14,2023-09-14,124118,Florence,Boundary Av,(021) - 428847
+154,Ever Since Darwin,Stephen Jay Gould,1977,271,PB-2023-245,2023-09-15,2023-09-14,124119,Kameko,139 Av,(021) - 428848
+875,The Master and Margarita,Mikhail Bulgakov,1940,402,PB-2023-246,2023-09-16,2023-09-14,124120,Doll,8 Av,(021) - 428849
+999,"Tinker, Tailor, Soldier, Spy",John Le Carré,1974,317,PB-2023-247,2023-09-17,2023-09-14,124121,Eimile,56 Av,(021) - 428850
+624,The Bridge of San Luis Rey,Thornton Wilder,1927,124,PB-2023-248,2023-09-18,2023-09-14,124122,Blanch,Manhattan Avenue,(021) - 428851
+432,"Introduction to Contemporary Civilization in the West, Vol. 1",Various,1960,880,PB-2023-249,2023-09-19,2023-09-14,124123,Gusty,169 St,(021) - 428852
+1166,The Confessions,Jean-Jacques Rousseau,1781,606,PB-2023-250,2023-09-20,2023-09-14,124124,Blanca,East Tremont Avenue,(021) - 428853
+321,The Painted Word,Tom Wolfe,1975,120,PB-2023-251,2023-09-21,2023-09-14,124125,Hedi,164 St,(021) - 428854
+1074,Bookends - The Simon and Garfunkel Story,Patrick Humphries,1982,186,PB-2023-252,2023-09-22,2023-09-14,124126,Emma,Wyckoff Av,(021) - 428855
+1262,Napoleon,Emil Ludwig,1926,682,PB-2023-253,2023-09-23,2023-09-14,124127,Christa,Hunter Av,(021) - 428856
+923,The Social Contract and,Jean-Jacques Rousseau,1762,226,PB-2023-254,2023-09-24,2023-09-14,124128,Chad,84 St,(021) - 428857
+377,The Social Contract and Discourse on the Origin of Inequality,Jean-Jacques Rousseau,1762,226,PB-2023-255,2023-09-25,2023-09-14,124129,Alvina,Zerega Av,(021) - 428858
+793,"Meteorology, an Introductory Course, Vol. 1 chapters 1, 2, 3",Arnt Eliassen and Kaare Pedersen,1977,135,PB-2023-256,2023-09-26,2023-09-14,124130,Clair,Blondell Av,(021) - 428859
+282,Reveries of the Solitary Walker,Jean-Jacques Rousseau,1778,155,PB-2023-257,2023-09-27,2023-09-14,124131,Kellina,Crotona Pkwy,(021) - 428860
+936,Walden,Henry David Thoreau,1854,247,PB-2023-258,2023-09-28,2023-09-14,124132,Bernadina,E 176 St,(021) - 428861
+1202,The Enlightenment (The Rise of Modern Pagasm) *,Peter Gay,1966,419,PB-2023-259,2023-09-29,2023-09-14,124133,Evvie,Hylan Blvd,(021) - 428862
+949,Makers of Rome (from Lives),Plutarch,1790,366,PB-2023-260,2023-09-30,2023-09-14,124134,Becky,E 175 St,(021) - 428863
+92,The Narrow Road to the Deep North,Basho,1690,147,PB-2023-261,2024-09-05,2023-09-14,124135,Adela,Cabot Rd,(021) - 428864
+1131,The Razor's Edge,W. Somerset Maugham,1944,314,PB-2023-262,2024-09-05,2023-09-14,124136,Gilli,Monica Goldstein Way,(021) - 428865
+17,Copland on Music,Aaron Copland,1959,280,PB-2023-263,2024-09-05,2023-09-14,124137,Devina,E 214 St,(021) - 428866
+933,The Misanthrope' (a play),Moliere,1666,55,PB-2023-264,2024-09-05,2023-09-14,124138,Lindi,135 Pl,(021) - 428867
+85,Portrait of the Artist as a Young Dog,Dylan Thomas,1940,128,PB-2023-265,2024-09-05,2023-09-14,124139,Marnia,214 St,(021) - 428868
+544,The Human Body,Isaac Asimov,1963,309,PB-2023-266,2024-09-05,2023-09-14,124140,Daune,E 66 St,(021) - 428869
+562,Lectures on Literature,Vladimir Nabokov,1980,382,PB-2023-267,2024-09-05,2023-09-14,124141,Denni,Dr. Michael Lancelot Marcano Way,(021) - 428870
+965,The Oresteian Trilogy,Aeschylus,1480,203,PB-2023-268,2024-09-05,2023-09-14,124142,Esma,73 Av,(021) - 428871
+581,Electra' (a play),Sophocles,1445,55,PB-2023-269,2024-09-05,2023-09-14,124143,Megen,Morris Av,(021) - 428872
+484,Trolius and Cressida',William Shakespeare,1602,152,PB-2023-270,2024-09-05,2023-09-14,124144,Mary,Kingsland Avenue,(021) - 428873
+387,Selected Works,Cicero,1960,160,PB-2023-271,2024-09-05,2023-09-14,124145,Ilona,27 St,(021) - 428874
+168,The Testament,Elie Wiesel,1981,261,PB-2023-272,2024-09-05,2023-09-14,124146,Davina,172 St,(021) - 428875
+312,Albert's Bridge,Tom Stoppard,1969,116,PB-2023-273,2024-09-05,2023-09-14,124147,Kerri,E 66 St,(021) - 428876
+209,If You're Glad I'll Be Frank,Tom Stoppard,1969,116,PB-2023-274,2024-09-05,2023-09-14,124148,Fanchon,1 Av,(021) - 428877
+1205,Artist Descending a Staircase,Tom Stoppard,1973,116,PB-2023-275,2024-09-05,2023-09-14,124149,Lishe,Palmetto St,(021) - 428878
+1091,Greek Lyrics,"Sappho, Pindar, Solon, and 23 others",1999,82,PB-2023-276,2024-09-05,2023-09-14,124150,Matilde,255 St,(021) - 428879
+9,One Half of Robertson Davies,Robertson Davies,1978,286,PB-2023-277,2024-09-05,2023-09-14,124151,Janeta,E 28 St,(021) - 428880
+573,Modern Soviet Society,Basile Kerblay,1983,306,PB-2023-278,2024-09-05,2023-09-14,124152,Ingeborg,Marmion Av,(021) - 428881
+1225,Ulysses,James Joyce,1921,783,PB-2023-279,2024-09-05,2023-09-14,124153,Audre,64 St,(021) - 428882
+1106,Farmer,Jim Harrison,1976,160,PB-2023-280,2024-09-05,2023-09-14,124154,Heath,Manor Rd,(021) - 428883
+179,Travel Journal,Michel de Montaigne,1580,175,PB-2023-281,2024-09-05,2023-09-14,124155,Emlynn,Unionport Road,(021) - 428884
+921,Ladies' Man,Richard Price,1978,264,PB-2023-282,2024-09-05,2023-09-14,124156,Kit,Eastchester Road,(021) - 428885
+1148,"So Long, See You Tomorrow",William Maxwell,1980,149,PB-2023-283,2024-09-05,2023-09-14,124157,Maddalena,Laconia Av,(021) - 428886
+630,Ages of Man: readings by John Gielgud,William Shakespeare,1600,93,PB-2023-284,2024-09-05,2023-09-14,124158,Kelsey,Edgewater Street,(021) - 428887
+834,Nine Stories,J.D. Salinger,1953,198,PB-2023-285,2024-09-05,2023-09-14,124159,Estella,Linden Blvd,(021) - 428888
+729,The Man Who Dreamed of Tomorrow: The Life and Thought of Wilhelm Reich,W. Edward Mann and Edward Hoffman,1980,253,PB-2023-286,2024-09-05,2023-09-14,124160,Camila,E 19 St,(021) - 428889
+78,On Writing the Short Story,Hallie Burnett,1983,148,PB-2023-287,2024-09-05,2023-09-14,124161,Annabal,E 178 St,(021) - 428890
+184,"Uncollected Short Stories, Vol. 1",J.D. Salinger,1946,89,PB-2023-288,2024-09-05,2023-09-14,124162,Jenette,3 Av,(021) - 428891
+698,The Elements of Style,"William Strunk, Jr. and E.B. White",1959,43,PB-2023-289,2024-09-05,2023-09-14,124163,Jelene,E 67 St,(021) - 428892
+894,The Confessions of Felix Krull Confidence Man (The Early Years),Thomas Mann,1955,378,PB-2023-290,2024-09-05,2023-09-14,124164,Jaclyn,Jewel Av,(021) - 428893
+1255,A Woman's Life,Guy de Maupassant,1883,202,PB-2023-291,2024-09-05,2023-09-14,124165,Birdie,Bleecker St,(021) - 428894
+1064,The Distracted Preacher' and four other short stories,Thomas Hardy,1888,175,PB-2023-292,2023-11-01,2023-09-14,124166,Maureene,E 23 St,(021) - 428895
+1321,The Kiss' and other short stories,Anton Chekhov,1902,168,PB-2023-293,2023-11-02,2023-09-14,124167,Joline,Wyckoff Av,(021) - 428896
+1236,George Bernard Shaw,Olivia Coolidge,1968,226,PB-2023-294,2023-11-03,2023-09-14,124168,Berty,Crotona Av,(021) - 428897
+1165,Ninety-nine Novels,Anthony Burgess,1984,156,PB-2023-295,2023-11-04,2023-09-14,124169,Latisha,East Tremont Avenue,(021) - 428898
+989,Saint Joan,George Bernard Shaw,1924,158,PB-2023-296,2023-11-05,2023-09-14,124170,Evey,Marion Av,(021) - 428899
+1318,The Portable Tolstoy,L.N. Tolstoy,1908,429,PB-2023-297,2023-11-06,2023-09-14,124171,Melinde,W 178 St,(021) -9987006
+41,Life in Shakespeare's England,John Dover Wilson,1634,345,PB-2023-298,2023-11-07,2023-09-14,124172,Malcah,1 Av,(021) -9987007
+1162,What is Art?,L.N. Tolstoy,1896,191,PB-2023-299,2023-11-08,2023-09-14,124173,Faydra,East Houston Street,(021) -9987008
+1191,A Doll's House,Henrik Ibsen,1879,103,PB-2023-300,2023-11-09,2023-09-14,124174,Jeralee,Marolla Pl,(021) -9987009
+1291,Wired: The Short Life and Fast Times of John Belushi,Bob Woodward,1984,423,PB-2023-301,2023-11-10,2023-09-14,124175,Dodie,64 St,(021) -9987010
+913,The Republic,Plato,1990,455,PB-2023-302,2023-11-11,2023-09-14,124176,Adah,Madison Av,(021) -9987011
+53,Physics for Poets,Robert H. March,1970,253,PB-2023-303,2023-11-12,2023-09-14,124177,Christyna,Utopia Pkwy,(021) -9987012
+1157,Creation,Gore Vidal,1981,593,PB-2023-304,2023-11-13,2023-09-14,124178,Marthena,Lewiston St,(021) -9987013
+719,The Baron in the Trees,Italo Calvino,1959,217,PB-2023-305,2023-11-14,2023-09-14,124179,Adrianna,61 St,(021) -9987014
+203,Managing U.S. - Soviet Rivalry,Alexander L. George,1983,397,PB-2023-306,2023-11-15,2023-09-14,124180,Darcie,166 St,(021) -9987015
+771,Italian Journey,J.W. Goethe,1786,398,PB-2023-307,2023-11-16,2023-09-14,124181,Helise,175 St,(021) -9987016
+1145,A Fan's Notes,Frederick Exley,1968,353,PB-2023-308,2023-11-17,2023-09-14,124182,Lillian,Grand Concourse,(021) -9987017
+1056,Fathers and Sons,Ivan Turgenev,1861,295,PB-2023-309,2023-11-18,2023-09-14,124183,Jayme,Lafayette Avenue,(021) -9987018
+1248,Axel's Castle,Edmund Wilson,1931,235,PB-2023-310,2023-11-19,2023-09-14,124184,Lanna,Madison St,(021) -9987019
+198,Mr. Midshipman Hornblower,C.S. Forster,1941,252,PB-2023-311,2023-11-20,2023-09-14,124185,Ermentrude,Elvin St,(021) -9987020
+819,Eugene Onegin,Alexander Pushkin,1830,233,PB-2023-312,2023-11-21,2023-09-14,124186,Ina,Sunset Av,(021) -9987021
+189,A Hero of Our Time,Mikhail Lermontov,1839,185,PB-2023-313,2023-11-22,2023-09-14,124187,Milli,Linden Blvd,(021) -9987022
+951,"The Penguin Atlas of Recent History, Europe since 1815",Colin McEvedy,1982,90,PB-2023-314,2023-11-23,2023-09-14,124188,Mathilda,Roma Av,(021) -9987023
+475,"""A Simple Heart"", ""The Legend of St. Julian Hospitator""",Gustav Flaubert,1876,87,PB-2023-315,2023-11-24,2023-09-14,124189,Melisenda,Grand Concourse,(021) -9987024
+531,A Severed Head,Iris Murdoch,1961,205,PB-2023-316,2023-11-25,2023-09-14,124190,Alethea,79 Av,(021) -9987025
+68,Selected Fables,Jean de La Fontaine,1693,141,PB-2023-317,2023-11-26,2023-09-14,124191,Merralee,Southern Boulevard,(021) -9987026
+1050,Othello,William Shakespeare,1604,154,PB-2023-318,2023-11-27,2023-09-14,124192,Helene,56 Av,(021) -9987027
+456,Meditations on First Philosophy,Réné Descartes,1641,56,PB-2023-319,2023-11-28,2023-09-14,124193,Hanna,Hylan Blvd,(021) -9987028
+305,The Loneliness of the Long Distance Runner,Alan Sillitoe,1959,144,PB-2023-320,2023-11-29,2023-09-14,124194,Carlotta,59 Av,(021) -9987029
+548,The Souls of Black Folk,W.E.B. Dubois,1903,278,PB-2023-321,2023-11-30,2023-09-14,124195,Kym,E 21 St,(021) -9987030
+768,Light Years,James Salter,1975,308,PB-2023-322,2024-09-05,2023-09-14,124196,Berti,Crotona Av,(021) -9987031
+172,The Unbearable Lightness of Being,Milan Kundera,1984,314,PB-2023-323,2024-09-05,2023-09-14,124197,Emelita,E 188 St,(021) -9987032
+398,The Elizabethan World Picture,E.M.W. Tillyard,1958,109,PB-2023-324,2024-09-05,2023-09-14,124198,Devon,Centre St,(021) -9987033
+1108,The Uses of Enchantment,Bruno Bettelheim,1975,310,PB-2023-325,2024-09-05,2023-09-14,124199,Jobie,65 Av,(021) -9987034
+594,Vanity Fair,William M. Thackeray,1847,636,PB-2023-326,2024-09-05,2023-09-14,124200,Guenevere,Chatterton Avenue,(021) -9987035
+64,Mysteries,Knut Hamsun,1892,254,PB-2023-327,2024-09-05,2023-09-14,124201,Deny,Idlease Pl,(021) -9987036
+1144,Home Before Dark,Susan Cheever,1984,243,PB-2023-328,2024-09-05,2023-09-14,124202,Mirelle,Harry Van Arsdale Jr Av,(021) -9987037
+408,The Ides of March,Thornton Wilder,1948,204,PB-2023-329,2024-09-05,2023-09-14,124203,Lucilia,Bleecker St,(021) -9987038
+1208,Revolutions and Revolutionaries,A.J.P. Taylor,1980,160,PB-2023-330,2024-09-05,2023-09-14,124204,Ernestine,Boller Av,(021) -9987039
+837,Breaking with Moscow,Arkady N. Shevchenko,1985,370,PB-2023-331,2024-09-05,2023-09-14,124205,Nadeen,Lane Av,(021) -9987040
+63,An Actor Prepares,Constantin Stanislavski,1936,295,PB-2023-332,2024-09-05,2023-09-14,124206,Coriss,E 175 St,(021) -9987041
+83,Empty Seats,Michael White,1984,190,PB-2023-333,2024-09-05,2023-09-14,124207,Kathie,East Tremont Avenue,(021) -9987042
+1049,Creating a Role,Constantin Stanislavski,1938,262,PB-2023-334,2024-09-05,2023-09-14,124208,Karylin,Washington Street,(021) -9987043
+110,The Breaks,Richard Price,1983,446,PB-2023-335,2024-09-05,2023-09-14,124209,Carol,62 St,(021) -9987044
+434,A Flag for Sunrise,Robert Stone,1977,440,PB-2023-336,2024-09-05,2023-09-14,124210,Blisse,Havemeyer Avenue,(021) -9987045
+688,Neurotic Styles,David Shapiro,1965,199,PB-2023-337,2024-09-05,2023-09-14,124211,Clari,Cypress Av,(021) -9987046
+79,The Age of Religious Wars 1559-1715,Richard S. Dunn,1970,302,PB-2023-338,2024-09-05,2023-09-14,124212,Aline,Harold St,(021) -9987047
+394,Uncle Tom's Cabin,Harriet Beecher Stowe,1852,590,PB-2023-339,2024-09-05,2023-09-14,124213,Deanne,Himrod St,(021) -9987048
+695,This Man & Music,Anthony Burgess,1982,192,PB-2023-340,2024-09-05,2023-09-14,124214,Carin,73 Av,(021) -9987049
+439,Notre Dame of Paris,Victor Hugo,1831,493,PB-2023-341,2024-09-05,2023-09-14,124215,Del,6 Av,(021) -9987050
+854,On the Nature of the Universe,Lucretius,1954,256,PB-2023-342,2024-09-05,2023-09-14,124216,Mamie,1 Av,(021) -9987051
+374,The Codex Leicester,Leonardo Da Vinci,1507,175,PB-2023-343,2024-09-05,2023-09-14,124217,Carrie,Barnes Av,(021) -9987052
+885,Caruso,Howard Greenfeld,1983,254,PB-2023-344,2024-09-05,2023-09-14,124218,Angela,41 Av,(021) -9987053
+1033,The Guermantes Way,Marcel Proust,1925,425,PB-2023-345,2024-09-05,2023-09-14,124219,Dennie,112 Av,(021) -9987054
+1187,Fire in the Lake,Frances Fitzgerald,1972,590,PB-2023-346,2024-09-05,2023-09-14,124220,Legra,37 Av,(021) -9987055
+960,Heartburn,Nora Ephron,1983,223,PB-2023-347,2024-09-05,2023-09-14,124221,Abagail,30 Dr,(021) -9987056
+297,The Tao of Physics,Fritjof Capra,1975,311,PB-2023-348,2024-09-05,2023-09-14,124222,Modestine,Roma Av,(021) -9987057
+708,Tao Te Ching,Lao Tsu,1887,81,PB-2023-349,2024-09-05,2023-09-14,124223,Amie,Haviland Av,(021) -9987058
+406,Bloomsbury - A House of Lions,Leon Edel,1979,299,PB-2023-350,2024-09-05,2023-09-14,124224,Joana,147 Dr,(021) -9987059
+635,Miss Manners Guide to Excruciatingly Correct Behavior,Judith Martin,1979,555,PB-2023-351,2024-09-05,2023-09-14,124225,Mable,E 176 St,(021) -9987060
+745,Confession,L.N. Tolstoy,1879,93,PB-2023-352,2024-09-05,2023-09-14,124226,Lark,Canal St,(021) -9987061
+1273,The Color Purple,Alice Walker,1982,251,PB-2023-353,2024-09-05,2023-09-14,124227,Amalie,Gansevoort Boulevard,(021) -9987062
+382,James Joyce,Richard Ellmann,1959,744,PB-2023-354,2024-09-05,2023-09-14,124228,Janey,E 78 St,(021) -9987063
+325,Queen Lucia part 1,E.F. Benson,1920,318,PB-2023-355,2024-09-05,2023-09-14,124229,Nancey,Adams Av,(021) -9987064
+658,Dubliners,James Joyce,1905,223,PB-2023-356,2024-09-05,2023-09-14,124230,Corenda,Kenmare St,(021) -9987065
+1309,The Mayor of Casterbridge,Thomas Hardy,1886,411,PB-2023-357,2024-09-05,2023-09-14,124231,Leoine,2 Av,(021) -9987066
+535,The Early Church,Henry Chadwick,1967,289,PB-2023-358,2024-09-05,2023-09-14,124232,Ethyl,E 188 St,(021) -9987067
+361,The Histories,Herodotus,1832,624,PB-2023-359,2024-09-05,2023-09-14,124233,Adelle,Linden Blvd,(021) -9987068
+886,The House of Mirth,Edith Wharton,1905,329,PB-2023-360,2024-09-05,2023-09-14,124234,Flower,Eastchester Road,(021) -9987069
+1028,A China Passage,J.K. Galbraith,1973,138,PB-2023-361,2024-09-05,2023-09-14,124235,Carlen,73 Av,(021) -9987070
+478,Essays and Aphorisms,Arthur Schopenhauer,1851,236,PB-2023-362,2024-09-05,2023-09-14,124236,Jenda,Metropolitan Avenue,(021) -9987071
+353,The Europeans,Luigi Barzini,1983,267,PB-2023-363,2024-09-05,2023-09-14,124237,Maye,Corsa Av,(021) -9987072
+196,My Quest for Beauty,Rollo May,1985,243,PB-2023-364,2024-09-05,2023-09-14,124238,Corilla,Jefferson Avenue,(021) -9987073
+42,Cosmos,Carl Sagan,1980,286,PB-2023-365,2024-09-05,2023-09-14,124239,Alyce,60 St,(021) -9987074
+953,Zen in the Art of Archery,Eugen Herrigel,1953,90,PB-2023-366,2024-09-05,2023-09-14,124240,Janis,Fillmore Av,(021) -9987075
+213,Dialogues Concerning Natural Religion,David Hume,1775,105,PB-2023-367,2024-09-05,2023-09-14,124241,Danelle,Powell Av,(021) -9987076
+70,The Conquest of Gaul,Julius Caesar,1886,236,PB-2023-368,2024-09-05,2023-09-14,124242,Katha,Nome Av,(021) -9987077
+704,A Connecticut Yankee in King Arthur's Court,Mark Twain,1889,331,PB-2023-369,2024-09-05,2023-09-14,124243,Lorinda,82 St,(021) -9987078
+870,Linguistics,Richard Hudson,1984,166,PB-2023-370,2024-09-05,2023-09-14,124244,Briney,Grandview Avenue,(021) -9987079
+1005,The Aeneid,Virgil,1886,336,PB-2023-371,2024-09-05,2023-09-14,124245,Lucky,Himrod St,(021) -9987080
+1222,The Colour of Saying Anthology of Verse,Various,1963,170,PB-2023-372,2024-09-05,2023-09-14,124246,Lida,60 Av,(021) -9987081
+775,Renaissance Florence,Gene A. Brucker,1969,280,PB-2023-373,2024-09-05,2023-09-14,124247,Christie,73 Av,(021) -9987082
+1159,Politics,Edward I. Koch,1985,246,PB-2023-374,2024-09-05,2023-09-14,124248,Fredelia,Halsey St,(021) -9987083
+113,Lives of the Artists,Giorgio Vasari,1568,477,PB-2023-375,2024-09-05,2023-09-14,124249,Marthe,Central Av,(021) -9987084
+448,The Origin of Consciousness in the Breakdown of the Bicameral Mind,Julian Jaynes,1976,446,PB-2023-376,2024-09-05,2023-09-14,124250,Alicea,79 St,(021) -9987085
+1181,Who Rules America Now?,G. William Domhoff,1983,223,PB-2023-377,2024-09-05,2023-09-14,124251,Emogene,Manhattan Avenue,(021) -9987086
+1192,"Poetry, Language, Thought",Martin Heidegger,1971,229,PB-2023-378,2024-09-05,2023-09-14,124252,Cassy,Boston Rd,(021) -9987087
+239,Patterns of Sexuality and Reproduction,Alan S. Parkes,1976,141,PB-2023-379,2024-09-05,2023-09-14,124253,Lillis,Jefferson Avenue,(021) -9987088
+212,Father and Son,Edmund Gosse,1907,251,PB-2023-380,2024-09-05,2023-09-14,124254,Dorella,St Felix Av,(021) -9987089/(+62)-9987089
+646,Self-Renewal,John Gardner,1981,127,PB-2023-381,2024-09-05,2023-09-14,124255,Anallese,124 St,(021) -9987090
+330,Inferno,Dante Alighieri,1314,180,PB-2023-382,2024-09-05,2023-09-14,124256,Jacky,Haven Av,(021) -9987091
+900,Howard's End,E.M. Forster,1910,271,PB-2023-383,2024-09-05,2023-09-14,124257,Milena,Father Gannon Court,(021) -9987092
+180,The Poetics of Space,Gaston Bachelard,1958,241,PB-2023-384,2024-09-05,2023-09-14,124258,Ginnie,Country Drive West,(021) -9987093
+751,Ironweed,William Kennedy,1983,227,PB-2023-385,2024-09-05,2023-09-14,124259,Lizbeth,Zerega Av,(021) -9987094
+40,The Odyssey,Homer,1886,365,PB-2023-386,2024-09-05,2023-09-14,124260,Cybal,Mapes Av,(021) -9987095
+608,"Selected Letters, edited by Richard Ellman",James Joyce,1957,409,PB-2023-387,2024-09-05,2023-09-14,124261,Cacilie,27 St,(021) -9987096
+604,Act One,Moss Hart,1959,383,PB-2023-388,2024-09-05,2023-09-14,124262,Lorry,Grandview Avenue,(021) -9987097
+160,The Enchanter,Vladimir Nabokov,1939,95,PB-2023-389,2024-09-05,2023-09-14,124263,Carmita,254 St,(021) -9987098
+501,"The Heart of Emerson's Journals, 1820-75",Ralph Waldo Emerson,1875,338,PB-2023-390,2024-09-05,2023-09-14,124264,Lacee,3 Av,(021) -9987099
+157,The Lives of the Great Composers,Harold C. Schonberg,1970,627,PB-2023-391,2024-09-05,2023-09-14,124265,Aryn,Boston Rd,(021) -9987100
+1109,The Triumph of Politics,David A. Stockman,1986,411,PB-2023-392,2024-09-05,2023-09-14,124266,Ashlee,Chatterton Avenue,(021) -9987101
+814,The Dublin Diary of Stanislaus Joyce,Stanislaus Joyce,1904,114,PB-2023-393,2024-09-05,2023-09-14,124267,Effie,75 Av,(021) -9987102
+438,Leviathan,Thomas Hobbes,1651,729,PB-2023-394,2024-09-05,2023-09-14,124268,Ashlen,60 Ln,(021) -9987103
+152,Letters to Benvenuta,Rainer Maria Rilke,1914,87,PB-2023-395,2024-09-05,2023-09-14,124269,Marcelle,263 St,(021) -9987104
+910,Behavioral Mechanisms in Ecology,Douglass H. Morse,1980,320,PB-2023-396,2024-09-05,2023-09-14,124270,Chicky,Haviland Av,(021) -9987105
+1039,The Gilded Age,Mark Twain and Charles Dudley Warner,1873,222,PB-2023-397,2024-09-05,2023-09-14,124271,Kerstin,Metropolitan Avenue,(021) -9987106
+340,Conversations with James Joyce,Arthur Power,1974,111,PB-2023-398,2024-09-05,2023-09-14,124272,Lindy,Main St,(021) -9987107
+1286,The Use and Abuse of Art,Jacques Barzun,1974,150,PB-2023-399,2024-09-05,2023-09-14,124273,Karita,80 Rd,(021) -9987108
+1011,Among the Believers (an Islamic Journey),V.S. Naipaul,1980,430,PB-2023-400,2024-09-05,2023-09-14,124274,Daisy,Scott Av,(021) -9987109
+680,Postcards from the Edge,Carrie Fisher,1987,218,PB-2023-401,2024-09-05,2023-09-14,124275,Dalenna,Heathcote Avenue,(021) -9987110
+215,Essays,Michel Montaigne,1580,406,PB-2023-402,2024-09-05,2023-09-14,124276,Ingaborg,Hermany Av,(021) -9987111
+281,Cities of the Plain,Marcel Proust,1913,378,PB-2023-403,2024-09-05,2023-09-14,124277,Farrand,Burke Av,(021) -9987112
+502,The Bourgeois Experience Education of the Senses,Peter Gay,1984,460,PB-2023-404,2024-09-05,2023-09-14,124278,Kalie,E 71 St,(021) -9987113
+226,The Ego and the Id,Sigmund Freud,1923,49,PB-2023-405,2024-09-05,2023-09-14,124279,Edeline,Klondike Av,(021) -9987114
+941,"Imperialism, The Highest Stage of Capitalism",V.I. Lenin,1916,128,PB-2023-406,2024-09-05,2023-09-14,124280,Mattie,Dorothy St,(021) -9987115
+1167,Lonesome Dove,Larry McMurtry,1985,945,PB-2023-407,2024-09-05,2023-09-14,124281,Cordey,E 178 St,(021) -9987116
+959,Between Meals,A.J. Liebling,1959,185,PB-2023-408,2024-09-05,2023-09-14,124282,Murielle,48 Av,(021) -9987117
+391,Radio in the Television Age,Peter Fornatale & Joshua E. Mills,1980,196,PB-2023-409,2024-09-05,2023-09-14,124283,Arlyne,McGraw Av,(021) -9987118
+1052,Einstein's Monsters,Martin Amis,1987,149,PB-2023-410,2024-09-05,2023-09-14,124284,Love,Creston Av,(021) -9987119
+199,Arctic Dreams,Barry Lopez,1986,372,PB-2023-411,2024-09-05,2023-09-14,124285,Enrika,East Dr,(021) -9987120
+197,The Golden Notebook,Doris Lessing,1962,666,PB-2023-412,2024-09-05,2023-09-14,124286,Atalanta,172 St,(021) -9987121
+1122,"The Practical Cogitator, The Thinker's Anthology",Various,1945,644,PB-2023-413,2024-09-05,2023-09-14,124287,Karina,Blackrock Avenue,(021) -9987122
+684,Jurgen,James Branch Cabell,1919,368,PB-2023-414,2024-09-05,2023-09-14,124288,Gui,Boston Rd,(021) -9987123
+507,Deutschland,Heinrich Heine,1843,100,PB-2023-415,2024-09-05,2023-09-14,124289,Alvera,Foch Av,(021) -9987124
+112,"Jews, God and History",Max I. Dimont,1962,371,PB-2023-416,2024-09-05,2023-09-14,124290,Aidan,Boston Rd,(021) -9987125
+174,An Introduction to American Literature,Jorge Luis Borges,1967,90,PB-2023-417,2024-09-05,2023-09-14,124291,Eran,Halsey St,(021) -9987126
+1001,The Travels,Marco Polo,1298,345,PB-2023-418,2024-09-05,2023-09-14,124292,Maude,Dewhurst St,(021) -9987127
+460,Discourse on Thinking,Martin Heidegger,1955,90,PB-2023-419,2024-09-05,2023-09-14,124293,Nanice,Crotona Pkwy,(021) -9987128
+1018,The Culture of Ancient Egypt,John A. Wilson,1951,318,PB-2023-420,2024-09-05,2023-09-14,124294,Christen,Naughton Av,(021) -9987129
+580,Rameau's Nephew,Denis Diderot,1761,125,PB-2023-421,2024-09-05,2023-09-14,124295,Carmella,Metropolitan Avenue,(021) -9987130
+992,Just So Stories,Rudyard Kipling,1902,158,PB-2023-422,2024-09-05,2023-09-14,124296,Isa,Waterbury Avenue,(021) -9987131
+821,Elements of Acoustic Phonetics,Peter Ladefoged,1962,108,PB-2023-423,2024-09-05,2023-09-14,124297,Henrietta,Mason Av,(021) -9987132
+926,A Nietzsche Reader,Friedrich Nietzche,1880,284,PB-2023-424,2024-09-05,2023-09-14,124298,Feliza,Arthur Av,(021) -9987133
+841,Mansfield Park,Jane Austen,1814,464,PB-2023-425,2024-09-05,2023-09-14,124299,Billi,Harry Van Arsdale Jr Av,(021) -9987134
+990,The Two Cultures & A Second Look,C.P. Snow,1964,100,PB-2023-426,2024-09-05,2023-09-14,124300,Andromache,Crotona Park North,(021) -9987135
+251,Life on the Mississippi,Mark Twain,1882,352,PB-2023-427,2024-09-05,2023-09-14,124301,Lizette,Oakville St,(021) -9987136
+265,Game Plan,Zbigniew Brzezinski,1986,273,PB-2023-428,2024-09-05,2023-09-14,124302,Kelcey,Douglaston Parkway,(021) -9987137
+386,Ursule Mirouet,Honoré de Balzac,1841,266,PB-2023-429,2024-09-05,2023-09-14,124303,Agace,Putnam Av,(021) -9987138
+166,The Penguin Atlas of Ancient History,Celia McEvedy,1967,92,PB-2023-430,2024-09-05,2023-09-14,124304,Marika,Harold Av,(021) -9987139
+735,The Classic Slum,Robert Roberts,1971,238,PB-2023-431,2024-09-05,2023-09-14,124305,Darci,Edgewater Street,(021) -9987140
+762,Break of Day,Colette,1928,117,PB-2023-432,2024-09-05,2023-09-14,124306,Evangeline,Castle Hill Avenue,(021) -9987141
+94,Man's Fate,André Malraux,1934,338,PB-2023-433,2024-09-05,2023-09-14,124307,Clemence,W 13 St,(021) -9987142
+390,Andromache,Jean Racine,1672,111,PB-2023-434,2024-09-05,2023-09-14,124308,Aurel,64 St,(021) -9987143
+1174,Getting to Yes,"Roger Fisher, William Ury",1981,154,PB-2023-435,2024-09-05,2023-09-14,124309,Charlena,B 131 St,(021) -9987144
+407,Language and Myth,Ernst Cassirer,1946,99,PB-2023-436,2024-09-05,2023-09-14,124310,Brier,Linden Blvd,(021) -9987145
+1294,Perestroika,Mikhail Gorbachev,1987,254,PB-2023-437,2024-09-05,2023-09-14,124311,Angil,Manor Rd,(021) -9987146
+73,The Essential Talmud,Adin Steinsaltz,1976,275,PB-2023-438,2024-09-05,2023-09-14,124312,Essie,Wyckoff Av,(021) -9987147
+820,A Midsummer Night's Dream,William Shakespeare,1600,256,PB-2023-439,2024-09-05,2023-09-14,124313,Dulsea,Cypress Av,(021) -9987148
+99,Letters on England,Voltaire,1733,145,PB-2023-440,2024-09-05,2023-09-14,124314,Gilbertine,Fields Av,(021) -9987149
+587,The Bonfire of the Vanities,Tom Wolfe,1987,659,PB-2023-441,2024-09-05,2023-09-14,124315,Krissy,111 Av,(021) -9987150
+550,Beowulf,Beowulf Poet,800,115,PB-2023-442,2024-09-05,2023-09-14,124323,Allissa,Cypress Av,(021) -9987151
+128,The Inimitable Jeeves,P.G. Wodehouse,1924,224,PB-2023-443,2024-09-05,2023-09-14,124317,Cher,178 St,(021) -9987152
+701,Singers and the Song,Gene Lees,1987,257,PB-2023-444,2024-04-01,2023-09-14,124318,Dorita,University Place,(021) -9987153
+917,Tom Sawyer Abroad and Tom Sawyer Detective,Mark Twain,1896,211,PB-2023-445,2024-04-02,2023-09-14,124319,Agnese,Boston Rd,(021) -9987154
+462,Notes from the Underground,Fyodor Dostoevsky,1864,158,PB-2023-446,2024-04-03,2023-09-14,124320,Margalo,Park Avenue South,(021) -9987155
+65,The Solace of Open Spaces,Gretel Ehrlich,1985,131,PB-2023-447,2024-04-04,2023-09-14,124321,Cara,Cross Bronx Expressway,(021) -9987156
+522,Joseph Andrews,Henry Fielding,1742,298,PB-2023-448,2024-04-05,2023-09-14,124322,Cecile,W 13 St,(021) -9987157
+1075,"The Later Middle Ages, 1272--1485",George Holmes,1962,260,PB-2023-449,2024-04-06,2023-09-14,124316,Eryn,Yankee Mall,(021) -9987158
+541,"The F.B.I. and Martin Luther King, Jr.",David J. Garrow,1981,227,PB-2023-450,2024-04-07,2023-09-14,124324,Ann-Mari,Noble St,(021) -9987159
+789,Middlemarch,George Eliot,1872,908,PB-2023-451,2024-04-08,2023-09-14,124325,Gayleen,E 184 St,(021) -9987160
+823,The 42nd Parallel,John Dos Passos,1930,414,PB-2023-452,2024-04-09,2023-09-14,124326,Janette,Beverly Rd,(021) -9987161
+725,The Vinland Sagas,Anonymous,1250,105,PB-2023-453,2024-04-10,2023-09-14,124327,Dyanne,1 Av,(021) -9987162
+1021,Money and Politics in the United States,"Michael J. Malbin, ed.",1984,270,PB-2023-454,2024-04-11,2023-09-14,124328,Calley,69 Av,(021) -9987163
+308,For the Record,Donald T. Regan,1988,379,PB-2023-455,2024-04-12,2023-09-14,124329,Horatia,E 178 St,(021) -9987164
+200,The Autobiography and other writings,Benjamin Franklin,1790,260,PB-2023-456,2024-04-13,2023-09-14,124330,Eleanor,262 St,(021) -9987165
+578,A Life,Elia Kazan,1988,825,PB-2023-457,2024-04-14,2023-09-14,124331,Maggie,171 St,(021) -9987166
+1000,The Oregon Trail,Francis Parkman,1849,286,PB-2023-458,2024-04-15,2023-09-14,124332,Megan,1 Av,(021) -9987167
+779,The Art of Literature,Arthur Schopenhauer,1841,149,PB-2023-459,2024-04-16,2023-09-14,124333,Cindi,Forest Hill Road,(021) -9987168
+1151,November,Gustave Flaubert,1842,132,PB-2023-460,2024-04-17,2023-09-14,124334,Linn,Riverside Drive,(021) -9987169
+564,Sidelights on Relativity,Albert Einstein,1921,56,PB-2023-461,2024-04-18,2023-09-14,124335,Lavina,Parker St,(021) -9987170
+679,The Analects,Confucius,1886,160,PB-2023-462,2024-04-19,2023-09-14,124336,Kristien,E 178 St,(021) -9987171
+1297,The Lake,Yasunari Kawabata,1954,160,PB-2023-463,2024-04-20,2023-09-14,124337,Jany,East Dr,(021) -9987172
+1210,On Reading,Marcel Proust,1905,67,PB-2023-464,2024-04-21,2023-09-14,124338,Marta,Rockaway Boulevard,(021) -9987173
+454,"""The Paranoid Style in American Politics and Other Essays""",Richard Hofstadter,1965,315,PB-2023-465,2024-04-22,2023-09-14,124339,Lacie,Harry Van Arsdale Jr Av,(021) -9987174
+873,The Poet's Work,collected,1977,294,PB-2023-466,2024-04-23,2023-09-14,124340,Joye,Silver St,(021) -9987175
+1100,Epistulae Morales vol. 1,Seneca,1886,229,PB-2023-467,2024-04-24,2023-09-14,124341,Lisbeth,255 St,(021) -9987176
+412,The Portable Nabokov,Vladimir Nabokov,1968,536,PB-2023-468,2024-04-25,2023-09-14,124342,Carlie,Benedict Av,(021) -9987177
+178,Quarrels that have Shaped the Constitution,Various,1962,268,PB-2023-469,2024-04-26,2023-09-14,124343,Erina,69 Av,(021) -9987178
+979,A Word or Two Before You Go,Jacques Barzun,1986,177,PB-2023-470,2024-04-27,2023-09-14,124344,Leandra,Harold St,(021) -9987179
+1176,Framely Parsonage,Anthony Trollope,1860,563,PB-2023-471,2024-04-28,2023-09-14,124345,Mureil,Grandview Avenue,(021) -9987180
+347,Metamorphoses,Ovid,1870,357,PB-2023-472,2024-04-29,2023-09-14,124346,Cathie,Myrtle Av,(021) -9987181
+1121,Third World Politics,Christopher Clapham,1985,186,PB-2023-473,2024-04-30,2023-09-14,124347,Annmarie,E 68 St,(021) -9987182
+717,The Risk Pool,Richard Russo,1988,479,PB-2023-474,2024-09-05,2023-09-14,124348,Bonnee,Harman St,(021) -9987183
+373,Bleak House,Charles Dickens,1853,975,PB-2023-475,2024-09-05,2023-09-14,124349,Mandie,Williamsbridge Road,(021) -9987184
+848,Ancient and Classical Art,P.P. Xahane,1967,200,PB-2023-476,2024-09-05,2023-09-14,124350,Eda,3 Av,(021) -9987185
+490,Paris Spleen,Charles Baudelaire,1869,108,PB-2023-477,2024-09-05,2023-09-14,124351,Anabel,E 178 St,(021) -9987186
+1253,O Pioneers!,Willa Cather,1913,309,PB-2023-478,2024-09-05,2023-09-14,124352,Myrta,62 St,(021) -9987187
+916,The Late Bourgeois World,Nadine Gordimer,1966,95,PB-2023-479,2024-09-05,2023-09-14,124353,Kizzee,188 St,(021) -9987188
+647,"The Life of Birds, vol. 2",Jean Corst,1971,338,PB-2023-480,2024-09-05,2023-09-14,124354,Idalina,Crotona Av,(021) -9987189
+268,Philosophical Dictionary,Voltaire,1764,400,PB-2023-481,2024-09-05,2023-09-14,124355,Diana,Grand Concourse,(021) -9987190
+718,Europe Unfolding 1648-1688,John Stoye,1969,399,PB-2023-482,2024-09-05,2023-09-14,124356,Chelsie,Fuller St,(021) -9987191
+977,Billy Bathgate,E.L. Doctorow,1989,323,PB-2023-483,2024-09-05,2023-09-14,124357,Francesca,Clover Pl,(021) -9987192
+479,Bernini,Howard Hibbard,1965,229,PB-2023-484,2024-09-05,2023-09-14,124358,Adara,St Felix Av,(021) -9987193
+1260,Fundamentals of Buddhism,Yasuji Kirimura,1977,210,PB-2023-485,2024-09-05,2023-09-14,124359,Elfie,McGraw Av,(021) -9987194
+1,Poetry and Mathematics,Scott Buchanan,1929,156,PB-2023-486,2024-09-05,2023-09-14,124360,Fiorenze,Roosevelt Avenue,(021) -9987195
+736,Lincoln,Gore Vidal,1984,657,PB-2023-487,2024-09-05,2023-09-14,124361,Marcella,Marmion Av,(021) -9987196
+737,Love in the Time of Cholera,Gabriel Garcia Marquez,1988,348,PB-2023-488,2024-09-05,2023-09-14,124362,Dale,Madison St,(021) -9987197
+381,The Bible,Bible,1488,520,PB-2023-489,2024-09-05,2023-09-14,124363,Eugenie,Cooper Av,(021) -9987198
+705,Nora - The Real Life of Molly Bloom,Brenda Maddox,1988,381,PB-2023-490,2024-09-05,2023-09-14,124364,Joice,E 13 St,(021) -9987199
+121,Paradise Lost,John Milton,1667,339,PB-2023-491,2024-09-05,2023-09-14,124365,Luana,Boston Rd,(021) -9987200
+993,Epitaph for Kings,Sanche de Gramont,1969,428,PB-2023-492,2024-09-05,2023-09-14,124366,Jacklyn,168 St,(021) -9987201
+971,A Brief History of Time,Stephen W. Hawking,1988,182,PB-2023-493,2024-09-05,2023-09-14,124367,Erena,East Fordham Road,(021) -9987202
+329,The Necessary Angel,Wallace Stevens,1951,176,PB-2023-494,2024-09-05,2023-09-14,124368,Dionne,Waring Av,(021) -9987203
+489,The Portable Greek Reader,edited by W.H. Auden,1948,726,PB-2023-495,2024-09-05,2023-09-14,124369,Kailey,Marne Pl,(021) -9987204
+616,The Wild Ass's Skin,Honoré de Balzac,1831,285,PB-2023-496,2024-09-05,2023-09-14,124370,Diann,Fanning St,(021) -9987205
+1035,Manners from Heaven,Quentin Crisp,1984,138,PB-2023-497,2024-09-05,2023-09-14,124371,Margareta,Crotona Av,(021) -9987206
+270,Civilization and Its Discontents,Sigmund Freud,1930,104,PB-2023-498,2024-09-05,2023-09-14,124372,Hedwig,Fields Av,(021) -9987207
+397,The Other America,Michael Harrington,1962,221,PB-2023-499,2024-09-05,2023-09-14,124373,Catharine,Jewel Av,(021) -9987208
+123,Still Water - Prose Poems,Art Garfunkel,1989,119,PB-2023-500,2024-09-05,2023-09-14,124374,Glynda,Boston Rd,(021) -9987209
+1199,Art and Beauty in the Middle Ages,Umberto Eco,1959,119,PB-2023-501,2024-09-05,2023-09-14,124375,Jena,Fairmount Place,(021) -9987210
+315,The Fiancée and other stories,Anton Chekhov,1890,232,PB-2023-502,2024-09-05,2023-09-14,124376,Dyana,2 Av,(021) -9987211
+280,An American Tragedy,Theodore Dreiser,1925,828,PB-2023-503,2024-09-05,2023-09-14,124377,Bertha,E 187 St,(021) -9987212
+167,Guidelines to Faith,Santoru Izumi,1980,160,PB-2023-504,2024-09-05,2023-09-14,124378,Bill,Private Danny Chen Way,(021) -9987213
+860,Travels with a Donkey,Robert Louis Stevenson,1879,126,PB-2023-505,2024-09-05,2023-09-14,124379,Fidelity,Boston Rd,(021) -9987214
+796,The Double Helix,James D. Watson,1968,231,PB-2023-506,2024-09-05,2023-09-14,124380,Marena,Red Oak Dr,(021) -9987215
+368,Manufacturing Consent,"Noam Chomsky, Edward S. Herman",1988,291,PB-2023-507,2024-09-05,2023-09-14,124381,Elsbeth,Harry Van Arsdale Jr Av,(021) -9987216
+1154,An Autobiography,Anthony Trollope,1883,367,PB-2023-508,2024-09-05,2023-09-14,124382,Arda,W 69 St,(021) -9987217
+1068,The Power of Myth,Joseph Campbell (with Bill Moyers),1988,231,PB-2023-509,2024-09-05,2023-09-14,124383,Corella,Waterloo Pl,(021) -9987218
+1233,Quiet Days in Clichy,Henry Miller,1940,154,PB-2023-510,2024-09-05,2023-09-14,124384,Lotte,212 St,(021) -9987219
+699,The Penguin Atlas of Modern History (to 1815),Colin McEvedy,1972,90,PB-2023-511,2024-09-05,2023-09-14,124385,Amabelle,12 St,(021) -9987220
+126,Stuart England,J.P. Kenyon,1978,355,PB-2023-512,2024-09-05,2023-09-14,124386,Adriaens,Hermany Av,(021) -9987221
+6,The History of Sexuality vol. 1: An Introduction,Michel Foucault,1976,159,PB-2023-513,2024-09-05,2023-09-14,124387,Barb,Edson Av,(021) -9987222
+645,Contemporary Writers,Virginia Woolf,1920,160,PB-2023-514,2024-09-05,2023-09-14,124388,Elyssa,187 St,(021) -9987223
+118,"""Henry V""",William Shakespeare,1599,123,PB-2023-515,2024-09-05,2023-09-14,124389,Evangelia,St Felix Av,(021) -9987224
+585,Lost Illusions,Honoré de Balzac,1843,682,PB-2023-516,2024-09-05,2023-09-14,124390,Ferdinanda,E 178 St,(021) -9987225
+966,Great Plains,Ian Frazier,1989,214,PB-2023-517,2024-09-05,2023-09-14,124391,Abbi,East Tremont Avenue,(021) -9987226
+521,Tales from the Thousand and One Nights,Anonymous,1850,407,PB-2023-518,2024-09-05,2023-09-14,124392,Arden,50 Av,(021) -9987227
+1140,Interview With the Vampire,Anne Rice,1976,346,PB-2023-519,2024-09-05,2023-09-14,124393,Gabbi,Myrtle Av,(021) -9987228
+452,The Cost of Good Intentions,Charles R. Morris,1980,240,PB-2023-520,2024-09-05,2023-09-14,124394,Marris,78 Av,(021) -9987229
+809,The Portable Renaissance Reader,Various,1500,754,PB-2023-521,2024-09-05,2023-09-14,124395,Ailey,Harold St,(021) -9987230
+600,Bohemian Paris,Jerrold Seigel,1986,397,PB-2023-522,2024-09-05,2023-09-14,124396,Kara-Lynn,Cypress Av,(021) -9987231
+402,A Connoisseur's Guide to the Met,"Paul Magriel, John T. Spike",1987,235,PB-2023-523,2024-09-05,2023-09-14,124397,Andria,60 Av,(021) -9987232
+532,The Innocents Abroad,Mark Twain,1867,492,PB-2023-524,2024-09-05,2023-09-14,124398,Meriel,E 63 St,(021) -9987233
+1079,The Bell Jar,Sylvia Plath,1963,216,PB-2023-525,2024-09-05,2023-09-14,124399,Dierdre,Madison Av,(021)-89987234/(+62)-89987234
+597,Men at Work,George F. Will,1990,330,PB-2023-526,2024-09-05,2023-09-14,124400,Bridie,208 St,(021) -9987235
+948,Mythology,Edith Hamilton,1940,321,PB-2023-527,2024-09-05,2023-09-14,124401,Gusti,E 187 St,(021) -9987236
+306,A Moveable Feast,Ernest Hemingway,1960,211,PB-2023-528,2024-09-05,2023-09-14,124402,Alvinia,Cabot Rd,(021) -9987237
+486,Ethan Frome,Edith Wharton,1911,133,PB-2023-529,2024-09-05,2023-09-14,124403,Daryl,Boston Rd,(021) -9987238
+660,The Trial of Socrates,J.F. Stone,1988,230,PB-2023-530,2024-09-05,2023-09-14,124404,Blaire,38 Av,(021) -9987239
+853,Peoples and Cultures of the Middle East,"Daniel Bates, Amal Rassam",1983,283,PB-2023-531,2024-09-05,2023-09-14,124405,Lynnett,Metropolitan Avenue,(021) -9987240
+1072,"""The Knights,"" ""Peace,"" ""The Birds,"" ""Wealth""",Aristophanes,1886,285,PB-2023-532,2024-09-05,2023-09-14,124406,Loralie,Vyse Av,(021) -9987241
+204,The Histories,Tacitus,1886,287,PB-2023-533,2024-09-05,2023-09-14,124407,Goldy,12 St,(021) -9987242
+638,Surrender the Pink,Carrie Fisher,1990,281,PB-2023-534,2024-09-05,2023-09-14,124408,Mirabelle,Canal St,(021) -9987243
+242,Rising from the Plains,John McPhee,1986,214,PB-2023-535,2024-09-05,2023-09-14,124409,Mallorie,3 Av,(021) -9987244
+773,The Lifted Veil,George Eliot,1879,91,PB-2023-536,2024-09-05,2023-09-14,124410,Mel,Glen St,(021) -9987245
+277,The Magic Mountain,Thomas Mann,1927,716,PB-2023-537,2024-09-05,2023-09-14,124411,Daniel,Bowne St,(021) -9987246
+1048,Hit Men,Fredric Dannen,1990,327,PB-2023-538,2024-09-05,2023-09-14,124412,Helen-Elizabeth,Gates Av,(021) -9987247
+1228,The Koran,The Koran,1886,435,PB-2023-539,2024-09-05,2023-09-14,124413,Floria,2 Av,(021) -9987248
+1217,The Human Agenda,Roderic Gorney,1968,575,PB-2023-540,2024-09-05,2023-09-14,124414,Ertha,Myrtle Av,(021) -9987249
+1179,The History of Henry Esmond,William Thackeray,1852,513,PB-2023-541,2024-09-05,2023-09-14,124415,Hellene,Pugsley Av,(021) -9987250
+195,Silent Spring,Rachel Carlson,1962,297,PB-2023-542,2024-09-05,2023-09-14,124416,Coreen,Lava St,(021) -9987251
+863,It Would Be So Nice If You Weren't Here,Charles Grodin,1989,308,PB-2023-543,2024-09-05,2023-09-14,124417,Marylin,Washington Street,(021) -9987252
+420,The Story of Civilization VIII:,Will and Ariel Durant,1963,74,PB-2023-544,2024-09-05,2023-09-14,124418,Caren,Grosvenor Street,(021) -9987253
+878,The Story of Civilization VIII: The Age of Louis XIV,Will and Ariel Durant,1963,74,PB-2023-545,2024-09-05,2023-09-14,124419,Kee,206 St,(021) -9987254
+52,Coming of Age in Samoa,Margaret Mead,1928,197,PB-2023-546,2024-09-05,2023-09-14,124420,Goldia,Vyse Av,(021) -9987255
+264,From Beirut to Jerusalem,Thomas L. Friedman,1989,525,PB-2023-547,2024-09-05,2023-09-14,124421,Danica,Manor Rd,(021) -9987256
+38,Jamaica Inn,Daphne du Maurier,1936,247,PB-2023-548,2024-09-05,2023-09-14,124422,Caryl,Cross Bronx Expressway,(021) -9987257
+942,The Creative Family,Daisaku Ikeda,1977,159,PB-2023-549,2024-09-05,2023-09-14,124423,Gwyn,3 Av,(021) -9987258
+76,The Meditations,Marcus Aurelius,1886,129,PB-2023-550,2024-09-05,2023-09-14,124424,Nance,Zerega Av,(021) -9987259
+285,Ceremonial Chemistry,Thomas Szasz,1974,170,PB-2023-551,2024-09-05,2023-09-14,124425,Glenn,Forest Av,(021) -9987260
+1251,The Captive,Marcel Proust,1921,289,PB-2023-552,2024-09-05,2023-09-14,124426,Marsha,E 176 St,(021) -9987261
+433,Under the Greenwood Tree,Thomas Hardy,1872,241,PB-2023-553,2024-09-05,2023-09-14,124427,Jaimie,Wyckoff Av,(021) -9987262
+612,Darkness at Noon,Arthur Koestler,1940,216,PB-2023-554,2024-09-05,2023-09-14,124428,Christy,251 St,(021) -9987263
+289,Eros and Civilization,Herbert Marcuse,1955,274,PB-2023-555,2024-09-05,2023-09-14,124429,Leorah,20 Rd,(021) -9987264
+664,The Two German States and European Security,edited by F. Stephen Larrabee,1988,307,PB-2023-556,2024-09-05,2023-09-14,124430,Elladine,Harold St,(021) -9987265
+844,"Feudal Society, vol. 2",Marc Bloch,1961,170,PB-2023-557,2024-09-05,2023-09-14,124431,Amandy,Waterbury Avenue,(021) -9987266
+576,The Mambo Kings Play Songs of Love,Oscar Hijuelos,1989,407,PB-2023-558,2024-09-05,2023-09-14,124432,Mariellen,Loomis St,(021) -9987267
+575,Dalva,Jim Harrison,1988,324,PB-2023-559,2024-09-05,2023-09-14,124433,Biddy,Watson Av,(021) -9987268
+30,Barbarian Sentiments,William Pfaff,1989,189,PB-2023-560,2024-09-05,2023-09-14,124434,Arlinda,21 St,(021) -9987269
+1087,The Princess of Cleves,Madame de Lafayette,1678,168,PB-2023-561,2024-09-05,2023-09-14,124435,Elsey,Clinton Av,(021) -9987270
+628,"Rabbit, Run",John Updike,1960,249,PB-2023-562,2024-09-05,2023-09-14,124436,Floris,Bryant Av,(021) -9987271
+241,Bad,Paul Fussell,1991,201,PB-2023-563,2024-09-05,2023-09-14,124437,Nanette,66 Av,(021) -9987272
+930,The Confessions of Nat Turner,William Styron,1966,429,PB-2023-564,2024-09-05,2023-09-14,124438,Ardyce,Marion Av,(021) -9987273
+1076,The Future of an Illusion,Sigmund Freud,1927,81,PB-2023-565,2024-09-05,2023-09-14,124439,Charil,W 31 St,(021) -9987274
+1319,England in the Late Middle Ages,A.R. Myers,1952,262,PB-2023-566,2024-09-05,2023-09-14,124440,Melody,Riverside Drive,(021) -9987275
+1200,The Making of Urban Europe 1000--1950,"Paul Hohenberg, Lynn Hollen Lees",1985,340,PB-2023-567,2024-09-05,2023-09-14,124441,Meggy,Chatterton Avenue,(021) -9987276
+1231,The Notebooks of Leonardo Da Vinci,Leonardo Da Vinci,1490,392,PB-2023-568,2024-09-05,2023-09-14,124442,Franky,Ricard St,(021) -9987277
+831,Simon and Garfunkel,"Joseph Morella, Patricia Barey",1991,252,PB-2023-569,2024-09-05,2023-09-14,124443,Amber,E 22 St,(021) -9987278
+132,The Art of War,Sun Tzu,1670,149,PB-2023-570,2024-09-05,2023-09-14,124444,Linzy,Zerega Av,(021) -9987279
+721,Rebuilding Russia,Aleksandr Solzhenitsyn,1990,106,PB-2023-571,2024-09-05,2023-09-14,124445,Catrina,82 St,(021) -9987280
+84,A Short History of the World,H.G. Wells,1922,357,PB-2023-572,2024-09-05,2023-09-14,124446,Minna,Zerega Av,(021) -9987281
+424,The Scarlet Pimpernel,Baroness Orczy,1905,248,PB-2023-573,2024-09-05,2023-09-14,124447,Carmelina,Pugsley Av,(021) -9987282
+1182,The Vintage Mencken,H.L. Mencken,1933,246,PB-2023-574,2024-09-05,2023-09-14,124448,Ilysa,Marmion Av,(021) -9987283
+1130,Dr. Jekyll and Mr. Hyde,Robert Louis Stevenson,1886,114,PB-2023-575,2024-09-05,2023-09-14,124449,Charis,Bay St,(021) -9987284
+12,The Truly Disadvantaged,William Julius Wilson,1987,164,PB-2023-576,2024-09-05,2023-09-14,124450,Daphene,1 Av,(021) -9987285
+237,The Sermon on the Mount according to Vendanta,Swami Prabhavananda,1963,126,PB-2023-577,2024-09-05,2023-09-14,124451,Cassi,Gates Av,(021) -9987286
+1006,An Outline of Psycho-Analysis,Sigmund Freud,1938,64,PB-2023-578,2024-09-05,2023-09-14,124452,Gretal,69 Av,(021) -9987287
+1258,The Narrative of Arthur Gordon Pym,Edgar Allan Poe,1938,220,PB-2023-579,2024-09-05,2023-09-14,124453,Keeley,Cody Av,(021) -9987288
+414,The Art of Courtly Love,Andreas Capellanus,1180,59,PB-2023-580,2024-09-05,2023-09-14,124454,Elysha,Hett Av,(021) -9987289
+571,The Sound and the Fury,William Faulkner,1931,284,PB-2023-581,2024-09-05,2023-09-14,124455,Gay,Grace Av,(021) -9987290
+583,The House of the Seven Gables,Nathaniel Hawthorne,1851,245,PB-2023-582,2024-09-05,2023-09-14,124456,JoAnn,Castle Hill Avenue,(021) -9987291
+792,Reflections on the Revolution in France,Edmund Burke,1790,290,PB-2023-583,2024-09-05,2023-09-14,124457,Malory,Beacon Pl,(021) -9987292
+25,"""Diary of a Madman,"" ""The Nose,"" ""The Overcoat""",Nikolai Gogol,1834,108,PB-2023-584,2024-09-05,2023-09-14,124458,Lorraine,Elizabeth Street,(021) -9987293
+127,"""The Trajedy of Julius Caesar""",William Shakespeare,1599,102,PB-2023-585,2024-09-05,2023-09-14,124459,Cybill,37 Av,(021) -9987294
+142,America: What Went Wrong?,"Donald L. Barlett, James B. Steele",1992,219,PB-2023-586,2024-09-05,2023-09-14,124460,Lamb,1 Av,(021) -9987295
+546,The Nile,Emil Ludwig,1936,603,PB-2023-587,2024-09-05,2023-09-14,124461,Letisha,1 Av,(021) -9987296
+774,Before France & Germany,Patrick J. Geary,1988,231,PB-2023-588,2024-09-05,2023-09-14,124462,Leilah,Boston Rd,(021) -9987297
+326,The Nun,Denis Diderot,1760,188,PB-2023-589,2024-09-05,2023-09-14,124463,Constanta,E 71 St,(021) -9987298
+1042,Mortal Lessons - Notes on the Art of Surgery,Richard Selzer,1974,217,PB-2023-590,2024-09-05,2023-09-14,124464,Caril,Harold St,(021) -9987299
+248,The Media Monopoly,Ben H. Bagdikian,1983,251,PB-2023-591,2024-09-05,2023-09-14,124465,Bliss,Honeywell Avenue,(021) -9987300
+752,Egyptian Art,Cyril Aldred,1980,240,PB-2023-592,2024-09-05,2023-09-14,124466,Aggie,Cypress Av,(021) -9987301
+1170,The Blithedale Romance,Nathaniel Hawthorne,1852,247,PB-2023-593,2024-09-05,2023-09-14,124467,Clarisse,27 St,(021) -9987302
+634,The Murder of Napoleon,"Ben Weider, David Hapgood",1982,257,PB-2023-594,2024-09-05,2023-09-14,124468,Madlen,Myrtle Av,(021) -9987303
+233,A Jew Today,Elie Wiesel,1978,247,PB-2023-595,2024-09-05,2023-09-14,124469,Basia,Gansevoort Boulevard,(021) -9987304
+753,Rome and the Mediterranean,Livy,1886,654,PB-2023-596,2024-09-05,2023-09-14,124470,Katine,50 Av,(021) -9987305
+963,The Man Who Mistook His Wife for a Hat,Oliver Sacks,1985,233,PB-2023-597,2024-09-01,2023-09-14,124471,Ailyn,Horace Harding Expressway,(021) -9987306
+183,The Portable Dorothy Parker,Dorothy Parker,1962,535,PB-2023-598,2024-09-02,2023-09-14,124472,Cathlene,Summerfield Street,(021) -9987307
+446,The Doctrine of Virtue,Immanuel Kant,1797,167,PB-2023-599,2024-09-03,2023-09-14,124473,Marielle,Quimby Av,(021) -9987308
+291,American Popular Song,Alec Wilder,1972,519,PB-2023-600,2024-09-04,2023-09-14,124474,Esther,Boston Rd,(021) -9987309
+254,Brain Surgeon,Lawrence Shainberg,1979,316,PB-2023-601,2024-09-05,2023-09-14,124475,Kimberly,2 Av,(021) -9987310
+59,Letters,Lord Chesterfield,1772,464,PB-2023-602,2024-09-06,2023-09-14,124476,Abagael,Clinton Av,(021) -9987311
+567,"Sex, Art, and American Culture",Camille Paglia,1992,287,PB-2023-603,2024-09-07,2023-09-14,124477,Marline,Rabbi Sidney Kleiman Way,(021) -9987312
+1007,Silas Marner,George Eliot,1861,190,PB-2023-604,2024-09-08,2023-09-14,124478,Leonelle,181 St,(021) -9987313
+1136,Body,Harry Crews,1990,240,PB-2023-605,2024-09-09,2023-09-14,124479,Miriam,E 17 St,(021) -9987314
+257,Demian,Hermann Hesse,1919,179,PB-2023-606,2024-09-10,2023-09-14,124480,Aura,Harry Van Arsdale Jr Av,(021) -9987315
+211,Six Psychological Studies,Jean Piaget,1964,157,PB-2023-607,2024-09-11,2023-09-14,124481,Jacintha,Crotona Av,(021) -9987316
+1281,"Absalom, Absalom!",William Faulkner,1936,306,PB-2023-608,2024-09-12,2023-09-14,124482,Eleni,E 69 St,(021) -9987317
+982,Huxley in Hollywood,David King Dunaway,1989,402,PB-2023-609,2024-09-13,2023-09-14,124483,Melodie,Marion Av,(021) -9987318
+975,Brideshead Revisited,Evelyn Waugh,1945,331,PB-2023-610,2024-09-14,2023-09-14,124484,Margo,Madison Av,(021) -9987319
+566,anthology: The European Security Framework in Transition 1984-92,Unknown,1992,172,PB-2023-611,2024-09-15,2023-09-14,124485,Denice,E 175 St,(021) -9987320
+770,The Random House Dictionary of the English Language,Jess Stein,1983,1664,PB-2023-612,2024-09-16,2023-09-14,124486,Caprice,Essex St,(021) -9987321
+996,On Dreams,Sigmund Freud,1901,114,PB-2023-613,2024-09-17,2023-09-14,124487,Malka,Caney Ln,(021) -9987322
+839,Green Hills of Africa,Ernest Hemingway,1935,295,PB-2023-614,2024-09-18,2023-09-14,124488,Meredith,Olmstead Av,(021) -9987323
+1267,On the Black Hill,Bruce Chatwin,1982,249,PB-2023-615,2024-09-19,2023-09-14,124489,Cathy,Harry Van Arsdale Jr Av,(021) -9987324
+904,Greek Homosexuality,K.J. Dover,1978,206,PB-2023-616,2024-09-20,2023-09-14,124490,Holley,Murdock Av,(021) -9987325
+629,England in the Twentieth Century,David Thomson,1965,362,PB-2023-617,2024-09-21,2023-09-14,124491,Merissa,E 19 St,(021) -9987326
+158,To the Lighthouse,Virginia Woolf,1927,310,PB-2023-618,2024-09-22,2023-09-14,124492,Alyson,Castle Hill Avenue,(021) -9987327
+468,The Culture We Deserve,Jacques Barzun,1989,183,PB-2023-619,2024-09-23,2023-09-14,124493,Myrle,Linden Blvd,(021) -9987328
+931,White People,Allan Gurganus,1990,305,PB-2023-620,2024-09-24,2023-09-14,124494,Agnella,Barnes Av,(021) -9987329
+697,The Left-Hander Syndrome,Stanley Coren,1992,281,PB-2023-621,2024-09-25,2023-09-14,124495,Jacenta,242 St,(021) -9987330
+649,The Forged Coupon,Leo Tolstoy,1904,99,PB-2023-622,2024-09-26,2023-09-14,124496,Martica,Jewel Av,(021) -9987331
+625,Dreaming in Cuban,Cristina Garcia,1992,245,PB-2023-623,2024-09-27,2023-09-14,124497,Jaquelin,Boston Rd,(021) -9987332
+994,Cousin Pons,Honoré de Balzac,1847,334,PB-2023-624,2024-09-28,2023-09-14,124498,Dew,Metropolitan Avenue,(021) -9987333
+435,Who Runs Congress?,Mark Green,1972,318,PB-2023-625,2024-09-29,2023-09-14,124499,Carilyn,77 St,(021) -9987334
+648,The Golden Door,Thomas Kessner,1977,177,PB-2023-626,2024-09-30,2023-09-14,124500,Doria,E 187 St,(021) -9987335
+915,White Noise,Don DeLillo,1984,326,PB-2023-627,2024-09-05,2023-09-14,124501,,3 Av,
+744,Utilitarianism,John Stuart Mill,1861,79,PB-2023-628,2024-09-05,2023-09-14,124502,Danit,E 67 St,(021) -9987337
+86,Kim,Rudyand Kipling,1901,270,PB-2023-629,2024-09-05,2023-09-14,124503,Jobi,Forest Hill Road,(021) -9987338
+1086,Einstein's Dreams,Alan Lightman,1993,179,PB-2023-630,2024-09-05,2023-09-14,124504,Carma,Marmion Av,(021) -9987339
+1038,Joan of Arc,Jules Michelet,1841,143,PB-2023-631,2024-09-05,2023-09-14,124505,Merline,Myrtle Av,(021) -9987340
+301,Early Socratic Dialogues,Plato,1886,375,PB-2023-632,2024-09-05,2023-09-14,124506,Alisha,177 Pl,(021) -9987341
+503,Escape from Freedom,Erich Fromm,1941,303,PB-2023-633,2024-09-05,2023-09-14,124507,Myna,69 Av,(021) -9987342
+668,The Offensive Traveller,V.S. Pritchett,1964,241,PB-2023-634,2024-09-05,2023-09-14,124508,Blinni,Edson Av,(021) -9987343
+755,An Outline of American Literature,Peter B. High,1986,241,PB-2023-635,2024-09-05,2023-09-14,124509,Charlot,Ridge Rd,(021) -9987344
+100,AIDS and Its Metaphors,Susan Sontag,1988,95,PB-2023-636,2024-09-05,2023-09-14,124510,Justina,Norway Av,(021) -9987345
+1022,Bonjour Tristesse,Françoise Sagan,1954,108,PB-2023-637,2024-09-05,2023-09-14,124511,Dorelia,Commerce Av,(021) -9987346
+151,"Winesburg, Ohio",Sherwood Anderson,1919,247,PB-2023-638,2024-09-05,2023-09-14,124512,Cynthea,180 St,(021) -9987347
+825,Mystery and Manners,Flannery O'Connor,1969,228,PB-2023-639,2024-09-05,2023-09-14,124513,Eddi,Hudson St,(021) -9987348
+473,The Turn of the Screw,Henry James,1898,160,PB-2023-640,2024-09-05,2023-09-14,124514,Ardyth,Honeywell Avenue,(021) -9987349
+682,The Cabala,Thornton Wilder,1926,230,PB-2023-641,2024-09-05,2023-09-14,124515,Korney,79 Av,(021) -9987350
+759,Atlas of Medieval Europe,Donald Matthew,1983,225,PB-2023-642,2024-09-05,2023-09-14,124516,Lyda,Crotona Pkwy,(021) -9987351
+225,A Thousand Acres,Jane Smiley,1991,371,PB-2023-643,2024-09-05,2023-09-14,124517,Adena,Rockaway Boulevard,(021) -9987352
+1012,Basic Astronomy,Patrick Moore,1967,134,PB-2023-644,2024-09-05,2023-09-14,124518,Maddie,Roosevelt Avenue,(021) -9987353
+1218,Mont Saint Michael and Chartres,Henry Adams,1904,359,PB-2023-645,2024-09-05,2023-09-14,124519,Caroljean,39 Av,(021) -9987354
+763,Germinal,Emile Zola,1885,538,PB-2023-646,2024-09-05,2023-09-14,124520,Gratiana,W 79 St,(021) -9987355
+964,The Prose Poems and La Fanfarlo,Charles Baudelaire,1865,116,PB-2023-647,2024-09-05,2023-09-14,124521,Hope,Crotona Pkwy,(021) -9987356
+899,The Old Curiosity Shop,Charles Dickens,1841,720,PB-2023-648,2024-09-05,2023-09-14,124522,Jolyn,180 St,(021) -9987357
+995,Delusions of Grandma,Carrie Fisher,1994,260,PB-2023-649,2024-09-05,2023-09-14,124523,Frances,E 72 St,(021) -9987358
+357,A Sentimental Journey,Laurence Sterne,1768,120,PB-2023-650,2024-09-05,2023-09-14,124524,Kaitlin,Fairmount Place,(021) -9987359
+1317,The Trial,Franz Kafka,1920,256,PB-2023-651,2024-09-05,2023-09-14,124525,Eugenia,East Tremont Avenue,(021) -9987360
+761,Confessions of an English Opium Eater,Thomas DeQuincy,1822,116,PB-2023-652,2024-09-05,2023-09-14,124526,Cacilia,Boston Rd,(021) -9987361
+651,Writing Down the Bones,Natalie Goldberg,1986,170,PB-2023-653,2024-09-05,2023-09-14,124527,Britaney,Rabbi Sholem B. Kowalski Way,(021) -9987362
+1219,A Journal of the Plague Year,Daniel Defoe,1725,256,PB-2023-654,2024-09-05,2023-09-14,124528,Dorthea,Hett Av,(021) -9987363
+1097,After Leaving Mr. Mackenzie,Jean Rhys,1931,191,PB-2023-655,2024-09-05,2023-09-14,124529,Marne,Bagley Av,(021) -9987364
+665,The Sweet Cheat Gone,Marcel Proust,1922,196,PB-2023-656,2024-09-05,2023-09-14,124530,Barbette,178 St,(021) -9987365
+421,The Beginnings of English Society,Dorothy Whitelock,1952,243,PB-2023-657,2024-09-05,2023-09-14,124531,Cathyleen,Myrtle Av,(021) -9987366
+153,"""Hurlyburly""",David Rabe,1985,160,PB-2023-658,2024-11-01,2023-09-14,124532,Kissie,Linden St,(021) -9987367
+551,Diplomacy,Henry Kissinger,1994,835,PB-2023-659,2024-11-02,2023-09-14,124533,Jolee,Fairview Av,(021) -9987368
+1237,The Songlines,Bruce Chatwin,1987,294,PB-2023-660,2024-11-03,2023-09-14,124534,Charo,Clinton Av,(021) -9987369
+48,The Seat of the Soul,Gary Zukav,1989,248,PB-2023-661,2024-11-04,2023-09-14,124535,Averil,East Tremont Avenue,(021) -9987370
+1023,The Denial of Death,Ernest Becker,1973,285,PB-2023-662,2024-11-05,2023-09-14,124536,Idaline,Nugent Av,(021) -9987371
+1177,The Life and Opinions of Tristam Shandy,Laurence Sterne,1767,539,PB-2023-663,2024-11-06,2023-09-14,124537,Melony,E 183 St,(021) -9987372
+524,Babbitt,Sinclair Lewis,1922,334,PB-2023-664,2024-11-07,2023-09-14,124538,Kira,Norway Av,(021) -9987373
+143,China - A New History,John King Fairbank,1992,432,PB-2023-665,2024-11-08,2023-09-14,124539,Julina,Southern Boulevard,(021) -9987374
+336,Beloved,Toni Morrison,1987,275,PB-2023-666,2024-11-09,2023-09-14,124540,Jackquelin,Monsignor Paul M Andrews Way,(021) -9987375
+591,Amerika,Franz Kafka,1927,312,PB-2023-667,2024-11-10,2023-09-14,124541,Bette,Waring Av,(021) -9987376
+849,Choose Life,Arnold Toynbee & Daisaku Ikeda,1976,359,PB-2023-668,2024-11-11,2023-09-14,124542,Guillemette,Boston Rd,(021) -9987377
+887,How We Die,Sherwin B. Nuland,1994,269,PB-2023-669,2024-11-12,2023-09-14,124543,Geneva,53 Av,(021) -9987378
+480,Kant's Moral Philosophy,H.B. Acton,1970,65,PB-2023-670,2024-11-13,2023-09-14,124544,Bettina,W 13 St,(021) -9987379
+423,The Call of the Wild,Jack London,1903,89,PB-2023-671,2024-11-14,2023-09-14,124545,Esme,Crotona Park North,(021) -9987380
+1125,Conversations with Kafka,Gustav Janouch,1923,201,PB-2023-672,2024-11-15,2023-09-14,124546,Bobina,253 St,(021) -9987381
+318,The Way of All Flesh,Samuel Butler,1903,444,PB-2023-673,2024-11-16,2023-09-14,124547,Mellissa,Chatterton Avenue,(021) - 5789325
+614,The Journals of Lewis and Clark,Meriwether Lewis and William Clark,1804,515,PB-2023-674,2024-11-17,2023-09-14,124548,Cyndi,Crotona Av,(021) - 5789326
+506,The New Chinatown,Peter Kwong,1987,187,PB-2023-675,2024-11-18,2023-09-14,124549,Grazia,W 13 St,(021) - 5789327
+422,The Devils,Fyodor Dostoyevsky,1871,704,PB-2023-676,2024-11-19,2023-09-14,124550,Devonne,Jewel Av,(021) - 5789328
+303,The Magic Years,Selma H. Fraiberg,1959,151,PB-2023-677,2024-11-20,2023-09-14,124551,Havivah,64 St,(021) - 5789329
+317,The Making of a Public Man,Sol M. Linowitz,1985,247,PB-2023-678,2024-11-21,2023-09-14,124552,Alayne,E 178 St,(021) - 5789330
+650,The Red and the Black,Stendhal,1830,574,PB-2023-679,2024-11-22,2023-09-14,124553,Elke,Harold St,(021) - 5789331
+653,England in the Eighteenth Century,J.H. Plumb,1950,214,PB-2023-680,2024-11-23,2023-09-14,124554,Alaine,2 Av,(021) - 5789332
+431,The Psychology of Man's Possible Evolution,P.D. Ouspensky,1934,128,PB-2023-681,2024-11-24,2023-09-14,124555,Janka,Melba St,(021) - 5789333
+230,The Heart is a Lonely Hunter,Carson McCullers,1940,307,PB-2023-682,2024-11-25,2023-09-14,124556,Melosa,East Tremont Avenue,(021) - 5789334
+138,Black Water,Joyce Carol Oates,1992,154,PB-2023-683,2024-11-26,2023-09-14,124557,Bren,Canal St,(021) - 5789335
+323,Slavery Defended,"editor, Eric L. McKitrick",1857,177,PB-2023-684,2024-11-27,2023-09-14,124558,Krysta,Hermany Av,(021) - 5789336
+943,Raising a Son,"Don, Jeanne Elium",1992,172,PB-2023-685,2024-11-28,2023-09-14,124559,Jessica,53 Av,(021) - 5789337
+249,Master and Commander,Patrick O'Brian,1970,412,PB-2023-686,2024-11-29,2023-09-14,124560,Darla,Eastchester Road,(021) - 5789338
+1132,Continental Drift,Russell Banks,1985,366,PB-2023-687,2024-11-30,2023-09-14,124561,Emyle,Harry Van Arsdale Jr Av,(021) - 5789339
+691,The Bhagavad Gita,Vyasa,1886,122,PB-2023-688,2024-09-05,2023-09-14,124562,Constance,215 St,(021) - 5789340
+182,Utopia,Thomas More,1516,147,PB-2023-689,2024-09-05,2023-09-14,124563,Lucita,Stephen St,(021) - 5789341
+784,Ragtime,E.L. Doctorow,1975,371,PB-2023-690,2024-09-05,2023-09-14,124564,Babs,Virginia Av,(021) - 5789342
+865,Early Greek Thinking,Martin Heidegger,1950,58,PB-2023-691,2024-09-05,2023-09-14,124565,Jenica,Zerega Av,(021) - 5789343
+491,The Drama of the Gifted Child,Alice Miller,1979,136,PB-2023-692,2024-09-05,2023-09-14,124566,Malkah,Wellbrook Avenue,(021) - 5789344
+641,Emotional Intelligence,Daniel Goleman,1995,292,PB-2023-693,2024-09-05,2023-09-14,124567,Gaby,Castle Hill Avenue,(021) - 5789345
+970,The Ethics,Benedict de Spinoza,1663,290,PB-2023-694,2024-09-05,2023-09-14,124568,Elfreda,Jewel Av,(021) - 5789346
+692,Who's Who in the Ancient World,Betty Radice,1971,161,PB-2023-695,2024-09-05,2023-09-14,124569,Lauryn,Utopia Pkwy,(021) - 5789347
+556,The Federalist Papers,Alexander Hamilton and James Madison,1788,487,PB-2023-696,2024-09-05,2023-09-14,124570,Caro,60 Ln,(021) - 5789348
+871,Beyond the Melting Pot,Nathan Glazer and Daniel P. Moynihan,1963,408,PB-2023-697,2024-09-05,2023-09-14,124571,Dahlia,Vyse Av,(021) - 5789349
+1188,Your Five-Year Old,Louise Ames,1979,109,PB-2023-698,2024-09-05,2023-09-14,124572,Leodora,262 St,(021) - 5789350
+1186,Robinson Crusoe,Daniel Defoe,1719,314,PB-2023-699,2024-09-05,2023-09-14,124573,Codie,East Tremont Avenue,(021) - 5789351
+732,Towards Understanding Islam,Abul A'La Mawdudi,1986,132,PB-2023-700,2024-09-05,2023-09-14,124574,Klarrisa,Mountainview Avenue,(021) - 5789352
+471,The Red Badge of Courage,Stephen Crane,1895,169,PB-2023-701,2024-09-05,2023-09-14,124575,Ardelis,Paulding Av,(021) - 5789353
+235,Latin Literature - an Anthology,Various,400,456,PB-2023-702,2024-09-05,2023-09-14,124576,Beulah,115 Av,(021) - 5789354
+758,The Life of Samuel Johnson,James Boswell,1791,342,PB-2023-703,2024-09-05,2023-09-14,124577,Marina,Lafayette Street,(021) - 5789355
+1298,Balkan Ghosts,Robert D. Kaplan,1993,300,PB-2023-704,2024-09-05,2023-09-14,124578,Leanor,208 St,(021) - 5789356
+712,Primary Colors,anonymous,1996,366,PB-2023-705,2024-09-05,2023-09-14,124579,Demetra,Unionport Road,(021) - 5789357
+44,"""Henry IV, Part One""",William Shakespeare,1597,115,PB-2023-706,2024-09-05,2023-09-14,124580,Matelda,E 70 St,(021) - 5789358
+1303,Growing Up,Russell Baker,1982,348,PB-2023-707,2024-09-05,2023-09-14,124581,Nat,Haviland Av,(021) - 5789359
+676,Flaubert in Egypt,Gustave Flaubert,1850,222,PB-2023-708,2024-09-05,2023-09-14,124582,Georgeanna,2 Av,(021) - 5789360
+1227,You'll Never Make Love in this Town Again,"Robin, Liza, Linda, Tiffany",1996,251,PB-2023-709,2024-09-05,2023-09-14,124583,Mathilde,Cypress Hills Street,(021) - 5789361
+247,"I, Claudius",Robert Graves,1934,468,PB-2023-710,2024-09-05,2023-04-01,124584,Hattie,Harry Van Arsdale Jr Av,(021) - 5789362
+342,"""Our Crowd""",Stephen Birmingham,1967,446,PB-2023-711,2024-09-05,2023-04-02,124585,Hermine,Yvette Nicole Moreno Place,(021) - 5789363
+244,Breast Cancer,Peter I. Pressman and Yahsar Hirshaut,1992,265,PB-2023-712,2024-09-05,2023-04-03,124586,Kevina,E 13 St,(021) - 5789364
+954,The Future of Capitalism,Lester C. Thurow,1996,327,PB-2023-713,2024-09-05,2023-04-04,124587,Marilee,Grandview Avenue,(021) - 5789365
+1149,A Murky Business,Honoré de Balzac,1841,223,PB-2023-714,2024-09-05,2023-04-05,124588,Gwynne,Monsignor John J Voight Green,(021) - 5789366
+231,Pensées,Blaise Pascal,1661,204,PB-2023-715,2024-09-05,2023-04-06,124589,Filide,Tiebout Av,(021) - 5789367
+905,Quantum Healing,Deepak Chopra,1989,273,PB-2023-716,2024-09-05,2023-04-07,124590,Geraldine,E 175 St,(021) - 5789368
+1288,My Childhood,Maxim Gorky,1913,451,PB-2023-717,2024-09-05,2023-04-08,124591,Jacqueline,Boston Rd,(021) - 5789369
+639,Riding the Iron Rooster,Paul Theroux,1988,188,PB-2023-718,2024-09-05,2023-04-09,124592,Candi,Menahan St,(021) - 5789370
+21,Discourse on Method and The Meditations,René Descartes,1637,188,PB-2023-719,2024-09-05,2023-04-10,124593,Devinne,East Tremont Avenue,(021) - 5789371
+334,You Just Don't Understand,Deborah Tannen,1990,298,PB-2023-720,2024-09-05,2023-04-11,124594,Chloe,E 176 St,(021) - 5789372
+1127,Natural History,Pliny the Elder,1886,385,PB-2023-721,2024-09-05,2023-04-12,124595,Melisent,Monterey Av,(021) - 5789373
+969,Shogun,James Clavell,1975,1152,PB-2023-722,2024-09-05,2023-04-13,124596,Alanah,124 St,(021) - 5789374
+1243,Conversations with Socrates,Xenophon,1886,359,PB-2023-723,2024-09-05,2023-04-14,124597,Angelica,E 13 St,(021) - 5789375
+415,Dispatches,Michael Herr,1978,278,PB-2023-724,2024-09-05,2023-04-15,124598,Lise,Cypress Av,(021) - 5789376
+191,The Invisible Man,H.G. Wells,1897,139,PB-2023-725,2024-09-05,2023-04-16,124599,Barby,St Felix Av,(021) - 5789377
+957,Absolute Power,David Baldacci,1996,505,PB-2023-726,2024-09-05,2023-04-17,124600,Minta,Mallory Av,(021) - 5789378
+309,The Second Sex,Simone DeBeauvoir,1952,732,PB-2023-727,2024-09-05,2023-04-18,124601,Lynsey,Prospect Av,(021) - 5789379
+1060,Jonathan Wild,"Henry Fielding, Daniel Defoe",1743,290,PB-2023-728,2024-09-05,2023-04-19,124602,Kirby,80 Rd,(021) - 5789380
+897,The Liars' Club,Mary Karr,1995,320,PB-2023-729,2024-09-05,2023-04-20,124603,Dolores,14 St,(021) - 5789381
+579,"Grooming, Gossip, and the Evolution of Language",Robin Dunbar,1996,230,PB-2023-730,2024-09-05,2023-04-21,124604,Corinna,Utopia Pkwy,(021) - 5789382
+1164,The Club of Queer Trades,G.K. Chesterton,1905,126,PB-2023-731,2024-09-05,2023-04-22,124605,Madalyn,247 St,(021) - 5789383
+1274,The Origins of the Middle Ages,Bryce Lyon,1972,87,PB-2023-732,2024-09-05,2023-04-23,124606,Chrissa,Warwick Av,(021) - 5789384
+517,Night Flight,Antoine de Saint Exupery,1932,87,PB-2023-733,2024-09-05,2023-04-24,124607,Marian,1 Av,(021) - 5789385
+292,Tales from Shakespeare,Charles and Mary Lamb,1807,313,PB-2023-734,2024-09-05,2023-04-25,124608,Anita,Castle Hill Avenue,(021) - 5789386
+656,"Le Morte D'Arthur, vol. 1 book I-VII",Sir Thomas Malory,1485,327,PB-2023-735,2024-09-05,2023-04-26,124609,Kim,Drysdale St,(021) - 5789387
+314,Twelve Steps and Twelve Traditions,Alcoholics Anonymous,1952,192,PB-2023-736,2024-09-05,2023-04-27,124610,Gwendolin,E 56 St,(021) - 5789388
+1189,Mao II,Don DeLillo,1991,241,PB-2023-737,2024-09-05,2023-04-28,124611,Bethany,Hone Av,(021) - 5789389
+673,Around the World in Eighty Days,Jules Verne,1873,163,PB-2023-738,2024-09-05,2023-04-29,124612,Lavinia,240 St,(021) - 5789390
+574,Hitler's Willing Executioners,Daniel Johan Goldhagen,1996,466,PB-2023-739,2024-09-05,2023-04-30,124613,Jordana,W 31 St,(021) - 5789391
+464,The Enlightenment - The Science of Freedom,Peter Gay,1969,568,PB-2023-740,2024-09-05,2023-09-14,124614,Ardath,60 Pl,(021) - 5789392
+376,A Feast of Snakes,Harry Crews,1976,177,PB-2023-741,2024-09-05,2023-09-14,124615,Elga,Boston Rd,(021) - 5789393
+58,Émile,Jean-Jacques Rousseau,1760,568,PB-2023-742,2024-09-05,2023-09-14,124616,Lela,37 Av,(021) - 5789394
+582,Narcissus and Goldmund,Hermann Hesse,1930,312,PB-2023-743,2024-09-05,2023-09-14,124617,Analiese,Rockaway Boulevard,(021) - 5789395
+49,Classical Literary Criticism,"Aristotle, Horace",1954,80,PB-2023-744,2024-09-05,2023-09-14,124618,Arabelle,Holden Blvd,(021) - 5789396
+1195,"Fiesta, The Sun Also Rises",Ernest Hemingway,1927,206,PB-2023-745,2024-09-05,2023-09-14,124619,Gwenore,Crotona Av,(021) - 5789397
+193,Cut of America,Keith B. Richburg,1997,254,PB-2023-746,2024-09-05,2023-09-14,124620,Marrilee,Marine Way,(021) - 5789398
+1083,The Shame of the Cities,Lincoln Steffens,1904,222,PB-2023-747,2024-09-05,2023-09-14,124621,Aliza,178 Pl,(021) - 5789399
+1292,Les Liaisons Dangereuses,Choderlos DeLaclos,1782,412,PB-2023-748,2024-09-05,2023-09-14,124622,Cati,Suffolk Av,(021) - 5789400
+1221,A Civil Action,Jonathan Harr,1995,496,PB-2023-749,2024-09-05,2023-09-14,124623,Flossi,Livingston Avenue,(021) - 5789401
+220,To Kill a Mockingbird,Harper Lee,1960,281,PB-2023-750,2024-09-05,2023-09-14,124624,Gabriell,White Plains Road,(021) - 5789402
+895,Great Books,David Denby,1996,463,PB-2023-751,2024-09-05,2023-09-14,124625,Lindsey,Slater Blvd,(021) - 5789403
+499,Lake Wobegon Days,Garrison Keillor,1985,341,PB-2023-752,2024-09-05,2023-09-14,124626,Joete,Merrick Blvd,(021) - 5789404
+748,Paul McCartney - Many Years from Now,Barry Miles,1997,617,PB-2023-753,2024-09-05,2023-09-14,124627,Annabella,Marmion Av,(021) - 5789405
+349,Satires and Epistles,Horace,1755,179,PB-2023-754,2024-09-05,2023-09-14,124628,Dolli,Roosevelt Avenue,(021) - 5789406
+1307,The Shipping News,E. Annie Proulx,1993,337,PB-2023-755,2024-09-05,2023-09-14,124629,Erminie,37 Av,(021) - 5789407
+147,The Closing of the American Mind,Allan Bloom,1987,382,PB-2023-756,2024-09-05,2023-09-14,124630,Chelsea,Arthur Av,(021) - 5789408
+703,The Prince,Niccolò Machiavelli,1514,96,PB-2023-757,2024-09-05,2023-09-14,124631,Jean,87 St,(021) - 5789409
+829,Democracy in America,Alexis De Tocqueville,1835,317,PB-2023-758,2024-09-05,2023-09-14,124632,Glenna,Cypress Hills Street,(021) - 5789410
+806,Angela's Ashes,Frank McCourt,1996,426,PB-2023-759,2024-09-05,2023-09-14,124633,Lelia,24 St,(021) - 5789411
+271,my old sweetheart,Susanna Moore,1982,211,PB-2023-760,2024-09-05,2023-09-14,124634,Amalee,La Fontaine Avenue,(021) - 5789412
+224,Culture of Complaint,Robert Hughes,1993,204,PB-2023-761,2024-09-05,2023-09-14,124635,Adella,123 St,(021) - 5789413
+1320,Perfume,Patrick Suskind,1985,263,PB-2023-762,2024-09-05,2023-09-14,124636,Louisette,Zerega Av,(021) - 5789414
+526,Simon and Garfunkel - The Definitive Biography,Victoria Kingston,1996,287,PB-2023-763,2024-09-05,2023-09-14,124637,Anatola,Crotona Av,(021) - 5789415
+465,The Second Treatise of Government,John Locke,1690,155,PB-2023-764,2024-09-05,2023-09-14,124638,Lurlene,178 Pl,(021) - 5789416
+227,Phaedrus,Plato,1886,48,PB-2023-765,2024-09-05,2023-09-14,124639,Frannie,Marine Way,(021) - 5789417
+540,Barnaby Rudge,Charles Dickens,1841,766,PB-2023-766,2024-09-05,2023-09-14,124640,Imogene,Douglaston Parkway,(021) - 5789418
+595,Zuckerman Unbound,Philip Roth,1981,156,PB-2023-767,2024-09-05,2023-09-14,124641,Fidelia,Nome Av,(021) - 5789419
+766,A Twist in the Tale - 4 short stories,Jeffrey Archer,1988,113,PB-2023-768,2024-09-05,2023-09-14,124642,Flora,Mace Av,(021) - 5789420
+359,Tudor England,S.T. Bindoff,1950,309,PB-2023-769,2024-09-05,2023-09-14,124643,Lissa,Cooper Av,(021) - 5789421
+96,Appointment in Samarra,John O'Hara,2050,-1,PB-2023-770,2024-09-05,2023-09-14,124644,Lettie,64 Ln,(021) - 5789422
+449,Invisible Man,Ralph Ellison,1952,469,PB-2023-771,2024-09-05,2023-09-14,124645,Cal,W 32 St,(021) - 5789423
+1229,The Matisse Stories,A.S. Byatt,1993,128,PB-2023-772,2024-09-05,2023-09-14,124646,Kimmi,Tratman Av,(021) - 5789424
+528,The Decameron,Giovanni Boccaccio,1350,296,PB-2023-773,2024-09-05,2023-09-14,124647,Irita,175 St,(021) - 5789425
+341,Representations of the Intellectual,Edward W. Said,1993,132,PB-2023-774,2024-09-05,2023-09-14,124648,Kassia,1 Av,(021) - 5789426
+296,The Greek Myths: 1,Robert Graves,1955,197,PB-2023-775,2024-09-05,2023-09-14,124649,Celinka,179 St,(021) - 5789427
+369,The Art of the Renaissance,Peter and Linda Murray,1963,278,PB-2023-776,2024-09-05,2023-09-14,124650,Lavena,Sayres Av,(021) - 5789428
+1268,The Beggar and the Professor,Emmanuel Le Roy Ladurie,1995,351,PB-2023-777,2024-09-05,2023-09-14,124651,Leona,68 Av,(021) - 5789429
+988,The Buddha in Daily Life,Richard Causton,1988,294,PB-2023-778,2024-09-05,2023-09-14,124652,Lea,Canal St,(021) - 5789430
+847,Tuesday with Morrie,Mitch Albom,1997,192,PB-2023-779,2024-09-05,2023-09-14,124653,Janenna,E 176 St,(021) - 5789431
+1287,Sons and Lovers,D.H. Lawrence,1913,484,PB-2023-780,2024-09-05,2023-09-14,124654,Gwendolen,Melba St,(021) - 5789432
+511,Silk,Alessandro Baricco,1997,91,PB-2023-781,2024-09-05,2023-09-14,124655,Brietta,Nugent Av,(021) - 5789433
+497,"The Asian Financial Crisis: Causes, Cures, and Systemic Implications",Morris Goldstein,1998,67,PB-2023-782,2024-09-05,2023-09-14,124656,Jill,48 Av,(021) - 5789434
+609,Tunesmith,Jimmy Webb,1998,423,PB-2023-783,2024-09-05,2023-09-14,124657,Natalia,Linden St,(021) - 5789435
+207,The Golden Bowl,Henry James,1904,555,PB-2023-784,2024-09-05,2023-09-14,124658,Billy,79 St,(021) - 5789436
+1245,Quartet,Jean Rhys,1928,186,PB-2023-785,2024-09-05,2023-09-14,124659,Annalisa,167 St,(021) - 5789437
+613,Covering Islam,Edward W. Said,1981,195,PB-2023-786,2024-09-05,2023-09-14,124660,Danyelle,Boston Rd,(021) - 5789438
+700,Other Inquisitions,Jorge Luis Borges,1952,187,PB-2023-787,2024-09-05,2023-09-14,124661,Evonne,Drysdale St,(021) - 5789439
+97,The Road Ahead,Bill Gates,1996,322,PB-2023-788,2024-09-05,2023-09-14,124662,Bess,E 175 St,(021) - 5789440
+724,Memoirs of a Geisha,Arthur Golden,1997,428,PB-2023-789,2024-09-05,2023-09-14,124663,Katerine,East Fordham Road,(021) - 5789441
+928,The Hand,Frank R. Wilson,1998,338,PB-2023-790,2024-09-05,2023-09-14,124664,Fifine,Zerega Av,(021) - 5789442
+1213,A Tour Through the Whole Island of Great Britain,Daniel DeFoe,1724,708,PB-2023-791,2024-09-05,2023-09-14,124665,Charissa,Jarrett Pl,(021) - 5789443
+529,Cloudsplitter,Russell Banks,1998,758,PB-2023-792,2024-09-05,2023-09-14,124666,Emmey,Irving Pl,(021) - 5789444
+657,The Moral Animal,Robert Wright,1994,379,PB-2023-793,2024-09-05,2023-09-14,124667,Glynis,Buck St,(021) - 5789445
+1270,French Leave,P.G. Wodehouse,1956,206,PB-2023-794,2024-09-05,2023-09-14,124668,Laurella,48 St,(021) - 5789446
+442,The Past Recaptured,Marcel Proust,1922,272,PB-2023-795,2024-09-05,2023-09-14,124669,Katy,Creston Av,(021) - 5789447
+206,Hiroshima,John Hersey,1946,152,PB-2023-796,2024-09-05,2023-09-14,124670,Adey,E 182 St,(021) - 5789448
+707,On Liberty,John Stuart Mill,1859,187,PB-2023-797,2024-09-05,2023-09-14,124671,Judie,Arthur Av,(021) - 5789449
+338,American Pastoral,Philip Roth,1997,423,PB-2023-798,2024-09-05,2023-09-14,124672,Kristy,Ave L,(021) - 5789450
+208,Paridiso,Dante Alighieri,1308,150,PB-2023-799,2024-09-05,2023-09-14,124673,Marja,113 Av,(021) - 5789451
+217,How The Other Half Lives,Jacob A. Riis,1890,227,PB-2023-800,2024-09-05,2023-09-14,124674,Marin,Greene Av,(021) - 5789452
+71,Cycle of Violence,Colin Bateman,1995,261,PB-2023-801,2024-09-05,2023-09-14,124675,Elysia,Seneca Av,(021) - 5789453
+411,The Identity of France,Fernand Braudel,1985,375,PB-2023-802,2024-09-05,2023-09-14,124676,Elwina,2 Av,(021) - 5789454
+961,It Can't Happen Here,Sinclair Lewis,1935,331,PB-2023-803,2024-09-05,2023-09-14,124677,Joella,Cooper Av,(021) - 5789455
+764,Lords of the Horizons - A History of the Ottoman Empire,Jason Goodwin,1998,332,PB-2023-804,2024-09-05,2023-09-14,124678,Kaile,E 183 St,(021) - 5789456
+920,The World's Most Famous Math Problem,Marilyn Vos Savant,1993,76,PB-2023-805,2024-09-05,2023-09-14,124679,Kandy,139 Av,(021) - 5789457
+16,The Mansion on the Hill,Fred Goodman,1997,387,PB-2023-806,2024-09-05,2023-09-14,124680,Aleecia,80 St,(021) - 5789458
+803,Toward a Culture of Peace: A Cosmic View,Daisaku Ikeda,1999,38,PB-2023-807,2024-09-05,2023-09-14,124681,Maridel,Boston Rd,(021) - 5789459
+1013,Raising Cain,"Dan Kindlon, Michael Thompson",1999,267,PB-2023-808,2024-09-05,2023-09-14,124682,Agna,Tysens Ln,(021) - 5789460
+754,Longitude,Dava Sobol,1995,175,PB-2023-809,2025-04-01,2023-09-14,124683,Elfrieda,E 65 St,(021) - 5789461
+643,Fear and Trembling,Søren Kierkegaard,1843,147,PB-2023-810,2025-04-02,2023-09-14,124684,Josy,East Dr,(021) - 5789462
+155,"""Antigone""",Sophocles,1965,48,PB-2023-811,2025-04-03,2023-09-14,124685,Annemarie,73 Av,(021) - 5789463
+950,Where Did I Go Right?,Bernie Brillstein,1999,375,PB-2023-812,2025-04-04,2023-09-14,124686,Kimmy,59 Av,(021) - 5789464
+463,The Selfish Gene,Richard Dawkins,1976,266,PB-2023-813,2025-04-05,2023-09-14,124687,Eilis,Bowery,(021) - 5789465
+694,The Struggle for Mastery in Europe - 1848 - 1918,A.J.P. Taylor,1954,586,PB-2023-814,2025-04-06,2023-09-14,124688,Maxie,Baxter St,(021) - 5789466
+165,Endurance - Shackleton's Incredible Voyage,Alfred Lansing,1959,280,PB-2023-815,2025-04-07,2023-09-14,124689,Lucretia,Nassau Blvd,(021) - 5789467
+760,"""Andromache""",Euripides,1985,47,PB-2023-816,2025-04-08,2023-09-14,124690,Kordula,Nugent Av,(021) - 5789468
+939,Erewhon,Samuel Butler,1871,260,PB-2023-817,2025-04-09,2023-09-14,124691,Moya,Douglaston Parkway,(021) - 5789469
+757,All Too Human,George Stephanopoulos,1999,448,PB-2023-818,2025-04-10,2023-09-14,124692,Kristin,Harold St,(021) - 5789470
+584,Tom Jones,Henry Fielding,1749,822,PB-2023-819,2025-04-11,2023-09-14,124693,Carrol,Ocean Ter,(021) - 5789471
+636,City of Night,John Rechy,1963,380,PB-2023-820,2025-04-12,2023-09-14,124694,Cristy,Metropolitan Avenue,(021) - 5789472
+525,My German Question,Peter Gay,1998,212,PB-2023-821,2025-04-13,2023-09-14,124695,Gusella,Crescent St,(021) - 5789473
+1150,Their Eyes Were Watching God,Zora Neale Hurston,1937,199,PB-2023-822,2025-04-14,2023-09-14,124696,Manon,Harold St,(021) - 5789474
+1093,The Mysterious Stranger,Mark Twain,1906,114,PB-2023-823,2025-04-15,2023-09-14,124697,Lorita,Cooper Ter,(021) - 5789475
+925,Interpreter of Maladies,Jhumpa Lahiri,1999,198,PB-2023-824,2025-04-16,2023-09-14,124698,Cesya,Benedict Av,(021) - 5789476
+1003,The Grapes of Wrath,John Steinbeck,1939,464,PB-2023-825,2025-04-17,2023-09-14,124699,Kirsten,Fairmount Place,(021) - 5789477
+621,The New New Thing,Michael Lewis,2000,272,PB-2023-826,2025-04-18,2023-09-14,124700,Marylou,Ryer Av,(021) - 5789478
+510,From Dawn to Decadence,Jacques Barzun,2000,802,PB-2023-827,2025-04-19,2023-09-14,124701,Honor,East Houston Street,(021) - 5789479
+715,Alps & Sanctuaries,Samuel Butler,1881,336,PB-2023-828,2025-04-20,2023-09-14,124702,Honoria,E 222 St,(021) - 5789480
+320,The Three Musketeers,Alexander Dumas,1844,592,PB-2023-829,2025-04-21,2023-09-14,124703,Lurleen,Allerton Av,(021) - 5789481
+255,"Christopher Columbus, Mariner",Samuel Eliot Morison,1942,160,PB-2023-830,2025-04-22,2023-09-14,124704,Betty,Commerce Av,(021) - 5789482
+275,The Princess of Cleves,Madame de Lafayette,1677,288,PB-2023-831,2025-04-23,2023-09-14,124705,Barbey,69 Av,(021) - 5789483
+607,A Man in Full,Tom Wolfe,1998,742,PB-2023-832,2025-04-24,2023-09-14,124706,Jandy,Newbold Av,(021) - 5789484
+1117,Samson Agonistes,John Milton,1671,170,PB-2023-833,2025-04-25,2023-09-14,124707,Georgina,Cypress Av,(021) - 5789485
+987,The Shape of Time,George Kubler,1962,136,PB-2023-834,2025-04-26,2023-09-14,124708,Ardis,Victory Blvd,(021) - 5789486
+946,The Diary of a Napoleonic Foot Soldier,Jakob Walter,1830,208,PB-2023-835,2025-04-27,2023-09-14,124709,Junia,73 Av,(021) - 5789487
+868,Love,Stendhal,1819,336,PB-2023-836,2025-04-28,2023-09-14,124710,Dee,E 58 St,(021) - 5789488
+1137,Diplomacy,Sir Harold Nicolson,1939,151,PB-2023-837,2025-04-29,2023-09-14,124711,Genvieve,Gansevoort Boulevard,(021) - 5789489
+892,Liber Amoris,William Hazlitt,1823,112,PB-2023-838,2025-04-30,2023-09-14,124712,Herta,147 Dr,(021) - 5789490
+1059,The History of the Standard Oil Company,Ida M. Tarbell,1903,200,PB-2023-839,2024-09-05,2023-09-14,124713,Diandra,Benedict Av,(021) - 5789491
+173,Mein Kampf,Adolph Hitler,1926,384,PB-2023-840,2024-09-05,2023-09-14,124714,Jordan,Olmstead Av,(021) - 5789492
+469,The Physiology of Marriage,Honore de Balzac,1824,358,PB-2023-841,2024-09-05,2023-09-14,124715,Darb,37 Av,(021) - 5789493
+509,Henderson the Rain King,Saul Bellow,1958,341,PB-2023-842,2024-09-05,2023-09-14,124716,Andee,176 St,(021) - 5789494
+343,The Mind of the Maker,Dorothy L. Sayers,1941,229,PB-2023-843,2024-09-05,2023-09-14,124717,Bambi,East Tremont Avenue,(021) - 5789495
+589,The World of the Pharoahs,Christine Hobson,1987,255,PB-2023-844,2024-09-05,2023-09-14,124718,Katerina,East Tremont Avenue,(021) - 5789496
+261,Ragged Dick,"Horatio Alger, Jr.",1868,120,PB-2023-845,2024-09-05,2023-09-14,124719,Marji,Zerega Av,(021) - 5789497
+880,A World Restored,Henry Kissinger,2050,-1,PB-2023-846,2024-09-05,2023-09-14,124720,Gisele,Crotona Av,(021) - 5789498
+901,The Chouans,Honore de Balzac,1827,238,PB-2023-847,2024-09-05,2023-09-14,124721,Aggi,De Lavall Avenue,(021) - 5789499
+447,The Operator,Tom King,2000,690,PB-2023-848,2024-09-05,2023-09-14,124722,Halimeda,E 176 St,(021) - 5789500
+337,The Selected Letters of Lord Byron,Lord Byron,1798,276,PB-2023-849,2024-09-05,2023-09-14,124723,Geri,Bradley Av,(021) - 5789501
+976,La Nouvelle Heloise,Jean-Jacques Rousseau,1758,728,PB-2023-850,2024-09-05,2023-09-14,124724,Halley,Watson Av,(021) - 5789502
+627,Physics and Politics,Walter Bagehot,1872,100,PB-2023-851,2024-09-05,2023-09-14,124725,Aprilette,Jefferson Avenue,(021) - 5789503
+1194,The Rites of Autumn,Dan O'Brien,1988,192,PB-2023-852,2024-09-05,2023-09-14,124726,Kellie,60 Ln,(021) - 5789504
+3,Can Japan Compete?,"Michael E. Porter, Hirotaka Takeuchi, Mariko Sakakibara",2000,224,PB-2023-853,2024-09-05,2023-09-14,124727,Anstice,3 Av,(021) - 5789505
+366,Courbet,Sarah Faunce,1993,245,PB-2023-854,2024-09-05,2023-09-14,124728,Jyoti,Wallace Av,(021) - 5789506
+663,The Waves,Virginia Woolf,1931,297,PB-2023-855,2024-09-05,2023-09-14,124729,Mozelle,Olmstead Av,(021) - 5789507
+103,Understanding War,Peter Paret,1992,252,PB-2023-856,2024-09-05,2023-09-14,124730,Jessalyn,Lillie Ln,(021) - 5789508
+43,Jeeves in the Morning,P. G. Wodehouse,1946,272,PB-2023-857,2024-09-05,2023-09-14,124731,Nada,Boston Rd,(021) - 5789509
+940,Sister Carrie,Theodore Dreiser,1900,557,PB-2023-858,2024-09-05,2023-09-14,124732,Luisa,E 178 St,(021) - 5789510
+508,Jihad vs. McWorld,Benjamin R. Barber,1995,432,PB-2023-859,2024-09-05,2023-09-14,124733,Iseabal,Ocean Pkwy,(021) - 5789511
+136,Harry Potter and the Sorcerer's Stone,J.K. Rowling,1997,223,PB-2023-860,2024-09-05,2023-09-14,124734,Meris,173 St,(021) - 5789512
+467,The Universe in a Nutshell,Stephen Hawking,2001,216,PB-2023-861,2024-09-05,2023-09-14,124735,Evangelin,E 184 St,(021) - 5789513
+637,The Trouble with Cinderella,Artie Shaw,1952,432,PB-2023-862,2024-09-05,2023-09-14,124736,Mara,Zerega Av,(021) - 5789514
+1152,Autobiography of a Yogi,Paramahansa Yogananda,1946,576,PB-2023-863,2024-09-05,2023-09-14,124737,Anett,175 St,(021) - 5789515
+1010,What Went Wrong?,Bernard Lewis,2002,208,PB-2023-864,2024-09-05,2023-09-14,124738,Gus,174 St,(021) - 5789516
+201,Wives and Daughters,Elizabeth Gaskell,1866,679,PB-2023-865,2024-09-05,2023-09-14,124739,Kiah,Parkchester Road,(021) - 5789517
+1141,The Jungle,Upton Sinclair,1905,413,PB-2023-866,2024-09-05,2023-09-14,124740,Gale,East Dr,(021) - 5789518
+488,"The Foundations of Early Modern Europe, 1460-1569","Eugene F. Rice, Jr.",1994,218,PB-2023-867,2024-09-05,2023-09-14,124741,Leslie,Rockaway Beach Boulevard,(021) - 5789519
+396,Dream Catcher,Margaret A. Salinger,2000,464,PB-2023-868,2024-09-05,2023-09-14,124742,Kaylil,260 St,(021) - 5789520
+974,Selected Journals of Henry David Thoreau,Henry David Thoreau,1862,64,PB-2023-869,2024-09-05,2023-09-14,124743,Claudina,Summerfield Street,(021) - 5789521
+245,Sleep It Off Lady,Jean Rhys,1976,176,PB-2023-870,2024-09-05,2023-09-14,124744,Jemima,Cross Bronx Expressway,(021) - 5789522
+902,Fall of the Roman Republic,Plutarch,1999,414,PB-2023-871,2024-09-05,2023-09-14,124745,Leola,Manor Rd,(021) - 5789523
+367,Hornblower and Hotspur,C.S. Forester,1962,400,PB-2023-872,2024-09-05,2023-09-14,124746,Alma,249 St,(021) - 5789524
+371,The Splendid Century,W.H. Lewis,1953,306,PB-2023-873,2024-09-05,2023-09-14,124747,Eveleen,28 St,(021) - 5789525
+1090,The Fatal Shore,Robert Hughes,1986,688,PB-2023-874,2024-09-05,2023-09-14,124748,Britta,53 Av,(021) - 5789526
+1129,Profit Over People,Noam Chomsky,1999,166,PB-2023-875,2024-09-05,2023-09-14,124749,Delinda,73 Av,(021) - 5789527
+867,Progress and Poverty,Henry George,1879,598,PB-2023-876,2024-09-05,2023-09-14,124750,Moll,4 Av,(021) - 5789528
+1180,Choose Hope,"David Krieger, Daisaku Ikeda",2001,238,PB-2023-877,2024-09-05,2023-09-14,124751,Dael,Hook Creek Boulevard,(021) - 5789529
+45,Under the Volcano,Malcolm Lowry,1947,423,PB-2023-878,2024-09-05,2023-09-14,124752,Merrilee,Jewel Av,(021) - 5789530
+804,The Good Terrorist,Doris Lessing,1985,400,PB-2023-879,2024-09-05,2023-09-14,124753,Karia,E 71 St,(021) - 5789531
+221,Man's Search for Meaning,Viktor E. Frankl,1959,165,PB-2023-880,2024-09-05,2023-09-14,124754,Idelle,Rockaway Boulevard,(021) - 5789532
+1211,Good Behavior,Harold Nicolson,1955,409,PB-2023-881,2024-09-05,2023-09-14,124755,Karel,242 St,(021) - 5789533
+1057,Good Behavior,"Lucien Febvr, Henri-Jean Martin",1958,360,PB-2023-882,2024-09-05,2023-09-14,124756,Alison,Butler Av,(021) - 5789534
+555,Take on the Street,Arthure Levitt,2002,352,PB-2023-883,2024-09-05,2023-09-14,124757,Fayina,5 Av,(021) - 5789535
+494,Post Office,Charles Bukowski,1971,208,PB-2023-884,2024-09-05,2023-09-14,124758,Hyacinthe,Crotona Av,(021) - 5789536
+1250,The Cove,Jose Saramago,2002,307,PB-2023-885,2024-09-05,2023-09-14,124759,Freddie,37 Av,(021) - 5789537
+1230,Women in Western Political Thought,Susan Mollin Okin,1979,442,PB-2023-886,2024-09-05,2023-09-14,124760,Jackelyn,East Tremont Avenue,(021) - 5789538
+419,Veron God Little,DBC Pierre,2003,288,PB-2023-887,2024-09-05,2023-09-14,124761,Ainslie,139 Av,(021) - 5789539
+833,The Persian Boy,Mary Renault,1972,419,PB-2023-888,2024-09-05,2023-09-14,124762,Mufinella,East Tremont Avenue,(021) - 5789540
+134,Hollywood,Charles Bukowski,1989,319,PB-2023-889,2024-09-05,2023-09-14,124763,Julee,Gansevoort Boulevard,(021) - 5789541
+1065,Early Christian & Byzantine Art,John Lowden,1997,448,PB-2023-890,2024-09-05,2023-09-14,124764,Diena,Garden St,(021) - 5789542
+129,Woman - An Intimate Geography,Natalie Angier,1999,464,PB-2023-891,2024-09-05,2023-09-14,124765,Gladi,Crotona Park North,(021) - 5789543
+1272,History of the Franks,Gregory Bishop of Tours,1987,720,PB-2023-892,2024-09-05,2023-09-14,124766,Jacquenetta,1 Av,(021) - 5789544
+713,Terror and Liberalism,Paul Berman,2003,240,PB-2023-893,2024-09-05,2023-09-14,124767,Elle,Pugsley Av,(021) - 5789545
+322,The Groves of Academe,Mary McCarthy,1951,312,PB-2023-894,2024-09-05,2023-09-14,124768,Dannye,3 Av,(021) - 5789546
+98,Does America Need a Foreign Policy,Henry Kissinger,2001,352,PB-2023-895,2024-09-05,2023-09-14,124769,Luci,Hylan Blvd,(021) - 5789547
+1226,A Giacometti Portrait,James Lord,1965,128,PB-2023-896,2024-09-05,2023-09-14,124770,Jessamyn,Manhattan Avenue,(021) - 5789548
+1107,Budda,Karen Armstrong,2001,240,PB-2023-897,2024-09-05,2023-09-14,124771,Kettie,Crotona Av,(021) - 5789549
+333,Islam,Karen Armstrong,2000,230,PB-2023-898,2024-09-05,2023-09-14,124772,Albertina,Prospect Av,(021) - 5789550
+617,Adam Bede,George Eliot,1859,624,PB-2023-899,2024-09-05,2023-09-14,124773,Jessika,Orchard St,(021) - 5789551
+116,Global Civilization - A Buddist Islanic Dialogue,"Daisaku Ikeda, Majid Tehranian",2003,224,PB-2023-900,2024-09-05,2023-09-14,124774,Ally,Belmont Av,(021) - 5789552
+51,The Third Man,Graham Greenauthor,1950,157,PB-2023-901,2024-09-05,2023-09-14,124775,Danita,Waters Av,(021) - 5789553
+675,The Years of Lyndon Johnson - Master of the Senate,Robert A. Caro,2050,-1,PB-2023-902,2024-09-05,2023-09-14,124776,Kaitlyn,177 Pl,(021) - 5789554
+218,The Republic and the School,Horace Mann,1848,112,PB-2023-903,2024-09-05,2023-09-14,124777,Marie-Jeanne,111 Rd,(021) - 5789555
+906,Benjamin Franklin,Edmund S. Morgan,2002,352,PB-2023-904,2024-09-05,2023-09-14,124778,Leela,East Tremont Avenue,(021) - 5789556
+644,Bruegel,Claude Mettra,1977,45,PB-2023-905,2024-09-05,2023-09-14,124779,Eba,Fairview Av,(021) - 5789557
+365,Waiting for the Barbarians,J. M. Coetzee,1980,152,PB-2023-906,2024-09-05,2023-09-14,124780,Lissy,80 Av,(021) - 5789558
+1193,The Da Vinci Code,Dan Brown,2003,489,PB-2023-907,2024-09-05,2023-09-14,124781,Cicely,East Tremont Avenue,(021) - 5789559
+1196,Memoirs of a Madman,Gustave Flaubert,1837,86,PB-2023-908,2024-09-05,2023-09-14,124782,Lesli,Boston Rd,(021) - 5789560
+945,"""The Acharnians"", ""The Clouds"", ""Lysistrata""",Aristophanes,1900,256,PB-2023-909,2024-09-05,2023-09-14,124783,Blakeley,Warwick Av,(021) - 5789561
+623,Girl With a Pearl Earing,Tacey Chevalier,1999,233,PB-2023-910,2024-09-05,2023-09-14,124784,Jessamine,Avenue of the Americas,(021) - 5789562
+202,The Western Canon,Harold Bloom,1994,546,PB-2023-911,2024-09-05,2023-09-14,124785,Kylen,E 212 St,(021) - 5789563
+586,The Renaissance,Walter Pater,1873,208,PB-2023-912,2024-09-05,2023-09-14,124786,Madlin,Boston Rd,(021) - 5789564
+1044,Real Boys,William Pollack,1998,480,PB-2023-913,2024-09-05,2023-09-14,124787,Annamari,64 St,(021) - 5789565
+716,The Complete Fables,Aesop,1955,352,PB-2023-914,2024-09-05,2023-09-14,124788,Jeanie,Chesbrough Avenue,(021) - 5789566
+266,The Satires,Juvenal,1830,252,PB-2023-915,2024-09-05,2023-09-14,124789,Mabelle,East Tremont Avenue,(021) - 5789567
+514,Love Groucho,Groucho Marx,1955,272,PB-2023-916,2024-09-05,2023-09-14,124790,Melinda,Ochenta Y Siete Boulevard,(021) - 5789568
+33,The Man Who Was Thursday,G.K. Chesterton,1908,182,PB-2023-917,2024-09-05,2023-09-14,124791,Kiersten,Stephen St,(021) - 5789569
+1147,A Confederacy of Dunces,John Kennedy Toole,1963,394,PB-2023-918,2024-09-05,2023-09-14,124792,Cordy,E 178 St,(021) - 5789570
+739,Roman Imperial Civilization,Harold Mattingly,1957,332,PB-2023-919,2024-09-05,2023-09-14,124793,Lynea,Summerfield Street,(021) - 5789571
+410,A London Girl of the 1880's,Molly Hughes,1946,245,PB-2023-920,2024-09-05,2023-09-14,124794,Jehanna,86 St,(021) - 5789572
+477,How To Be Good,Nick Hornby,2001,305,PB-2023-921,2024-09-05,2023-09-14,124795,Maren,37 Av,(021) - 5789573
+669,The Pilgrim's Progress,John Bunyan,1684,324,PB-2023-922,2024-09-05,2023-09-14,124796,Daffie,Mott St,(021) - 5789574
+1305,Moyers on America,Bill Moyers,2004,256,PB-2023-923,2024-09-05,2023-09-14,124797,Joslyn,East Tremont Avenue,(021) - 5789575
+458,Specimen Days,Walt Whitman,1865,228,PB-2023-924,2024-09-05,2023-09-14,124798,Bethina,Norman St,(021) - 5789576
+287,Eleven Minutes,Paulo Coelho,2004,273,PB-2023-925,2024-09-05,2023-09-14,124799,Matty,Monitor Arthur Scanlon Square,(021) - 5789577
+1302,"Christianity, Social Torerance and Homosexuality",John Boswell,1980,424,PB-2023-926,2024-09-05,2023-09-14,124800,Koressa,Zerega Av,(021) - 5789578
+290,The Persian Gulf in Transition,Lawrence Potter,1997,336,PB-2023-927,2024-09-05,2023-09-14,124801,Anthia,Lyvere St,(021) - 5789579
+31,Perpetual Peace,Immanuel Kant,1795,160,PB-2023-928,2024-09-05,2023-09-14,124802,Elna,Castle Hill Avenue,(021) - 5789580
+1066,"Chronicles, vol. 1",Bob Dylan,2004,320,PB-2023-929,2024-09-05,2023-09-14,124803,Lidia,62 St,(021) - 5789581
+1116,The Gladiators,Arthur Koestler,1949,44,PB-2023-930,2024-09-05,2023-09-14,124804,Gerda,East Tremont Avenue,(021) - 5789582
+300,From Puritan to Yankee,Richard L. Bushman,1967,352,PB-2023-931,2024-09-05,2023-09-14,124805,Hannah,170 St,(021) - 5789583
+772,"A Study of History, vols I-VI",Arnold Toynbee,1939,576,PB-2023-932,2024-09-05,2023-09-14,124806,Janeva,73 Av,(021) - 5789584
+1054,The End of Nature,Bill McKibben,1989,195,PB-2023-933,2024-09-05,2023-09-14,124807,Christian,180 St,(021) - 5789585
+298,"House of Bush, House of Saudi",Craig Unger,2004,384,PB-2023-934,2024-09-05,2023-09-14,124808,Marjy,187 St,(021) - 5789586
+1265,Glorious Appearing,"Tim LaHaye, Jerry B. Jenkins",2004,399,PB-2023-935,2024-09-05,2023-09-14,124809,Marsiella,E 31 St,(021) - 5789587
+599,A Story Like the Wind,Laurens Van der Post,1972,384,PB-2023-936,2024-09-05,2023-09-14,124810,Michaelina,69 Av,(021) - 5789588
+1183,Gilead,Marilynne Robinson,2004,247,PB-2023-937,2024-09-05,2023-09-14,124811,Mignonne,Bouck Av,(021) - 5789589
+1111,The French Revolution,Thomas Carlyle,1837,848,PB-2023-938,2024-09-05,2023-09-14,124812,Daniella,Little Neck Parkway,(021) - 5789590
+889,Johnny Got His Gun,Dalton Trumbo,1939,309,PB-2023-939,2024-09-05,2023-09-14,124813,Delora,Hughes Av,(021) - 5789591
+187,"Mon Cher Papa, Franklin and the Ladies of Paris",Claude-Anne Lopez,1966,404,PB-2023-940,2024-09-05,2023-09-14,124814,Helge,60 Pl,(021) - 5789592
+401,Bushworld,Maureen Dowd,2004,523,PB-2023-941,2024-09-05,2023-09-14,124815,Gianina,Grand Concourse,(021) - 5789593
+430,My Life,Anton Chekhov,1886,150,PB-2023-942,2024-09-05,2023-09-14,124816,Carey,East Tremont Avenue,(021) - 5789594
+572,Renaissance Europe,J.R. Hale,1971,352,PB-2023-943,2024-09-05,2023-09-14,124817,Francoise,Ridge Rd,(021) - 5789595
+1198,A Passage to India,E.M. Forster,1924,376,PB-2023-944,2024-09-05,2023-09-14,124818,Almeta,E 175 St,(021) - 5789596
+1089,Crimes Against Nature,"Robert F. Kennedy, Jr.",2004,288,PB-2023-945,2024-09-05,2023-09-14,124819,Ali,E 176 St,(021) - 5789597
+130,Sandy Koufax,Jane Leavy,2003,336,PB-2023-946,2024-09-05,2023-09-14,124820,Maddi,39 St,(021) - 5789598
+859,1776,David McCullough,2005,386,PB-2023-947,2024-09-05,2023-09-14,124821,Agnola,E 175 St,(021) - 5789599
+1112,The Octopus,Frank Norris,1900,688,PB-2023-948,2024-09-05,2023-09-14,124822,Jodie,75 Av,(021) - 5789600
+1102,Hang a Thousand Trees with Ribbons,Ann Rinaldi,1996,352,PB-2023-949,2024-09-05,2023-09-14,124823,Ike,Cypress Av,(021) - 5789601
+1092,Bartleby the Scrivener,Herman Melville,1853,64,PB-2023-950,2024-09-05,2023-09-14,124824,Fedora,186 St,(021) - 5789602
+1118,Chapters in Western Civilization vol II,Various,1962,534,PB-2023-951,2024-09-05,2023-09-14,124825,Guillema,Rombouts Av,(021) - 5789603
+1062,Lives of the Great Songs,Tim De Lisle,1994,240,PB-2023-952,2024-09-05,2023-09-14,124826,Dotty,112 Av,(021) - 5789604
+351,As Thousands Cheer - The Life of Irving Berlin,Laurence Bergreen,1990,702,PB-2023-953,2024-09-05,2023-09-14,124827,Dari,Fields Av,(021) - 5789605
+404,The Way We Live Now,Anthony Trollope,1873,776,PB-2023-954,2024-09-05,2023-09-14,124828,Doe,176 St,(021) - 5789606
+605,Shopgirl,Steve Martin,2000,130,PB-2023-955,2024-09-05,2023-09-14,124829,Isadore,Shale St,(021) - 5789607
+1300,The Debacle,Emile Zola,1870,170,PB-2023-956,2024-09-05,2023-09-14,124830,Danell,Zerega Av,(021) - 5789608
+1103,A History of Japan,Kenneth Henshall,1999,264,PB-2023-957,2024-09-05,2023-09-14,124831,Jerry,Roma Av,(021) - 5789609
+11,The Rise of Theodore Roosevelt,Edmund Morris,1979,816,PB-2023-958,2024-09-05,2023-09-14,124832,Judy,Zerega Av,(021) - 5789610
+1266,The Education of Henry Adams,Henry Adams,1907,320,PB-2023-959,2024-09-05,2023-09-14,124833,Kassey,251 St,(021) - 5789611
+1242,Freedom: Credos from the Road,Sonny Barger,2005,224,PB-2023-960,2024-09-05,2023-09-14,124834,Kikelia,Newbold Av,(021) - 5789612
+812,The Day of the Locust,Nathanael West,1939,208,PB-2023-961,2024-09-05,2023-09-14,124835,Kittie,Southern Boulevard,(021) - 5789613
+389,The Good Soldier,Ford Maddox Ford,1915,368,PB-2023-962,2025-09-01,2023-09-14,124836,Lorianna,Boller Av,(021) - 5789614
+176,A Vindication of the Rights of Woman,Mary Wollstonecraft,1792,269,PB-2023-963,2025-09-02,2023-09-14,124837,Danila,3 Av,(021) - 5789615
+1002,The Age of Innocence,Edith Wharton,1920,293,PB-2023-964,2025-09-03,2023-09-14,124838,Anet,Hylan Blvd,(021) - 5789616
+947,Of Human Bondage,W. Somerset Maugham,1915,684,PB-2023-965,2025-09-04,2023-09-14,124839,Clarabelle,Grand Concourse,(021) - 5789617
+962,Team of Rivals,Doris Kearns Goodwin,2005,916,PB-2023-966,2025-09-05,2023-09-14,124840,Darbie,66 Av,(021) - 5789618
+533,Postwar,Tony Judt,2005,933,PB-2023-967,2025-09-06,2023-09-14,124841,Joy,Main St,(021) - 5789619
+262,"Here, There, and Everywhere",Geoff Emerick,2006,400,PB-2023-968,2025-09-07,2023-09-14,124842,Lilyan,178 Pl,(021) - 5789620
+835,Angle of Repose,Wallace Stegner,1971,569,PB-2023-969,2025-09-08,2023-09-14,124843,Amaleta,Rockaway Boulevard,(021) - 5789621
+824,"James Dean, The Mutant King",David Dalton,1974,384,PB-2023-970,2025-09-09,2023-09-14,124844,Lynna,Rockaway Boulevard,(021) - 5789622
+1232,India: A Wounded Civilisation,V.S. Naipaul,1976,176,PB-2023-971,2025-09-10,2023-09-14,124845,Colene,1 Av,(021) - 5789623
+903,The Adventures of Pinocchio,Carlo Collodi,1881,96,PB-2023-972,2025-09-11,2023-09-14,124846,Jilleen,Powell Av,(021) - 5789624
+515,Women in Love,D. H. Lawrence,1916,416,PB-2023-973,2025-09-12,2023-09-14,124847,Karalee,Trafalgar Place,(021) - 5789625
+54,Economic and Social History of Medieval Europe,Henri Pirenne,1936,264,PB-2023-974,2025-09-13,2023-09-14,124848,Carmen,Jewel Av,(021) - 5789626
+1169,The Farther Reaches of Human Nature,A. H. Maslow,1971,432,PB-2023-975,2025-09-14,2023-09-14,124849,Allie,E 22 St,(021) - 5789627
+141,Our Mutual Friend,Charles Dickens,1865,801,PB-2023-976,2025-09-15,2023-09-14,124850,Dani,Norway Av,(021) - 5789628
+776,Speak Memory,Vladimir Nabokov,1947,255,PB-2023-977,2025-09-16,2023-09-14,124851,Milzie,73 Av,(021) - 5789629
+229,Steppenwolf,Hermann Hesee,1927,256,PB-2023-978,2025-09-17,2023-09-14,124852,Jacynth,De Reimer Avenue,(021) - 5789630
+24,Richard Hofstadter. An Intellectual Biography,David S. Brown,2006,320,PB-2023-979,2025-09-18,2023-09-14,124853,Lenka,Gladwin Av,(021) - 5789631
+1185,All the King's Men,Robert Penn Warren,1946,439,PB-2023-980,2025-09-19,2023-09-14,124854,Caitrin,E 64 St,(021) - 5789632
+592,On Friendship,Michel DeMontaigne,1580,115,PB-2023-981,2025-09-20,2023-09-14,124855,Kessia,Victory Blvd,(021) - 5789633
+18,1215 The Year of Magna Carta,Danny Danzinger & John Gillingham,2003,312,PB-2023-982,2025-09-21,2023-09-14,124856,Mufi,Clover Pl,(021) - 5789634
+441,Legends of the Fall,Jim Harrison,1978,276,PB-2023-983,2025-09-22,2023-09-14,124857,Georgine,Myrtle Av,(021) - 5789635
+1027,Collapse - How Societies Choose to Fail Or Succeed,Jared Diamond,2005,608,PB-2023-984,2025-09-23,2023-09-14,124858,Jennie,Fairmount Place,(021) - 5789636
+671,The Future of Freedom,Fareed Zakaria,2003,295,PB-2023-985,2025-09-24,2023-09-14,124859,Edee,23 St,(021) - 5789637
+46,The Ginger Man,J.P. Donleavy,1955,347,PB-2023-986,2025-09-25,2023-09-14,124860,Harley,Radcliff Av,(021) - 5789638
+1239,My Movie Business,John Irving,1999,222,PB-2023-987,2025-09-26,2023-09-14,124861,Kaster,60 Ln,(021) - 5789639
+1077,All's Well That Ends Well,William Shakespeare,1602,282,PB-2023-988,2025-09-27,2023-09-14,124862,Dido,Boston Rd,(021) - 5789640
+114,The Quiet American,Graham Greene,1955,180,PB-2023-989,2025-09-28,2023-09-14,124863,Colette,Jewel Av,(021) - 5789641
+293,The History of Alexander,Quintus Curtius Rufus,1944,352,PB-2023-990,2025-09-29,2023-09-14,124864,Ilsa,Metropolitan Avenue,(021) - 5789642
+283,The Autocrat of the Breakfast Table,Oliver Wendell Holmes,1858,604,PB-2023-991,2025-09-30,2023-09-14,124865,Margaret,Pugsley Av,(021) - 5789643
+1024,Jackson's Dilemma,Iris Murdoch,1995,256,PB-2023-992,2024-09-05,2023-09-14,124866,Barbie,Boston Rd,(021) - 5789644
+61,The Corrections,Jonathan Franzen,2001,653,PB-2023-993,2024-09-05,2023-09-14,124867,Gennifer,179 St,(021) - 5789645
+284,My Pilgrim's Progress,George W.S. Trow,1999,288,PB-2023-994,2024-09-05,2023-09-14,124868,Bendite,Olmstead Av,(021) - 5789646
+1308,The Carolingian Empire,Heinrich Fichtenau,1957,196,PB-2023-995,2024-09-05,2023-09-14,124869,Kynthia,Bryant Av,(021) - 5789647
+258,"God, Guns and Israel",Jill Hamilton,2004,352,PB-2023-996,2024-09-05,2023-09-14,124870,Michell,Victory Blvd,(021) - 5789648
+29,The History of King Richard III,Sir Thomas More,1557,120,PB-2023-997,2024-09-05,2023-09-14,124871,Ede,Linden Blvd,(021) - 5789649
+523,The Confessions,Jean-Jacques Rousseau,1781,672,PB-2023-998,2024-09-05,2023-09-14,124872,Berrie,64 St,(021) - 5789650
+919,The Marble Faun,Nathaniel Hawthorne,1860,432,PB-2023-999,2024-09-05,2023-09-14,124873,Cleopatra,Boston Rd,(021) - 5789651
+922,Russian Thinkers,Isaiah Berlin,1978,336,PB-2023-1000,2024-09-05,2023-09-14,124874,Aphrodite,Vyse Av,(021) - 5789652
+1046,Don't You Forget About Me,Cecily von Ziegesar,2007,275,PB-2023-1001,2024-09-05,2023-09-14,124875,Holly-Anne,6 Av,(021) - 5789653
+1234,On Chesil Beach,Ian McEwan,2007,166,PB-2023-1002,2024-09-05,2023-09-14,124876,Ibby,Rockaway Boulevard,(021) - 5789654
+4,Motherless Brooklyn,Jonathan Lethem,1999,311,PB-2023-1003,2024-09-05,2023-09-14,124877,Betteann,114 Rd,(021) - 5789655
+1009,The Essential Fromm,Erich Fromm,1976,144,PB-2023-1004,2024-09-05,2023-09-14,124878,Arleta,Fish Av,(021) - 5789656
+816,The Gospel According to Jesus Christ,José Saramago,1991,377,PB-2023-1005,2024-09-05,2023-09-14,124879,Karoly,164 St,(021) - 5789657
+286,Mass-Mediated Terrorism,Brigitte L. Nacos,2007,253,PB-2023-1006,2024-09-05,2023-09-14,124880,Antonina,E 32 St,(021) - 5789658
+243,The Year of Magical Thinking,Joan Didion,2005,227,PB-2023-1007,2024-09-05,2023-09-14,124881,Angelina,2 Av,(021) - 5789659
+967,Waiting for Godot,Samuel Beckett,1954,109,PB-2023-1008,2024-09-05,2023-09-14,124882,Kiele,Jewel Av,(021) - 5789660
+1214,Prophecies,Leonardo da Vinci,1519,112,PB-2023-1009,2024-09-05,2023-09-14,124883,Mae,Virginia Av,(021) - 5789661
+15,The Depleted Self,Donald Capps,1993,196,PB-2023-1010,2024-09-05,2023-09-14,124884,Ermengarde,Castle Hill Avenue,(021) - 5789662
+455,Tigers are Better Looking,Jean Rhys,1927,220,PB-2023-1011,2024-09-05,2023-09-14,124885,Chandal,Summerfield Street,(021) - 5789663
+888,Leaves from the Notebook of a Tamed Cynic,Reinhold Niebuhr,1928,152,PB-2023-1012,2024-09-05,2023-09-14,124886,Darell,Boston Rd,(021) - 5789664
+632,Harlemworld,"John J. Jackson, Jr.",2001,299,PB-2023-1013,2024-09-05,2023-09-14,124887,Celeste,60 Av,(021) - 5789665
+855,A Philosophical Enquiry into the Origin of our Ideas of the Sublime and Beautiful,Edmund Burke,1757,208,PB-2023-1014,2024-09-05,2023-09-14,124888,Florice,2 Av,(021) - 5789666
+1058,The Labyrinth of Solitude,Octavio Paz,1961,398,PB-2023-1015,2024-09-05,2023-09-14,124889,Loria,Murdock Av,(021) - 5789667
+800,A Bend in the River,V.S. Naipaul,1979,326,PB-2023-1016,2024-09-05,2023-09-14,124890,Inez,Field Pl,(021) - 5789668
+505,Bold Spirit- Helga Estby's Forgotten Walk Across Victorian America,Linda Lawrence Hunt,2003,336,PB-2023-1017,2024-09-05,2023-09-14,124891,Morgana,McGraw Av,(021) - 5789669
+538,The Gambler,Fyodor Dostoevsky,1866,160,PB-2023-1018,2024-09-05,2023-09-14,124892,Merola,Klondike Av,(021) - 5789670
+893,Nobel Lecture,Aleksandr Solzhenitsyn,1972,69,PB-2023-1019,2024-09-05,2023-09-14,124893,Cornelle,Harold St,(021) - 5789671
+879,Maimonides: A Guide for Today's Perplexed,Kenneth Seeskin,1991,142,PB-2023-1020,2024-09-05,2023-09-14,124894,Emanuela,E 178 St,(021) - 5789672
+722,The Magnificent Ambersons,Booth Tarkington,1918,288,PB-2023-1021,2024-09-05,2023-09-14,124895,Chrissie,Westchester Avenue,(021) - 5789673
+269,The Death and Life of Great American Cities,Jane Jacobs,1961,472,PB-2023-1022,2024-09-05,2023-09-14,124896,Cosette,Thomas E Brown Avenue,(021) - 5789674
+139,The Assault on Reason,Al Gore,2007,273,PB-2023-1023,2025-11-01,2023-09-14,124897,Karmen,Westchester Avenue,(021) - 5789675
+1020,Fires,Raymond Carver,1984,208,PB-2023-1024,2025-11-02,2023-09-14,124898,Gilbertina,40 Rd,(021) - 5789676
+1025,The Black Swan,Nassim Nicholas Taleb,2007,366,PB-2023-1025,2025-11-03,2023-09-14,124899,Lee,Prospect Av,(021) - 5789677
+1123,The Last Hero,Peter Forbath,1988,729,PB-2023-1026,2025-11-04,2023-09-14,124900,Maryellen,Boston Rd,(021) - 5789678
+339,The Essays,Francis Bacon,1625,288,PB-2023-1027,2025-11-05,2023-09-14,124901,Katalin,Zerega Av,(021) - 5789679
+958,Restoration,Rose Tremain,1989,371,PB-2023-1028,2025-11-06,2023-09-14,124902,Deedee,Ft Washington Avenue,(021) - 5789680
+845,The History of England,Lord Macaulay,1849,60,PB-2023-1029,2025-11-07,2023-09-14,124903,Audry,111 Av,(021) - 5789681
+640,The Lover,Marguerite Duras,1985,117,PB-2023-1030,2025-11-08,2023-09-14,124904,Allyson,59 St,(021) - 5789682
+944,Last Letters - Prisons & Prisoners of the French Revolution 1793-94,Olivier Blanc,1987,250,PB-2023-1031,2025-11-09,2023-09-14,124905,Deena,172 St,(021) - 5789683
+476,Human Nature,Thomas Hobbes,1640,344,PB-2023-1032,2025-11-10,2023-09-14,124906,Lusa,Main St,(021) - 5789684
+1119,Confessions of an Economic Hit Man,John Perkins,2004,303,PB-2023-1033,2025-11-11,2023-09-14,124907,Gert,Hone Av,(021) - 5789685
+777,Orientalism,Edward W. Said,1978,396,PB-2023-1034,2025-11-12,2023-09-14,124908,Janeen,Crotona Av,(021) - 5789686
+219,The Places in Between,Rory Stewart,2004,299,PB-2023-1035,2025-11-13,2023-09-14,124909,Francisca,Ochenta Y Siete Boulevard,(021) - 5789687
+1061,A Handful of Dust,Evelyn Waugh,1934,308,PB-2023-1036,2025-11-14,2023-09-14,124910,Eleanore,Glover St,(021) - 5789688
+813,The Cold War,John Lewis Gaddis,2005,352,PB-2023-1037,2025-11-15,2023-09-14,124911,Gwenora,Boston Rd,(021) - 5789689
+912,The Girls of Slender Means,Muriel Spark,1963,140,PB-2023-1038,2025-11-16,2023-09-14,124912,Bridgette,East Tremont Avenue,(021) - 5789690
+788,The Shia Revival,Vali Nasr,2006,314,PB-2023-1039,2025-11-17,2023-09-14,124913,Jade,Sayres Av,(021) - 5789691
+47,"Blood, Toil, Tears and Sweat",John Lukacs,2008,240,PB-2023-1040,2025-11-18,2023-09-14,125137,Kamillah,Bay St,(021) - 5789692
+380,Restless,William Boyd,2006,336,PB-2023-1041,2025-11-19,2023-09-14,125138,Karil,Boston Rd,(021) - 5789693
+769,Five Easy Decades,Dennis McDouglas,2008,484,PB-2023-1042,2025-11-20,2023-09-14,125139,Isabel,Mickle Av,(021) - 5789694
+307,Of Time and the River,Thomas Wolfe,1935,896,PB-2023-1043,2025-11-21,2023-09-14,125140,Corena,Dongan Hills Avenue,(021) - 5789695
+88,The Professor and the Madman,Simon Winchester,1998,242,PB-2023-1044,2025-11-22,2023-09-14,125141,Caroline,Walker St,(021) - 5789696
+756,Call It Sleep,Henry Roth,1934,462,PB-2023-1045,2025-11-23,2023-09-14,125142,La,3 Av,(021) - 5789697
+602,The Brief Wondrous Life of Oscar Wao,Junot Diaz,2007,335,PB-2023-1046,2025-11-24,2023-09-14,125143,Marinna,176 St,(021) - 5789698
+393,The Limits of Power,Andrew J. Bacevich,2008,206,PB-2023-1047,2025-11-25,2023-09-14,125144,Florella,Hermany Av,(021) - 5789699
+898,Some Times a Great Notion,Ken Kesey,1964,640,PB-2023-1048,2025-11-26,2023-09-14,125145,Kathye,112 Av,(021) - 5789700
+39,Lady Chatterley's Lover,D.H. Lawrence,1928,376,PB-2023-1049,2025-11-27,2023-09-14,125146,Anestassia,1 Av,(021) - 5789701
+884,The Courage to Be,Paul Tillich,1952,200,PB-2023-1050,2025-11-28,2023-09-14,125147,Melba,E 183 St,(021) - 5789702
+778,Murphy,Samuel Beckett,1938,288,PB-2023-1051,2025-11-29,2023-09-14,125148,Allegra,Horatio St,(021) - 5789703
+1110,Cranford,Elizabeth Gaskell,1853,257,PB-2023-1052,2025-11-30,2023-09-14,125149,Lulita,48 Av,(021) - 5789704
+2,Rimbaud - The Double Life of a Rebel,Edmund White,2008,192,PB-2023-1053,2024-09-05,2023-09-14,125150,Bernice,White Plains Road,(021) - 5789705
+795,The Perspective of the World,Fernand Braudel,1979,699,PB-2023-1054,2024-09-05,2023-09-14,125151,Hyacinthie,208 St,(021) - 5789706
+1104,The Death of the Heart,Elizabeth Bowen,1938,418,PB-2023-1055,2024-09-05,2023-09-14,125152,Cari,Walker St,(021) - 5789707
+185,Tolstoy,Henri Troyat,1965,896,PB-2023-1056,2024-09-05,2023-09-14,125153,Laverna,Reeds Mill Lane,(021) - 5789708
+518,"Palestine, Peace Not Apartheid",Jimmy Carter,2006,288,PB-2023-1057,2024-09-05,2023-09-14,125154,Misha,Julio Torres Place,(021) - 5789709
+400,Skyscraper Dreams,Tom Shachtman,1991,380,PB-2023-1058,2024-09-05,2023-09-14,125155,Lynnell,73 Av,(021) - 5789710
+416,Principles of Human Knowledge,George Berkeley,1710,80,PB-2023-1059,2024-09-05,2023-09-14,125156,Elena,E 29 St,(021) - 5789711
+145,The English Constitution,Walter Bagehot,1867,256,PB-2023-1060,2024-09-05,2023-09-14,125157,Jorey,Riverside Drive,(021) - 5789712
+5,The Post-American World,Fareed Zakaria,2008,292,PB-2023-1061,2024-09-05,2023-09-14,125158,Jaquenette,Lafayette Avenue,(021) - 5789713
+534,And Quiet Flows the Don,Mikhail Sholokhov,1928,1408,PB-2023-1062,2024-09-05,2023-09-14,124936,Elyn,Lexington Avenue,(021) - 5789714
+140,The Beak of the Finch,Jonathan Weiner,1994,332,PB-2023-1063,2024-09-05,2023-09-14,124937,Lind,Roosevelt Avenue,(021) - 5789715
+250,Hua Hu Ching,Lao Tzu,2009,106,PB-2023-1064,2024-09-05,2023-09-14,124938,Meagan,Metropolitan Avenue,(021) - 5789716
+938,The Singularity Is Near,Ray Kurzweil,2005,652,PB-2023-1065,2024-09-05,2023-09-14,124939,Gerianne,Castle Hill Avenue,(021) - 5789717
+794,Treasure Island,Robert Louis Stevenson,1883,311,PB-2023-1066,2024-09-05,2023-09-14,124940,Emylee,Seneca Av,(021) - 5789718
+797,The Kite Runner,Khaled Hosseini,2003,371,PB-2023-1067,2024-09-05,2023-09-14,124941,Dorena,3 Av,(021) - 5789719
+1081,Rhyming Life & Death,Amos Oz,2007,128,PB-2023-1068,2024-09-05,2023-09-14,124942,Gabriel,Sackett Av,(021) - 5789720
+791,The Moon and Sixpence,W. Somerset Maugham,1919,215,PB-2023-1069,2024-09-05,2023-09-14,124943,Ellynn,212 St,(021) - 5789721
+681,On the Good Life,Cicero,2003,384,PB-2023-1070,2024-09-05,2023-09-14,124944,Julienne,135 Pl,(021) - 5789722
+474,On Beauty,Zadie Smith,2005,445,PB-2023-1071,2024-09-05,2023-09-14,124945,Dorolice,Zerega Av,(021) - 5789723
+453,Wishful Drinking,Carrie Fisher,2008,163,PB-2023-1072,2024-09-05,2023-09-14,124946,Kenna,Elizabeth Street,(021) - 5789724
+395,How I Got to Be Whoever It is I Am,Charles Grodin,2009,272,PB-2023-1073,2024-09-05,2023-09-14,124947,Karlene,37 Av,(021) - 5789725
+108,Byron in Love,Edna O'Brien,2009,228,PB-2023-1074,2024-09-05,2023-09-14,124948,Nan,30 Dr,(021) - 5789726
+1280,The Last of Mr. Norris,Christopher Isherwood,1935,187,PB-2023-1075,2024-09-05,2023-09-14,124949,Maribelle,Gleason Av,(021) - 5789727
+726,Goodbye to Berlin,Christopher Isherwood,1945,208,PB-2023-1076,2024-09-05,2023-09-14,124950,Jesse,Harry Van Arsdale Jr Av,(021) - 5789728
+710,Alexandria - A History,E.M. Forster,1918,192,PB-2023-1077,2024-09-05,2023-09-14,124951,Cass,121 St,(021) - 5789729
+661,Pamela,Samuel Richardson,1740,592,PB-2023-1078,2024-09-05,2023-09-14,124952,Codee,3 Av,(021) - 5789730
+655,Fanny Hill,John Cleland,1749,224,PB-2023-1079,2024-09-05,2023-09-14,124953,Anissa,Waterbury Avenue,(021) - 5789731
+1316,Roxanna,Daniel Defoe,1724,356,PB-2023-1080,2024-09-05,2023-09-14,124954,Dore,Bruckner Boulevard,(021) - 5789732
+8,New Science,Giambattista Vico,1725,521,PB-2023-1081,2024-09-05,2023-09-14,124955,Jacquenette,Utopia Pkwy,(021) - 5789733
+690,I Feel Bad About My Neck,Nora Ephron,2006,137,PB-2023-1082,2024-09-05,2023-09-14,124956,Michaeline,E 10 St,(021) - 5789734
+742,The Civilization of the Renaissance in Italy,Jacob Burckhardt,1857,400,PB-2023-1083,2024-09-05,2023-09-14,124957,Blondy,Boundary Av,(021) - 5789735
+232,Oblomov,Ivan Goncharov,1859,586,PB-2023-1084,2024-09-05,2023-09-14,124958,Karly,E 72 St,(021) - 5789736
+77,Darwin’s Worms,Adam Phillips,1999,160,PB-2023-1085,2024-09-05,2023-09-14,124959,Asia,174 St,(021) - 5789737
+918,Justine,D.A.F. Marquis deSade,1787,784,PB-2023-1086,2024-09-05,2023-09-14,124960,Gillie,Fenton Av,(021) - 5789738
+319,Story of a Year 1848,Raymond Postgate,1956,286,PB-2023-1087,2024-09-05,2023-09-14,124961,Alysa,E 24 St,(021) - 5789739
+696,Essays on Miscellaneous Subjects; with an Inquiry Into the Present State of Polite Learning,Oliver Goldsmith,1774,180,PB-2023-1088,2024-09-05,2023-09-14,124962,Maxi,48 Av,(021) - 5789740
+87,Income InEquality in America,Paul Ryscavage,1999,242,PB-2023-1089,2024-09-05,2023-09-14,124963,Guinna,Cross Bronx Expressway,(021) - 5789741
+82,The SeaWolf,Jack London,1903,227,PB-2023-1090,2024-09-05,2023-09-14,124964,Jennee,Wyckoff Av,(021) - 5789742
+413,The Origins of the Second World War in Asia and the Pacific,Akira Iriye,1987,214,PB-2023-1091,2024-09-05,2023-09-14,124965,Marysa,Turnbull Av,(021) - 5789743
+443,Race: A Study in Superstition,Jacques Barzun,1937,100,PB-2023-1092,2024-09-05,2023-09-14,124966,Carolie,Hancock St,(021) - 5789744
+56,Why I Write,George Orwell,1946,120,PB-2023-1093,2024-09-05,2023-09-14,124967,Guendolen,East Tremont Avenue,(021) - 5789745
+1282,A Collection of Genteel and Ingenious Conversation,Jonathan Swift,1754,224,PB-2023-1094,2024-09-05,2023-09-14,124968,Annecorinne,Boston Rd,(021) - 5789746
+1004,Too Big To Fail,Andrew Ross Sorkin,2009,600,PB-2023-1095,2024-09-05,2023-09-14,124969,Lotti,Marine Way,(021) - 5789747
+846,Red Harvest,Dashielle Hammett,1929,224,PB-2023-1096,2024-09-05,2023-09-14,124970,Gerry,Quimby Av,(021) - 5789748
+27,Reflections on the Revolution in Europe,Christopher Caldwell,2009,432,PB-2023-1097,2024-09-05,2023-09-14,124971,Dorri,Mapes Av,(021) - 5789749
+163,The Rise of the Roman Empire,Polybius,1930,576,PB-2023-1098,2024-09-05,2023-09-14,124972,Lorilee,Elm Dr,(021) - 5789750
+62,The Drinking Den,Emile Zola,1877,480,PB-2023-1099,2024-09-05,2023-09-14,124973,Dulcine,Mohegan Av,(021) - 5789751
+328,War in European History,Michael Howard,1976,176,PB-2023-1100,2024-09-05,2023-09-14,124974,Allene,White Plains Road,(021) - 5789752
+1311,Game Change,"John Heileman, Mark Halperin",2010,448,PB-2023-1101,2024-09-05,2023-09-14,124975,Manda,E 176 St,(021) - 5789753
+749,Cakes and Ale,W.Somerset Maughan,1930,308,PB-2023-1102,2024-09-05,2023-09-14,124976,Ianthe,E 21 St,(021) - 5789754
+240,Oedipus at Colonus,Sophocles,2005,144,PB-2023-1103,2024-09-05,2023-09-14,124977,Lynnet,Boston Rd,(021) - 5789755
+914,Backing Into Forward,Jules Feiffer,2011,440,PB-2023-1104,2024-09-05,2023-09-14,124978,Jennica,Canal St,(021) - 5789756
+1153,The Journey to the East,Hermann Hesse,1959,128,PB-2023-1105,2024-09-05,2023-09-14,124979,Cherie,Hudson St,(021) - 5789757
+1078,Native Son,Richard Wright,1940,504,PB-2023-1106,2024-09-05,2023-09-14,124980,Charmion,Watson Av,(021) - 5789758
+652,Gurdjieff,James Moore,1991,416,PB-2023-1107,2024-09-05,2023-09-14,124981,Gray,East Av,(021) - 5789759
+135,Shantaram,Gregory David Roberts,2003,936,PB-2023-1108,2024-09-05,2023-09-14,124982,Jacquelynn,73 Av,(021) - 5789760
+75,A Shattered Peace,David A. Andelman,2008,336,PB-2023-1109,2024-09-05,2023-09-14,124983,Gracie,Prospect Av,(021) - 5789761
+133,The Girl With The Dragon Tattoo,Stieg Larsson,2004,480,PB-2023-1110,2024-09-05,2023-09-14,124984,Harriette,Bradley Av,(021) - 5789762
+869,Sailing Alone Around The Room,Billy Collins,1998,172,PB-2023-1111,2024-09-05,2023-09-14,124985,Bee,E 211 St,(021) - 5789763
+827,Nothing Special,Charlotte Joko Beck,1993,278,PB-2023-1112,2024-09-05,2023-09-14,124986,Christel,Arthur Av,(021) - 5789764
+1171,The Alchemist,Paulo Coelho,1988,192,PB-2023-1113,2024-09-05,2023-09-14,124987,Heather,5 Av,(021) - 5789765
+1099,The Woman in White,Wilkie Collins,1860,672,PB-2023-1114,2024-09-05,2023-09-14,124988,Brittany,Boston Rd,(021) - 5789766
+335,The Help,Kathryn Stockett,2009,464,PB-2023-1115,2024-09-05,2023-09-14,124989,Kanya,Field Pl,(021) - 5789767
+466,The House of Morgan,Ron Chernow,1990,812,PB-2023-1116,2024-09-05,2023-09-14,124990,Mireille,W 13 St,(021) - 5789768
+107,The Game From Where I Stand,Doug Glanville,2010,276,PB-2023-1117,2024-09-05,2023-09-14,124991,Canada,Pelham Parkway South,(021) - 5789769
+1155,The Brain That Changes Itself,"Norman Doidge, M.D.",2007,447,PB-2023-1118,2024-09-05,2023-09-14,124992,Kimmie,139 Av,(021) - 5789770
+543,Other People’s Money and How Bankers Use It,Louis D. Brandeis,1913,168,PB-2023-1119,2024-09-05,2023-09-14,124993,Carlynn,Fenton Av,(021) - 5789771
+346,How To Be Alone,Jonathan Franzen,2002,306,PB-2023-1120,2024-09-05,2023-09-14,124994,Audy,58 Av,(021) - 5789772
+1114,Heart Without Measure,Ravi Ravindra,1999,219,PB-2023-1121,2024-09-05,2023-09-14,124995,Christi,253 St,(021) - 5789773
+461,Murder On The Orient Express,Agatha Christie,1934,274,PB-2023-1122,2024-09-05,2023-09-14,124996,Leigh,Marine Way,(021) - 5789774
+674,Rambles Beyond Railways,Wilkie Collins,1852,195,PB-2023-1123,2024-09-05,2023-09-14,124997,Ambrosia,E 176 St,(021) - 5789775
+1209,Gorky Park,Martin Cruz Smith,1981,433,PB-2023-1124,2024-09-05,2023-09-14,124998,Mirella,Boston Rd,(021) - 5789776
+1296,Examined Lives,James Miller,2011,432,PB-2023-1125,2024-09-05,2023-09-14,124999,Laurie,112 Av,(021) - 5789777
+685,Doctor Faustus,Thomas Mann,1947,535,PB-2023-1126,2024-09-05,2023-09-14,125000,Farrah,Clinton Av,(021) - 5789778
+983,"One, No One & One Hundred Thousand",Luigi Pirandello,1926,160,PB-2023-1127,2024-09-05,2023-09-14,125001,Nancy,48 Av,(021) - 5789779
+324,Wilderness & The American Mind,Roderick Frazier Nash,1967,432,PB-2023-1128,2024-09-05,2023-09-14,125002,Keely,Marolla Pl,(021) - 5789780
+1261,Main Street,Sinclair Lewis,1920,560,PB-2023-1129,2024-09-05,2023-09-14,125003,Beitris,1 Av,(021) - 5789781
+1138,A Thousand-Mile Walk to The Gulf,John Muir,1867,272,PB-2023-1130,2024-09-05,2023-09-14,125004,Kora,E 188 St,(021) - 5789782
+169,Journey of the Universe,Brian Thomas Swimme & Mary Evelyn Tucker,2011,192,PB-2023-1131,2024-09-05,2023-09-14,125005,Alexia,Rockaway Boulevard,(021) - 5789783
+1008,Poetic Lives: Keats,Robert Mighall,2009,160,PB-2023-1132,2024-09-05,2023-09-14,125006,Dede,Rockland Av,(021) - 5789784
+111,John Keats A Beginner’s Guide,David Edwards,2002,87,PB-2023-1133,2024-09-05,2023-09-14,125007,Lurline,Zerega Av,(021) - 5789785
+272,Keith Richards The Biography,Victor Bockris,2003,471,PB-2023-1134,2024-09-05,2023-09-14,125008,Collete,3 Av,(021) - 5789786
+364,Moll Flanders,Daniel Defoe,1722,339,PB-2023-1135,2024-09-05,2023-09-14,125009,Kristan,Murdock Av,(021) - 5789787
+810,Backstabbing For Beginners,Michael Soussan,2008,332,PB-2023-1136,2024-09-05,2023-09-14,125010,Milissent,Sackett Av,(021) - 5789788
+131,Beyond Good and Evil,Friedrich Nietzsche,1886,240,PB-2023-1137,2024-09-05,2023-09-14,125011,Marya,Prince St,(021) - 5789789
+935,The Song of The Lark,Willa Cather,1915,417,PB-2023-1138,2024-09-05,2023-09-14,125012,Karolina,Gladwin Av,(021) - 5789790
+1015,The Vendetta,Honore de Balzac,1830,124,PB-2023-1139,2024-09-05,2023-09-14,125013,Bernete,Zerega Av,(021) - 5789791
+1026,A Book of Silence,Sara Maitland,2008,309,PB-2023-1140,2024-09-05,2023-09-14,125014,Alida,E 188 St,(021) - 5643216
+733,Memoirs of An Egotist,Stendhal,1832,144,PB-2023-1141,2024-09-05,2023-09-14,125015,Ceil,175 St,(021) - 5643217
+856,History and The Enlightenment,Hugh Trevor-Roper,2010,352,PB-2023-1142,2024-09-05,2023-09-14,125016,Leigha,215 St,(021) - 5643218
+311,"For a Night of Love, Nantas, Fasting",Emile Zola,1876,100,PB-2023-1143,2024-09-05,2023-09-14,125017,Ladonna,Morris Av,(021) - 5643219
+20,Life of Pi,Yann Martel,2001,401,PB-2023-1144,2024-09-05,2023-09-14,125018,Arabel,Crotona Av,(021) - 5643220
+60,Ninety Minutes in Heaven,Don Piper with Cecil Murphy,2004,207,PB-2023-1145,2024-09-05,2023-09-14,125019,Britni,Poi Ct,(021) - 5643221
+1143,Quiet Chaos,Sandro Veronesi,2005,432,PB-2023-1146,2024-09-05,2023-09-14,125020,Melloney,Dogwood Dr,(021) - 5643222
+552,Sketches By Boz,Charles Dickens,1836,635,PB-2023-1147,2024-09-05,2023-09-14,125021,Angelika,Zerega Av,(021) - 5643223
+805,Present Indicative: An Autobiography,Noel Coward,1937,352,PB-2023-1148,2024-09-05,2023-09-14,125022,Michele,Virginia Av,(021) - 5643224
+565,Fire and Rain,David Browne,2011,369,PB-2023-1149,2024-09-05,2023-09-14,125023,Jaime,Mott St,(021) - 5643225
+186,Deep Secrets,Niobe Way,2011,326,PB-2023-1150,2024-09-05,2023-09-14,125024,Erin,East Houston Street,(021) - 5643226
+344,Pnin,Vladmir Nabokov,1953,143,PB-2023-1151,2024-09-05,2023-09-14,125025,Marillin,Mohegan Av,(021) - 5643227
+427,In The Garden Of Beasts,Erik Larson,2011,448,PB-2023-1152,2024-09-05,2023-09-14,125026,Filia,14 St,(021) - 5643228
+1045,Night,Elie Wiesel,1958,115,PB-2023-1153,2024-09-05,2023-09-01,125027,Donnie,E 31 St,(021) - 5643229
+450,Even This,Sanford D. Greenberg,1953,100,PB-2023-1154,2024-09-05,2023-09-01,125028,Cori,Linden Blvd,(021) - 5643230
+852,The Garden Squabble,Nikolai Gogol,1835,119,PB-2023-1155,2024-09-05,2023-09-01,125029,Marcille,53 Av,(021) - 5643231
+615,Ladies and Gentlemen: Lenny Bruce!,"Albert Goldman, Lawrence Schiller",1971,700,PB-2023-1156,2024-09-05,2023-09-01,125030,Cordelie,Palmer Av,(021) - 5643232
+626,The Elegance of the Hedgehog,Muriel Barbery,2006,325,PB-2023-1157,2024-09-05,2023-09-01,125031,Carlee,3 Av,(021) - 5643233
+383,Full Service,Scotty Bowers,2012,288,PB-2023-1158,2024-09-05,2023-09-01,125032,Caroleen,58 Av,(021) - 5643234
+483,Unbroken,Laura Hillenbrand,2010,492,PB-2023-1159,2024-09-05,2023-09-01,125033,Kaleena,Cypress Hills Street,(021) - 5643235
+238,Nana,Emile Zola,1880,473,PB-2023-1160,2024-09-05,2023-09-02,125034,Clementine,Castle Hill Avenue,(021) - 5643236
+909,The Buddha in the Attic,Julie Otsuka,2011,129,PB-2023-1161,2024-09-05,2023-09-02,125035,Karlie,Zerega Av,(021) - 5643237
+375,Gone for a Ride,Timothy L. Hoffmann,2007,100,PB-2023-1162,2024-09-05,2023-09-02,125036,Jo Ann,4 Av,(021) - 5643238
+37,Fifty Shades of Grey,E.L. James,2011,356,PB-2023-1163,2024-09-05,2023-09-02,125037,Emmalynn,56 Av,(021) - 5643239
+554,Pale Fire,Vladimir Nabokov,1959,246,PB-2023-1164,2024-09-05,2023-09-02,125038,Delphine,Conner St,(021) - 5643240
+399,The Intelligent Investor,"Benjamin Grahanm, Jason Zweig",2003,623,PB-2023-1165,2024-09-05,2023-09-02,125039,Kirstin,Oceania St,(021) - 5643241
+1120,Uncle Fred in the Springtime,P.G. Wodehouse,1939,240,PB-2023-1166,2024-09-05,2023-09-02,125040,Mercy,73 Av,(021) - 5643242
+93,A Book Addict's Treasury,"Julie Rugg, Linda Murphy",2006,240,PB-2023-1167,2024-09-05,2023-09-03,125041,Gavrielle,Rockaway Boulevard,(021) - 5643243
+1135,The Heart of the Matter,Graham Greene,1948,272,PB-2023-1168,2024-09-05,2023-09-03,125042,Merl,Murdock Av,(021) - 5643244
+66,The Man of Fifty,Johann Wolfgang von Goethe,1818,70,PB-2023-1169,2024-09-05,2023-09-03,125043,Josefa,3 Av,(021) - 5643245
+1163,Early Medieval Europe 300-1000,Roger Collins,1991,533,PB-2023-1170,2024-09-05,2023-09-03,125044,Anabella,Clinton Av,(021) - 5643246
+633,I Am Charlotte Simmons,Tom Wolfe,2004,738,PB-2023-1171,2024-09-05,2023-09-03,125045,Gerrie,Navesink Pl,(021) - 5643247
+890,blink,Malcolm Gladwell,2005,400,PB-2023-1172,2024-09-05,2023-09-03,125046,Lizzy,178 Pl,(021) - 5643248
+80,Seize the Day,Saul Bellow,1956,114,PB-2023-1173,2024-09-05,2023-09-03,125047,Grissel,61 St,(021) - 5643249
+363,Children of Paradise,Lee Hausner,1990,275,PB-2023-1174,2026-04-01,2023-09-04,125048,Isabella,Hughes Av,(021) - 5643250
+1240,In the American Grain,William Carlos Williams,1925,234,PB-2023-1175,2026-04-02,2023-09-04,125049,Madel,Zerega Av,(021) - 5643251
+872,The Killer Angels,Michael Shaara,1974,13,PB-2023-1176,2026-04-03,2023-09-04,125050,Dawn,27 St,(021) - 5643252
+832,The Sound of a Wild Snail Eating,Elisabeth Tova Bailey,2010,208,PB-2023-1177,2026-04-04,2023-09-04,125051,Margarette,Boston Rd,(021) - 5643253
+1223,On China,Henry Kissinger,2011,608,PB-2023-1178,2026-04-05,2023-09-04,125052,Marietta,Clinton Av,(021) - 5643254
+512,Felix Holt: The Radical,George Eliot,1866,545,PB-2023-1179,2026-04-06,2023-09-04,125053,Esmeralda,Boston Rd,(021) - 5643255
+267,Winston Spencer Churchill The Last Lion Part 2 - Alone. 1932-40,William Manchester,1988,992,PB-2023-1180,2026-04-07,2023-09-04,125054,Dyanna,Rockaway Boulevard,(021) - 5643256
+929,The Revenge of Geography,Robert D. Kaplan,2012,432,PB-2023-1181,2026-04-08,2023-09-04,125055,Delcina,Cascade St,(021) - 5643257
+1095,The Fortunate Pilgrim,Mario Puzo,1964,304,PB-2023-1182,2026-04-09,2023-09-04,125056,Catarina,50 Av,(021) - 5643258
+1264,Voltaire in Love,Nancy Mitford,1957,288,PB-2023-1183,2026-04-10,2023-09-04,125057,Latrina,Crotona Pkwy,(021) - 5643259
+1312,Revolutionary Biology - The New Gene- Centered View of Life,David Barash,2001,222,PB-2023-1184,2026-04-11,2023-09-04,125058,Adelind,Glebe Av,(021) - 5643260
+487,Catherine the Great,Robert K Massie,2011,625,PB-2023-1185,2026-04-12,2023-09-04,125059,,Norway Av,
+409,The House in Paris,Elizabeth Bowen,1935,269,PB-2023-1186,2026-04-13,2023-09-05,125060,Arleyne,Lexington Avenue,(021) - 5643262
+840,Daily Rituals - How Artists Work,Mason Currey,2013,278,PB-2023-1187,2026-04-14,2023-09-05,125061,Lisandra,Clinton Av,(021) - 5643263
+352,Genius and Character,Emil Ludwig,1927,346,PB-2023-1188,2026-04-15,2023-09-05,125062,Kimbra,Boston Rd,(021) - 5643264
+985,France Under the Germans,Phillippe Burrin,1995,512,PB-2023-1189,2026-04-16,2023-09-05,125063,Andie,Benedict Av,(021) - 5643265
+714,The Street of Crocodiles,Bruno Schulz,1934,160,PB-2023-1190,2026-04-17,2023-09-05,125064,Beilul,Crotona Park East,(021) - 5643266
+747,Bing Crosby - The Hollow Man,Donald Shepherd,1981,150,PB-2023-1191,2026-04-18,2023-09-06,125065,Guinevere,Fields Av,(021) - 5643267
+1289,A Distant Mirror,Barbara W. Tuchman,1978,714,PB-2023-1192,2026-04-19,2023-09-06,125066,Arianne,Forest Hill Road,(021) - 5643268
+955,Cosmos,Witold Gombrowicz,1967,208,PB-2023-1193,2026-04-20,2023-09-06,125067,Kimberlee,170 St,(021) - 5643269
+55,1493,Charles C. Mann,2011,557,PB-2023-1194,2026-04-21,2023-09-06,125068,Candy,Jefferson Avenue,(021) - 5643270
+316,Do Androids Dream of Eletric Sheep?,Philip K. Dick,1968,258,PB-2023-1195,2026-04-22,2023-09-07,125069,Marlyn,Waterbury Avenue,(021) - 5643271
+866,The Law of Divine Compensation,Marianne Williamson,2012,208,PB-2023-1196,2026-04-23,2023-09-07,125070,Elsi,Utopia Pkwy,(021) - 5643272
+1206,The War That Ended Peace,Margaret Macmillan,2013,739,PB-2023-1197,2026-04-24,2023-09-07,125071,Caressa,Boston Rd,(021) - 5643273
+568,Benito Cereno,Herman Melville,1855,160,PB-2023-1198,2026-04-25,2023-09-07,125072,Grete,Riverside Drive,(021) - 5643274
+610,The Duel,Anton Chekhov,1891,128,PB-2023-1199,2026-04-26,2023-09-07,125073,Millie,65 Av,(021) - 5643275
+765,Cosmopolis,Don DeLillo,2003,224,PB-2023-1200,2026-04-27,2023-09-08,125074,Doroteya,30 St,(021) - 5643276
+560,A Life of Barbara Stanwyck,Victoria Wilson,2013,1044,PB-2023-1201,2026-04-28,2023-09-08,125075,Joya,E 176 St,(021) - 5643277
+161,The Invisible Bridge,Julie Orringer,2010,786,PB-2023-1202,2026-04-29,2023-09-08,125076,Josee,Blackrock Avenue,(021) - 5643278
+1098,Dissident Gardens,Jonathan Lethem,2013,366,PB-2023-1203,2026-04-30,2023-09-09,125077,Hali,Woodbine St,(021) - 5643279
+570,Thinking About Science:Max Delbruck & the Origins of Molecular Biology,"Ernst Fischer, Carol Lipson",1988,334,PB-2023-1204,2024-09-05,2023-09-10,125078,Amberly,E 175 St,(021) - 5643280
+1142,When I Was A Child I Read Books,Marilynne Robinson,2012,224,PB-2023-1205,2024-09-05,2023-09-11,125079,Felisha,E 60 St,(021) - 5643281
+1220,Dear Life,Alice Munro,2012,336,PB-2023-1206,2024-09-05,2023-09-11,125080,Ainsley,East Dr,(021) - 5643282
+1161,Little Women,Louisa May Alcott,1868,449,PB-2023-1207,2024-09-05,2023-09-11,125081,Lenna,Havemeyer Avenue,(021) - 5643283
+144,A Month in the Country,J.L. Carr,1980,135,PB-2023-1208,2024-09-05,2023-09-11,125082,Margette,Crotona Av,(021) - 5643284
+445,World Order,Henry Kissinger,2014,420,PB-2023-1209,2024-09-05,2023-09-11,125083,Madelle,E 222 St,(021) - 5643285
+117,The Deerslayer,James Fenimore Cooper,1841,576,PB-2023-1210,2024-09-05,2023-09-12,125084,Karyn,Metropolitan Avenue,(021) - 5643286
+1071,The Kingdom of God is Within You,Leo Tolstoy,1893,352,PB-2023-1211,2024-09-05,2023-09-12,125085,Keri,Seneca Av,(021) - 5643287
+1070,The Fifties,Edmund Wilson,1986,663,PB-2023-1212,2024-09-05,2023-09-12,125086,Breena,Boston Rd,(021) - 5643288
+861,Watch Me,Anjelica Huston,2014,400,PB-2023-1213,2024-09-05,2023-09-13,125087,Barbabra,East Fordham Road,(021) - 5643289
+162,Redeployment,Phil Klayn,2014,288,PB-2023-1214,2024-09-05,2023-09-13,125088,Adrea,East Fordham Road,(021) - 5643290
+883,Virgin Soil,Ivan Turgenev,1877,355,PB-2023-1215,2024-09-05,2023-09-13,125089,Alyse,Elizabeth Street,(021) - 5643291
+1055,My Struggle,Karl Ove Knausgaard,2009,448,PB-2023-1216,2024-09-05,2023-09-13,125090,Hermione,E 178 St,(021) - 5643292
+822,A Time of Gifts,Patrick Leigh Fermor,1977,321,PB-2023-1217,2024-09-05,2023-09-14,125091,Agnesse,Belmont Av,(021) - 5643293
+288,Pictures From An Institution,Randall Jarrell,1952,286,PB-2023-1218,2024-09-05,2023-09-14,125092,Jammie,174 St,(021) - 5643294
+864,In Another Life,Howard Felperin,2014,225,PB-2023-1219,2024-09-05,2023-09-14,125093,Kirbee,Fairchild Avenue,(021) - 5643295
+1043,The Mauve Decade,Thomas Beer,1926,272,PB-2023-1220,2024-09-05,2023-09-14,125094,Celestina,E 214 St,(021) - 5643296
+780,Little Dorrit,Charles Dickens,1857,1347,PB-2023-1221,2024-09-05,2023-09-14,125095,Hannibal,Seneca Av,(021) - 5643297
+355,Grown-Up Marriage,Judith Viorst,2003,304,PB-2023-1222,2024-09-05,2023-09-14,125096,Gigi,E 187 St,(021) - 5643298
+542,Alexander Hamilton,Ron Chernov,2004,818,PB-2023-1223,2024-09-05,2023-09-14,125097,Mariann,Honeywell Avenue,(021) - 5643299
+537,Marketing to Millennials,Jeff Fromm,2013,224,PB-2023-1224,2024-09-05,2023-09-14,125098,Mitzi,Centre St,(021) - 5643300
+89,Deep in a Dream. The Long Night of Chet Baker,James Gavin,2002,448,PB-2023-1225,2024-09-05,2023-09-14,125099,Henriette,Canal St,(021) - 5643301
+1295,The Wrong Side of Paris,Honore de Balzac,1845,272,PB-2023-1226,2024-09-05,2023-09-15,125100,Klara,Virginia Av,(021) - 5643302
+210,NeuroTribes.The Legacy of Autism,Steve Silberman,2016,477,PB-2023-1227,2024-09-05,2023-09-16,125101,Myrtia,195 St,(021) - 5643303
+472,The Human Comedy,Honore de Balzac,1840,428,PB-2023-1228,2024-09-05,2023-09-17,125102,Gerladina,139 Av,(021) - 5643304
+274,Three Nights in August,Buzz Bissinger,2005,287,PB-2023-1229,2024-09-05,2023-09-18,125103,Edith,Crotona Pkwy,(021) - 5643305
+1168,Pete Rose. An American Dilemma,Kostya Kennedy,2016,352,PB-2023-1230,2024-09-05,2023-09-18,125104,Kaycee,Zerega Av,(021) - 5643306
+728,Moneyball,Michael Lewis,2003,317,PB-2023-1231,2024-09-05,2023-09-18,125105,Leese,W 78 St,(021) - 5643307
+530,Freedom,Jonathan Franzen,2010,562,PB-2023-1232,2024-09-05,2023-09-18,125106,Leontine,E 20 St,(021) - 5643308
+429,Why Not Say What Happened,Morris Dickstein,2015,320,PB-2023-1233,2024-09-05,2023-09-18,125107,Clo,83 St,(021) - 5643309
+1146,The Swerve,Stepen Greenblatt,2011,356,PB-2023-1234,2024-09-05,2023-09-18,125108,Janaya,Grand Concourse,(021) - 5643310
+302,The Tempest,William Shakespeare,1611,355,PB-2023-1235,2024-09-05,2023-09-18,125109,Gabey,Jefferson Avenue,(021) - 5643311
+1201,The Days of Dylan Thomas,Bill Read,1964,100,PB-2023-1236,2024-09-05,2023-09-19,125110,Clara,E 178 St,(021) - 5643312
+1124,Lorna Doone,R.D. Blackmore,1869,800,PB-2023-1237,2024-09-05,2023-09-20,125111,Dian,262 St,(021) - 5643313
+1051,J.S. Bach vol.two.,Albert Schweitzer,1911,512,PB-2023-1238,2024-09-05,2023-09-20,125124,Karlotte,Roosevelt Avenue,(021) - 5643314
+146,The Prince of Privilege,Madeline Levine,2006,256,PB-2023-1239,2024-09-05,2023-09-20,125117,Bonni,East Tremont Avenue,(021) - 5643315
+932,White Girls,Hilton Als,2014,344,PB-2023-1240,2023-09-22,2023-09-20,125193,Mildrid,Grove St,(021) - 5643316
+481,The Guns of August,Barbara Tuchman,2014,606,PB-2023-1241,2023-09-22,2023-09-20,125137,Bryn,Boston Rd,(021) - 5643317
+222,The Art of Memoir,Mary Karr,2015,225,PB-2023-1242,2023-09-22,2023-09-20,125166,Gabie,Crotona Av,(021) - 5643318
+689,Everything That Rises Must Converge,Flannery O'Connor,1965,269,PB-2023-1243,2023-09-22,2023-09-20,125140,Carly,Boston Rd,(021) - 5643319
+818,A Crown of Feathers,Isaac Bashevis Singer,1973,342,PB-2023-1244,2023-09-22,2023-09-20,125159,Charleen,2 Av,(021) - 5643320
+425,Avid Reader,Robert Gottlieb,2016,352,PB-2023-1245,2023-09-22,2023-09-20,125145,Kendra,39 Av,(021) - 5643321
+1126,The Garden of Peace,Rabbi Shalom Arush,2008,150,PB-2023-1246,2023-09-22,2023-09-20,125134,Candie,Boston Rd,(021) - 5643322
+767,The Devil in the White City,Erik Larson,2003,447,PB-2023-1247,2023-09-22,2023-09-20,125186,Ashleigh,Waterloo Pl,(021) - 5643323
+1224,The Girl on the Train,Paula Hawkins,2015,325,PB-2023-1248,2023-09-21,2023-09-21,125188,Leann,58 Av,(021) - 5643324
+354,The Last Interview,Oliver Sacks,2016,220,PB-2023-1249,2023-09-21,2023-09-21,125147,Kessiah,117 St,(021) - 5643325
+348,Mutiny On the Bounty,"Charles Nordhoff, James Norman Hall",1932,400,PB-2023-1250,2023-09-21,2023-09-21,125192,Georgianne,Bryant Av,(021) - 5643326
+815,A Little History Of Literature,John Sutherland,2013,276,PB-2023-1251,2023-09-21,2023-09-21,125154,Bella,Havemeyer Avenue,(021) - 5643327
+891,Against The Current,Frances Kroll Ring,1985,155,PB-2023-1252,2023-09-21,2023-09-21,125191,Benny,Jewel Av,(021) - 5643328
+214,Giovanni's Room,James Baldwin,1956,159,PB-2023-1253,2023-09-21,2023-09-21,125174,Lenee,Lefferts Boulevard,(021) - 5643329
+1254,The Cake And The Rain,Jimmy Webb,2017,159,PB-2023-1254,2023-09-21,2023-09-21,125187,Leonanie,Woodbine St,(021) - 5643330
+440,The Last Interview,J.D. Salinger,2016,208,PB-2023-1255,2023-09-21,2023-09-21,125138,Audrie,Utopia Pkwy,(021) - 5643331
+405,On Tyranny,Timothy Snyder,2017,126,PB-2023-1256,2023-09-22,2023-09-22,125157,Joyous,E 178 St,(021) - 5643332
+392,Trump The Art of the Deal,Donald Trump,1986,384,PB-2023-1257,2023-09-22,2023-09-22,125123,Abby,Mott St,(021) - 5643333
+731,American Sphinx: The Character Of Thomas Jefferson,Joseph J. Ellis,1996,440,PB-2023-1258,2023-09-22,2023-09-22,125183,Cilka,Monsignor John J Voight Green,(021) - 5643334
+799,The Fire Next Time,James Baldwin,1962,106,PB-2023-1259,2023-09-22,2023-09-22,125127,Audrey,177 St,(021) - 5643335
+273,Four Princes,John Julius Norwich,2016,304,PB-2023-1260,2023-09-22,2023-09-22,125119,Kath,Cypress Av,(021) - 5643336
+313,Elizabeth,Lisa Hilton,2014,400,PB-2023-1261,2023-09-22,2023-09-22,125180,Lindie,Lefferts Boulevard,(021) - 5643337
+577,All Quiet On The Western Front,Erich Maria Remarque,1928,256,PB-2023-1262,2023-09-23,2023-09-23,125185,Georgena,178 Pl,(021) - 5643338
+952,Anti-Education,Friedrich Nietzsche,1872,160,PB-2023-1263,2023-09-23,2023-09-23,125122,Brynne,177 St,(021) - 5643339
+631,Giant Of The Senate,Al Franken,2017,304,PB-2023-1264,2023-09-27,2023-09-23,125126,Cristabel,Southern Boulevard,(021) - 5643340
+527,The Days Of Abandonment,Elena Ferrante,2002,188,PB-2023-1265,2023-09-27,2023-09-23,125130,Cherye,Monterey Av,(021) - 5643341
+428,Netochka Nezvanova,Fyodor Dostoyevsky,1849,176,PB-2023-1266,2023-09-27,2023-09-23,125176,Ailee,White Plains Road,(021) - 5643342
+228,Konundrum,Franz Kafka,1914,381,PB-2023-1267,2023-09-27,2023-09-23,125144,Farand,160 St,(021) - 5643343
+687,My Name Is Lucy Barton,Elizabeth Strout,2016,193,PB-2023-1268,2023-09-27,2023-09-23,125184,Laura,66 Av,(021) - 5643344
+149,How To Grow Old,Cicero,1996,196,PB-2023-1269,2023-09-27,2023-09-24,125171,Luanna,Yankee Mall,(021) - 5643345
+934,Ties,Domenico Starnone,2014,150,PB-2023-1270,2023-09-27,2023-09-25,125143,Elbertina,Roosevelt Avenue,(021) - 5643346
+1285,Fire and Fury,Michael Wolff,2018,322,PB-2023-1271,2023-09-27,2023-09-25,125125,Grata,Fairview Av,(021) - 5643347
+781,Oh Florida!,Craig Pittman,2016,320,PB-2023-1272,2023-09-27,2023-09-25,125161,Georgiamay,Buck St,(021) - 5643348
+843,Facism - a warning,Madeleine Albright,2018,304,PB-2023-1273,2023-09-27,2023-09-25,125141,Carena,Blackrock Avenue,(021) - 5643349
+750,How to Talk So Kids Will Listen & How to Listen So Kids Will Talk,Adele Faber & Elaine Mazlish,1980,286,PB-2023-1274,2023-09-27,2023-09-25,125178,Dedie,Fairview Av,(021) - 5643350
+927,Of Mice and Men,John Steinbeck,1937,103,PB-2023-1275,2023-09-27,2023-09-25,125195,Kissee,167 St,(021) - 5643351
+137,The Sense of an Ending,Julian Barnes,2011,150,PB-2023-1276,2023-09-27,2023-09-25,125190,Casie,Zerega Av,(021) - 5643352
+978,"Paul Simon, The Life",Robert Hilburn,2018,448,PB-2023-1277,2023-09-27,2023-09-26,125115,Donnajean,184 St,(021) - 5643353
+826,Masters of Deceit,J. Edgar Hoover,1958,384,PB-2023-1278,2023-09-27,2023-09-26,125173,Celene,114 Rd,(021) - 5643354
+263,The Story of a Shipwrecked Sailor,Gabriel Garcia Marquez,1986,128,PB-2023-1279,2023-09-27,2023-09-26,125181,Carlye,Mott St,(021) - 5643355
+1238,Modern Ethics in 77 Arguments,Peter Catapano,2017,464,PB-2023-1280,2023-09-27,2023-09-26,125120,Bari,E 67 St,(021) - 5643356
+1030,In Her Own Words,Ruth Bader Ginsburg,2018,206,PB-2023-1281,2023-09-27,2023-09-26,125165,Krista,Boston Rd,(021) - 5643357
+1249,Fear,Bob Woodward,2013,448,PB-2023-1282,2023-09-27,2023-09-26,125135,Jobye,East Tremont Avenue,(021) - 5643358
+1306,The Fountainhead,Ayn Rand,1943,752,PB-2023-1283,2023-09-27,2023-09-26,125112,Agathe,Manhattan Avenue,(021) - 5643359
+370,The Widening Gyre,Robert Parker,1983,183,PB-2023-1284,2023-09-27,2023-09-26,125149,Flossy,111 Av,(021) - 5643360
+734,All the Light We Cannot See,Anthony Doerr,2014,531,PB-2023-1285,2023-09-27,2023-09-26,125133,Cristen,Adams Av,(021) - 5643361
+418,How to Think,Alan Jacobs,2017,160,PB-2023-1286,2023-09-28,2023-09-26,125168,Consuelo,Jewel Av,(021) - 5643362
+1215,The Road,Cormac McCarthy,2006,241,PB-2023-1287,2023-09-29,2023-09-26,125148,Brena,Havemeyer Avenue,(021) - 5643363
+417,Killing the SS,Bill O'Reilly,2018,307,PB-2023-1288,2023-09-30,2023-09-26,125139,Karie,E 70 St,(021) - 5643364
+159,The True Flag,Stephen Kinzer,2017,307,PB-2023-1289,2024-09-05,2023-09-26,125163,Elinor,Jewel Av,(021) - 5643365
+561,Healing the Soul of America,Marianne Williamson,1997,288,PB-2023-1290,2024-09-05,2023-09-26,125114,Joan,34 Av,(021) - 5643366
+260,The Disordered Mind,Eric Kandel,2018,304,PB-2023-1291,2024-09-05,2023-09-27,125113,Dehlia,Ely Av,(021) - 5643367
+881,A Walk in the Woods,Bill Bryson,1981,397,PB-2023-1292,2024-09-05,2023-09-27,125156,Keslie,Zerega Av,(021) - 5643368
+10,No Is Not Enough,Naomi Klein,2017,273,PB-2023-1293,2024-09-05,2023-09-27,125152,Joly,Hegeman Av,(021) - 5643369
+924,Duel With The Devil,Paul Collins,2013,304,PB-2023-1294,2024-09-05,2023-09-27,125132,Evelina,Murdock Av,(021) - 5643370
+740,Team of Vipers,Cliff Sims,2019,384,PB-2023-1295,2024-09-05,2023-09-27,125128,Edy,Yates Av,(021) - 5643371
+1094,Call Sign Chaos,"Jim Mattis, Bing West",2019,320,PB-2023-1296,2024-09-05,2023-09-27,125158,Elyse,183 St,(021) - 5643372
+706,The Handmaid's Tale,Margaret Attwood,1986,350,PB-2023-1297,2024-09-05,2023-09-27,125153,Gill,122 Pl,(021) - 5643373
+1278,Have You an Educated Heart,Gelett Burgess,1923,57,PB-2023-1298,2024-09-05,2023-09-27,125196,Cally,21 St,(021) - 5643374
+980,"The Devil’s Chessboard, Allen Dulles, the CIA and the Rise of America’s Secret Government",David Talbot,2015,704,PB-2023-1299,2024-09-05,2023-09-27,125150,Florina,40 Rd,(021) - 5643375
+1290,The Splendid and the Vile,Erik Larson,2020,546,PB-2023-1300,2024-09-05,2023-09-27,125129,Kaylee,Manor Rd,(021) - 5643376
+1029,Yes to Life,Viktor E. Frankl,2019,144,PB-2023-1301,2024-09-05,2023-09-28,125164,Brenn,Cross Bronx Expressway,(021) - 5643377
+295,"Hello Darkness, My Old Friend",Sanford D. Greenberg,2020,240,PB-2023-1302,2024-09-05,2023-09-28,125162,Aubine,Menahan St,(021) - 5643378
+1160,Too Much and Never Enough,Mary L. Trump,2020,236,PB-2023-1303,2024-09-05,2023-09-28,125146,Correna,112 Av,(021) - 5643379
+1304,Leadership,Doris Kearns Goodwin,2020,397,PB-2023-1304,2024-09-05,2023-09-28,125136,Milka,Broadway,(021) - 5643380
+1246,Stanley Kubrick,David Mikie,2020,248,PB-2023-1305,2024-09-05,2023-09-28,125155,Deloria,Hollywood Avenue,(021) - 5643381
+876,The Plaza,Julie Satow,2019,358,PB-2023-1306,2024-09-05,2023-09-28,125167,Alisun,Boston Rd,(021) - 5643382
+175,Life Isn’t Everything – Mike Nichols as Remembered by 150 of His Closest Friends,Ash Carter and Sam Kashner,2019,368,PB-2023-1307,2024-09-05,2023-09-28,125131,Cayla,E 176 St,(021) - 5643383
+91,Strongmen (Mussolini to the Present),Ruth Ben-Ghiat,2019,384,PB-2023-1308,2024-09-05,2023-09-28,125118,Angelique,169 St,(021) - 5643384
+1275,Mike Nichols A Life,Mark Harris,2021,688,PB-2023-1309,2024-09-05,2023-09-28,125160,Aurore,Olmstead Av,(021) - 5643385
+516,The Last American Aristocrat,David S. Brown,2020,464,PB-2023-1310,2024-09-05,2023-09-28,125169,Juliet,Kenneth Pontillo Way,(021) - 5643386
+1082,Jeeves and the Feudal Sprit,P.G.Wodehouse,1954,231,PB-2023-1311,2024-09-05,2023-09-29,125151,Berny,73 Av,(021) - 5643387
+782,Paris,Margaret MacMillan,1919,624,PB-2023-1312,2024-09-05,2023-09-29,125121,Anitra,Cypress Av,(021) - 5643388
+190,The Music of Bach,Charles Terry,1963,100,PB-2023-1313,2024-09-05,2023-09-29,125142,Isabeau,Castle Hill Avenue,(021) - 5643389
+1252,Pygmalion,Bernard Shaw,1913,82,PB-2023-1314,2024-09-05,2023-09-29,125177,Eliza,Roosevelt Avenue,(021) - 5643390
+125,Never Sit if You Can Dance,Jo Giese,2019,144,PB-2023-1315,2024-09-05,2023-09-29,125116,Krystle,Adams Av,(021) - 5643391
+711,Peril,"Bob Woodward, Robert Costa",2021,512,PB-2023-1316,2024-09-05,2023-09-30,125175,Mariya,Pidgeon Meadow Road,(021) - 5643392
+115,A Gentleman in Moscow,Amor Towles,2016,462,PB-2023-1317,2024-09-05,2023-09-30,125182,Beret,Ocean Pkwy,(021) - 5643393
+1084,All About Me!,Mel Brooks,2021,480,PB-2023-1318,2024-09-05,2023-09-30,125172,Cinnamon,2 Av,(021) - 5643394
+72,Caravans,James Michener,1963,320,PB-2023-1319,2024-09-05,2023-09-30,125179,Berry,Lyon Av,(021) - 5643395
+1197,The Spiritual Growth of a Public Man,Abraham Lincoln,1973,47,PB-2023-1320,2023-09-30,2023-11-01,125194,Cynthie,W 70 St,(021) - 5643396
+310,Saving Freedom,Joe Scarborough,2020,272,PB-2023-1321,2023-09-30,2023-11-02,125189,Martita,Kingsland Avenue,(021) - 5643397
+742,,John Reed,1992,253,,2023-01-01 0:00:00,2022-12-31 0:00:00,,Adrian,38 Av,123456
+664,,Amos Oz,1865,272,,2023-01-01 0:00:00,2022-12-31 0:00:00,,Koressa,Seneca Av,123456
+250,,"Horatio Alger, Jr.",1936,352,,2023-01-01 0:00:00,2022-12-31 0:00:00,,Joly,Virginia Av,123456
