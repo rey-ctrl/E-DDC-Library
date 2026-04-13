@@ -27,33 +27,42 @@
 
     <body class="bg-[#f4f6f9] text-[#333] antialiased m-0">
 
-    {{-- navbar --}}
-    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-default">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="./logo-whitemode.png" class="h-7" alt="Flowbite Logo" />
-                <span class="self-center text-xl text-heading font-semibold whitespace-nowrap">E-DDC Perpustakaan</span>
+    {{-- Navbar dengan efek Glassmorphism --}}
+    <nav class="fixed start-0 top-0 z-50 w-full border-b border-white/20 bg-white/80 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+            <!-- Bagian Logo -->
+            <a href="/" class="flex items-center space-x-3 transition-transform duration-300 hover:scale-105 rtl:space-x-reverse cursor-pointer">
+                <img src="./logo-whitemode.png" class="h-12 w-auto drop-shadow-md" alt="Logo" />
+                <span class="self-center whitespace-nowrap text-2xl font-extrabold tracking-tight text-[#1e3c72]">E-DDC<span class="text-blue-500">.</span></span>
             </a>
-            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary" aria-controls="navbar-default" aria-expanded="false">
+            
+            <!-- Tombol Hamburger Mobile -->
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-slate-500 transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-300 md:hidden" aria-controls="navbar-default" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
-                <svg class="w-6 h-6" aria-hidden="true" xmlns="#" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
+                <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
             </button>
+            
+            <!-- Bagian Menu -->
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
-                <li>
-                <a href="#" class="block py-2 px-3 text-black bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">Home</a>
-                </li>
-            </ul>
+                <ul class="mt-4 flex flex-col items-center rounded-lg border border-slate-100 bg-slate-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0 rtl:space-x-reverse">
+                    <li>
+                        <!-- Menu Home Pill Button -->
+                        <a href="/" class="block rounded-full bg-[#1e3c72] px-8 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-900/40" aria-current="page">
+                            Home
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
     <div class="h-16"></div> <!-- Spacer untuk navbar -->
+
     <!-- Layout Utama -->
     <div class="mx-auto mt-8 flex max-w-[1200px] items-start gap-6 px-5 pb-10">
         
         <!-- SIDEBAR KIRI -->
-        <aside class="sticky top-[30px] flex w-[320px] shrink-0 flex-col overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-sm max-h-[calc(100vh-60px)] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:rounded-lg [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:rounded-lg [&::-webkit-scrollbar-thumb]:bg-slate-300 hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
+        <aside class="sticky top-[100px] flex w-[320px] shrink-0 flex-col overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-sm max-h-[calc(100vh-130px)] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:rounded-lg [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:rounded-lg [&::-webkit-scrollbar-thumb]:bg-slate-300 hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
 
             <!-- Judul Tab -->
             <div class="flex border-b border-slate-200 bg-slate-50">

@@ -47,9 +47,9 @@ class DDCClassifier(object):
 		a=[]
 		for n in ['1','2','3','4','5','6','7']:
 			print(len(self.t["{}".format(n)]))
-		#h=classifier_multi.trainandclassify(self.t["{}".format(number)])
+		h=classifier_multi.trainandclassify(self.t["{}".format(number)])
 		print(len(h))
-		#return h.classify(classifier_multi.words_to_dict(classifier_multi.sentence_to_tokens(string)))
+		return h.classify(classifier_multi.words_to_dict(classifier_multi.sentence_to_tokens(string)))
 
 	def isCode(text):
 		for letter in text:

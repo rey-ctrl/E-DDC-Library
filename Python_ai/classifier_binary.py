@@ -30,7 +30,6 @@ def replace_antonyms(words):
                 words[i+2]=ant
     return words
 
-
 # bag_of_words
 def words_to_dict(words):
     return dict([(word, True) for word in words])
@@ -51,6 +50,7 @@ def sentence_to_tokens(sentence):
 
 def main():
     negative_sentence1=input()
+    
     """
     negative_sentence1s=sent_tokenize(negative_sentence1)
     print(negative_sentence1s)

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasil Pencarian - E-DDC</title>
+    <title>E-DDC | Sistem Klasifikasi Perpustakaan</title>
     
     <!-- Import Font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -11,13 +11,24 @@
     <!-- Import Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Konfigurasi Font Tailwind -->
+    <!-- Konfigurasi Tailwind Kustom -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
                     }
                 }
             }
@@ -26,18 +37,27 @@
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900">
 
-    <!-- Navbar Glassmorphism (Disamakan dengan Landing Page) -->
-    <nav class="fixed start-0 top-0 z-50 w-full border-b border-white/20 bg-white/80 shadow-sm backdrop-blur-md transition-all duration-300">
+    {{-- Navbar dengan efek Glassmorphism --}}
+    <nav class="fixed start-0 top-0 z-50 w-full border-b border-white/20 bg-white/80 backdrop-blur-md shadow-sm transition-all duration-300">
         <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
-            <a href="/" class="flex cursor-pointer items-center space-x-3 transition-transform duration-300 hover:scale-105 rtl:space-x-reverse">
+            <!-- Bagian Logo -->
+            <a href="/" class="flex items-center space-x-3 transition-transform duration-300 hover:scale-105 rtl:space-x-reverse cursor-pointer">
                 <img src="./logo-whitemode.png" class="h-12 w-auto drop-shadow-md" alt="Logo" />
                 <span class="self-center whitespace-nowrap text-2xl font-extrabold tracking-tight text-[#1e3c72]">E-DDC<span class="text-blue-500">.</span></span>
             </a>
             
+            <!-- Tombol Hamburger Mobile -->
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-slate-500 transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-300 md:hidden" aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
+            </button>
+            
+            <!-- Bagian Menu -->
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul class="mt-4 flex flex-col items-center rounded-lg border border-slate-100 bg-slate-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0 rtl:space-x-reverse">
                     <li>
-                        <a href="/" class="block rounded-full bg-[#1e3c72] px-8 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-900/40">
+                        <!-- Menu Home Pill Button -->
+                        <a href="/" class="block rounded-full bg-[#1e3c72] px-8 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-900/40" aria-current="page">
                             Home
                         </a>
                     </li>
@@ -46,149 +66,168 @@
         </div>
     </nav>
 
-    <!-- Layout Utama -->
-    <!-- mt-28 ditambahkan agar konten tidak tertutup navbar -->
-    <div class="mx-auto mt-28 flex max-w-[1200px] items-start gap-6 px-5 pb-10">
-        
-        <!-- SIDEBAR KIRI (Sudah Diperbaiki Sticky-nya) -->
-        <!-- KUNCI STICKY: sticky, top-[100px], dan h-fit -->
-        <aside class="sticky top-[100px] h-fit flex w-[320px] shrink-0 flex-col overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-lg max-h-[calc(100vh-120px)] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:rounded-lg [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:rounded-lg [&::-webkit-scrollbar-thumb]:bg-slate-300 hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
+    <!-- Hero Section Keren dengan Animasi Gradient -->
+    <section class="relative overflow-hidden bg-slate-900 px-6 py-32 text-center sm:py-40">
+        <!-- Dekorasi Latar Belakang (Blobs) -->
+        <div class="absolute -top-40 left-0 h-96 w-96 animate-blob rounded-full bg-blue-700 opacity-30 mix-blend-multiply blur-[100px] filter"></div>
+        <div class="absolute -right-20 top-20 h-96 w-96 animate-blob rounded-full bg-orange-500 opacity-20 mix-blend-multiply blur-[100px] filter animation-delay-2000"></div>
+        <div class="absolute -bottom-40 left-1/2 h-96 w-96 animate-blob rounded-full bg-cyan-500 opacity-20 mix-blend-multiply blur-[100px] filter animation-delay-4000"></div>
+
+        <div class="relative z-10 mx-auto max-w-4xl">
+            <h1 class="mb-6 text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+                Jelajahi <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Katalog Buku</span>
+            </h1>
+            <p class="mx-auto mb-10 max-w-2xl text-lg font-medium text-slate-300 sm:text-xl">
+                Gunakan mesin pencari berbasis Dewey Decimal Classification (DDC) untuk menemukan koleksi perpustakaan dengan cepat dan akurat.
+            </p>
             
-            <!-- Judul Tab -->
-            <div class="flex border-b border-slate-200 bg-slate-50">
-                <div class="flex-1 border-b-2 border-[#1e3c72] bg-white py-3 pl-5 text-left text-[14px] font-bold text-[#1e3c72]">Contents</div>
-            </div>
+            <!-- Form Pencarian Glassmorphism -->
+            <form id="searchForm" action="{{ route('klasifikasi.process') }}" method="POST" class="mx-auto flex w-full max-w-3xl items-center rounded-full border border-white/20 bg-white/10 p-2 shadow-2xl backdrop-blur-md focus-within:ring-4 focus-within:ring-blue-500/30 transition-all duration-300">
+                @csrf
+                <div class="pl-6 text-slate-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                </div>
+                <input id="searchInput" type="text" name="keyword" placeholder="Masukkan Judul, Pengarang, atau Kode DDC (Misal: 911)..." required autocomplete="off" 
+                       class="w-full bg-transparent px-4 py-3 text-lg text-white placeholder-slate-300/70 outline-none">
+                <button type="submit" class="shrink-0 cursor-pointer rounded-full bg-gradient-to-r from-[#f39c12] to-orange-500 px-8 py-4 text-base font-bold text-white shadow-lg transition-transform duration-300 hover:scale-105 active:scale-95">
+                    Cari Koleksi
+                </button>
+            </form>
+        </div>
+    </section>
 
-            <!-- Area Cari Kata -->
-            <div class="border-b border-slate-200 bg-white p-5 pb-4">
-                <form id="searchForm" action="{{ route('klasifikasi.process') }}" method="POST">
-                    @csrf
-                    <label class="mb-2 block text-[13px] font-bold text-slate-700">Ketik kata/judul untuk mencari:</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="keywordInput" name="keyword" value="{{ request('keyword') }}" placeholder="Contoh: manajemen..." required autocomplete="off" 
-                               class="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-[13px] outline-none transition-colors focus:border-[#3498db] focus:ring-2 focus:ring-[#3498db]/20">
-                        <button type="submit" class="rounded-lg bg-gradient-to-r from-[#f39c12] to-orange-500 px-4 py-2 text-[13px] font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg">Display</button>
-                    </div>
-                </form>
-            </div>
+    <div class="mb-4 bg-white relative mx-auto -mt-16 max-w-[1400px] px-6 pb-24 z-20" >  </div>
 
-            <!-- Area Cari Angka DDC -->
-            <div class="max-h-[250px] overflow-y-auto bg-white">
-                <table class="w-full border-collapse text-[13px]">
-                    <thead class="sticky top-0 bg-slate-50/90 backdrop-blur-sm z-10">
-                        <tr>
-                            <th class="border-b border-slate-200 px-5 py-3 text-left font-bold text-slate-700">Pilih Topik DDC (Angka)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr onclick="searchDDC('650')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">650 - 659 Manajemen</td></tr>
-                        <tr onclick="searchDDC('640')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">640 - 649 Kesejahteraan</td></tr>
-                        <tr onclick="searchDDC('630')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">630 - 639 Pertanian</td></tr>
-                        <tr onclick="searchDDC('670')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">670 - 679 Pabrik</td></tr>
-                        <tr onclick="searchDDC('330')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">330 - 339 Ilmu Ekonomi</td></tr>
-                        <tr onclick="searchDDC('790')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">790 - 799 Olah Raga</td></tr>
-                        <tr onclick="searchDDC('660')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">660 - 669 Teknologi Kimia</td></tr>
-                        <tr onclick="searchDDC('000')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">000 - 009 Ilmu Umum</td></tr>
-                        <tr onclick="searchDDC('100')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">100 - 199 Filsafat</td></tr>
-                        <tr onclick="searchDDC('200')" class="cursor-pointer transition-colors hover:bg-blue-50"><td class="border-b border-slate-100 px-5 py-2.5 font-medium text-slate-600 hover:text-[#1e3c72]">200 - 299 Agama</td></tr>
-                    </tbody>
-                </table>
-            </div>
+    <!-- 10 Kelas Utama DDC (Grid Ultra Modern) -->
+    <section class="bg-white relative mx-auto -mt-16 max-w-[1400px] px-6 pb-24 z-20">
+        <div class="mb-12 text-center">
+            <h2 class="inline-block text-3xl font-black text-slate-800 tracking-tight sm:text-4xl relative">
+                10 Kelas Utama DDC
+                <div class="absolute -bottom-2 left-1/2 h-1.5 w-1/2 -translate-x-1/2 rounded-full bg-[#3498db]"></div>
+            </h2>
+        </div>
 
-            <!-- Sidebar Filters -->
-            <div class="border-t border-slate-200 bg-slate-50 p-5">
-                <label class="mb-3 flex cursor-pointer items-center gap-2 text-[13px] font-medium text-slate-600 transition-colors hover:text-[#1e3c72]">
-                    <input type="checkbox" class="h-4 w-4 cursor-pointer rounded border-slate-300 accent-[#1e3c72]"> Search previous results
-                </label>
-                <label class="mb-3 flex cursor-pointer items-center gap-2 text-[13px] font-medium text-slate-600 transition-colors hover:text-[#1e3c72]">
-                    <input type="checkbox" checked class="h-4 w-4 cursor-pointer rounded border-slate-300 accent-[#1e3c72]"> Match similar words
-                </label>
-                <label class="mb-1 flex cursor-pointer items-center gap-2 text-[13px] font-medium text-slate-600 transition-colors hover:text-[#1e3c72]">
-                    <input type="checkbox" class="h-4 w-4 cursor-pointer rounded border-slate-300 accent-[#1e3c72]"> Search titles only
-                </label>
-            </div>
-        </aside>
-
-        <!-- KONTEN KANAN -->
-        <main class="flex-1">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             
-            <!-- Info Bar -->
-            <div class="mb-6 flex items-center justify-between rounded-xl border border-slate-200 bg-white px-5 py-4 text-sm shadow-sm relative overflow-hidden">
-                <div class="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-[#1e3c72] to-[#3498db]"></div>
-                <span class="pl-2">Ditemukan <b class="text-[#1e3c72] text-base">{{ count($books) }}</b> hasil untuk: <b class="text-[#1e3c72] bg-blue-50 px-2 py-1 rounded">"{{ request('keyword') }}"</b></span>
-                <select class="cursor-pointer rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700 outline-none transition-colors hover:border-[#3498db] focus:border-[#3498db] focus:ring-2 focus:ring-[#3498db]/20">
-                    <option>Paling Relevan</option>
-                    <option>Terbaru</option>
-                </select>
-            </div>
-
-            <!-- Daftar Buku -->
-            @forelse($books as $buku)
-            <div class="group mb-5 flex rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl">
-                
-                <!-- Cover Dummy -->
-                <div class="mr-6 h-[170px] w-[115px] shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-inner">
-                    <img src="https://via.placeholder.com/115x170/e2e8f0/94a3b8?text=No+Cover" alt="Cover" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
-                </div>
-
-                <!-- Informasi Buku -->
-                <div class="flex-1">
-                    <h2 class="mb-2 text-xl font-bold text-slate-800 transition-colors group-hover:text-[#1e3c72]">{{ $buku['Book_Title'] ?? 'Tanpa Judul' }}</h2>
-                    <div class="mb-4 inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                        {{ $buku['Author'] ?? 'Penulis Tidak Diketahui' }}
-                    </div>
-                    
-                    <div class="mb-3 grid grid-cols-2 gap-y-2 text-[13px] text-slate-500">
-                        <div class="flex items-center gap-2">📅 Tahun: <b class="text-slate-700">{{ $buku['Year_Published'] ?? '-' }}</b></div>
-                        <div class="flex items-center gap-2">📑 Halaman: <b class="text-slate-700">{{ $buku['Pages'] ?? '-' }}</b></div>
-                        <div class="flex items-center gap-2 col-span-2">🏢 Alamat: <b class="text-slate-700">{{ $buku['Alamat'] ?? '-' }}</b></div>
-                    </div>
-
-                    <div class="mt-3 border-t border-dashed border-slate-200 pt-3 text-[13px] leading-relaxed text-slate-500">
-                        Koleksi tersedia untuk sirkulasi. ID Peminjaman terakhir: <b class="text-slate-700">{{ $buku['ID_Peminjaman'] ?? '-' }}</b>.
-                    </div>
-                </div>
-
-                <!-- Kode DDC / Aksi -->
-                <div class="ml-6 flex w-[140px] shrink-0 flex-col justify-center border-l border-slate-100 pl-6 text-center">
-                    <div class="mb-4 rounded-xl border border-blue-100 bg-blue-50/50 p-3 transition-colors group-hover:bg-blue-50">
-                        <div class="text-[10px] font-bold tracking-wider text-blue-600/70 uppercase">Kode DDC</div>
-                        <div class="mt-1 text-3xl font-black text-[#1e3c72]">{{ $buku['Book_Code'] ?? '000' }}</div>
-                    </div>
-                    <button class="mb-2 block w-full rounded-lg border-2 border-[#1e3c72] bg-transparent py-2 text-xs font-bold text-[#1e3c72] transition-all hover:bg-[#1e3c72] hover:text-white hover:shadow-md">Detail Buku</button>
-                    <button class="block w-full rounded-lg border-2 border-slate-200 bg-transparent py-2 text-xs font-bold text-slate-600 transition-all hover:border-slate-300 hover:bg-slate-50">Sitasi MARC</button>
+            <!-- Fungsi Reusable untuk Kartu agar kodenya bersih -->
+            <!-- Card 000 -->
+            <div onclick="searchDDC('000')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <!-- Animasi Garis Top Border -->
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <!-- Angka Watermark Background -->
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">000</div>
+                <!-- Konten Inti -->
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">000</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Komputer, Informasi & Referensi Umum</div>
                 </div>
             </div>
-            
-            @empty
-            <div class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-20 text-center shadow-sm">
-                <div class="mb-4 rounded-full bg-red-50 p-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+
+            <!-- Card 100 -->
+            <div onclick="searchDDC('100')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">100</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">100</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Filsafat & Psikologi</div>
                 </div>
-                <h3 class="mb-2 text-xl font-bold text-slate-800">Buku Tidak Ditemukan</h3>
-                <p class="text-[14px] text-slate-500 max-w-md">Maaf, tidak ada klasifikasi atau buku yang cocok dengan kata kunci <b class="text-slate-800">"{{ request('keyword') }}"</b>.</p>
             </div>
-            @endforelse
 
-            <!-- Pagination Bar -->
-            @if(count($books) > 0)
-            <div class="mb-5 mt-10 flex items-center justify-center gap-2">
-                <a href="#" class="pointer-events-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-2 text-[13px] font-bold text-slate-400 shadow-sm no-underline">« Prev</a>
-                <a href="#" class="rounded-lg bg-gradient-to-r from-[#1e3c72] to-[#2a5298] px-4 py-2 text-[13px] font-bold text-white shadow-md no-underline">1</a>
-                <a href="#" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-[13px] font-bold text-slate-600 shadow-sm no-underline transition-all hover:-translate-y-0.5 hover:border-[#3498db] hover:text-[#1e3c72]">2</a>
-                <a href="#" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-[13px] font-bold text-slate-600 shadow-sm no-underline transition-all hover:-translate-y-0.5 hover:border-[#3498db] hover:text-[#1e3c72]">3</a>
-                <span class="pointer-events-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-2 text-[13px] font-bold text-slate-400">...</span>
-                <a href="#" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-[13px] font-bold text-slate-600 shadow-sm no-underline transition-all hover:-translate-y-0.5 hover:border-[#3498db] hover:text-[#1e3c72]">Next »</a>
+            <!-- Card 200 -->
+            <div onclick="searchDDC('200')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">200</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">200</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Agama</div>
+                </div>
             </div>
-            @endif
 
-        </main>
-    </div>
+            <!-- Card 300 -->
+            <div onclick="searchDDC('300')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">300</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">300</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Ilmu Sosial</div>
+                </div>
+            </div>
 
+            <!-- Card 400 -->
+            <div onclick="searchDDC('400')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">400</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">400</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Bahasa</div>
+                </div>
+            </div>
+
+            <!-- Card 500 -->
+            <div onclick="searchDDC('500')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">500</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">500</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Sains & Matematika</div>
+                </div>
+            </div>
+
+            <!-- Card 600 -->
+            <div onclick="searchDDC('600')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">600</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">600</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Teknologi & Ilmu Terapan</div>
+                </div>
+            </div>
+
+            <!-- Card 700 -->
+            <div onclick="searchDDC('700')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">700</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">700</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Kesenian & Rekreasi</div>
+                </div>
+            </div>
+
+            <!-- Card 800 -->
+            <div onclick="searchDDC('800')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">800</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">800</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Sastra & Literatur</div>
+                </div>
+            </div>
+
+            <!-- Card 900 -->
+            <div onclick="searchDDC('900')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">900</div>
+                <div class="relative z-10">
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">900</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Sejarah & Geografi</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Super Minimalis -->
+    <footer class="border-t border-slate-200 bg-white py-8 text-center text-sm font-medium text-slate-500">
+        &copy; 2026 E-DDC Library System. Dikembangkan untuk keperluan klasifikasi pustaka.
+    </footer>
+
+    <!-- Script JavaScript untuk fungsi klik kartu DDC -->
     <script>
-        function searchDDC(nomorDDC) {
-            document.getElementById('keywordInput').value = nomorDDC;
+        function searchDDC(kodeDDC) {
+            // Mengisi input pencarian dengan kode DDC dari kartu yang diklik
+            document.getElementById('searchInput').value = kodeDDC;
+            
+            // Mengirimkan (submit) form secara otomatis
             document.getElementById('searchForm').submit();
         }
     </script>
