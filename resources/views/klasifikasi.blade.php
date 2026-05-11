@@ -98,118 +98,74 @@
 
     <div class="mb-4 bg-white relative mx-auto -mt-16 max-w-[1400px] px-6 pb-24 z-20" >  </div>
 
-    <!-- 10 Kelas Utama DDC (Grid Ultra Modern) -->
+    <!-- Kategori Jurusan PNJ (Grid Ultra Modern) -->
     <section class="bg-white relative mx-auto -mt-16 max-w-[1400px] px-6 pb-24 z-20">
         <div class="mb-12 text-center">
             <h2 class="inline-block text-3xl font-black text-slate-800 tracking-tight sm:text-4xl relative">
-                10 Kelas Utama DDC
+                Kategori Berdasarkan Prodi PNJ
                 <div class="absolute -bottom-2 left-1/2 h-1.5 w-1/2 -translate-x-1/2 rounded-full bg-[#3498db]"></div>
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
             
-            <!-- Fungsi Reusable untuk Kartu agar kodenya bersih -->
-            <!-- Card 000 -->
-            <div onclick="searchDDC('000')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
-                <!-- Animasi Garis Top Border -->
+            <!-- TIK -->
+            <div onclick="searchDDC('000-099')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
                 <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <!-- Angka Watermark Background -->
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">000</div>
-                <!-- Konten Inti -->
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">TIK</div>
                 <div class="relative z-10">
                     <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">000</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Komputer, Informasi & Referensi Umum</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Teknik Informatika & Komputer</div>
                 </div>
             </div>
 
-            <!-- Card 100 -->
-            <div onclick="searchDDC('100')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+            <!-- Akuntansi -->
+            <div onclick="searchDDC('300-399')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
                 <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">100</div>
-                <div class="relative z-10">
-                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">100</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Filsafat & Psikologi</div>
-                </div>
-            </div>
-
-            <!-- Card 200 -->
-            <div onclick="searchDDC('200')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
-                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">200</div>
-                <div class="relative z-10">
-                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">200</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Agama</div>
-                </div>
-            </div>
-
-            <!-- Card 300 -->
-            <div onclick="searchDDC('300')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
-                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">300</div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">AK</div>
                 <div class="relative z-10">
                     <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">300</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Ilmu Sosial</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Akuntansi & Administrasi Niaga</div>
                 </div>
             </div>
 
-            <!-- Card 400 -->
-            <div onclick="searchDDC('400')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+            <!-- Matematika -->
+            <div onclick="searchDDC('500-599')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
                 <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">400</div>
-                <div class="relative z-10">
-                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">400</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Bahasa</div>
-                </div>
-            </div>
-
-            <!-- Card 500 -->
-            <div onclick="searchDDC('500')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
-                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">500</div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">MIPA</div>
                 <div class="relative z-10">
                     <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">500</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Sains & Matematika</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Matematika & Sains Terapan</div>
                 </div>
             </div>
 
-            <!-- Card 600 -->
-            <div onclick="searchDDC('600')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+            <!-- Teknik -->
+            <div onclick="searchDDC('600-699')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
                 <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">600</div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">TEK</div>
                 <div class="relative z-10">
                     <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">600</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Teknologi & Ilmu Terapan</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Teknik (Sipil, Mesin, Elektro)</div>
                 </div>
             </div>
 
-            <!-- Card 700 -->
-            <div onclick="searchDDC('700')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+            <!-- Grafika -->
+            <div onclick="searchDDC('700-899')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
                 <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">700</div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">TGP</div>
                 <div class="relative z-10">
                     <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">700</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Kesenian & Rekreasi</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Teknik Grafika & Penerbitan</div>
                 </div>
             </div>
 
-            <!-- Card 800 -->
-            <div onclick="searchDDC('800')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
+            <!-- Lainnya -->
+            <div onclick="searchDDC('LAINNYA')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
                 <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">800</div>
+                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">ETC</div>
                 <div class="relative z-10">
-                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">800</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Sastra & Literatur</div>
-                </div>
-            </div>
-
-            <!-- Card 900 -->
-            <div onclick="searchDDC('900')" class="group relative cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-slate-100">
-                <div class="absolute left-0 top-0 h-1.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></div>
-                <div class="absolute -bottom-6 -right-2 text-[120px] font-black leading-none text-slate-50 transition-colors duration-500 group-hover:text-blue-50/80">900</div>
-                <div class="relative z-10">
-                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">900</div>
-                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Sejarah & Geografi</div>
+                    <div class="mb-2 text-4xl font-extrabold text-[#1e3c72] transition-colors duration-300 group-hover:text-[#f39c12]">Lain</div>
+                    <div class="text-sm font-bold leading-snug text-slate-600 group-hover:text-slate-900">Lainnya (Umum, Bahasa, Agama)</div>
                 </div>
             </div>
 

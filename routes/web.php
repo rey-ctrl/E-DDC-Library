@@ -3,29 +3,52 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-// Menampilkan halaman utama (form search)
+// ─── Halaman Utama ────────────────────────────────────────────────
 Route::get('/', function () {
-    return view('klasifikasi'); // Pastikan kamu punya file klasifikasi.blade.php
+    return view('klasifikasi');
 })->name('klasifikasi.index');
 
-// Route untuk memproses klasifikasi (menghubungkan ke API Python)
-Route::post('/klasifikasi', function (Request $request) {
-    $keyword = $request->input('keyword');
+// ─── Proses Klasifikasi (GET & POST) ──────────────────────────────
+Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
+    $keyword = trim($request->input('keyword', ''));
+    $filters = $request->input('filters', []);
 
-    try {
-        // Panggil API Python
-        $response = Http::get("http://127.0.0.1:5000/api/buku/search", [
-            'keyword' => $keyword
-        ]);
+    $books    = [];
+    $apiError = false;
 
-        // Jika sukses ambil json-nya, jika gagal set array kosong
-        $data = $response->successful() ? $response->json() : [];
-        
-    } catch (\Exception $e) {
-        // Jika server Python mati, set array kosong agar tidak error merah
-        $data = [];
+    if ($keyword !== '' || !empty($filters)) {
+        try {
+            $response = Http::timeout(10)->get('http://127.0.0.1:5000/api/buku/search', [
+                'keyword' => $keyword,
+                'filters' => is_array($filters) ? implode(',', $filters) : $filters
+            ]);
+
+            if ($response->successful()) {
+                $json = $response->json();
+                // API mengembalikan array buku langsung
+                $books = is_array($json) ? $json : [];
+            }
+        } catch (\Exception $e) {
+            // Server Python tidak aktif — tampilkan pesan ramah
+            $apiError = true;
+        }
     }
 
-    // Pastikan $data selalu berbentuk array sebelum dikirim ke view
-    return view('hasil_klasifikasi', ['books' => $data ?? []]);
+    return view('hasil_klasifikasi', [
+        'books'    => $books,
+        'keyword'  => $keyword,
+        'apiError' => $apiError,
+    ]);
 })->name('klasifikasi.process');
+
+// ─── Detail Buku (AJAX / direct link) ────────────────────────────
+Route::get('/buku/{id}', function ($id) {
+    try {
+        $response = Http::timeout(10)->get("http://127.0.0.1:5000/api/buku/detail/{$id}");
+        $buku = $response->successful() ? $response->json() : null;
+    } catch (\Exception $e) {
+        $buku = null;
+    }
+
+    return response()->json($buku);
+})->name('buku.detail');

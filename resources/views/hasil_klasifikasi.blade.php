@@ -3,200 +3,518 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasil Pencarian - E-DDC</title>
-    
-    <!-- Import Font Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Import Tailwind CSS via CDN -->
+    <title>Hasil Pencarian "{{ $keyword }}" - E-DDC</title>
+    <meta name="description" content="Hasil klasifikasi multilabel DDC untuk kata kunci: {{ $keyword }}">
+
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Konfigurasi Font Tailwind -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.4s ease both',
+                        'shimmer':    'shimmer 2s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%':   { opacity: '0', transform: 'translateY(16px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        shimmer: {
+                            '0%':   { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition:  '200% 0' },
+                        },
                     }
                 }
             }
         }
     </script>
-    </head>
 
-    <body class="bg-[#f4f6f9] text-[#333] antialiased m-0">
+    <style>
+        /* Progress bar warna sesuai probabilitas */
+        .prob-bar { transition: width 1s cubic-bezier(.4,0,.2,1); }
+        .card-enter { animation: fadeInUp .35s ease both; }
 
-    {{-- Navbar dengan efek Glassmorphism --}}
-    <nav class="fixed start-0 top-0 z-50 w-full border-b border-white/20 bg-white/80 backdrop-blur-md shadow-sm transition-all duration-300">
+        /* Badge warna per-label */
+        .badge-0 { background:#dbeafe; color:#1d4ed8; }
+        .badge-1 { background:#dcfce7; color:#15803d; }
+        .badge-2 { background:#fef9c3; color:#a16207; }
+        .badge-3 { background:#fce7f3; color:#be185d; }
+        .badge-4 { background:#ede9fe; color:#6d28d9; }
+
+        .bar-0 { background: linear-gradient(90deg,#3b82f6,#60a5fa); }
+        .bar-1 { background: linear-gradient(90deg,#22c55e,#4ade80); }
+        .bar-2 { background: linear-gradient(90deg,#eab308,#facc15); }
+        .bar-3 { background: linear-gradient(90deg,#ec4899,#f472b6); }
+        .bar-4 { background: linear-gradient(90deg,#8b5cf6,#a78bfa); }
+
+        /* Modal overlay */
+        #detailModal { transition: opacity .2s ease; }
+    </style>
+</head>
+
+<body class="bg-[#f4f6f9] font-sans text-slate-800 antialiased">
+
+    <!-- ─── Navbar ─────────────────────────────────────────────────── -->
+    <nav class="fixed start-0 top-0 z-50 w-full border-b border-white/20 bg-white/85 backdrop-blur-md shadow-sm">
         <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
-            <!-- Bagian Logo -->
-            <a href="/" class="flex items-center space-x-3 transition-transform duration-300 hover:scale-105 rtl:space-x-reverse cursor-pointer">
-                <img src="./logo-whitemode.png" class="h-12 w-auto drop-shadow-md" alt="Logo" />
-                <span class="self-center whitespace-nowrap text-2xl font-extrabold tracking-tight text-[#1e3c72]">E-DDC<span class="text-blue-500">.</span></span>
+            <a href="/" class="flex items-center space-x-3 transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <img src="/logo-whitemode.png" class="h-12 w-auto drop-shadow-md" alt="E-DDC Logo" />
+                <span class="self-center whitespace-nowrap text-2xl font-extrabold tracking-tight text-[#1e3c72]">
+                    E-DDC<span class="text-blue-500">.</span>
+                </span>
             </a>
-            
-            <!-- Tombol Hamburger Mobile -->
-            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-slate-500 transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-300 md:hidden" aria-controls="navbar-default" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
-            </button>
-            
-            <!-- Bagian Menu -->
-            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                <ul class="mt-4 flex flex-col items-center rounded-lg border border-slate-100 bg-slate-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0 rtl:space-x-reverse">
-                    <li>
-                        <!-- Menu Home Pill Button -->
-                        <a href="/" class="block rounded-full bg-[#1e3c72] px-8 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-900/40" aria-current="page">
-                            Home
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
+            <a href="/" class="block rounded-full bg-[#1e3c72] px-6 py-2.5 text-center text-sm font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-blue-700">
+                Home
+            </a>
         </div>
     </nav>
 
-    <div class="h-16"></div> <!-- Spacer untuk navbar -->
+    <div class="h-20"></div><!-- Spacer -->
 
-    <!-- Layout Utama -->
-    <div class="mx-auto mt-8 flex max-w-[1200px] items-start gap-6 px-5 pb-10">
-        
-        <!-- SIDEBAR KIRI -->
-        <aside class="sticky top-[100px] flex w-[320px] shrink-0 flex-col overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-sm max-h-[calc(100vh-130px)] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:rounded-lg [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:rounded-lg [&::-webkit-scrollbar-thumb]:bg-slate-300 hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
+    <!-- ─── Layout Utama ───────────────────────────────────────────── -->
+    <div class="mx-auto mt-6 flex max-w-[1280px] items-start gap-6 px-5 pb-16">
 
-            <!-- Judul Tab -->
-            <div class="flex border-b border-slate-200 bg-slate-50">
-                <div class="flex-1 border-b-2 border-[#1e3c72] bg-white py-2.5 pl-4 text-left text-[13px] font-semibold text-[#1e3c72]">Klesterisasi Pencarian Buku</div>
+        <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
+        <aside class="sticky top-[88px] flex w-[300px] shrink-0 flex-col rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden max-h-[calc(100vh-110px)]">
+
+            <!-- Filter Header -->
+            <div class="bg-gradient-to-r from-[#1e3c72] to-blue-600 px-5 py-4">
+                <h2 class="text-sm font-bold text-white/90 uppercase tracking-wider">Filter & Navigasi</h2>
             </div>
 
-            <!-- Area Cari Kata -->
-            <div class="border-b border-slate-200 bg-white p-4 pb-3">
-                <form id="searchForm" action="{{ route('klasifikasi.process') }}" method="POST">
+            <!-- Form Pencarian -->
+            <div class="border-b border-slate-100 p-5">
+                <form id="sideSearchForm" action="{{ route('klasifikasi.process') }}" method="POST">
                     @csrf
-                    <label class="mb-2 block text-[12px] font-semibold text-slate-600">Ketik kata/judul untuk mencari:</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="keywordInput" name="keyword" value="{{ request('keyword') }}" placeholder="Contoh: manajemen..." required autocomplete="off" 
-                               class="flex-1 rounded-md border border-slate-300 px-3 py-2 text-[13px] outline-none transition-colors focus:border-[#3498db]">
-                        <button type="submit" class="rounded-md bg-[#f39c12] px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-yellow-600">Display</button>
+                    <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Pencarian</label>
+                    <div class="relative mb-3">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
+                            <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <input type="text" id="sideKeyword" name="keyword" value="{{ $keyword }}"
+                               placeholder="Cari buku, DDC..." autocomplete="off"
+                               class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-[13px] text-slate-700 outline-none transition focus:border-[#1e3c72] focus:bg-white focus:ring-4 focus:ring-blue-50">
                     </div>
-                </form>
+                    <button type="submit"
+                            class="w-full rounded-xl bg-gradient-to-r from-[#1e3c72] to-blue-600 py-2.5 text-[12.5px] font-bold text-white shadow-md shadow-blue-900/20 transition hover:from-blue-800 hover:to-blue-700 active:scale-[0.98]">
+                        Cari Buku
+                    </button>
             </div>
-        
-            <!-- Area Cari Angka DDC -->
-            <div class="max-h-[250px] overflow-y-auto bg-white">
-                <table class="w-full border-collapse text-[13px]">
-                    <thead class="sticky top-0 bg-slate-50">
-                        <tr>
-                            <th class="border-b border-slate-200 px-4 py-2 text-left font-semibold text-slate-600">Pilih Topik DDC (Angka)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr onclick="searchDDC('650')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">650 - 659 Manajemen</td></tr>
-                        <tr onclick="searchDDC('640')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">640 - 649 Kesejahteraan</td></tr>
-                        <tr onclick="searchDDC('630')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">630 - 639 Pertanian</td></tr>
-                        <tr onclick="searchDDC('670')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">670 - 679 Pabrik</td></tr>
-                        <tr onclick="searchDDC('330')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">330 - 339 Ilmu Ekonomi</td></tr>
-                        <tr onclick="searchDDC('790')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">790 - 799 Olah Raga</td></tr>
-                        <tr onclick="searchDDC('660')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">660 - 669 Teknologi Kimia</td></tr>
-                        <tr onclick="searchDDC('000')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">000 - 009 Ilmu Umum</td></tr>
-                        <tr onclick="searchDDC('100')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">100 - 199 Filsafat</td></tr>
-                        <tr onclick="searchDDC('200')" class="cursor-pointer transition-colors hover:bg-slate-100"><td class="border-b border-slate-100 px-4 py-2 text-slate-700">200 - 299 Agama</td></tr>
-                    </tbody>
-                </table>
+
+            <!-- Kelas PNJ (Multi-Select Dropdown) -->
+            <div class="border-b border-slate-100 p-5">
+                <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Filter Klasifikasi AI</label>
+                @php
+                    $pnjClasses = [
+                        'Teknik Informatika & Komputer',
+                        'Akuntansi & Adm Niaga',
+                        'Matematika & Sains Terapan',
+                        'Teknik (Sipil, Mesin, Elektro)',
+                        'Teknik Grafika & Penerbitan',
+                        'Lainnya (Agama, Bahasa, Umum)'
+                    ];
+                    $activeFilters = request('filters', []);
+                @endphp
+                
+                <div class="relative w-full" id="multiSelectDropdown">
+                    <button type="button" onclick="toggleDropdown()" class="w-full flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-[13px] text-slate-700 shadow-sm transition hover:border-blue-300 hover:shadow-md focus:border-[#1e3c72] focus:ring-4 focus:ring-blue-50">
+                        <span id="dropdownLabel" class="truncate font-medium">Semua Prodi PNJ</span>
+                        <svg class="h-4 w-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="dropdownMenu" class="absolute z-20 mt-2 hidden w-full overflow-hidden rounded-xl border border-slate-100 bg-white shadow-2xl ring-1 ring-black/5">
+                        <div class="p-2 space-y-1 max-h-60 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
+                            @foreach($pnjClasses as $nama)
+                            <label class="flex w-full cursor-pointer items-start gap-3 rounded-lg px-3 py-2.5 hover:bg-blue-50/80 transition group">
+                                <input type="checkbox" name="filters[]" value="{{ $nama }}" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#1e3c72] focus:ring-[#1e3c72] transition" {{ in_array($nama, $activeFilters) ? 'checked' : '' }}>
+                                <span class="text-[12.5px] leading-tight text-slate-600 group-hover:font-medium group-hover:text-[#1e3c72]">{{ $nama }}</span>
+                            </label>
+                            @endforeach
+                        </div>
+                        <div class="border-t border-slate-100 bg-slate-50/80 p-3">
+                            <button type="button" onclick="applyAiFilter()" class="w-full rounded-lg bg-[#1e3c72] py-2 text-center text-[12.5px] font-bold text-white shadow-sm transition hover:bg-blue-900 active:scale-95">
+                                Terapkan Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
-            <!-- Sidebar Filters -->
-            <div class="border-t border-slate-200 bg-slate-50 p-4">
-                <label class="mb-2 flex cursor-pointer items-center gap-2 text-[12px] text-slate-600">
-                    <input type="checkbox" class="cursor-pointer accent-[#3498db]"> Search previous results
-                </label>
-                <label class="mb-2 flex cursor-pointer items-center gap-2 text-[12px] text-slate-600">
-                    <input type="checkbox" checked class="cursor-pointer accent-[#3498db]"> Match similar words
-                </label>
-                <label class="mb-2 flex cursor-pointer items-center gap-2 text-[12px] text-slate-600">
-                    <input type="checkbox" class="cursor-pointer accent-[#3498db]"> Search titles only
-                </label>
+            
+            <div class="p-5 pb-6">
+                <label class="mb-3 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Kategori DDC</label>
+                <div class="flex flex-col gap-1.5">
+                    @php
+                        $ddcMurni = [
+                            ['000-099', 'Teknik Informatika & Komputer'],
+                            ['300-399', 'Akuntansi & Adm Niaga'],
+                            ['500-599', 'Matematika & Sains Terapan'],
+                            ['600-699', 'Teknik (Sipil, Mesin, Elektro)'],
+                            ['700-899', 'Teknik Grafika & Penerbitan']
+                        ];
+                    @endphp
+                    @foreach($ddcMurni as [$kode, $nama])
+                    <button type="button" onclick="applyDdcCategory('{{ $kode }}')"
+                            class="group flex w-full items-center gap-3.5 rounded-xl px-2.5 py-2.5 text-left transition hover:bg-blue-50/50 hover:shadow-sm {{ $keyword === $kode ? 'bg-blue-50 ring-1 ring-blue-100 shadow-sm' : '' }}">
+                        <span class="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 shadow-inner transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === $kode ? 'from-[#1e3c72] to-blue-500 text-white shadow-blue-500/30' : '' }}">
+                            {{ explode('-', $kode)[0] }}
+                        </span>
+                        <span class="text-[12.5px] leading-snug transition duration-300 {{ $keyword === $kode ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            {{ $nama }}
+                        </span>
+                    </button>
+                    @endforeach
+                </div>
             </div>
+        </form>
         </aside>
 
-        <!-- KONTEN KANAN -->
-        <main class="flex-1">
-        
+        <script>
+            function applyAiFilter() {
+                // Jika pencarian saat ini adalah kategori DDC murni, hapus agar tidak bentrok
+                const kw = document.getElementById('sideKeyword');
+                if (/^\d{3}-\d{3}$/.test(kw.value) || kw.value === 'LAINNYA') {
+                    kw.value = '';
+                }
+                document.getElementById('sideSearchForm').submit();
+            }
+
+            function applyDdcCategory(kode) {
+                // Set keyword menjadi rentang DDC
+                document.getElementById('sideKeyword').value = kode;
+                // Uncheck semua checkbox AI Multilabel agar tidak bentrok
+                document.querySelectorAll('input[name="filters[]"]').forEach(cb => cb.checked = false);
+                document.getElementById('sideSearchForm').submit();
+            }
+            function toggleDropdown() {
+                document.getElementById('dropdownMenu').classList.toggle('hidden');
+            }
+
+            // Menutup dropdown jika mengklik di luar area dropdown
+            document.addEventListener('click', function(event) {
+                const dropdown = document.getElementById('multiSelectDropdown');
+                if (!dropdown.contains(event.target)) {
+                    document.getElementById('dropdownMenu').classList.add('hidden');
+                }
+            });
+
+            // Mengupdate label tombol berdasarkan jumlah checkbox yang dicentang
+            document.addEventListener('DOMContentLoaded', function() {
+                const checkboxes = document.querySelectorAll('input[name="filters[]"]');
+                const label = document.getElementById('dropdownLabel');
+                
+                function updateLabel() {
+                    const checked = Array.from(checkboxes).filter(c => c.checked).map(c => c.value);
+                    if (checked.length === 0) {
+                        label.textContent = "Semua Prodi PNJ";
+                        label.classList.remove('text-[#1e3c72]', 'font-bold');
+                    } else if (checked.length === 1) {
+                        label.textContent = checked[0];
+                        label.classList.add('text-[#1e3c72]', 'font-bold');
+                    } else {
+                        label.textContent = checked.length + " Prodi Terpilih";
+                        label.classList.add('text-[#1e3c72]', 'font-bold');
+                    }
+                }
+                
+                checkboxes.forEach(c => c.addEventListener('change', updateLabel));
+                updateLabel(); // Panggil saat pertama kali dimuat
+            });
+        </script>
+
+        <!-- ── KONTEN UTAMA ─────────────────────────────────────────── -->
+        <main class="flex-1 min-w-0">
+
             <!-- Info Bar -->
-            <div class="mb-5 flex items-center justify-between rounded-lg border-l-4 border-l-[#1e3c72] bg-white px-5 py-4 text-sm shadow-sm">
-                <span>Ditemukan <b class="text-[#1e3c72]">{{ count($books) }}</b> hasil untuk kata kunci: <b class="text-[#1e3c72]">"{{ request('keyword') }}"</b></span>
-                <select class="cursor-pointer rounded border border-slate-300 bg-white px-3 py-1.5 text-slate-600 outline-none">
-                    <option>Paling Relevan</option>
-                    <option>Terbaru</option>
-                </select>
+            <div class="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border-l-4 border-l-[#1e3c72] bg-white px-6 py-4 shadow-sm">
+                <div>
+                    @if($apiError)
+                        <span class="text-sm text-red-500 font-semibold">⚠ Server AI tidak aktif. Jalankan <code class="bg-red-50 px-1 rounded">python api.py</code> terlebih dahulu.</span>
+                    @else
+                        <span class="text-sm text-slate-600">
+                            Ditemukan <b class="text-[#1e3c72]">{{ count($books) }}</b> hasil untuk:
+                            <b class="text-[#1e3c72]">"{{ $keyword }}"</b>
+                        </span>
+                    @endif
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Urutkan:</span>
+                    <select id="sortSelect" onchange="sortBooks(this.value)"
+                            class="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-[13px] text-slate-600 outline-none focus:border-blue-400">
+                        <option value="default">Paling Relevan</option>
+                        <option value="title">Judul (A-Z)</option>
+                        <option value="prob">Probabilitas Tertinggi</option>
+                    </select>
+                </div>
             </div>
-        
+
             <!-- Daftar Buku -->
-            @forelse($books as $buku)
-            <div class="mb-4 flex rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-transform hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
-            
-                <!-- Cover Dummy -->
-                <div class="mr-5 h-[160px] w-[110px] shrink-0 overflow-hidden rounded-md border border-slate-200 bg-slate-100">
-                    <img src="https://via.placeholder.com/110x160/e2e8f0/94a3b8?text=No+Cover" alt="Cover" class="h-full w-full object-cover">
-                </div>
-            
-                <!-- Informasi Buku -->
-                <div class="flex-1">
-                    <h2 class="mb-2 text-lg font-bold text-slate-800">{{ $buku['Book_Title'] ?? 'Tanpa Judul' }}</h2>
-                    <div class="mb-3 inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                        {{ $buku['Author'] ?? 'Penulis Tidak Diketahui' }}
-                    </div>
-                    
-                    <div class="mb-2 grid grid-cols-2 gap-2 text-[13px] text-slate-500">
-                        <div>Tahun: <b class="text-slate-700">{{ $buku['Year_Published'] ?? '-' }}</b></div>
-                        <div>Halaman: <b class="text-slate-700">{{ $buku['Pages'] ?? '-' }}</b></div>
-                        <div>Alamat: <b class="text-slate-700">{{ $buku['Alamat'] ?? '-' }}</b></div>
+            @forelse($books as $i => $buku)
+            @php
+               $topLabel = !empty($buku['Multilabel']) ? strtolower($buku['Multilabel'][0]['label']) : '';
+            @endphp
+            <div class="book-card card-enter mb-4 rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                 style="animation-delay: {{ $i * 0.05 }}s"
+                 data-title="{{ strtolower($buku['Book_Title'] ?? '') }}"
+                 data-top-prob="{{ $buku['Multilabel'][0]['probabilitas'] ?? 0 }}"
+                 data-top-label="{{ $topLabel }}">
+
+                <div class="flex p-5">
+
+                    <!-- Cover -->
+                    <div class="mr-5 h-[150px] w-[100px] shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 shadow-sm">
+                        @if(!empty($buku['Image']))
+                            <img src="{{ $buku['Image'] }}" alt="Cover" class="h-full w-full object-cover">
+                        @else
+                            <div class="flex h-full w-full flex-col items-center justify-center gap-1">
+                                <svg class="h-8 w-8 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                <span class="text-[10px] text-slate-400 font-medium">No Cover</span>
+                            </div>
+                        @endif
                     </div>
 
-                    <div class="mt-2 border-t border-dashed border-slate-200 pt-2.5 text-[13px] leading-relaxed text-slate-600">
-                        Koleksi perpustakaan tersedia untuk sirkulasi. ID Peminjaman terakhir: <b class="text-slate-700">{{ $buku['ID_Peminjaman'] ?? '-' }}</b>.
-                    </div>
-                </div>
+                    <!-- Informasi Buku -->
+                    <div class="flex-1 min-w-0">
+                        <h2 class="mb-1 text-base font-bold leading-snug text-slate-800 line-clamp-2">
+                            {{ $buku['Book_Title'] ?? 'Tanpa Judul' }}
+                        </h2>
+                        <p class="mb-3 text-[13px] text-slate-500">
+                            <span class="font-medium">{{ $buku['Author'] ?? 'Penulis Tidak Diketahui' }}</span>
+                            @if(!empty($buku['Year_Published']) && $buku['Year_Published'] !== '-')
+                                · <span>{{ $buku['Year_Published'] }}</span>
+                            @endif
+                            @if(!empty($buku['Publisher']) && $buku['Publisher'] !== '-')
+                                · <span>{{ $buku['Publisher'] }}</span>
+                            @endif
+                        </p>
 
-                <!-- Kode DDC / Aksi -->
-                <div class="ml-5 flex w-[140px] shrink-0 flex-col justify-center border-l border-slate-200 pl-5 text-center">
-                    <div class="mb-3 rounded-md border border-slate-300 bg-slate-50 p-2.5">
-                        <div class="text-[10px] font-semibold uppercase text-slate-500">Kode Buku</div>
-                        <div class="mt-0.5 text-2xl font-extrabold text-slate-900">{{ $buku['Book_Code'] ?? '000' }}</div>
+                        <!-- ── MULTILABEL SECTION ───────────────────── -->
+                        @if(!empty($buku['Multilabel']))
+                        <div class="mb-3">
+                            <p class="mb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                🧠 Klasifikasi Multilabel (Fuzzy C-Means)
+                            </p>
+
+                            <!-- Label Badges (top label yg >= 10%) -->
+                            <div class="mb-2 flex flex-wrap gap-1.5">
+                                @foreach($buku['Multilabel'] as $j => $label)
+                                    @if($label['probabilitas'] >= 10)
+                                    <span class="badge-{{ $j }} inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold">
+                                        <span>{{ $label['label'] }}</span>
+                                        <span class="opacity-70">{{ number_format($label['probabilitas'], 1) }}%</span>
+                                    </span>
+                                    @endif
+                                @endforeach
+                            </div>
+
+                            <!-- Progress Bars -->
+                            <div class="space-y-1.5">
+                                @foreach($buku['Multilabel'] as $j => $label)
+                                <div class="flex items-center gap-2">
+                                    <span class="w-[170px] shrink-0 truncate text-[11px] text-slate-500">{{ $label['label'] }}</span>
+                                    <div class="relative h-2 flex-1 rounded-full bg-slate-100 overflow-hidden">
+                                        <div class="bar-{{ $j }} prob-bar h-full rounded-full"
+                                             style="width: {{ $label['probabilitas'] }}%"></div>
+                                    </div>
+                                    <span class="w-10 shrink-0 text-right text-[11px] font-semibold text-slate-600">
+                                        {{ number_format($label['probabilitas'], 1) }}%
+                                    </span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @else
+                        <p class="mb-3 text-[12px] italic text-slate-400">Tidak ada data klasifikasi untuk buku ini.</p>
+                        @endif
+
                     </div>
-                    <button class="mb-2 block w-full rounded-md border border-[#1e3c72] bg-white py-2 text-xs font-semibold text-[#1e3c72] transition-colors hover:bg-[#1e3c72] hover:text-white">Detail Buku</button>
-                    <button class="mb-2 block w-full rounded-md border border-[#1e3c72] bg-white py-2 text-xs font-semibold text-[#1e3c72] transition-colors hover:bg-[#1e3c72] hover:text-white">Sitasi MARC</button>
+
+                    <!-- Kanan: Kode DDC & Tombol -->
+                    <div class="ml-4 flex w-[120px] shrink-0 flex-col items-center justify-center border-l border-slate-100 pl-4 text-center">
+                        <div class="mb-3 w-full rounded-xl border border-slate-200 bg-slate-50 p-3">
+                            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">DDC</div>
+                            <div class="mt-1 text-xl font-black text-[#1e3c72] leading-tight">
+                                {{ $buku['Book_Code'] ?? '-' }}
+                            </div>
+                            @if(!empty($buku['Call_Number']) && $buku['Call_Number'] !== '-')
+                            <div class="mt-1 text-[10px] text-slate-500 leading-tight break-all">{{ $buku['Call_Number'] }}</div>
+                            @endif
+                        </div>
+
+                        <button onclick="showDetail({{ $buku['biblio_id'] ?? 0 }}, {{ json_encode($buku) }})"
+                                class="mb-2 w-full rounded-lg border border-[#1e3c72] bg-white py-2 text-[12px] font-semibold text-[#1e3c72] transition hover:bg-[#1e3c72] hover:text-white active:scale-95">
+                            Detail
+                        </button>
+                        <button onclick="printMARC({{ json_encode($buku) }})"
+                                class="w-full rounded-lg border border-slate-300 bg-white py-2 text-[12px] font-semibold text-slate-500 transition hover:bg-slate-100 active:scale-95">
+                            Sitasi
+                        </button>
+                    </div>
                 </div>
             </div>
-            
+
             @empty
-            <div class="flex flex-col items-center justify-center rounded-lg bg-white px-5 py-16 text-center shadow-sm">
-                <h3 class="mb-2 text-lg font-bold text-red-500">Buku Tidak Ditemukan</h3>
-                <p class="text-[14px] text-slate-500">Maaf, tidak ada klasifikasi atau buku yang cocok dengan kata kunci <b class="text-slate-700">"{{ request('keyword') }}"</b>.</p>
+            <!-- Empty State -->
+            <div class="flex flex-col items-center justify-center rounded-2xl bg-white px-8 py-20 text-center shadow-sm">
+                <div class="mb-4 text-7xl">📚</div>
+                @if($apiError)
+                    <h3 class="mb-2 text-lg font-bold text-red-500">Server AI Tidak Aktif</h3>
+                    <p class="max-w-sm text-[14px] text-slate-500">
+                        Pastikan server Python sudah berjalan dengan perintah:<br>
+                        <code class="mt-2 inline-block rounded bg-slate-100 px-3 py-1 text-[13px] font-mono text-slate-700">python Python_ai/api.py</code>
+                    </p>
+                @else
+                    <h3 class="mb-2 text-lg font-bold text-slate-700">Buku Tidak Ditemukan</h3>
+                    <p class="max-w-sm text-[14px] text-slate-500">
+                        Tidak ada koleksi yang cocok dengan <b class="text-slate-700">"{{ $keyword }}"</b>.
+                        Coba kata kunci lain atau pilih kategori DDC di sidebar.
+                    </p>
+                @endif
             </div>
             @endforelse
-
-            <!-- Pagination Bar -->
-            @if(count($books) > 0)
-            <div class="mb-5 mt-8 flex items-center justify-center gap-2">
-                <a href="#" class="pointer-events-none rounded-md border border-slate-200 bg-slate-50 px-3.5 py-2 text-[13px] font-medium text-slate-400 no-underline">« Prev</a>
-                <a href="#" class="rounded-md border border-[#1e3c72] bg-[#1e3c72] px-3.5 py-2 text-[13px] font-medium text-white no-underline">1</a>
-                <a href="#" class="rounded-md border border-slate-300 bg-white px-3.5 py-2 text-[13px] font-medium text-slate-600 no-underline transition-colors hover:border-slate-400 hover:bg-slate-100 hover:text-[#1e3c72]">2</a>
-                <a href="#" class="rounded-md border border-slate-300 bg-white px-3.5 py-2 text-[13px] font-medium text-slate-600 no-underline transition-colors hover:border-slate-400 hover:bg-slate-100 hover:text-[#1e3c72]">3</a>
-                <span class="pointer-events-none rounded-md border border-slate-200 bg-slate-50 px-3.5 py-2 text-[13px] font-medium text-slate-400">...</span>
-                <a href="#" class="rounded-md border border-slate-300 bg-white px-3.5 py-2 text-[13px] font-medium text-slate-600 no-underline transition-colors hover:border-slate-400 hover:bg-slate-100 hover:text-[#1e3c72]">Next »</a>
-            </div>
-            @endif
 
         </main>
     </div>
 
-    <!-- Script agar klik tabel memicu pencarian angka -->
+    <!-- ─── Modal Detail Buku ─────────────────────────────────────── -->
+    <div id="detailModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 px-4 py-8 backdrop-blur-sm">
+        <div id="detailCard" class="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
+            <!-- Close -->
+            <button onclick="closeDetail()" class="absolute right-4 top-4 z-10 rounded-full bg-slate-100 p-2 text-slate-500 transition hover:bg-slate-200">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="detailContent" class="p-8">
+                <!-- Diisi oleh JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── JavaScript ────────────────────────────────────────────── -->
     <script>
-        function searchDDC(nomorDDC) {
-            document.getElementById('keywordInput').value = nomorDDC;
-            document.getElementById('searchForm').submit();
+        // ── Navigasi DDC dari sidebar ──────────────────────────────
+        function searchByDDC(kode) {
+            document.getElementById('sideKeyword').value = kode;
+            document.getElementById('sideSearchForm').submit();
+        }
+
+        // ── Sorting ───────────────────────────────────────────────
+        function sortBooks(mode) {
+            const container = document.querySelector('main');
+            const cards = [...container.querySelectorAll('.book-card')];
+            const parent = cards[0]?.parentElement;
+            if (!parent) return;
+
+            cards.sort((a, b) => {
+                if (mode === 'title') {
+                    return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+                } else if (mode === 'prob') {
+                    return parseFloat(b.dataset.topProb || 0) - parseFloat(a.dataset.topProb || 0);
+                }
+                return 0;
+            });
+
+            cards.forEach(c => parent.appendChild(c));
+        }
+
+        // ── Modal Detail ──────────────────────────────────────────
+        function showDetail(id, buku) {
+            const modal   = document.getElementById('detailModal');
+            const content = document.getElementById('detailContent');
+
+            // Bangun HTML detail
+            let multilabelHtml = '';
+            if (buku.Multilabel && buku.Multilabel.length) {
+                const colors = ['#3b82f6','#22c55e','#eab308','#ec4899','#8b5cf6'];
+                multilabelHtml = `
+                    <div class="mb-4">
+                        <p class="mb-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">🧠 Klasifikasi Multilabel FCM</p>
+                        <div class="space-y-2">
+                            ${buku.Multilabel.map((l, i) => `
+                                <div>
+                                    <div class="flex justify-between text-[12px] mb-1">
+                                        <span class="font-medium text-slate-700">${l.label}</span>
+                                        <span class="font-bold" style="color:${colors[i]||'#64748b'}">${l.probabilitas.toFixed(1)}%</span>
+                                    </div>
+                                    <div class="h-2.5 rounded-full bg-slate-100 overflow-hidden">
+                                        <div class="h-full rounded-full transition-all duration-1000"
+                                             style="width:${l.probabilitas}%; background:${colors[i]||'#64748b'}"></div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>`;
+            }
+
+            content.innerHTML = `
+                <h2 class="mb-1 pr-8 text-xl font-extrabold leading-snug text-slate-800">${buku.Book_Title || 'Tanpa Judul'}</h2>
+                <p class="mb-5 text-sm text-slate-500">${buku.Author || '-'}</p>
+
+                <div class="mb-5 grid grid-cols-2 gap-3 text-[13px]">
+                    <div class="rounded-lg bg-slate-50 p-3">
+                        <div class="text-[10px] font-bold uppercase text-slate-400">Tahun Terbit</div>
+                        <div class="mt-1 font-semibold text-slate-700">${buku.Year_Published || '-'}</div>
+                    </div>
+                    <div class="rounded-lg bg-slate-50 p-3">
+                        <div class="text-[10px] font-bold uppercase text-slate-400">Kode DDC</div>
+                        <div class="mt-1 font-semibold text-slate-700">${buku.Book_Code || '-'}</div>
+                    </div>
+                    <div class="rounded-lg bg-slate-50 p-3">
+                        <div class="text-[10px] font-bold uppercase text-slate-400">Call Number</div>
+                        <div class="mt-1 font-semibold text-slate-700">${buku.Call_Number || '-'}</div>
+                    </div>
+                    <div class="rounded-lg bg-slate-50 p-3">
+                        <div class="text-[10px] font-bold uppercase text-slate-400">Halaman</div>
+                        <div class="mt-1 font-semibold text-slate-700">${buku.Pages || '-'}</div>
+                    </div>
+                    <div class="col-span-2 rounded-lg bg-slate-50 p-3">
+                        <div class="text-[10px] font-bold uppercase text-slate-400">Penerbit</div>
+                        <div class="mt-1 font-semibold text-slate-700">${buku.Publisher || '-'}</div>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-100 pt-5">
+                    ${multilabelHtml}
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => document.getElementById('detailCard').classList.add('scale-100'), 10);
+        }
+
+        function closeDetail() {
+            const modal = document.getElementById('detailModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Tutup modal saat klik background
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDetail();
+        });
+
+        // ── Print/Sitasi MARC ─────────────────────────────────────
+        function printMARC(buku) {
+            const marc = `
+=== Sitasi MARC 21 ===
+Tag 020: ${buku.ISBN || '-'}
+Tag 100: ${buku.Author || '-'}
+Tag 245: ${buku.Book_Title || '-'}
+Tag 260: ${buku.Publisher || '-'}, ${buku.Year_Published || '-'}
+Tag 300: ${buku.Pages || '-'}
+Tag 082: ${buku.Book_Code || '-'}
+Tag 092: ${buku.Call_Number || '-'}
+            `.trim();
+            alert(marc);
         }
     </script>
+
 </body>
 </html>

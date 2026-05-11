@@ -1,0 +1,12 @@
+# Dependensi Python untuk E-DDC AI API
+
+flask
+flask-cors
+scikit-fuzzy
+scipy
+packaging
+numpy
+pandas
+sqlalchemy
+pymysql
+python-dotenv
