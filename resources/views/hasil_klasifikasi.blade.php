@@ -40,25 +40,38 @@
         .prob-bar { transition: width 1s cubic-bezier(.4,0,.2,1); }
         .card-enter { animation: fadeInUp .35s ease both; }
 
-        /* Badge warna per-label */
+        /* Badge warna per-label (8 jurusan PNJ) */
         .badge-0 { background:#dbeafe; color:#1d4ed8; }
         .badge-1 { background:#dcfce7; color:#15803d; }
         .badge-2 { background:#fef9c3; color:#a16207; }
         .badge-3 { background:#fce7f3; color:#be185d; }
         .badge-4 { background:#ede9fe; color:#6d28d9; }
+        .badge-5 { background:#cffafe; color:#0e7490; }
+        .badge-6 { background:#fee2e2; color:#b91c1c; }
+        .badge-7 { background:#f1f5f9; color:#475569; }
 
         .bar-0 { background: linear-gradient(90deg,#3b82f6,#60a5fa); }
         .bar-1 { background: linear-gradient(90deg,#22c55e,#4ade80); }
-        .bar-2 { background: linear-gradient(90deg,#eab308,#facc15); }
+        .bar-2 { background: linear-gradient(90deg,#f59e0b,#fbbf24); }
         .bar-3 { background: linear-gradient(90deg,#ec4899,#f472b6); }
         .bar-4 { background: linear-gradient(90deg,#8b5cf6,#a78bfa); }
+        .bar-5 { background: linear-gradient(90deg,#06b6d4,#22d3ee); }
+        .bar-6 { background: linear-gradient(90deg,#ef4444,#f87171); }
+        .bar-7 { background: linear-gradient(90deg,#64748b,#94a3b8); }
 
         /* Modal overlay */
         #detailModal { transition: opacity .2s ease; }
+        #doiModal { transition: opacity .2s ease; }
+
+        /* Toggle switch */
+        .toggle-btn { transition: all .2s ease; }
+        .toggle-btn.active { background: #1e3c72; color: #fff; box-shadow: 0 2px 8px rgba(30,60,114,.3); }
+        .toggle-btn:not(.active) { background: #f1f5f9; color: #64748b; }
+        .toggle-btn:not(.active):hover { background: #e2e8f0; }
     </style>
 </head>
 
-<body class="bg-[#f4f6f9] font-sans text-slate-800 antialiased">
+<body class="bg-[#f4f6f9] font-sans text-slate-800 antialiased" style="zoom: 75%;">
 
     <!-- ─── Navbar ─────────────────────────────────────────────────── -->
     <nav class="fixed start-0 top-0 z-50 w-full border-b border-white/20 bg-white/85 backdrop-blur-md shadow-sm">
@@ -82,17 +95,18 @@
     <div class="mx-auto mt-6 flex max-w-[1280px] items-start gap-6 px-5 pb-16">
 
         <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
-        <aside class="sticky top-[88px] flex w-[300px] shrink-0 flex-col rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden max-h-[calc(100vh-110px)]">
+        <aside class="sticky top-[88px] flex w-[300px] shrink-0 flex-col rounded-2xl border border-slate-200 bg-white shadow-sm h-fit">
 
             <!-- Filter Header -->
-            <div class="bg-gradient-to-r from-[#1e3c72] to-blue-600 px-5 py-4">
+            <div class="rounded-t-2xl bg-gradient-to-r from-[#1e3c72] to-blue-600 px-5 py-4">
                 <h2 class="text-sm font-bold text-white/90 uppercase tracking-wider">Filter & Navigasi</h2>
             </div>
 
-            <!-- Form Pencarian -->
-            <div class="border-b border-slate-100 p-5">
-                <form id="sideSearchForm" action="{{ route('klasifikasi.process') }}" method="POST">
-                    @csrf
+            <!-- Sidebar Form -->
+            <form id="sideSearchForm" action="{{ route('klasifikasi.process') }}" method="GET" class="flex flex-col overflow-hidden">
+                
+                <!-- Pencarian -->
+                <div class="border-b border-slate-100 p-5">
                     <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Pencarian</label>
                     <div class="relative mb-3">
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
@@ -108,30 +122,34 @@
                     </button>
             </div>
 
-            <!-- Kelas PNJ (Multi-Select Dropdown) -->
+            <!-- Jurusan PNJ (Multi-Select Dropdown) -->
             <div class="border-b border-slate-100 p-5">
                 <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Filter Klasifikasi AI</label>
                 @php
                     $pnjClasses = [
                         'Teknik Informatika & Komputer',
-                        'Akuntansi & Adm Niaga',
-                        'Matematika & Sains Terapan',
-                        'Teknik (Sipil, Mesin, Elektro)',
+                        'Teknik Sipil',
+                        'Teknik Mesin',
+                        'Teknik Elektro',
                         'Teknik Grafika & Penerbitan',
-                        'Lainnya (Agama, Bahasa, Umum)'
+                        'Administrasi Niaga',
+                        'Akuntansi',
+                        'Matematika',
+                        'Sains',
+                        'Umum',
                     ];
                     $activeFilters = request('filters', []);
                 @endphp
                 
                 <div class="relative w-full" id="multiSelectDropdown">
                     <button type="button" onclick="toggleDropdown()" class="w-full flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-[13px] text-slate-700 shadow-sm transition hover:border-blue-300 hover:shadow-md focus:border-[#1e3c72] focus:ring-4 focus:ring-blue-50">
-                        <span id="dropdownLabel" class="truncate font-medium">Semua Prodi PNJ</span>
+                        <span id="dropdownLabel" class="truncate font-medium">Semua Jurusan PNJ</span>
                         <svg class="h-4 w-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
 
                     <!-- Dropdown Menu -->
                     <div id="dropdownMenu" class="absolute z-20 mt-2 hidden w-full overflow-hidden rounded-xl border border-slate-100 bg-white shadow-2xl ring-1 ring-black/5">
-                        <div class="p-2 space-y-1 max-h-60 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
+                        <div class="p-2 space-y-1 max-h-72 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
                             @foreach($pnjClasses as $nama)
                             <label class="flex w-full cursor-pointer items-start gap-3 rounded-lg px-3 py-2.5 hover:bg-blue-50/80 transition group">
                                 <input type="checkbox" name="filters[]" value="{{ $nama }}" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#1e3c72] focus:ring-[#1e3c72] transition" {{ in_array($nama, $activeFilters) ? 'checked' : '' }}>
@@ -148,25 +166,31 @@
                 </div>
             </div>
             
-            <div class="p-5 pb-6">
-                <label class="mb-3 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Kategori DDC</label>
-                <div class="flex flex-col gap-1.5">
-                    @php
-                        $ddcMurni = [
-                            ['000-099', 'Teknik Informatika & Komputer'],
-                            ['300-399', 'Akuntansi & Adm Niaga'],
-                            ['500-599', 'Matematika & Sains Terapan'],
-                            ['600-699', 'Teknik (Sipil, Mesin, Elektro)'],
-                            ['700-899', 'Teknik Grafika & Penerbitan']
-                        ];
-                    @endphp
+            <div class="p-5 pb-6 flex flex-col">
+                <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500 shrink-0">Kategori DDC</label>
+                @php
+                    $ddcMurni = [
+                        ['000-099', 'Teknik Informatika & Komputer'],
+                        ['300-399', 'Administrasi Niaga'],
+                        ['500-509', 'Sains Umum'],
+                        ['510-519', 'Matematika'],
+                        ['620-629', 'Teknik Sipil & Mesin'],
+                        ['621-621', 'Teknik Elektro'],
+                        ['650-659', 'Akuntansi & Manajemen'],
+                        ['700-779', 'Teknik Grafika & Penerbitan'],
+                        ['100-299', 'Umum (Filsafat, Agama)'],
+                        ['400-499', 'Umum (Bahasa)'],
+                    ];
+                @endphp
+
+                <div class="mt-2 space-y-1.5 h-[226px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
                     @foreach($ddcMurni as [$kode, $nama])
                     <button type="button" onclick="applyDdcCategory('{{ $kode }}')"
-                            class="group flex w-full items-center gap-3.5 rounded-xl px-2.5 py-2.5 text-left transition hover:bg-blue-50/50 hover:shadow-sm {{ $keyword === $kode ? 'bg-blue-50 ring-1 ring-blue-100 shadow-sm' : '' }}">
-                        <span class="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 shadow-inner transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === $kode ? 'from-[#1e3c72] to-blue-500 text-white shadow-blue-500/30' : '' }}">
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 {{ $keyword === $kode ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === $kode ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
                             {{ explode('-', $kode)[0] }}
                         </span>
-                        <span class="text-[12.5px] leading-snug transition duration-300 {{ $keyword === $kode ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                        <span class="text-[12.5px] leading-snug transition {{ $keyword === $kode ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
                             {{ $nama }}
                         </span>
                     </button>
@@ -178,7 +202,6 @@
 
         <script>
             function applyAiFilter() {
-                // Jika pencarian saat ini adalah kategori DDC murni, hapus agar tidak bentrok
                 const kw = document.getElementById('sideKeyword');
                 if (/^\d{3}-\d{3}$/.test(kw.value) || kw.value === 'LAINNYA') {
                     kw.value = '';
@@ -187,45 +210,52 @@
             }
 
             function applyDdcCategory(kode) {
-                // Set keyword menjadi rentang DDC
                 document.getElementById('sideKeyword').value = kode;
-                // Uncheck semua checkbox AI Multilabel agar tidak bentrok
                 document.querySelectorAll('input[name="filters[]"]').forEach(cb => cb.checked = false);
                 document.getElementById('sideSearchForm').submit();
             }
+
             function toggleDropdown() {
                 document.getElementById('dropdownMenu').classList.toggle('hidden');
             }
 
-            // Menutup dropdown jika mengklik di luar area dropdown
+            // Menutup dropdown AI jika klik di luar
             document.addEventListener('click', function(event) {
-                const dropdown = document.getElementById('multiSelectDropdown');
-                if (!dropdown.contains(event.target)) {
+                const aiDd = document.getElementById('multiSelectDropdown');
+                if (!aiDd.contains(event.target)) {
                     document.getElementById('dropdownMenu').classList.add('hidden');
                 }
             });
 
-            // Mengupdate label tombol berdasarkan jumlah checkbox yang dicentang
+            // Update label dropdown
             document.addEventListener('DOMContentLoaded', function() {
+                // AI Filter label
                 const checkboxes = document.querySelectorAll('input[name="filters[]"]');
                 const label = document.getElementById('dropdownLabel');
-                
                 function updateLabel() {
                     const checked = Array.from(checkboxes).filter(c => c.checked).map(c => c.value);
                     if (checked.length === 0) {
-                        label.textContent = "Semua Prodi PNJ";
+                        label.textContent = "Semua Jurusan PNJ";
                         label.classList.remove('text-[#1e3c72]', 'font-bold');
                     } else if (checked.length === 1) {
                         label.textContent = checked[0];
                         label.classList.add('text-[#1e3c72]', 'font-bold');
                     } else {
-                        label.textContent = checked.length + " Prodi Terpilih";
+                        label.textContent = checked.length + " Jurusan Terpilih";
                         label.classList.add('text-[#1e3c72]', 'font-bold');
                     }
                 }
-                
                 checkboxes.forEach(c => c.addEventListener('change', updateLabel));
-                updateLabel(); // Panggil saat pertama kali dimuat
+                updateLabel();
+
+                // DDC label – show current DDC category if active
+                const currentKw = '{{ $keyword }}';
+                const ddcLabel = document.getElementById('ddcDropdownLabel');
+                const ddcMap = {!! json_encode(collect($ddcMurni)->mapWithKeys(fn($item) => [$item[0] => $item[1]])) !!};
+                if (ddcMap[currentKw]) {
+                    ddcLabel.textContent = ddcMap[currentKw];
+                    ddcLabel.classList.add('text-[#1e3c72]', 'font-bold');
+                }
             });
         </script>
 
@@ -237,21 +267,38 @@
                 <div>
                     @if($apiError)
                         <span class="text-sm text-red-500 font-semibold">⚠ Server AI tidak aktif. Jalankan <code class="bg-red-50 px-1 rounded">python api.py</code> terlebih dahulu.</span>
-                    @else
+                    @elseif(!empty($keyword) || !empty($filters))
                         <span class="text-sm text-slate-600">
-                            Ditemukan <b class="text-[#1e3c72]">{{ count($books) }}</b> hasil untuk:
-                            <b class="text-[#1e3c72]">"{{ $keyword }}"</b>
+                            Ditemukan <b class="text-[#1e3c72]">{{ count($books) }}</b> hasil pencarian.
+                        </span>
+                    @elseif(isset($pagination))
+                        <span class="text-sm text-slate-600">
+                            Menampilkan <b class="text-[#1e3c72]">{{ count($books) }}</b> dari total <b class="text-[#1e3c72]">{{ $pagination['total'] }}</b> buku
                         </span>
                     @endif
                 </div>
-                <div class="flex items-center gap-2">
-                    <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Urutkan:</span>
-                    <select id="sortSelect" onchange="sortBooks(this.value)"
-                            class="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-[13px] text-slate-600 outline-none focus:border-blue-400">
-                        <option value="default">Paling Relevan</option>
-                        <option value="title">Judul (A-Z)</option>
-                        <option value="prob">Probabilitas Tertinggi</option>
-                    </select>
+                <div class="flex items-center gap-3">
+                    <!-- Toggle Multilabel View -->
+                    <div class="flex items-center rounded-lg border border-slate-200 overflow-hidden">
+                        <button onclick="setMultilabelMode('badges')" id="btnBadges" class="toggle-btn active px-3 py-1.5 text-[11px] font-bold" title="Label saja">
+                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                        </button>
+                        <button onclick="setMultilabelMode('bars')" id="btnBars" class="toggle-btn px-3 py-1.5 text-[11px] font-bold" title="Label + Persentase">
+                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="h-5 w-px bg-slate-200"></div>
+
+                    <div class="flex items-center gap-2">
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Urutkan:</span>
+                        <select id="sortSelect" onchange="sortBooks(this.value)"
+                                class="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-[13px] text-slate-600 outline-none focus:border-blue-400">
+                            <option value="default">Paling Relevan</option>
+                            <option value="title">Judul (A-Z)</option>
+                            <option value="prob">Probabilitas Tertinggi</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -298,36 +345,47 @@
                         <!-- ── MULTILABEL SECTION ───────────────────── -->
                         @if(!empty($buku['Multilabel']))
                         <div class="mb-3">
-                            <p class="mb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                                🧠 Klasifikasi Multilabel (Fuzzy C-Means)
-                            </p>
-
-                            <!-- Label Badges (top label yg >= 10%) -->
-                            <div class="mb-2 flex flex-wrap gap-1.5">
-                                @foreach($buku['Multilabel'] as $j => $label)
-                                    @if($label['probabilitas'] >= 10)
-                                    <span class="badge-{{ $j }} inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold">
-                                        <span>{{ $label['label'] }}</span>
-                                        <span class="opacity-70">{{ number_format($label['probabilitas'], 1) }}%</span>
-                                    </span>
-                                    @endif
-                                @endforeach
+                            <div class="flex items-center gap-2 mb-2">
+                                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                    Klasifikasi Multilabel
+                                </p>
+                                @if(!empty($buku['has_notes']))
+                                <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 ring-1 ring-emerald-200" title="Klasifikasi menggunakan data Notes dari biblio">
+                                    <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                    + Notes
+                                </span>
+                                @endif
                             </div>
 
-                            <!-- Progress Bars -->
-                            <div class="space-y-1.5">
-                                @foreach($buku['Multilabel'] as $j => $label)
-                                <div class="flex items-center gap-2">
-                                    <span class="w-[170px] shrink-0 truncate text-[11px] text-slate-500">{{ $label['label'] }}</span>
-                                    <div class="relative h-2 flex-1 rounded-full bg-slate-100 overflow-hidden">
-                                        <div class="bar-{{ $j }} prob-bar h-full rounded-full"
-                                             style="width: {{ $label['probabilitas'] }}%"></div>
-                                    </div>
-                                    <span class="w-10 shrink-0 text-right text-[11px] font-semibold text-slate-600">
-                                        {{ number_format($label['probabilitas'], 1) }}%
-                                    </span>
+                            <!-- Mode: Labels Only (badges) -->
+                            <div class="multilabel-badges">
+                                <div class="flex flex-wrap gap-1.5">
+                                    @foreach($buku['Multilabel'] as $j => $label)
+                                        @if($label['probabilitas'] >= 5)
+                                        <span class="badge-{{ $j }} inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold">
+                                            {{ $label['label'] }}
+                                        </span>
+                                        @endif
+                                    @endforeach
                                 </div>
-                                @endforeach
+                            </div>
+
+                            <!-- Mode: With Percentages (progress bars) -->
+                            <div class="multilabel-bars hidden">
+                                <div class="space-y-1.5">
+                                    @foreach($buku['Multilabel'] as $j => $label)
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-[170px] shrink-0 truncate text-[11px] text-slate-500">{{ $label['label'] }}</span>
+                                        <div class="relative h-2 flex-1 rounded-full bg-slate-100 overflow-hidden">
+                                            <div class="bar-{{ $j }} prob-bar h-full rounded-full"
+                                                 style="width: {{ $label['probabilitas'] }}%"></div>
+                                        </div>
+                                        <span class="w-10 shrink-0 text-right text-[11px] font-semibold text-slate-600">
+                                            {{ number_format($label['probabilitas'], 1) }}%
+                                        </span>
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         @else
@@ -349,12 +407,8 @@
                         </div>
 
                         <button onclick="showDetail({{ $buku['biblio_id'] ?? 0 }}, {{ json_encode($buku) }})"
-                                class="mb-2 w-full rounded-lg border border-[#1e3c72] bg-white py-2 text-[12px] font-semibold text-[#1e3c72] transition hover:bg-[#1e3c72] hover:text-white active:scale-95">
+                                class="w-full rounded-lg border border-[#1e3c72] bg-white py-2 text-[12px] font-semibold text-[#1e3c72] transition hover:bg-[#1e3c72] hover:text-white active:scale-95">
                             Detail
-                        </button>
-                        <button onclick="printMARC({{ json_encode($buku) }})"
-                                class="w-full rounded-lg border border-slate-300 bg-white py-2 text-[12px] font-semibold text-slate-500 transition hover:bg-slate-100 active:scale-95">
-                            Sitasi
                         </button>
                     </div>
                 </div>
@@ -379,6 +433,27 @@
                 @endif
             </div>
             @endforelse
+
+            <!-- ── PAGINATION ── -->
+            @if(isset($pagination) && $pagination['total_pages'] > 1)
+            <div class="mt-8 flex justify-center items-center gap-2">
+                @if($pagination['page'] > 1)
+                <a href="{{ request()->fullUrlWithQuery(['page' => $pagination['page'] - 1]) }}" class="px-4 py-2 rounded-xl border border-slate-200 bg-white text-sm font-semibold text-slate-600 hover:bg-slate-50 transition">
+                    &laquo; Sebelumnya
+                </a>
+                @endif
+                
+                <span class="px-4 py-2 rounded-xl bg-slate-100 text-sm font-bold text-slate-700">
+                    Halaman {{ $pagination['page'] }} dari {{ $pagination['total_pages'] }}
+                </span>
+
+                @if($pagination['page'] < $pagination['total_pages'])
+                <a href="{{ request()->fullUrlWithQuery(['page' => $pagination['page'] + 1]) }}" class="px-4 py-2 rounded-xl border border-slate-200 bg-white text-sm font-semibold text-slate-600 hover:bg-slate-50 transition">
+                    Selanjutnya &raquo;
+                </a>
+                @endif
+            </div>
+            @endif
 
         </main>
     </div>
@@ -431,10 +506,10 @@
             // Bangun HTML detail
             let multilabelHtml = '';
             if (buku.Multilabel && buku.Multilabel.length) {
-                const colors = ['#3b82f6','#22c55e','#eab308','#ec4899','#8b5cf6'];
+                const colors = ['#3b82f6','#22c55e','#f59e0b','#ec4899','#8b5cf6','#06b6d4','#ef4444','#64748b'];
                 multilabelHtml = `
                     <div class="mb-4">
-                        <p class="mb-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">🧠 Klasifikasi Multilabel FCM</p>
+                        <p class="mb-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Klasifikasi Multilabel</p>
                         <div class="space-y-2">
                             ${buku.Multilabel.map((l, i) => `
                                 <div>
@@ -479,7 +554,36 @@
                     </div>
                 </div>
 
-                <div class="border-t border-slate-100 pt-5">
+                ${buku.Description ? `
+                <div class="mb-5 border-t border-slate-100 pt-5">
+                    <p class="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                        <svg class="inline-block h-4 w-4 mr-1 -mt-0.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        Deskripsi Buku
+                    </p>
+                    <div class="rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50/50 to-slate-50 p-4">
+                        <p class="text-[13px] leading-relaxed text-slate-600">${buku.Description}</p>
+                    </div>
+                </div>
+                ` : ''}
+
+                ${buku.Notes && buku.Notes !== '-' ? `
+                <div class="mb-5 ${buku.Description ? '' : 'border-t border-slate-100 pt-5'}">
+                    <div class="flex items-center gap-2 mb-2.5">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                            <svg class="inline-block h-4 w-4 mr-1 -mt-0.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            Catatan (Notes)
+                        </p>
+                        <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 ring-1 ring-emerald-200">
+                            Digunakan untuk Klasifikasi AI
+                        </span>
+                    </div>
+                    <div class="rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50/40 to-slate-50 p-4">
+                        <p class="text-[13px] leading-relaxed text-slate-600">${buku.Notes}</p>
+                    </div>
+                </div>
+                ` : ''}
+
+                <div class="${(buku.Description || (buku.Notes && buku.Notes !== '-')) ? '' : 'border-t border-slate-100 pt-5'}">
                     ${multilabelHtml}
                 </div>
             `;
@@ -500,21 +604,90 @@
             if (e.target === this) closeDetail();
         });
 
-        // ── Print/Sitasi MARC ─────────────────────────────────────
-        function printMARC(buku) {
-            const marc = `
-=== Sitasi MARC 21 ===
-Tag 020: ${buku.ISBN || '-'}
-Tag 100: ${buku.Author || '-'}
-Tag 245: ${buku.Book_Title || '-'}
-Tag 260: ${buku.Publisher || '-'}, ${buku.Year_Published || '-'}
-Tag 300: ${buku.Pages || '-'}
-Tag 082: ${buku.Book_Code || '-'}
-Tag 092: ${buku.Call_Number || '-'}
-            `.trim();
-            alert(marc);
+        // ── Multilabel Toggle ────────────────────────────────────
+        function setMultilabelMode(mode) {
+            const allBadges = document.querySelectorAll('.multilabel-badges');
+            const allBars   = document.querySelectorAll('.multilabel-bars');
+            const btnBadges = document.getElementById('btnBadges');
+            const btnBars   = document.getElementById('btnBars');
+
+            if (mode === 'bars') {
+                allBadges.forEach(el => el.classList.add('hidden'));
+                allBars.forEach(el => el.classList.remove('hidden'));
+                btnBars.classList.add('active');
+                btnBadges.classList.remove('active');
+            } else {
+                allBadges.forEach(el => el.classList.remove('hidden'));
+                allBars.forEach(el => el.classList.add('hidden'));
+                btnBadges.classList.add('active');
+                btnBars.classList.remove('active');
+            }
         }
+
+        // ── DOI Modal ─────────────────────────────────────────────
+        function showDoi(buku) {
+            const modal   = document.getElementById('doiModal');
+            const content = document.getElementById('doiContent');
+
+            const hasDoi = buku.DOI && buku.DOI !== '-' && buku.DOI !== '';
+
+            if (!hasDoi) {
+                content.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="text-5xl mb-3">🔗</div>
+                        <h3 class="text-lg font-bold text-slate-700 mb-2">Tidak Ada DOI</h3>
+                        <p class="text-sm text-slate-500 max-w-xs mx-auto">Digital Object Identifier (DOI) tidak tersedia untuk buku ini.</p>
+                        <div class="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4 text-left">
+                            <div class="text-[10px] font-bold uppercase text-slate-400 mb-1">Info Buku</div>
+                            <div class="text-[13px] font-semibold text-slate-700">${buku.Book_Title || 'Tanpa Judul'}</div>
+                            <div class="text-[12px] text-slate-500 mt-0.5">${buku.Author || '-'} · ${buku.Year_Published || '-'}</div>
+                            ${buku.ISBN && buku.ISBN !== '-' ? `<div class="text-[12px] text-slate-500 mt-0.5">ISBN: ${buku.ISBN}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            } else {
+                const doiUrl = buku.DOI.startsWith('http') ? buku.DOI : 'https://doi.org/' + buku.DOI;
+                content.innerHTML = `
+                    <h3 class="mb-1 text-lg font-extrabold text-slate-800">Digital Object Identifier</h3>
+                    <p class="mb-5 text-[13px] text-slate-500">${buku.Book_Title || 'Tanpa Judul'}</p>
+
+                    <div class="rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50/50 to-slate-50 p-5">
+                        <div class="text-[10px] font-bold uppercase text-slate-400 mb-2">DOI</div>
+                        <a href="${doiUrl}" target="_blank" class="text-[14px] font-semibold text-[#1e3c72] hover:underline break-all">${buku.DOI}</a>
+                    </div>
+
+                    <a href="${doiUrl}" target="_blank" class="mt-5 block w-full rounded-xl bg-gradient-to-r from-[#1e3c72] to-blue-600 py-2.5 text-center text-[12.5px] font-bold text-white shadow-md transition hover:from-blue-800 hover:to-blue-700 active:scale-[0.98]">
+                        🔗 Buka DOI
+                    </a>
+                `;
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDoi() {
+            const modal = document.getElementById('doiModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('doiModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDoi();
+        });
     </script>
+
+    <!-- ─── Modal DOI ─────────────────────────────────────────── -->
+    <div id="doiModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 px-4 py-8 backdrop-blur-sm">
+        <div class="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl">
+            <button onclick="closeDoi()" class="absolute right-4 top-4 z-10 rounded-full bg-slate-100 p-2 text-slate-500 transition hover:bg-slate-200">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="doiContent" class="p-8">
+                <!-- Diisi oleh JS -->
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

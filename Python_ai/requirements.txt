@@ -2,11 +2,9 @@
 
 flask
 flask-cors
-scikit-fuzzy
-scipy
-packaging
 numpy
 pandas
 sqlalchemy
 pymysql
 python-dotenv
+scikit-learn

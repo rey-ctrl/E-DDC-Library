@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from sqlalchemy import create_engine, text
-import skfuzzy as fuzz
 import numpy as np
 import pickle
 import re
@@ -12,13 +11,13 @@ try:
     from dotenv import load_dotenv
     load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 except ImportError:
-    pass  # python-dotenv opsional
+    pass
 
 app = Flask(__name__)
 CORS(app)
 
 # ─────────────────────────────────────────────
-# Konfigurasi Database (baca dari .env atau environment)
+# Konfigurasi Database
 # ─────────────────────────────────────────────
 DB_HOST = os.getenv('DB_HOST', '127.0.0.1')
 DB_PORT = os.getenv('DB_PORT', '3306')
@@ -29,51 +28,130 @@ DB_URL  = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 engine = create_engine(DB_URL)
 
 # ─────────────────────────────────────────────
-# Load Model FCM (Fuzzy C-Means)
+# Daftar Jurusan PNJ
 # ─────────────────────────────────────────────
-MODEL_PATH = os.path.join(os.path.dirname(__file__), 'FUZZY_CENTERS.pickle')
+JURUSAN_LIST = [
+    "Teknik Informatika & Komputer",
+    "Teknik Sipil",
+    "Teknik Mesin",
+    "Teknik Elektro",
+    "Teknik Grafika & Penerbitan",
+    "Administrasi Niaga",
+    "Akuntansi",
+    "Matematika",
+    "Sains",
+    "Umum",
+]
 
-def load_model():
-    """Memuat pusat klaster FCM dari file pickle."""
-    if not os.path.exists(MODEL_PATH):
-        return None
-    with open(MODEL_PATH, 'rb') as f:
-        return pickle.load(f)
+# Mapping DDC sub-kelas -> Jurusan PNJ (dipakai untuk fallback jika DDC map diperlukan)
+def ddc_to_jurusan(kode_ddc_raw):
+    """Map kode DDC ke Jurusan PNJ."""
+    s = str(kode_ddc_raw).strip()
+    m = re.search(r'(\d{3})(?:\.(\d+))?', s)
+    if not m:
+        return "Umum"
+    main = int(m.group(1))
+    sub = m.group(2) or ""
 
-cntr = load_model()
-
-# ─────────────────────────────────────────────
-# Dynamic Mapping Klaster DDC → Program Studi PNJ
-# ─────────────────────────────────────────────
-def generate_dynamic_labels(centers):
-    label_map = {}
-    if centers is None:
-        return label_map
-        
-    for idx, c in enumerate(centers):
-        val = c[0]
-        if val < 100:
-            label_map[idx] = "Teknik Informatika & Komputer"
-        elif 100 <= val < 300:
-            label_map[idx] = "Lainnya (Agama, Bahasa, Umum)"
-        elif 300 <= val < 400:
-            label_map[idx] = "Akuntansi & Adm Niaga"
-        elif 400 <= val < 500:
-            label_map[idx] = "Lainnya (Agama, Bahasa, Umum)"
-        elif 500 <= val < 600:
-            label_map[idx] = "Matematika & Sains Terapan"
-        elif 600 <= val < 700:
-            label_map[idx] = "Teknik (Sipil, Mesin, Elektro)"
-        elif 700 <= val < 900:
-            label_map[idx] = "Teknik Grafika & Penerbitan"
+    if main <= 99:
+        return "Teknik Informatika & Komputer"
+    elif main <= 199:
+        return "Umum"
+    elif main <= 299:
+        return "Umum"
+    elif main <= 399:
+        if main in (332, 336):
+            return "Akuntansi"
+        elif 370 <= main <= 379:
+            return "Umum"
+        return "Administrasi Niaga"
+    elif main <= 499:
+        return "Umum"
+    elif main <= 599:
+        if 510 <= main <= 519:
+            return "Matematika"
+        elif 530 <= main <= 539:
+            return "Teknik Elektro"
+        elif 540 <= main <= 549:
+            return "Teknik Sipil"
+        return "Sains"
+    elif main <= 699:
+        if main <= 609:
+            return "Teknik Mesin"
+        elif main <= 619:
+            return "Umum"
+        elif main == 620:
+            return "Teknik Mesin"
+        elif main == 621:
+            if sub.startswith('3'):
+                return "Teknik Elektro"
+            return "Teknik Mesin"
+        elif main <= 623:
+            return "Teknik Mesin"
+        elif main <= 629:
+            return "Teknik Sipil"
+        elif main <= 649:
+            return "Umum"
+        elif main <= 656:
+            return "Administrasi Niaga"
+        elif main == 657:
+            return "Akuntansi"
+        elif main <= 659:
+            return "Administrasi Niaga"
+        elif main <= 669:
+            return "Teknik Sipil"
+        elif main <= 685:
+            return "Teknik Mesin"
+        elif main == 686:
+            return "Teknik Grafika & Penerbitan"
+        elif main <= 689:
+            return "Teknik Mesin"
         else:
-            label_map[idx] = "Lainnya (Agama, Bahasa, Umum)"
-    return label_map
-
-DDC_LABEL_MAP = generate_dynamic_labels(cntr)
+            return "Teknik Sipil"
+    elif main <= 799:
+        if main <= 779:
+            return "Teknik Grafika & Penerbitan"
+        return "Umum"
+    elif main <= 899:
+        return "Umum"
+    else:
+        return "Umum"
 
 # ─────────────────────────────────────────────
-# Helper: Bersihkan kode DDC ke angka 3 digit
+# Load Model Hybrid
+# ─────────────────────────────────────────────
+MODEL_DIR = os.path.dirname(__file__)
+HYBRID_PATH = os.path.join(MODEL_DIR, 'MODEL_HYBRID.pickle')
+
+tfidf_model = None
+clf_model = None
+model_info = {}
+
+def load_models():
+    global tfidf_model, clf_model, model_info
+
+    if os.path.exists(HYBRID_PATH):
+        with open(HYBRID_PATH, 'rb') as f:
+            data = pickle.load(f)
+        tfidf_model = data.get('tfidf')
+        clf_model = data.get('clf')
+        model_info = {
+            'mode': 'hybrid',
+            'accuracy_cv': data.get('accuracy_cv', 0),
+            'accuracy_train': data.get('accuracy_train', 0),
+            'n_data': data.get('n_data', 0),
+            'jurusan_list': data.get('jurusan_list', JURUSAN_LIST),
+        }
+        print("[OK] Model HYBRID dimuat (Text Classifier)")
+        return True
+
+    print("[WARNING] Tidak ada model yang ditemukan!")
+    return False
+
+load_models()
+
+# ─────────────────────────────────────────────
+# Helper: Bersihkan kode DDC
 # ─────────────────────────────────────────────
 def clean_ddc(text_val):
     if text_val is None:
@@ -83,41 +161,175 @@ def clean_ddc(text_val):
         return int(match.group(1))
     return None
 
+def build_text(title=None, description=None, notes=None):
+    parts = []
+    for val in [title, description, notes]:
+        if val:
+            s = str(val).strip()
+            if s and s.lower() not in ('null', 'none', 'nan', ''):
+                parts.append(s)
+    return ' '.join(parts) if parts else ''
+
 # ─────────────────────────────────────────────
-# Helper: Prediksi Multilabel menggunakan FCM
+# Keyword heuristic untuk koreksi prediksi rendah
 # ─────────────────────────────────────────────
-def predict_multilabel(ddc_value, threshold=0.05):
+KEYWORD_HINTS = {
+    "Teknik Informatika & Komputer": [
+        "pemrograman", "programming", "algoritma", "database", "jaringan",
+        "komputer", "computer", "software", "hardware", "coding", "java",
+        "python", "php", "html", "css", "javascript", "web", "internet",
+        "basis data", "data mining", "big data", "data science",
+        "sistem informasi", "kecerdasan buatan",
+        "artificial intelligence", "machine learning", "linux", "android",
+    ],
+    "Teknik Sipil": [
+        "beton", "konstruksi", "bangunan", "jembatan", "jalan raya",
+        "struktur", "pondasi", "tanah", "geoteknik", "hidrologi",
+        "irigasi", "drainase", "perkerasan", "arsitektur", "tata ruang",
+    ],
+    "Teknik Mesin": [
+        "mesin", "engine", "turbin", "pompa", "pneumatik", "hidrolik",
+        "termodinamika", "manufaktur", "pengelasan", "welding", "cnc",
+        "otomotif", "motor", "refrigerasi", "hvac", "perancangan mesin",
+    ],
+    "Teknik Elektro": [
+        "elektronika", "rangkaian", "listrik", "electrical", "circuit",
+        "mikrokontroler", "arduino", "plc", "sensor", "transistor",
+        "tegangan", "arus", "daya listrik", "transformator", "relay",
+        "robotik", "robot", "telekomunikasi", "sinyal", "antena",
+    ],
+    "Teknik Grafika & Penerbitan": [
+        "cetak", "percetakan", "printing", "grafika", "desain grafis",
+        "layout", "tipografi", "penerbitan", "publishing", "offset",
+        "fotografi", "photography", "illustrasi", "prepress",
+    ],
+    "Administrasi Niaga": [
+        "manajemen", "management", "pemasaran", "marketing", "bisnis",
+        "business", "perdagangan", "ekspor", "impor", "logistik",
+        "sumber daya manusia", "sdm", "hrm", "organisasi", "kepemimpinan",
+        "leadership", "wirausaha", "entrepreneur", "e-commerce",
+    ],
+    "Akuntansi": [
+        "akuntansi", "accounting", "audit", "pajak", "tax", "neraca",
+        "laporan keuangan", "financial", "anggaran", "budget", "debit",
+        "kredit", "jurnal akuntansi", "aset", "liabilitas", "ekuitas",
+    ],
+    "Matematika": [
+        "matematika", "mathematics", "kalkulus", "calculus", "aljabar",
+        "algebra", "statistik", "statistics", "probabilitas", "logika",
+        "diskrit", "numerik", "geometri", "trigonometri", "matriks",
+    ],
+    "Sains": [
+        "sains", "science", "biologi", "biology", "kimia", "chemistry",
+        "fisika", "physics", "astronomi", "alam", "ekologi", "lingkungan",
+    ],
+    "Umum": [
+        "agama", "islam", "shalat", "quran", "alkitab", "filsafat",
+        "psikologi", "bahasa", "sastra", "novel", "puisi", "cerpen",
+        "sejarah", "geografi", "terapi", "herbal", "penyakit", "obat",
+        "kesehatan", "health", "kedokteran", "medical", "farmasi",
+        "gizi", "nutrisi", "diet", "diabetes", "kanker", "jantung",
+        "stroke", "darah tinggi", "kolesterol", "pendidikan", "olahraga",
+    ],
+}
+
+def keyword_boost(text, labels):
     """
-    Mengembalikan daftar label beserta probabilitasnya.
-    Hanya label dengan probabilitas >= threshold yang dikembalikan.
+    Jika prediksi top memiliki confidence rendah (<60%),
+    gunakan keyword heuristic untuk membantu koreksi.
     """
-    global cntr, DDC_LABEL_MAP
-    if cntr is None:
-        cntr = load_model()
-        DDC_LABEL_MAP = generate_dynamic_labels(cntr)
-    if cntr is None or ddc_value is None:
-        return []
+    if not labels or not text:
+        return labels
 
-    # Format data untuk cmeans_predict (harus 2D array)
-    test_data = np.array([[float(ddc_value)], [0.0]])
+    top_conf = labels[0]["probabilitas"]
+    if top_conf >= 60.0:
+        return labels  # Model sudah cukup yakin
 
-    # Prediksi keanggotaan fuzzy
-    u, _, _, _, _, _ = fuzz.cluster.cmeans_predict(
-        test_data, cntr, m=2.0, error=0.005, maxiter=1000
-    )
+    text_lower = text.lower()
 
+    # Hitung skor keyword untuk setiap jurusan
+    keyword_scores = {}
+    for jurusan, keywords in KEYWORD_HINTS.items():
+        score = sum(1 for kw in keywords if kw in text_lower)
+        if score > 0:
+            keyword_scores[jurusan] = score
+
+    if not keyword_scores:
+        return labels  # Tidak ada keyword cocok
+
+    # Jurusan dengan keyword paling banyak cocok
+    best_jurusan = max(keyword_scores, key=keyword_scores.get)
+
+    # Boost: naikkan probabilitas jurusan yang cocok keyword
+    boosted = []
+    total_boost = 15.0 * keyword_scores[best_jurusan]  # 15% per keyword match
+
+    for item in labels:
+        new_item = item.copy()
+        if item["label"] == best_jurusan:
+            new_item["probabilitas"] = min(99.0, item["probabilitas"] + total_boost)
+        else:
+            # Kurangi proporsional
+            reduction = total_boost / max(len(labels) - 1, 1)
+            new_item["probabilitas"] = max(0.0, item["probabilitas"] - reduction)
+        boosted.append(new_item)
+
+    # Normalisasi agar total = 100%
+    total_prob = sum(b["probabilitas"] for b in boosted)
+    if total_prob > 0:
+        for b in boosted:
+            b["probabilitas"] = round(b["probabilitas"] / total_prob * 100, 2)
+
+    # Re-sort
+    boosted.sort(key=lambda x: x["probabilitas"], reverse=True)
+    return boosted
+
+
+# ─────────────────────────────────────────────
+# Prediksi Multilabel -> Jurusan PNJ
+# ─────────────────────────────────────────────
+def predict_multilabel(ddc_value=None, book_text=None, ddc_raw=None, threshold=0.05):
+    """
+    Prediksi jurusan PNJ untuk sebuah buku.
+    Prioritas: Text Classifier > Keyword Correction > DDC mapping fallback.
+    """
     labels = []
-    for klaster_idx, prob in enumerate(u[:, 0]):
-        if prob >= threshold:
-            labels.append({
-                "klaster": klaster_idx,
-                "label": DDC_LABEL_MAP.get(klaster_idx, f"Klaster {klaster_idx}"),
-                "probabilitas": round(float(prob) * 100, 2)
-            })
 
-    # Urutkan dari probabilitas tertinggi
-    labels.sort(key=lambda x: x["probabilitas"], reverse=True)
+    # --- Metode 1: Text Classifier (utama) ---
+    if book_text and tfidf_model is not None and clf_model is not None:
+        try:
+            X = tfidf_model.transform([book_text])
+            probas = clf_model.predict_proba(X)[0]
+            classes = clf_model.classes_
+
+            for jur, prob in zip(classes, probas):
+                if prob >= threshold:
+                    labels.append({
+                        "label": jur,
+                        "probabilitas": round(float(prob) * 100, 2),
+                        "metode": "text_classifier"
+                    })
+
+            labels.sort(key=lambda x: x["probabilitas"], reverse=True)
+
+            # Koreksi dengan keyword jika confidence rendah
+            labels = keyword_boost(book_text, labels)
+
+            return labels
+        except Exception as e:
+            print(f"[WARN] Text classifier error: {e}")
+
+    # --- Metode 2: DDC Mapping fallback ---
+    if ddc_raw or ddc_value is not None:
+        jur = ddc_to_jurusan(ddc_raw or str(ddc_value))
+        labels.append({
+            "label": jur,
+            "probabilitas": 100.0,
+            "metode": "ddc_mapping"
+        })
+
     return labels
+
 
 # ─────────────────────────────────────────────
 # Endpoint: GET /api/buku/search?keyword=...
@@ -126,19 +338,19 @@ def predict_multilabel(ddc_value, threshold=0.05):
 def search_buku():
     keyword = request.args.get('keyword', '').strip()
     filters = request.args.get('filters', '').strip()
-
-    # Jika keduanya kosong, kembalikan hasil kosong atau default
-    if not keyword and not filters:
-        return jsonify([])
+    page = int(request.args.get('page', 1))
+    per_page = min(int(request.args.get('per_page', 24)), 50)  # Max 50
 
     filter_list = [f.strip().lower() for f in filters.split(',')] if filters else []
 
     try:
-        global cntr
-        if cntr is None:
-            cntr = load_model()
-            
         with engine.connect() as conn:
+            # Hitung total khusus jika tidak ada keyword dan filter
+            total_buku_db = 0
+            if not keyword and not filters:
+                total_query = text("SELECT COUNT(*) FROM biblio WHERE opac_hide = 0 AND classification IS NOT NULL AND classification != ''")
+                total_buku_db = conn.execute(total_query).scalar()
+
             query_base = """
                 SELECT 
                     b.biblio_id,
@@ -148,7 +360,9 @@ def search_buku():
                     b.collation,
                     b.classification,
                     b.call_number,
-                    b.image
+                    b.image,
+                    b.spec_detail_info,
+                    b.notes
                 FROM biblio b
                 WHERE b.opac_hide = 0 
                   AND b.classification IS NOT NULL 
@@ -163,50 +377,103 @@ def search_buku():
                     end_val = int(m_range.group(2))
                     query_base += f" AND (CAST(SUBSTRING(b.classification, 1, 3) AS UNSIGNED) BETWEEN {start_val} AND {end_val})"
                 else:
-                    query_base += " AND (b.title LIKE :kw OR b.sor LIKE :kw)"
+                    query_base += " AND (b.title LIKE :kw OR b.sor LIKE :kw OR b.notes LIKE :kw)"
                     params["kw"] = f"%{keyword}%"
                 
-            query_base += " ORDER BY b.title ASC LIMIT 100"
+                query_base += " ORDER BY b.title ASC LIMIT 500" # Ambil lebih banyak untuk dipaginasi
+            elif filters:
+                query_base += " ORDER BY b.title ASC LIMIT 800" # Evaluasi up to 800 buku
+            else:
+                # Pagination query if no keyword and no filter
+                offset = (page - 1) * per_page
+                query_base += f" ORDER BY b.title ASC LIMIT {per_page} OFFSET {offset}"
             
             query = text(query_base)
             rows = conn.execute(query, params).mappings().all()
 
-        # Bangun response JSON dengan filter Multilabel
         hasil = []
         for row in rows:
             ddc_bersih = clean_ddc(row["classification"])
             if ddc_bersih is None:
                 continue
-                
-            multilabel = predict_multilabel(ddc_bersih)
+
+            book_text = build_text(
+                title=row["title"],
+                description=row.get("spec_detail_info"),
+                notes=row.get("notes")
+            )
+
+            multilabel = predict_multilabel(
+                ddc_value=ddc_bersih,
+                book_text=book_text,
+                ddc_raw=row["classification"]
+            )
             
-            # Jika ada filter dari checkbox, cek top label (probabilitas tertinggi)
             if filter_list and len(multilabel) > 0:
-                top_label = multilabel[0]['label'].lower()
-                # Jika top_label buku BUKAN salah satu dari filter yang dicentang, skip!
-                if not any(f in top_label for f in filter_list):
+                match_found = False
+                for item in multilabel:
+                    label_lower = item['label'].lower()
+                    if any(f in label_lower for f in filter_list):
+                        match_found = True
+                        break
+                if not match_found:
                     continue
+
+            # Bersihkan deskripsi (hapus literal 'null')
+            desc_raw = row.get("spec_detail_info") or ""
+            desc = desc_raw.strip() if str(desc_raw).strip().lower() not in ('null', 'none', 'nan', '') else ""
+
+            # Bersihkan notes
+            notes_raw = row.get("notes") or ""
+            notes_clean = notes_raw.strip() if str(notes_raw).strip().lower() not in ('null', 'none', 'nan', '') else ""
+
+            # Bersihkan collation (Pages) menggunakan Regex
+            collation_raw = str(row.get("collation") or "-")
+            pages_clean = collation_raw
+            pages_match = re.search(r'(\d+)\s*(?:hlm|hal|halaman)', collation_raw, re.IGNORECASE)
+            if pages_match:
+                pages_clean = pages_match.group(1) + " hlm."
 
             buku = {
                 "biblio_id":    row["biblio_id"],
                 "Book_Title":   row["title"],
                 "Author":       row["author"] or "Tidak Diketahui",
                 "Year_Published": row["publish_year"] or "-",
-                "Pages":        row["collation"] or "-",
+                "Pages":        pages_clean,
                 "Book_Code":    row["classification"] or "-",
                 "Call_Number":  row["call_number"] or "-",
                 "Publisher":    "-",
                 "Image":        f"/repository/{row['image']}" if row['image'] else None,
+                "Description":  desc,
+                "Notes":        notes_clean,
+                "has_notes":    bool(notes_clean),
                 "DDC_Bersih":   ddc_bersih,
                 "Multilabel":   multilabel,
             }
             hasil.append(buku)
             
-            # Batasi hasil yang dikirim ke frontend 50 buku saja agar cepat
-            if len(hasil) >= 50:
+            # Jika menggunakan keyword/filter, batasi hasil yang dikumpulkan (misal max 200) agar tidak lambat
+            if (keyword or filters) and len(hasil) >= 200:
                 break
 
-        return jsonify(hasil)
+        # Terapkan pagination
+        if not keyword and not filters:
+            final_data = hasil
+            total_items = total_buku_db
+        else:
+            total_items = len(hasil)
+            offset = (page - 1) * per_page
+            final_data = hasil[offset : offset + per_page]
+
+        return jsonify({
+            "data": final_data,
+            "pagination": {
+                "total": total_items,
+                "page": page,
+                "per_page": per_page,
+                "total_pages": max(1, (total_items + per_page - 1) // per_page)
+            }
+        })
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -221,19 +488,10 @@ def detail_buku(biblio_id):
         with engine.connect() as conn:
             query = text("""
                 SELECT 
-                    b.biblio_id,
-                    b.title,
-                    b.sor        AS author,
-                    b.edition,
-                    b.isbn_issn,
-                    b.publish_year,
-                    b.collation,
-                    b.series_title,
-                    b.classification,
-                    b.call_number,
-                    b.notes,
-                    b.image,
-                    b.spec_detail_info
+                    b.biblio_id, b.title, b.sor AS author,
+                    b.edition, b.isbn_issn, b.publish_year,
+                    b.collation, b.series_title, b.classification,
+                    b.call_number, b.notes, b.image, b.spec_detail_info
                 FROM biblio b
                 WHERE b.biblio_id = :id
                 LIMIT 1
@@ -244,7 +502,30 @@ def detail_buku(biblio_id):
             return jsonify({"error": "Buku tidak ditemukan."}), 404
 
         ddc_bersih = clean_ddc(row["classification"])
-        multilabel = predict_multilabel(ddc_bersih)
+        book_text = build_text(
+            title=row["title"],
+            description=row.get("spec_detail_info"),
+            notes=row.get("notes")
+        )
+        multilabel = predict_multilabel(
+            ddc_value=ddc_bersih, book_text=book_text,
+            ddc_raw=row["classification"]
+        )
+
+        # Bersihkan deskripsi
+        desc_raw = row.get("spec_detail_info") or ""
+        desc = desc_raw.strip() if str(desc_raw).strip().lower() not in ('null', 'none', 'nan', '') else ""
+
+        # Bersihkan notes
+        notes_raw = row.get("notes") or ""
+        notes_clean = notes_raw.strip() if str(notes_raw).strip().lower() not in ('null', 'none', 'nan', '') else ""
+
+        # Bersihkan collation (Pages) menggunakan Regex
+        collation_raw = str(row.get("collation") or "-")
+        pages_clean = collation_raw
+        pages_match = re.search(r'(\d+)\s*(?:hlm|hal|halaman)', collation_raw, re.IGNORECASE)
+        if pages_match:
+            pages_clean = pages_match.group(1) + " hlm."
 
         return jsonify({
             "biblio_id":    row["biblio_id"],
@@ -253,14 +534,16 @@ def detail_buku(biblio_id):
             "Edition":      row["edition"] or "-",
             "ISBN":         row["isbn_issn"] or "-",
             "Year_Published": row["publish_year"] or "-",
-            "Pages":        row["collation"] or "-",
+            "Pages":        pages_clean,
             "Series":       row["series_title"] or "-",
             "Book_Code":    row["classification"] or "-",
             "Call_Number":  row["call_number"] or "-",
-            "Notes":        row["notes"] or "-",
+            "Notes":        notes_clean or "-",
+            "has_notes":    bool(notes_clean),
             "Publisher":    "-",
             "Place":        "-",
             "Image":        row["image"] or None,
+            "Description":  desc,
             "DDC_Bersih":   ddc_bersih,
             "Multilabel":   multilabel,
         })
@@ -274,12 +557,15 @@ def detail_buku(biblio_id):
 # ─────────────────────────────────────────────
 @app.route('/api/status', methods=['GET'])
 def status():
-    model_loaded = cntr is not None
+    mode = model_info.get('mode', 'none')
     return jsonify({
         "status": "ok",
-        "model_loaded": model_loaded,
-        "n_clusters": int(cntr.shape[0]) if model_loaded else 0,
-        "ddc_label_map": DDC_LABEL_MAP
+        "model_mode": mode,
+        "text_classifier": clf_model is not None,
+        "accuracy_cv": model_info.get('accuracy_cv', 0),
+        "accuracy_train": model_info.get('accuracy_train', 0),
+        "n_data_trained": model_info.get('n_data', 0),
+        "jurusan_pnj": model_info.get('jurusan_list', JURUSAN_LIST),
     })
 
 
@@ -287,16 +573,20 @@ def status():
 # Main
 # ─────────────────────────────────────────────
 if __name__ == '__main__':
-    print("=" * 55)
+    mode = model_info.get('mode', 'none')
+    print("=" * 60)
     print("  E-DDC Python AI API Server")
-    print("  Berjalan di  : http://127.0.0.1:5000")
-    print("  Endpoint     : /api/buku/search?keyword=...")
-    print("  Status       : /api/status")
-    print("=" * 55)
-    if cntr is None:
-        print("[WARNING]  PERINGATAN: Model FUZZY_CENTERS.pickle belum ada.")
-        print("           Jalankan dulu: python train_model.py")
+    print(f"  Mode       : {mode.upper()}")
+    print(f"  Jurusan    : {len(JURUSAN_LIST)} kelas PNJ")
+    print("  Server     : http://127.0.0.1:5000")
+    print("  Search     : /api/buku/search?keyword=...")
+    print("  Detail     : /api/buku/detail/<id>")
+    print("  Status     : /api/status")
+    print("=" * 60)
+    if mode == 'hybrid':
+        acc = model_info.get('accuracy_cv', 0) * 100
+        print(f"[OK] Text Classifier dimuat (akurasi CV: {acc:.1f}%)")
     else:
-        print(f"[OK]  Model FCM dimuat ({cntr.shape[0]} klaster).")
-    print("=" * 55)
+        print("[WARNING] Model belum ada. Jalankan 'python train_model.py'")
+    print("=" * 60)
     app.run(host='127.0.0.1', port=5000, debug=True)

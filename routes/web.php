@@ -12,32 +12,38 @@ Route::get('/', function () {
 Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
     $keyword = trim($request->input('keyword', ''));
     $filters = $request->input('filters', []);
+    $page    = $request->input('page', 1);
 
-    $books    = [];
-    $apiError = false;
+    $books      = [];
+    $pagination = null;
+    $apiError   = false;
 
-    if ($keyword !== '' || !empty($filters)) {
-        try {
-            $response = Http::timeout(10)->get('http://127.0.0.1:5000/api/buku/search', [
-                'keyword' => $keyword,
-                'filters' => is_array($filters) ? implode(',', $filters) : $filters
-            ]);
+    try {
+        $response = Http::timeout(10)->get('http://127.0.0.1:5000/api/buku/search', [
+            'keyword' => $keyword,
+            'filters' => is_array($filters) ? implode(',', $filters) : $filters,
+            'page'    => $page
+        ]);
 
-            if ($response->successful()) {
-                $json = $response->json();
-                // API mengembalikan array buku langsung
+        if ($response->successful()) {
+            $json = $response->json();
+            if (isset($json['data']) && isset($json['pagination'])) {
+                $books      = $json['data'];
+                $pagination = $json['pagination'];
+            } else {
                 $books = is_array($json) ? $json : [];
             }
-        } catch (\Exception $e) {
-            // Server Python tidak aktif — tampilkan pesan ramah
-            $apiError = true;
         }
+    } catch (\Exception $e) {
+        $apiError = true;
     }
 
     return view('hasil_klasifikasi', [
-        'books'    => $books,
-        'keyword'  => $keyword,
-        'apiError' => $apiError,
+        'books'      => $books,
+        'keyword'    => $keyword,
+        'filters'    => $filters,
+        'pagination' => $pagination,
+        'apiError'   => $apiError,
     ]);
 })->name('klasifikasi.process');
 

@@ -82,12 +82,11 @@
             </p>
             
             <!-- Form Pencarian Glassmorphism -->
-            <form id="searchForm" action="{{ route('klasifikasi.process') }}" method="POST" class="mx-auto flex w-full max-w-3xl items-center rounded-full border border-white/20 bg-white/10 p-2 shadow-2xl backdrop-blur-md focus-within:ring-4 focus-within:ring-blue-500/30 transition-all duration-300">
-                @csrf
+            <form id="searchForm" action="{{ route('klasifikasi.process') }}" method="GET" class="mx-auto flex w-full max-w-3xl items-center rounded-full border border-white/20 bg-white/10 p-2 shadow-2xl backdrop-blur-md focus-within:ring-4 focus-within:ring-blue-500/30 transition-all duration-300">
                 <div class="pl-6 text-slate-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 </div>
-                <input id="searchInput" type="text" name="keyword" placeholder="Masukkan Judul, Pengarang, atau Kode DDC (Misal: 911)..." required autocomplete="off" 
+                <input id="searchInput" type="text" name="keyword" placeholder="Masukkan Judul, Pengarang, atau Kode DDC (Misal: 911)..." autocomplete="off" 
                        class="w-full bg-transparent px-4 py-3 text-lg text-white placeholder-slate-300/70 outline-none">
                 <button type="submit" class="shrink-0 cursor-pointer rounded-full bg-gradient-to-r from-[#f39c12] to-orange-500 px-8 py-4 text-base font-bold text-white shadow-lg transition-transform duration-300 hover:scale-105 active:scale-95">
                     Cari Koleksi
