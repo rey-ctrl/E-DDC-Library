@@ -434,6 +434,11 @@ def search_buku():
             if pages_match:
                 pages_clean = pages_match.group(1) + " hlm."
 
+            # Bersihkan image (abaikan default cover SLiMS)
+            image_val = row['image']
+            if image_val and re.search(r'cover\.(jpg|jpeg|png)$', str(image_val).strip().lower()):
+                image_val = None
+
             buku = {
                 "biblio_id":    row["biblio_id"],
                 "Book_Title":   row["title"],
@@ -443,7 +448,7 @@ def search_buku():
                 "Book_Code":    row["classification"] or "-",
                 "Call_Number":  row["call_number"] or "-",
                 "Publisher":    "-",
-                "Image":        f"/repository/{row['image']}" if row['image'] else None,
+                "Image":        f"/repository/{image_val}" if image_val else None,
                 "Description":  desc,
                 "Notes":        notes_clean,
                 "has_notes":    bool(notes_clean),
@@ -527,6 +532,11 @@ def detail_buku(biblio_id):
         if pages_match:
             pages_clean = pages_match.group(1) + " hlm."
 
+        # Bersihkan image (abaikan default cover SLiMS)
+        image_val = row['image']
+        if image_val and re.search(r'cover\.(jpg|jpeg|png)$', str(image_val).strip().lower()):
+            image_val = None
+
         return jsonify({
             "biblio_id":    row["biblio_id"],
             "Book_Title":   row["title"],
@@ -542,7 +552,7 @@ def detail_buku(biblio_id):
             "has_notes":    bool(notes_clean),
             "Publisher":    "-",
             "Place":        "-",
-            "Image":        row["image"] or None,
+            "Image":        f"/repository/{image_val}" if image_val else None,
             "Description":  desc,
             "DDC_Bersih":   ddc_bersih,
             "Multilabel":   multilabel,
