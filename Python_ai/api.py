@@ -382,7 +382,37 @@ def search_buku():
                 
                 query_base += " ORDER BY b.title ASC LIMIT 500" # Ambil lebih banyak untuk dipaginasi
             elif filters:
-                query_base += " ORDER BY b.title ASC LIMIT 800" # Evaluasi up to 800 buku
+                # Pre-filter menggunakan SQL agar AI tidak mengevaluasi buku secara alfabetis dari awal
+                filter_conditions = []
+                ddc_hints = {
+                    "teknik informatika & komputer": ["003", "004", "005", "006"],
+                    "teknik sipil": ["620", "624", "625", "627", "628", "629", "690", "691", "692", "693", "694", "695", "696", "697", "698", "699"],
+                    "teknik mesin": ["621.1", "621.2", "621.8", "621.9", "629"],
+                    "teknik elektro": ["621.3", "621.4"],
+                    "akuntansi": ["650", "657", "658", "659", "336"],
+                    "administrasi niaga": ["300", "340", "350", "380", "651", "330", "332"],
+                    "teknik grafika & penerbitan": ["070", "686", "700", "740", "760", "770"],
+                    "sains": ["500", "530", "540", "570", "580", "590"],
+                    "matematika": ["510", "511", "512", "513", "514", "515", "516", "518", "519"],
+                    "umum": ["100", "200", "400", "800", "900"],
+                }
+
+                for f in filter_list:
+                    # 1. Tambahkan kondisi berdasarkan keyword utama dari KEYWORD_HINTS (partial match key)
+                    for k, v in KEYWORD_HINTS.items():
+                        if f in k.lower() or k.lower() in f:
+                            for word in v[:8]:  # Ambil 8 keyword teratas
+                                filter_conditions.append(f"b.title LIKE '%{word}%'")
+                    
+                    # 2. Tambahkan kondisi berdasarkan prefix DDC
+                    if f in ddc_hints:
+                        for prefix in ddc_hints[f]:
+                            filter_conditions.append(f"b.classification LIKE '{prefix}%'")
+
+                if filter_conditions:
+                    query_base += " AND (" + " OR ".join(filter_conditions) + ")"
+                
+                query_base += " ORDER BY b.publish_year DESC, b.title ASC LIMIT 2000"
             else:
                 # Pagination query if no keyword and no filter
                 offset = (page - 1) * per_page
@@ -458,7 +488,7 @@ def search_buku():
             hasil.append(buku)
             
             # Jika menggunakan keyword/filter, batasi hasil yang dikumpulkan (misal max 200) agar tidak lambat
-            if (keyword or filters) and len(hasil) >= 200:
+            if (keyword or filters) and len(hasil) >= 500:
                 break
 
         # Terapkan pagination

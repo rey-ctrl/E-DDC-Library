@@ -122,7 +122,7 @@
                     </button>
             </div>
 
-            <!-- Jurusan PNJ (Multi-Select Dropdown) -->
+            <!-- Jurusan PNJ (Static Checkbox List) -->
             <div class="border-b border-slate-100 p-5">
                 <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Filter Klasifikasi AI</label>
                 @php
@@ -141,29 +141,17 @@
                     $activeFilters = request('filters', []);
                 @endphp
                 
-                <div class="relative w-full" id="multiSelectDropdown">
-                    <button type="button" onclick="toggleDropdown()" class="w-full flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-[13px] text-slate-700 shadow-sm transition hover:border-blue-300 hover:shadow-md focus:border-[#1e3c72] focus:ring-4 focus:ring-blue-50">
-                        <span id="dropdownLabel" class="truncate font-medium">Semua Jurusan PNJ</span>
-                        <svg class="h-4 w-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu" class="absolute z-20 mt-2 hidden w-full overflow-hidden rounded-xl border border-slate-100 bg-white shadow-2xl ring-1 ring-black/5">
-                        <div class="p-2 space-y-1 max-h-72 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
-                            @foreach($pnjClasses as $nama)
-                            <label class="flex w-full cursor-pointer items-start gap-3 rounded-lg px-3 py-2.5 hover:bg-blue-50/80 transition group">
-                                <input type="checkbox" name="filters[]" value="{{ $nama }}" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#1e3c72] focus:ring-[#1e3c72] transition" {{ in_array($nama, $activeFilters) ? 'checked' : '' }}>
-                                <span class="text-[12.5px] leading-tight text-slate-600 group-hover:font-medium group-hover:text-[#1e3c72]">{{ $nama }}</span>
-                            </label>
-                            @endforeach
-                        </div>
-                        <div class="border-t border-slate-100 bg-slate-50/80 p-3">
-                            <button type="button" onclick="applyAiFilter()" class="w-full rounded-lg bg-[#1e3c72] py-2 text-center text-[12.5px] font-bold text-white shadow-sm transition hover:bg-blue-900 active:scale-95">
-                                Terapkan Filter
-                            </button>
-                        </div>
-                    </div>
+                <div class="space-y-1 max-h-[280px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
+                    @foreach($pnjClasses as $nama)
+                    <label class="flex w-full cursor-pointer items-start gap-3 rounded-lg px-3 py-2 hover:bg-blue-50/80 transition group">
+                        <input type="checkbox" name="filters[]" value="{{ $nama }}" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#1e3c72] focus:ring-[#1e3c72] transition" {{ in_array($nama, $activeFilters) ? 'checked' : '' }}>
+                        <span class="text-[12px] leading-tight text-slate-600 group-hover:font-medium group-hover:text-[#1e3c72]">{{ $nama }}</span>
+                    </label>
+                    @endforeach
                 </div>
+                <button type="button" onclick="applyAiFilter()" class="mt-3 w-full rounded-lg bg-[#1e3c72] py-2 text-center text-[12.5px] font-bold text-white shadow-sm transition hover:bg-blue-900 active:scale-95">
+                    Terapkan Filter
+                </button>
             </div>
             
             <div class="p-5 pb-6 flex flex-col">
@@ -215,40 +203,8 @@
                 document.getElementById('sideSearchForm').submit();
             }
 
-            function toggleDropdown() {
-                document.getElementById('dropdownMenu').classList.toggle('hidden');
-            }
 
-            // Menutup dropdown AI jika klik di luar
-            document.addEventListener('click', function(event) {
-                const aiDd = document.getElementById('multiSelectDropdown');
-                if (!aiDd.contains(event.target)) {
-                    document.getElementById('dropdownMenu').classList.add('hidden');
-                }
-            });
 
-            // Update label dropdown
-            document.addEventListener('DOMContentLoaded', function() {
-                // AI Filter label
-                const checkboxes = document.querySelectorAll('input[name="filters[]"]');
-                const label = document.getElementById('dropdownLabel');
-                function updateLabel() {
-                    const checked = Array.from(checkboxes).filter(c => c.checked).map(c => c.value);
-                    if (checked.length === 0) {
-                        label.textContent = "Semua Jurusan PNJ";
-                        label.classList.remove('text-[#1e3c72]', 'font-bold');
-                    } else if (checked.length === 1) {
-                        label.textContent = checked[0];
-                        label.classList.add('text-[#1e3c72]', 'font-bold');
-                    } else {
-                        label.textContent = checked.length + " Jurusan Terpilih";
-                        label.classList.add('text-[#1e3c72]', 'font-bold');
-                    }
-                }
-                checkboxes.forEach(c => c.addEventListener('change', updateLabel));
-                updateLabel();
-
-                // DDC label – show current DDC category if active
                 const currentKw = '{{ $keyword }}';
                 const ddcLabel = document.getElementById('ddcDropdownLabel');
                 const ddcMap = {!! json_encode(collect($ddcMurni)->mapWithKeys(fn($item) => [$item[0] => $item[1]])) !!};
