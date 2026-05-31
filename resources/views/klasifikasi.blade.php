@@ -54,13 +54,29 @@
             
             <!-- Bagian Menu -->
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                <ul class="mt-4 flex flex-col items-center rounded-lg border border-slate-100 bg-slate-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0 rtl:space-x-reverse">
+                <ul class="mt-4 flex flex-col items-center rounded-lg border border-slate-100 bg-slate-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-3 md:border-0 md:bg-transparent md:p-0 rtl:space-x-reverse">
+                    @auth
                     <li>
-                        <!-- Menu Home Pill Button -->
-                        <a href="/" class="block rounded-full bg-[#1e3c72] px-8 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-900/40" aria-current="page">
-                            Home
+                        <a href="{{ route('buku.tambah') }}" class="block rounded-full border border-[#1e3c72] bg-white px-6 py-2.5 text-center text-sm font-semibold text-[#1e3c72] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md">
+                            <svg class="inline-block h-4 w-4 mr-1 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            Tambah Buku
                         </a>
                     </li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="block rounded-full bg-red-500 px-8 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-red-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-600 hover:shadow-red-500/40 cursor-pointer">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                    @else
+                    <li>
+                        <a href="{{ route('login') }}" class="block rounded-full bg-[#1e3c72] px-8 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-900/40">
+                            Login
+                        </a>
+                    </li>
+                    @endauth
                 </ul>
             </div>
         </div>

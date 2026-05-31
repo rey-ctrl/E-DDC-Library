@@ -602,6 +602,58 @@ def detail_buku(biblio_id):
 
 
 # ─────────────────────────────────────────────
+# Endpoint: POST /api/buku/store
+# ─────────────────────────────────────────────
+@app.route('/api/buku/store', methods=['POST'])
+def store_buku():
+    """Tambah buku baru ke database biblio."""
+    try:
+        data = request.get_json() or {}
+
+        title = data.get('title', '').strip()
+        sor = data.get('sor', '').strip()
+        classification = data.get('classification', '').strip()
+
+        if not title or not sor or not classification:
+            return jsonify({"error": "Field title, sor, dan classification wajib diisi."}), 400
+
+        with engine.connect() as conn:
+            insert_query = text("""
+                INSERT INTO biblio (title, sor, publish_year, isbn_issn, classification, 
+                    call_number, edition, collation, series_title, spec_detail_info, notes, 
+                    opac_hide, input_date, last_update)
+                VALUES (:title, :sor, :publish_year, :isbn_issn, :classification, 
+                    :call_number, :edition, :collation, :series_title, :spec_detail_info, :notes, 
+                    0, NOW(), NOW())
+            """)
+            result = conn.execute(insert_query, {
+                "title": title,
+                "sor": sor,
+                "publish_year": data.get('publish_year', ''),
+                "isbn_issn": data.get('isbn_issn', ''),
+                "classification": classification,
+                "call_number": data.get('call_number', ''),
+                "edition": data.get('edition', ''),
+                "collation": data.get('collation', ''),
+                "series_title": data.get('series_title', ''),
+                "spec_detail_info": data.get('spec_detail_info', ''),
+                "notes": data.get('notes', ''),
+            })
+            conn.commit()
+
+            new_id = result.lastrowid
+
+        return jsonify({
+            "success": True,
+            "message": f"Buku '{title}' berhasil ditambahkan.",
+            "biblio_id": new_id,
+        }), 201
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# ─────────────────────────────────────────────
 # Endpoint: GET /api/status
 # ─────────────────────────────────────────────
 @app.route('/api/status', methods=['GET'])

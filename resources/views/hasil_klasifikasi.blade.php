@@ -83,9 +83,27 @@
                 </span>
             </a>
 
-            <a href="/" class="block rounded-full bg-[#1e3c72] px-6 py-2.5 text-center text-sm font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-blue-700">
-                Home
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="/" class="block rounded-full border border-[#1e3c72] bg-white px-5 py-2.5 text-center text-sm font-semibold text-[#1e3c72] shadow-sm transition-all hover:-translate-y-0.5 hover:bg-slate-50">
+                    Home
+                </a>
+                @auth
+                <a href="{{ route('buku.tambah') }}" class="block rounded-full border border-emerald-500 bg-white px-5 py-2.5 text-center text-sm font-semibold text-emerald-600 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-50">
+                    <svg class="inline-block h-4 w-4 mr-1 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Tambah Buku
+                </a>
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="block rounded-full bg-red-500 px-6 py-2.5 text-center text-sm font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-red-600 cursor-pointer">
+                        Logout
+                    </button>
+                </form>
+                @else
+                <a href="{{ route('login') }}" class="block rounded-full bg-[#1e3c72] px-6 py-2.5 text-center text-sm font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-blue-700">
+                    Login
+                </a>
+                @endauth
+            </div>
         </div>
     </nav>
 
