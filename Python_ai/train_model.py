@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import cross_val_score, StratifiedKFold
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report, accuracy_score, f1_score
 import pickle
 import re
 import os
@@ -270,12 +270,22 @@ clf = SGDClassifier(
 # Cross-validation pada data bersih
 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 scores = cross_val_score(clf, X_tfidf, y_final, cv=cv, scoring='accuracy')
+f1_cv_macro_scores = cross_val_score(clf, X_tfidf, y_final, cv=cv, scoring='f1_macro')
+f1_cv_weighted_scores = cross_val_score(clf, X_tfidf, y_final, cv=cv, scoring='f1_weighted')
+
 print(f"    -> Akurasi CV (Pass 2): {scores.mean()*100:.2f}% (+/- {scores.std()*100:.2f}%)")
+print(f"    -> F1-Score CV Macro  : {f1_cv_macro_scores.mean()*100:.2f}% (+/- {f1_cv_macro_scores.std()*100:.2f}%)")
+print(f"    -> F1-Score CV Weighted: {f1_cv_weighted_scores.mean()*100:.2f}% (+/- {f1_cv_weighted_scores.std()*100:.2f}%)")
 
 clf.fit(X_tfidf, y_final)
 y_pred_final = clf.predict(X_tfidf)
 train_acc = accuracy_score(y_final, y_pred_final)
+train_f1_macro = f1_score(y_final, y_pred_final, average='macro')
+train_f1_weighted = f1_score(y_final, y_pred_final, average='weighted')
+
 print(f"    -> Akurasi Training   : {train_acc*100:.2f}%")
+print(f"    -> F1-Score Train Macro : {train_f1_macro*100:.2f}%")
+print(f"    -> F1-Score Train Weight: {train_f1_weighted*100:.2f}%")
 
 print("\n    === Classification Report (Pass 2 - Label Bersih) ===")
 print(classification_report(y_final, y_pred_final))
@@ -304,6 +314,10 @@ hybrid_model = {
     'jurusan_list': JURUSAN_LIST,
     'accuracy_cv': float(scores.mean()),
     'accuracy_train': float(train_acc),
+    'f1_cv_macro': float(f1_cv_macro_scores.mean()),
+    'f1_cv_weighted': float(f1_cv_weighted_scores.mean()),
+    'f1_train_macro': float(train_f1_macro),
+    'f1_train_weighted': float(train_f1_weighted),
     'n_data': len(df),
     'n_corrected': int(n_corrected),
 }
@@ -350,6 +364,10 @@ print(f"  Label dikoreksi         : {n_corrected} buku")
 print(f"  Jumlah jurusan PNJ      : {len(JURUSAN_LIST)} kelas")
 print(f"  Fitur TF-IDF            : {X_tfidf.shape[1]} dimensi")
 print(f"  Akurasi CV (Pass 2)     : {scores.mean()*100:.2f}%")
+print(f"  F1-Score CV Macro       : {f1_cv_macro_scores.mean()*100:.2f}%")
+print(f"  F1-Score CV Weighted    : {f1_cv_weighted_scores.mean()*100:.2f}%")
 print(f"  Akurasi Training        : {train_acc*100:.2f}%")
+print(f"  F1-Score Train Macro    : {train_f1_macro*100:.2f}%")
+print(f"  F1-Score Train Weighted : {train_f1_weighted*100:.2f}%")
 print("=" * 65)
 print("\n[OK] Jalankan 'python api.py' untuk memulai server.")

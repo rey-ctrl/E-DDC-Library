@@ -139,6 +139,10 @@ def load_models():
             'mode': 'hybrid',
             'accuracy_cv': data.get('accuracy_cv', 0),
             'accuracy_train': data.get('accuracy_train', 0),
+            'f1_cv_macro': data.get('f1_cv_macro', 0),
+            'f1_cv_weighted': data.get('f1_cv_weighted', 0),
+            'f1_train_macro': data.get('f1_train_macro', 0),
+            'f1_train_weighted': data.get('f1_train_weighted', 0),
             'n_data': data.get('n_data', 0),
             'jurusan_list': data.get('jurusan_list', JURUSAN_LIST),
         }
@@ -440,13 +444,18 @@ def search_buku():
             )
             
             if filter_list and len(multilabel) > 0:
-                match_found = False
-                for item in multilabel:
-                    label_lower = item['label'].lower()
-                    if any(f in label_lower for f in filter_list):
-                        match_found = True
+                # Ambil semua nama label hasil prediksi AI (dalam lowercase)
+                book_labels = [item['label'].lower() for item in multilabel]
+                
+                # Cek apakah SEMUA filter terpilih ada di dalam book_labels
+                # (Logika DAN / AND / Kombinasi Keduanya)
+                match_all = True
+                for f in filter_list:
+                    if not any(f in label for label in book_labels):
+                        match_all = False
                         break
-                if not match_found:
+                
+                if not match_all:
                     continue
 
             # Bersihkan deskripsi (hapus literal 'null')
@@ -604,6 +613,10 @@ def status():
         "text_classifier": clf_model is not None,
         "accuracy_cv": model_info.get('accuracy_cv', 0),
         "accuracy_train": model_info.get('accuracy_train', 0),
+        "f1_cv_macro": model_info.get('f1_cv_macro', 0),
+        "f1_cv_weighted": model_info.get('f1_cv_weighted', 0),
+        "f1_train_macro": model_info.get('f1_train_macro', 0),
+        "f1_train_weighted": model_info.get('f1_train_weighted', 0),
         "n_data_trained": model_info.get('n_data', 0),
         "jurusan_pnj": model_info.get('jurusan_list', JURUSAN_LIST),
     })
@@ -625,8 +638,10 @@ if __name__ == '__main__':
     print("=" * 60)
     if mode == 'hybrid':
         acc = model_info.get('accuracy_cv', 0) * 100
-        print(f"[OK] Text Classifier dimuat (akurasi CV: {acc:.1f}%)")
+        f1_cv = model_info.get('f1_cv_macro', 0) * 100
+        print(f"[OK] Text Classifier dimuat (akurasi CV: {acc:.1f}%, F1 CV Macro: {f1_cv:.1f}%)")
     else:
         print("[WARNING] Model belum ada. Jalankan 'python train_model.py'")
     print("=" * 60)
     app.run(host='127.0.0.1', port=5000, debug=True)
+# Trigger auto-reload to read updated pickle model

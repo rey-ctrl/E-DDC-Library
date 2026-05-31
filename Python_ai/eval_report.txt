@@ -1,0 +1,26 @@
+=================================================================
+  E-DDC - Laporan Evaluasi Performa Model AI (F1-Score)
+=================================================================
+
+Total Sampel Evaluasi : 8740 buku
+Akurasi Global        : 99.69%
+F1-Score (Macro)      : 99.57%
+F1-Score (Weighted)   : 99.69%
+
+=== Detail per Jurusan (Precision, Recall, F1-Score) ===
+                               precision    recall  f1-score   support
+
+           Administrasi Niaga       1.00      0.99      1.00      2352
+                    Akuntansi       1.00      1.00      1.00       682
+                   Matematika       1.00      1.00      1.00       264
+                        Sains       1.00      1.00      1.00       106
+               Teknik Elektro       1.00      1.00      1.00       812
+  Teknik Grafika & Penerbitan       0.95      1.00      0.97       195
+Teknik Informatika & Komputer       1.00      1.00      1.00      1281
+                 Teknik Mesin       0.99      1.00      1.00       748
+                 Teknik Sipil       1.00      0.99      1.00       817
+                         Umum       1.00      1.00      1.00      1483
+
+                     accuracy                           1.00      8740
+                    macro avg       0.99      1.00      1.00      8740
+                 weighted avg       1.00      1.00      1.00      8740

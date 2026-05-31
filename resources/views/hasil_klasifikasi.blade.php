@@ -138,7 +138,7 @@
                         'Sains',
                         'Umum',
                     ];
-                    $activeFilters = request('filters', []);
+                    $activeFilters = (array) request('filters', []);
                 @endphp
                 
                 <div class="space-y-1 max-h-[280px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
@@ -190,10 +190,9 @@
 
         <script>
             function applyAiFilter() {
-                const kw = document.getElementById('sideKeyword');
-                if (/^\d{3}-\d{3}$/.test(kw.value) || kw.value === 'LAINNYA') {
-                    kw.value = '';
-                }
+                // Selalu kosongkan keyword agar filter AI bekerja mandiri
+                // menampilkan SEMUA buku dari kategori yang dipilih
+                document.getElementById('sideKeyword').value = '';
                 document.getElementById('sideSearchForm').submit();
             }
 
@@ -203,16 +202,15 @@
                 document.getElementById('sideSearchForm').submit();
             }
 
-
-
-                const currentKw = '{{ $keyword }}';
-                const ddcLabel = document.getElementById('ddcDropdownLabel');
-                const ddcMap = {!! json_encode(collect($ddcMurni)->mapWithKeys(fn($item) => [$item[0] => $item[1]])) !!};
-                if (ddcMap[currentKw]) {
-                    ddcLabel.textContent = ddcMap[currentKw];
-                    ddcLabel.classList.add('text-[#1e3c72]', 'font-bold');
-                }
-            });
+            function removeFilter(filterName) {
+                const checkboxes = document.querySelectorAll('input[name="filters[]"]');
+                checkboxes.forEach(cb => {
+                    if (cb.value === filterName) {
+                        cb.checked = false;
+                    }
+                });
+                applyAiFilter();
+            }
         </script>
 
         <!-- ── KONTEN UTAMA ─────────────────────────────────────────── -->
@@ -224,9 +222,23 @@
                     @if($apiError)
                         <span class="text-sm text-red-500 font-semibold">⚠ Server AI tidak aktif. Jalankan <code class="bg-red-50 px-1 rounded">python api.py</code> terlebih dahulu.</span>
                     @elseif(!empty($keyword) || !empty($filters))
-                        <span class="text-sm text-slate-600">
-                            Ditemukan <b class="text-[#1e3c72]">{{ count($books) }}</b> hasil pencarian.
-                        </span>
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-sm text-slate-600">
+                                Ditemukan <b class="text-[#1e3c72]">{{ $pagination['total'] ?? count($books) }}</b> hasil pencarian.
+                            </span>
+                            @if(!empty($filters))
+                                <div class="flex flex-wrap gap-1.5 mt-1">
+                                    @foreach($filters as $f)
+                                        <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-semibold text-[#1e3c72] border border-blue-100/70">
+                                            {{ $f }}
+                                            <button type="button" onclick="removeFilter('{{ $f }}')" class="hover:text-red-500 transition-colors focus:outline-none ml-0.5">
+                                                <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                                            </button>
+                                        </span>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
                     @elseif(isset($pagination))
                         <span class="text-sm text-slate-600">
                             Menampilkan <b class="text-[#1e3c72]">{{ count($books) }}</b> dari total <b class="text-[#1e3c72]">{{ $pagination['total'] }}</b> buku
