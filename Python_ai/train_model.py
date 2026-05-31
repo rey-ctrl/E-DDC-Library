@@ -41,13 +41,15 @@ JURUSAN_LIST = [
 
 def ddc_to_jurusan(kode_ddc_raw):
     s = str(kode_ddc_raw).strip()
-    m = re.search(r'(\d{3})(?:\.(\d+))?', s)
+    m = re.search(r'(\d{3})(?:\.?(\d+))?', s)
     if not m:
         return "Umum"
     main = int(m.group(1))
     sub = m.group(2) or ""
 
     if main <= 99:
+        if 70 <= main <= 79:
+            return "Teknik Grafika & Penerbitan"
         return "Teknik Informatika & Komputer"
     elif main <= 199:
         return "Umum"
@@ -77,13 +79,15 @@ def ddc_to_jurusan(kode_ddc_raw):
         elif main == 620:
             return "Teknik Mesin"
         elif main == 621:
-            if sub.startswith('3'):
+            if sub and sub[0] == '3':
                 return "Teknik Elektro"
             return "Teknik Mesin"
         elif main <= 623:
             return "Teknik Mesin"
-        elif main <= 629:
+        elif main <= 628:
             return "Teknik Sipil"
+        elif main == 629:
+            return "Teknik Mesin"
         elif main <= 649:
             return "Umum"
         elif main <= 656:
@@ -92,6 +96,8 @@ def ddc_to_jurusan(kode_ddc_raw):
             return "Akuntansi"
         elif main <= 659:
             return "Administrasi Niaga"
+        elif main <= 665:
+            return "Teknik Mesin"
         elif main <= 669:
             return "Teknik Sipil"
         elif main <= 685:

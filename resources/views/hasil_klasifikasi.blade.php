@@ -142,7 +142,7 @@
 
             <!-- Jurusan PNJ (Static Checkbox List) -->
             <div class="border-b border-slate-100 p-5">
-                <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Filter Klasifikasi AI</label>
+                <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Filter Klasterisasi AI</label>
                 @php
                     $pnjClasses = [
                         'Teknik Informatika & Komputer',
