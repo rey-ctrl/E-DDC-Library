@@ -68,9 +68,10 @@ Route::middleware('auth')->group(function () {
 
 // ─── Proses Klasifikasi (GET & POST) ──────────────────────────────
 Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
-    $keyword = trim($request->input('keyword', ''));
-    $filters = $request->input('filters', []);
-    $page    = $request->input('page', 1);
+    $keyword    = trim($request->input('keyword', ''));
+    $filters    = $request->input('filters', []);
+    $filterMode = $request->input('filter_mode', 'or');
+    $page       = $request->input('page', 1);
 
     $books      = [];
     $pagination = null;
@@ -78,9 +79,10 @@ Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
 
     try {
         $response = Http::timeout(10)->get('http://127.0.0.1:5000/api/buku/search', [
-            'keyword' => $keyword,
-            'filters' => is_array($filters) ? implode(',', $filters) : $filters,
-            'page'    => $page
+            'keyword'     => $keyword,
+            'filters'     => is_array($filters) ? implode(',', $filters) : $filters,
+            'filter_mode' => $filterMode,
+            'page'        => $page
         ]);
 
         if ($response->successful()) {
@@ -97,11 +99,12 @@ Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
     }
 
     return view('hasil_klasifikasi', [
-        'books'      => $books,
-        'keyword'    => $keyword,
-        'filters'    => $filters,
-        'pagination' => $pagination,
-        'apiError'   => $apiError,
+        'books'       => $books,
+        'keyword'     => $keyword,
+        'filters'     => $filters,
+        'filterMode'  => $filterMode,
+        'pagination'  => $pagination,
+        'apiError'    => $apiError,
     ]);
 })->name('klasifikasi.process');
 

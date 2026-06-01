@@ -349,6 +349,7 @@ def predict_multilabel(ddc_value=None, book_text=None, ddc_raw=None, threshold=0
 def search_buku():
     keyword = request.args.get('keyword', '').strip()
     filters = request.args.get('filters', '').strip()
+    filter_mode = request.args.get('filter_mode', 'or').strip().lower()
     page = int(request.args.get('page', 1))
     per_page = min(int(request.args.get('per_page', 24)), 50)  # Max 50
 
@@ -454,15 +455,22 @@ def search_buku():
                 # Ambil semua nama label hasil prediksi AI (dalam lowercase)
                 book_labels = [item['label'].lower() for item in multilabel]
                 
-                # Cek apakah SEMUA filter terpilih ada di dalam book_labels
-                # (Logika DAN / AND / Kombinasi Keduanya)
-                match_all = True
-                for f in filter_list:
-                    if not any(f in label for label in book_labels):
-                        match_all = False
-                        break
+                if filter_mode == 'and':
+                    # Logika DAN (AND): semua filter terpilih harus ada di book_labels
+                    match_filter = True
+                    for f in filter_list:
+                        if not any(f in label for label in book_labels):
+                            match_filter = False
+                            break
+                else:
+                    # Logika ATAU (OR): salah satu filter terpilih ada di book_labels
+                    match_filter = False
+                    for f in filter_list:
+                        if any(f in label for label in book_labels):
+                            match_filter = True
+                            break
                 
-                if not match_all:
+                if not match_filter:
                     continue
 
             # Bersihkan deskripsi (hapus literal 'null')

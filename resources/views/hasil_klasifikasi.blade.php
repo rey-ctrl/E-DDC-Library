@@ -167,7 +167,29 @@
                     </label>
                     @endforeach
                 </div>
-                <button type="button" onclick="applyAiFilter()" class="mt-3 w-full rounded-lg bg-[#1e3c72] py-2 text-center text-[12.5px] font-bold text-white shadow-sm transition hover:bg-blue-900 active:scale-95">
+
+                <!-- Logic Operator Selector (AND vs OR) -->
+                @php
+                    $activeFilterMode = $filterMode ?? request('filter_mode', 'or');
+                @endphp
+                <div class="mt-4 border-t border-slate-100 pt-3">
+                    <span class="mb-2 block text-[10px] font-bold uppercase tracking-wider text-slate-400">Hubungan Antar Label</span>
+                    <div class="grid grid-cols-2 gap-1 rounded-xl bg-slate-100 p-1">
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg py-1.5 text-center transition-all duration-200 {{ $activeFilterMode === 'or' ? 'bg-white shadow-sm font-semibold text-[#1e3c72]' : 'text-slate-500 hover:text-slate-700' }}">
+                            <input type="radio" name="filter_mode" value="or" class="sr-only" {{ $activeFilterMode === 'or' ? 'checked' : '' }} onchange="applyAiFilter()">
+                            <span class="text-[11px]">ATAU</span>
+                        </label>
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg py-1.5 text-center transition-all duration-200 {{ $activeFilterMode === 'and' ? 'bg-white shadow-sm font-semibold text-[#1e3c72]' : 'text-slate-500 hover:text-slate-700' }}">
+                            <input type="radio" name="filter_mode" value="and" class="sr-only" {{ $activeFilterMode === 'and' ? 'checked' : '' }} onchange="applyAiFilter()">
+                            <span class="text-[11px]">DAN</span>
+                        </label>
+                    </div>
+                    <p class="mt-1.5 text-[10px] leading-normal text-slate-400">
+                        {{ $activeFilterMode === 'and' ? '* Buku harus terprediksi memiliki SEMUA kategori terpilih.' : '* Buku cukup terprediksi memiliki SALAH SATU kategori terpilih.' }}
+                    </p>
+                </div>
+
+                <button type="button" onclick="applyAiFilter()" class="mt-3.5 w-full rounded-lg bg-[#1e3c72] py-2 text-center text-[12.5px] font-bold text-white shadow-sm transition hover:bg-blue-900 active:scale-95">
                     Terapkan Filter
                 </button>
             </div>
@@ -245,14 +267,19 @@
                                 Ditemukan <b class="text-[#1e3c72]">{{ $pagination['total'] ?? count($books) }}</b> hasil pencarian.
                             </span>
                             @if(!empty($filters))
-                                <div class="flex flex-wrap gap-1.5 mt-1">
-                                    @foreach($filters as $f)
+                                <div class="flex flex-wrap items-center gap-1.5 mt-1">
+                                    @foreach($filters as $index => $f)
                                         <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-semibold text-[#1e3c72] border border-blue-100/70">
                                             {{ $f }}
                                             <button type="button" onclick="removeFilter('{{ $f }}')" class="hover:text-red-500 transition-colors focus:outline-none ml-0.5">
                                                 <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
                                             </button>
                                         </span>
+                                        @if($index < count($filters) - 1)
+                                            <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">
+                                                {{ $filterMode ?? 'or' }}
+                                            </span>
+                                        @endif
                                     @endforeach
                                 </div>
                             @endif
