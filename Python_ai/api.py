@@ -144,12 +144,14 @@ def load_models():
         model_info = {
             'mode': 'hybrid',
             'accuracy_cv': data.get('accuracy_cv', 0),
-            'accuracy_train': data.get('accuracy_train', 0),
+            'accuracy_test': data.get('accuracy_test', data.get('accuracy_train', 0)),
             'f1_cv_macro': data.get('f1_cv_macro', 0),
             'f1_cv_weighted': data.get('f1_cv_weighted', 0),
-            'f1_train_macro': data.get('f1_train_macro', 0),
-            'f1_train_weighted': data.get('f1_train_weighted', 0),
+            'f1_test_macro': data.get('f1_test_macro', data.get('f1_train_macro', 0)),
+            'f1_test_weighted': data.get('f1_test_weighted', data.get('f1_train_weighted', 0)),
             'n_data': data.get('n_data', 0),
+            'n_train': data.get('n_train', 0),
+            'n_test': data.get('n_test', 0),
             'jurusan_list': data.get('jurusan_list', JURUSAN_LIST),
         }
         print("[OK] Model HYBRID dimuat (Text Classifier)")
@@ -171,13 +173,45 @@ def clean_ddc(text_val):
         return int(match.group(1))
     return None
 
+def clean_administrative_text(text):
+    if not text:
+        return ""
+    # List of regex patterns for administrative phrases (case-insensitive)
+    patterns = [
+        r'hanya\s+baca\s+di\s+tempat',
+        r'tidak\s+bisa\s+dibawa\s+pulang',
+        r'buku\s+tidak\s+dapat\s+dipinjam',
+        r'buku\s+tidak\s+untuk\s+dipinjamkan',
+        r'hanya\s+bisa\s+baca\s+di\s+tempat',
+        r'sumbangan\s+dosen',
+        r'untuk\s+peminjaman\s+buku\s+dosen\s+hubungi\s+petugas',
+        r'buku\s+terbitan\s+pnj\s+press',
+        r'buku\s+dosen\s+berada\s+di\s+lantai\s+ii',
+        r'pnj\s+corner',
+        r'sumbangan\s+dari'
+    ]
+    # Compile into a single regex pattern
+    combined_pattern = re.compile('|'.join(patterns), re.IGNORECASE)
+    # Remove the patterns
+    cleaned = combined_pattern.sub('', str(text))
+    # Clean up excess spaces
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+    return cleaned
+
 def build_text(title=None, description=None, notes=None):
     parts = []
-    for val in [title, description, notes]:
+    if title:
+        s = str(title).strip()
+        if s and s.lower() not in ('null', 'none', 'nan', ''):
+            parts.append(s)
+            
+    for val in [description, notes]:
         if val:
             s = str(val).strip()
             if s and s.lower() not in ('null', 'none', 'nan', ''):
-                parts.append(s)
+                cleaned_val = clean_administrative_text(s)
+                if cleaned_val:
+                    parts.append(cleaned_val)
     return ' '.join(parts) if parts else ''
 
 # ─────────────────────────────────────────────
@@ -679,12 +713,14 @@ def status():
         "model_mode": mode,
         "text_classifier": clf_model is not None,
         "accuracy_cv": model_info.get('accuracy_cv', 0),
-        "accuracy_train": model_info.get('accuracy_train', 0),
+        "accuracy_test": model_info.get('accuracy_test', 0),
         "f1_cv_macro": model_info.get('f1_cv_macro', 0),
         "f1_cv_weighted": model_info.get('f1_cv_weighted', 0),
-        "f1_train_macro": model_info.get('f1_train_macro', 0),
-        "f1_train_weighted": model_info.get('f1_train_weighted', 0),
-        "n_data_trained": model_info.get('n_data', 0),
+        "f1_test_macro": model_info.get('f1_test_macro', 0),
+        "f1_test_weighted": model_info.get('f1_test_weighted', 0),
+        "n_data_total": model_info.get('n_data', 0),
+        "n_data_train": model_info.get('n_train', 0),
+        "n_data_test": model_info.get('n_test', 0),
         "jurusan_pnj": model_info.get('jurusan_list', JURUSAN_LIST),
     })
 
@@ -704,9 +740,9 @@ if __name__ == '__main__':
     print("  Status     : /api/status")
     print("=" * 60)
     if mode == 'hybrid':
-        acc = model_info.get('accuracy_cv', 0) * 100
-        f1_cv = model_info.get('f1_cv_macro', 0) * 100
-        print(f"[OK] Text Classifier dimuat (akurasi CV: {acc:.1f}%, F1 CV Macro: {f1_cv:.1f}%)")
+        acc_test = model_info.get('accuracy_test', 0) * 100
+        f1_test = model_info.get('f1_test_macro', 0) * 100
+        print(f"[OK] Text Classifier dimuat (akurasi test: {acc_test:.1f}%, F1 test macro: {f1_test:.1f}%)")
     else:
         print("[WARNING] Model belum ada. Jalankan 'python train_model.py'")
     print("=" * 60)
