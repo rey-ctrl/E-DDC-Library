@@ -70,11 +70,16 @@ Route::middleware('auth')->group(function () {
 Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
     $keyword    = trim($request->input('keyword', ''));
     $filters    = $request->input('filters', []);
-    $filterMode = $request->input('filter_mode', 'or');
+    $filterMode = $request->input('filter_mode', 'and');
     $page       = $request->input('page', 1);
+    $mode       = $request->input('mode', 'database');
+    if (!auth()->check()) {
+        $mode = 'database';
+    }
 
     $books      = [];
     $pagination = null;
+    $stats      = null;
     $apiError   = false;
 
     try {
@@ -82,7 +87,8 @@ Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
             'keyword'     => $keyword,
             'filters'     => is_array($filters) ? implode(',', $filters) : $filters,
             'filter_mode' => $filterMode,
-            'page'        => $page
+            'page'        => $page,
+            'mode'        => $mode
         ]);
 
         if ($response->successful()) {
@@ -90,6 +96,7 @@ Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
             if (isset($json['data']) && isset($json['pagination'])) {
                 $books      = $json['data'];
                 $pagination = $json['pagination'];
+                $stats      = $json['stats'] ?? null;
             } else {
                 $books = is_array($json) ? $json : [];
             }
@@ -105,6 +112,8 @@ Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
         'filterMode'  => $filterMode,
         'pagination'  => $pagination,
         'apiError'    => $apiError,
+        'mode'        => $mode,
+        'stats'       => $stats,
     ]);
 })->name('klasifikasi.process');
 

@@ -51,17 +51,22 @@ def ddc_to_jurusan(kode_ddc_raw):
     if main <= 99:
         if 70 <= main <= 79:
             return "Teknik Grafika & Penerbitan"
-        return "Teknik Informatika & Komputer"
+        if main <= 9 or (20 <= main <= 29):
+            return "Teknik Informatika & Komputer"
+        return "Umum"
     elif main <= 199:
         return "Umum"
     elif main <= 299:
         return "Umum"
     elif main <= 399:
-        if main in (332, 336):
-            return "Akuntansi"
-        elif 370 <= main <= 379:
+        if 330 <= main <= 339:
+            if main in (332, 336):
+                return "Akuntansi"
+            return "Administrasi Niaga"
+        elif 380 <= main <= 389:
+            return "Administrasi Niaga"
+        else:
             return "Umum"
-        return "Administrasi Niaga"
     elif main <= 499:
         return "Umum"
     elif main <= 599:
@@ -520,18 +525,18 @@ for i in range(len(sample)):
 
 # Ringkasan Akhir
 print("\n" + "=" * 65)
-print("  TRAINING SELESAI! (Proper Train/Test Split)")
+print("  TRAINING SELESAI ")
 print(f"  Total data              : {len(df)} buku")
 print(f"  Data Training           : {len(df_train)} buku")
 print(f"  Data Test (Hold-out)    : {len(df_test)} buku")
 print(f"  Label dikoreksi (train) : {n_corrected} buku")
 print(f"  Jumlah jurusan PNJ      : {len(JURUSAN_LIST)} kelas")
 print(f"  Fitur TF-IDF            : {X_all_tfidf.shape[1]} dimensi")
-print(f"  ─── Evaluasi Test Set (METRIK UTAMA) ───")
+print(f"  --- Evaluasi Test Set (METRIK UTAMA) ---")
 print(f"  Akurasi Test            : {test_acc*100:.2f}%")
 print(f"  F1-Score Test Macro     : {test_f1_macro*100:.2f}%")
 print(f"  F1-Score Test Weighted  : {test_f1_weighted*100:.2f}%")
-print(f"  ─── Cross-Validation (Training Set) ───")
+print(f"  --- Cross-Validation (Training Set) ---")
 print(f"  Akurasi CV (Train)      : {scores.mean()*100:.2f}%")
 print(f"  F1 CV Macro (Train)     : {f1_cv_macro_scores.mean()*100:.2f}%")
 print(f"  F1 CV Weighted (Train)  : {f1_cv_weighted_scores.mean()*100:.2f}%")

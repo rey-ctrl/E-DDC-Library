@@ -5,6 +5,7 @@ import numpy as np
 import pickle
 import re
 import os
+import json
 
 # Load .env jika ada
 try:
@@ -43,9 +44,8 @@ JURUSAN_LIST = [
     "Umum",
 ]
 
-# Mapping DDC sub-kelas -> Jurusan PNJ (dipakai untuk fallback jika DDC map diperlukan)
+# DDC Mapping Multilabel
 def ddc_to_jurusan(kode_ddc_raw):
-    """Map kode DDC ke Jurusan PNJ."""
     s = str(kode_ddc_raw).strip()
     m = re.search(r'(\d{3})(?:\.?(\d+))?', s)
     if not m:
@@ -56,17 +56,22 @@ def ddc_to_jurusan(kode_ddc_raw):
     if main <= 99:
         if 70 <= main <= 79:
             return "Teknik Grafika & Penerbitan"
-        return "Teknik Informatika & Komputer"
+        if main <= 9 or (20 <= main <= 29):
+            return "Teknik Informatika & Komputer"
+        return "Umum"
     elif main <= 199:
         return "Umum"
     elif main <= 299:
         return "Umum"
     elif main <= 399:
-        if main in (332, 336):
-            return "Akuntansi"
-        elif 370 <= main <= 379:
+        if 330 <= main <= 339:
+            if main in (332, 336):
+                return "Akuntansi"
+            return "Administrasi Niaga"
+        elif 380 <= main <= 389:
+            return "Administrasi Niaga"
+        else:
             return "Umum"
-        return "Administrasi Niaga"
     elif main <= 499:
         return "Umum"
     elif main <= 599:
@@ -163,6 +168,91 @@ def load_models():
 load_models()
 
 # ─────────────────────────────────────────────
+# Auto-migration: Pastikan kolom predicted_multilabel ada
+# ─────────────────────────────────────────────
+def ensure_multilabel_column():
+    """Buat kolom predicted_multilabel jika belum ada, lalu isi yang masih NULL."""
+    try:
+        with engine.connect() as conn:
+            # Cek apakah kolom sudah ada
+            check = conn.execute(text("""
+                SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS 
+                WHERE TABLE_SCHEMA = :db AND TABLE_NAME = 'biblio' 
+                AND COLUMN_NAME = 'predicted_multilabel'
+            """), {"db": DB_NAME}).scalar()
+
+            if check == 0:
+                conn.execute(text(
+                    "ALTER TABLE biblio ADD COLUMN predicted_multilabel TEXT DEFAULT NULL"
+                ))
+                conn.commit()
+                print("[OK] Kolom predicted_multilabel berhasil ditambahkan.")
+            else:
+                print("[OK] Kolom predicted_multilabel sudah ada.")
+
+            # Hitung buku yang belum punya multilabel
+            null_count = conn.execute(text("""
+                SELECT COUNT(*) FROM biblio 
+                WHERE predicted_multilabel IS NULL 
+                  AND predicted_jurusan IS NOT NULL 
+                  AND opac_hide = 0
+            """)).scalar()
+
+            if null_count > 0 and tfidf_model is not None and clf_model is not None:
+                print(f"[INFO] Mengisi predicted_multilabel untuk {null_count} buku...")
+                rows = conn.execute(text("""
+                    SELECT biblio_id, title, spec_detail_info, notes, classification
+                    FROM biblio
+                    WHERE predicted_multilabel IS NULL
+                      AND predicted_jurusan IS NOT NULL
+                      AND opac_hide = 0
+                """)).mappings().all()
+
+                batch = []
+                for i, row in enumerate(rows):
+                    book_text = build_text(
+                        title=row["title"],
+                        description=row.get("spec_detail_info"),
+                        notes=row.get("notes")
+                    )
+                    multilabel = predict_multilabel(
+                        ddc_value=clean_ddc(row["classification"]),
+                        book_text=book_text,
+                        ddc_raw=row["classification"]
+                    )
+                    if not multilabel:
+                        jur = ddc_to_jurusan(row["classification"])
+                        multilabel = [{"label": jur, "probabilitas": 100.0, "metode": "ddc_mapping"}]
+
+                    batch.append({
+                        "bid": row["biblio_id"],
+                        "ml": json.dumps(multilabel, ensure_ascii=False)
+                    })
+
+                    if len(batch) >= 100:
+                        for u in batch:
+                            conn.execute(text(
+                                "UPDATE biblio SET predicted_multilabel = :ml WHERE biblio_id = :bid"
+                            ), u)
+                        conn.commit()
+                        batch = []
+
+                if batch:
+                    for u in batch:
+                        conn.execute(text(
+                            "UPDATE biblio SET predicted_multilabel = :ml WHERE biblio_id = :bid"
+                        ), u)
+                    conn.commit()
+
+                print(f"[OK] {len(rows)} buku berhasil diisi predicted_multilabel.")
+            elif null_count > 0:
+                print(f"[WARNING] {null_count} buku belum punya multilabel, tapi model belum dimuat.")
+            else:
+                print("[OK] Semua buku sudah punya predicted_multilabel.")
+    except Exception as e:
+        print(f"[WARNING] Auto-migration predicted_multilabel: {e}")
+
+# ─────────────────────────────────────────────
 # Helper: Bersihkan kode DDC
 # ─────────────────────────────────────────────
 def clean_ddc(text_val):
@@ -215,7 +305,7 @@ def build_text(title=None, description=None, notes=None):
     return ' '.join(parts) if parts else ''
 
 # ─────────────────────────────────────────────
-# Keyword heuristic untuk koreksi prediksi rendah
+# Keyword heuristic 
 # ─────────────────────────────────────────────
 KEYWORD_HINTS = {
     "Teknik Informatika & Komputer": [
@@ -247,6 +337,7 @@ KEYWORD_HINTS = {
         "layout", "tipografi", "penerbitan", "publishing", "offset",
         "fotografi", "photography", "illustrasi", "prepress", "jurnalistik",
         "jurnalisme", "wartawan", "pers", "berita", "komunikasi massa",
+        "pemotretan", "fotograsi", "photo shoot", "photoshoot", "pemotret", "potret"
     ],
     "Administrasi Niaga": [
         "manajemen", "management", "pemasaran", "marketing", "bisnis",
@@ -255,7 +346,7 @@ KEYWORD_HINTS = {
         "leadership", "wirausaha", "entrepreneur", "e-commerce",
     ],
     "Akuntansi": [
-        "akuntansi", "accounting", "audit", "pajak", "tax", "neraca",
+        "akuntansi", "accounting", "audit", "auditing", "pajak", "tax", "neraca",
         "laporan keuangan", "financial", "anggaran", "budget", "debit",
         "kredit", "jurnal akuntansi", "aset", "liabilitas", "ekuitas",
     ],
@@ -279,10 +370,7 @@ KEYWORD_HINTS = {
 }
 
 def keyword_boost(text, labels):
-    """
-    Jika prediksi top memiliki confidence rendah (<60%),
-    gunakan keyword heuristic untuk membantu koreksi.
-    """
+  
     if not labels or not text:
         return labels
 
@@ -307,7 +395,7 @@ def keyword_boost(text, labels):
 
     # Boost: naikkan probabilitas jurusan yang cocok keyword
     boosted = []
-    total_boost = 15.0 * keyword_scores[best_jurusan]  # 15% per keyword match
+    total_boost = 15.0 * keyword_scores[best_jurusan]  
 
     for item in labels:
         new_item = item.copy()
@@ -329,15 +417,91 @@ def keyword_boost(text, labels):
     boosted.sort(key=lambda x: x["probabilitas"], reverse=True)
     return boosted
 
+def apply_iot_rules(text, labels):
+    if not text or not labels:
+        return labels
+
+    iot_keywords = {
+        "iot", "internet of things", "arduino", "raspberry pi", "esp32", 
+        "esp8266", "mikrokontroler", "microcontroller", "servo", 
+        "instrumentasi", "sensor", "aktuator", "actuator", "automation", 
+        "otomasi", "wemos", "node-red", "mqtt"
+    }
+
+    text_lower = text.lower()
+    has_iot = any(kw in text_lower for kw in iot_keywords)
+
+    if has_iot:
+        it_label = "Teknik Informatika & Komputer"
+        found = False
+        for l in labels:
+            if l["label"] == it_label:
+                found = True
+                if l["probabilitas"] < 20.0:
+                    l["probabilitas"] = 20.0
+                break
+
+        if not found:
+            labels.append({
+                "label": it_label,
+                "probabilitas": 20.0,
+                "metode": "iot_rule"
+            })
+
+        # Re-normalisasi agar total = 100%
+        total_prob = sum(l["probabilitas"] for l in labels)
+        if total_prob > 0:
+            for l in labels:
+                l["probabilitas"] = round(l["probabilitas"] / total_prob * 100, 2)
+            # Re-sort
+            labels.sort(key=lambda x: x["probabilitas"], reverse=True)
+
+    return labels
+
+
+def apply_exclusion_rules(labels):
+    if not labels:
+        return labels
+
+    teknik_labels = {
+        "Teknik Informatika & Komputer",
+        "Teknik Sipil",
+        "Teknik Mesin",
+        "Teknik Elektro",
+        "Teknik Grafika & Penerbitan"
+    }
+
+    has_teknik = any(l["label"] in teknik_labels for l in labels)
+    has_niaga = any(l["label"] == "Administrasi Niaga" for l in labels)
+
+    if has_teknik and has_niaga:
+        # Find the max probability for Teknik and Administrasi Niaga
+        max_teknik_prob = max(l["probabilitas"] for l in labels if l["label"] in teknik_labels)
+        niaga_prob = max(l["probabilitas"] for l in labels if l["label"] == "Administrasi Niaga")
+
+        if max_teknik_prob > niaga_prob:
+            # Keep Teknik, remove Administrasi Niaga
+            labels = [l for l in labels if l["label"] != "Administrasi Niaga"]
+        else:
+            # Keep Administrasi Niaga, remove all Teknik
+            labels = [l for l in labels if l["label"] not in teknik_labels]
+
+        # Re-normalize remaining probabilities to sum to 100%
+        total_prob = sum(l["probabilitas"] for l in labels)
+        if total_prob > 0:
+            for l in labels:
+                l["probabilitas"] = round(l["probabilitas"] / total_prob * 100, 2)
+            # Re-sort after re-normalization
+            labels.sort(key=lambda x: x["probabilitas"], reverse=True)
+
+    return labels
+
 
 # ─────────────────────────────────────────────
 # Prediksi Multilabel -> Jurusan PNJ
 # ─────────────────────────────────────────────
-def predict_multilabel(ddc_value=None, book_text=None, ddc_raw=None, threshold=0.05):
-    """
-    Prediksi jurusan PNJ untuk sebuah buku.
-    Prioritas: Text Classifier > Keyword Correction > DDC mapping fallback.
-    """
+def predict_multilabel(ddc_value=None, book_text=None, ddc_raw=None, threshold=0.15):
+
     labels = []
 
     # --- Metode 1: Text Classifier (utama) ---
@@ -360,6 +524,15 @@ def predict_multilabel(ddc_value=None, book_text=None, ddc_raw=None, threshold=0
             # Koreksi dengan keyword jika confidence rendah
             labels = keyword_boost(book_text, labels)
 
+            # Terapkan aturan IoT
+            labels = apply_iot_rules(book_text, labels)
+
+            # Terapkan aturan eksklusi
+            labels = apply_exclusion_rules(labels)
+
+            # Saring kembali jika ada label di bawah 15% setelah boost/eksklusi
+            labels = [l for l in labels if l["probabilitas"] >= 15.0]
+
             return labels
         except Exception as e:
             print(f"[WARN] Text classifier error: {e}")
@@ -375,9 +548,13 @@ def predict_multilabel(ddc_value=None, book_text=None, ddc_raw=None, threshold=0
 
     return labels
 
+# Jalankan auto-migration setelah semua helper function didefinisikan
+ensure_multilabel_column()
 
 # ─────────────────────────────────────────────
-# Endpoint: GET /api/buku/search?keyword=...
+# Endpoint: search buku (OPTIMIZED - Pre-computed)
+# Menggunakan kolom predicted_jurusan dari database
+# alih-alih inferensi ML real-time per buku
 # ─────────────────────────────────────────────
 @app.route('/api/buku/search', methods=['GET'])
 def search_buku():
@@ -386,17 +563,13 @@ def search_buku():
     filter_mode = request.args.get('filter_mode', 'or').strip().lower()
     page = int(request.args.get('page', 1))
     per_page = min(int(request.args.get('per_page', 24)), 50)  # Max 50
+    mode = request.args.get('mode', 'database').strip().lower()
 
-    filter_list = [f.strip().lower() for f in filters.split(',')] if filters else []
+    filter_list = [f.strip() for f in filters.split(',')] if filters else []
 
     try:
         with engine.connect() as conn:
-            # Hitung total khusus jika tidak ada keyword dan filter
-            total_buku_db = 0
-            if not keyword and not filters:
-                total_query = text("SELECT COUNT(*) FROM biblio WHERE opac_hide = 0 AND classification IS NOT NULL AND classification != ''")
-                total_buku_db = conn.execute(total_query).scalar()
-
+            # ── Base query: selalu ambil predicted_jurusan & predicted_confidence ──
             query_base = """
                 SELECT 
                     b.biblio_id,
@@ -408,104 +581,132 @@ def search_buku():
                     b.call_number,
                     b.image,
                     b.spec_detail_info,
-                    b.notes
+                    b.notes,
+                    b.predicted_jurusan,
+                    b.predicted_confidence,
+                    b.predicted_multilabel
                 FROM biblio b
                 WHERE b.opac_hide = 0 
                   AND b.classification IS NOT NULL 
                   AND b.classification != ''
             """
-            
+
+            count_base = """
+                SELECT COUNT(*) FROM biblio b
+                WHERE b.opac_hide = 0
+                  AND b.classification IS NOT NULL
+                  AND b.classification != ''
+            """
+
             params = {}
+            where_extra = ""
+
+            # ── Keyword filter ──
             if keyword:
                 m_range = re.match(r'^(\d{3})-(\d{3})$', keyword)
+                m_ddc = re.match(r'^(\d{3})$', keyword)
                 if m_range:
                     start_val = int(m_range.group(1))
                     end_val = int(m_range.group(2))
-                    query_base += f" AND (CAST(SUBSTRING(b.classification, 1, 3) AS UNSIGNED) BETWEEN {start_val} AND {end_val})"
+                    where_extra += f" AND (CAST(SUBSTRING(b.classification, 1, 3) AS UNSIGNED) BETWEEN {start_val} AND {end_val})"
+                elif m_ddc:
+                    ddc_val = int(m_ddc.group(1))
+                    where_extra += f" AND CAST(SUBSTRING(b.classification, 1, 3) AS UNSIGNED) = {ddc_val}"
                 else:
-                    query_base += " AND (b.title LIKE :kw OR b.sor LIKE :kw OR b.notes LIKE :kw)"
+                    where_extra += " AND b.title LIKE :kw"
                     params["kw"] = f"%{keyword}%"
-                
-                query_base += " ORDER BY b.title ASC LIMIT 500" # Ambil lebih banyak untuk dipaginasi
-            elif filters:
-                # Pre-filter menggunakan SQL agar AI tidak mengevaluasi buku secara alfabetis dari awal
-                filter_conditions = []
-                ddc_hints = {
-                    "teknik informatika & komputer": ["003", "004", "005", "006"],
-                    "teknik sipil": ["620", "624", "625", "627", "628", "629", "690", "691", "692", "693", "694", "695", "696", "697", "698", "699"],
-                    "teknik mesin": ["621.1", "621.2", "621.8", "621.9", "629"],
-                    "teknik elektro": ["621.3", "621.4"],
-                    "akuntansi": ["650", "657", "658", "659", "336"],
-                    "administrasi niaga": ["300", "340", "350", "380", "651", "330", "332"],
-                    "teknik grafika & penerbitan": ["070", "686", "700", "740", "760", "770"],
-                    "sains": ["500", "530", "540", "570", "580", "590"],
-                    "matematika": ["510", "511", "512", "513", "514", "515", "516", "518", "519"],
-                    "umum": ["100", "200", "400", "800", "900"],
-                }
 
-                for f in filter_list:
-                    # 1. Tambahkan kondisi berdasarkan keyword utama dari KEYWORD_HINTS (partial match key)
-                    for k, v in KEYWORD_HINTS.items():
-                        if f in k.lower() or k.lower() in f:
-                            for word in v[:8]:  # Ambil 8 keyword teratas
-                                filter_conditions.append(f"b.title LIKE '%{word}%'")
-                    
-                    # 2. Tambahkan kondisi berdasarkan prefix DDC
-                    if f in ddc_hints:
-                        for prefix in ddc_hints[f]:
-                            filter_conditions.append(f"b.classification LIKE '{prefix}%'")
+            # ── Filter jurusan (SQL-based, menggunakan predicted_multilabel dengan fallback ke predicted_jurusan) ──
+            if filter_list:
+                conds = []
+                for idx, f in enumerate(filter_list):
+                    like_key = f"filter_like_{idx}"
+                    val_key = f"filter_val_{idx}"
+                    params[like_key] = f'%"label": "{f}"%'
+                    params[val_key] = f
+                    conds.append(f"(b.predicted_multilabel LIKE :{like_key} OR (b.predicted_multilabel IS NULL AND b.predicted_jurusan = :{val_key}))")
 
-                if filter_conditions:
-                    query_base += " AND (" + " OR ".join(filter_conditions) + ")"
-                
-                query_base += " ORDER BY b.publish_year DESC, b.title ASC LIMIT 2000"
+                if filter_mode == 'and':
+                    # AND: buku harus memiliki SEMUA jurusan yang dipilih
+                    where_extra += f" AND ({' AND '.join(conds)})"
+                else:
+                    # OR: buku cukup memiliki salah satu jurusan
+                    where_extra += f" AND ({' OR '.join(conds)})"
+
+            # ── Hitung total ──
+            total_query = text(count_base + where_extra)
+            total_items = conn.execute(total_query, params).scalar()
+
+            # ── Query data dengan paginasi SQL ──
+            offset = (page - 1) * per_page
+            if keyword and not re.match(r'^\d{3}-\d{3}$', keyword):
+                order_clause = " ORDER BY b.title ASC"
+            elif filter_list:
+                order_clause = " ORDER BY b.predicted_confidence DESC, b.title ASC"
             else:
-                # Pagination query if no keyword and no filter
-                offset = (page - 1) * per_page
-                query_base += f" ORDER BY b.title ASC LIMIT {per_page} OFFSET {offset}"
-            
-            query = text(query_base)
-            rows = conn.execute(query, params).mappings().all()
+                order_clause = " ORDER BY b.title ASC"
 
+            final_query = text(
+                query_base + where_extra + order_clause + f" LIMIT {per_page} OFFSET {offset}"
+            )
+            rows = conn.execute(final_query, params).mappings().all()
+
+        # ── Build response ──
         hasil = []
+        matching_count = 0
+
         for row in rows:
             ddc_bersih = clean_ddc(row["classification"])
             if ddc_bersih is None:
                 continue
 
-            book_text = build_text(
-                title=row["title"],
-                description=row.get("spec_detail_info"),
-                notes=row.get("notes")
-            )
+            actual_jur = ddc_to_jurusan(row["classification"])
 
-            multilabel = predict_multilabel(
-                ddc_value=ddc_bersih,
-                book_text=book_text,
-                ddc_raw=row["classification"]
-            )
-            
-            if filter_list and len(multilabel) > 0:
-                # Ambil semua nama label hasil prediksi AI (dalam lowercase)
-                book_labels = [item['label'].lower() for item in multilabel]
+            if mode == 'realtime':
+                book_text = build_text(
+                    title=row["title"],
+                    description=row.get("spec_detail_info"),
+                    notes=row.get("notes")
+                )
+                multilabel = predict_multilabel(
+                    ddc_value=ddc_bersih,
+                    book_text=book_text,
+                    ddc_raw=row["classification"]
+                )
+                if not multilabel:
+                    multilabel = [{"label": actual_jur, "probabilitas": 100.0, "metode": "ddc_mapping"}]
                 
-                if filter_mode == 'and':
-                    # Logika DAN (AND): semua filter terpilih harus ada di book_labels
-                    match_filter = True
-                    for f in filter_list:
-                        if not any(f in label for label in book_labels):
-                            match_filter = False
-                            break
+                predicted_jur = multilabel[0]["label"] if multilabel else "Umum"
+            else:
+                # Gunakan predicted_multilabel dari database (JSON)
+                predicted_ml_raw = row.get("predicted_multilabel")
+                if predicted_ml_raw:
+                    try:
+                        multilabel = json.loads(predicted_ml_raw)
+                    except (json.JSONDecodeError, TypeError):
+                        # Fallback ke single label jika JSON rusak
+                        predicted_jur = row.get("predicted_jurusan") or "Umum"
+                        predicted_conf = row.get("predicted_confidence") or 0.0
+                        multilabel = [{
+                            "label": predicted_jur,
+                            "probabilitas": round(float(predicted_conf), 2),
+                            "metode": "pre_computed"
+                        }]
                 else:
-                    # Logika ATAU (OR): salah satu filter terpilih ada di book_labels
-                    match_filter = False
-                    for f in filter_list:
-                        if any(f in label for label in book_labels):
-                            match_filter = True
-                            break
+                    # Fallback: kolom predicted_multilabel belum terisi
+                    predicted_jur = row.get("predicted_jurusan") or "Umum"
+                    predicted_conf = row.get("predicted_confidence") or 0.0
+                    multilabel = [{
+                        "label": predicted_jur,
+                        "probabilitas": round(float(predicted_conf), 2),
+                        "metode": "pre_computed"
+                    }]
                 
-                if not match_filter:
-                    continue
+                predicted_jur = row.get("predicted_jurusan") or (multilabel[0]["label"] if multilabel else "Umum")
+
+            # Hitung apakah prediksi cocok dengan DDC asli (Prototyping)
+            if predicted_jur == actual_jur:
+                matching_count += 1
 
             # Bersihkan deskripsi (hapus literal 'null')
             desc_raw = row.get("spec_detail_info") or ""
@@ -542,29 +743,25 @@ def search_buku():
                 "has_notes":    bool(notes_clean),
                 "DDC_Bersih":   ddc_bersih,
                 "Multilabel":   multilabel,
+                "actual_jurusan": actual_jur,
+                "predicted_jurusan": predicted_jur,
             }
             hasil.append(buku)
-            
-            # Jika menggunakan keyword/filter, batasi hasil yang dikumpulkan (misal max 200) agar tidak lambat
-            if (keyword or filters) and len(hasil) >= 500:
-                break
 
-        # Terapkan pagination
-        if not keyword and not filters:
-            final_data = hasil
-            total_items = total_buku_db
-        else:
-            total_items = len(hasil)
-            offset = (page - 1) * per_page
-            final_data = hasil[offset : offset + per_page]
+        page_accuracy = round((matching_count / len(hasil)) * 100, 2) if hasil else 0.0
 
         return jsonify({
-            "data": final_data,
+            "data": hasil,
             "pagination": {
                 "total": total_items,
                 "page": page,
                 "per_page": per_page,
                 "total_pages": max(1, (total_items + per_page - 1) // per_page)
+            },
+            "stats": {
+                "page_matching": matching_count,
+                "page_accuracy": page_accuracy,
+                "page_total": len(hasil)
             }
         })
 
@@ -605,6 +802,9 @@ def detail_buku(biblio_id):
             ddc_raw=row["classification"]
         )
 
+        actual_jur = ddc_to_jurusan(row["classification"])
+        predicted_jur = multilabel[0]["label"] if multilabel else "Umum"
+
         # Bersihkan deskripsi
         desc_raw = row.get("spec_detail_info") or ""
         desc = desc_raw.strip() if str(desc_raw).strip().lower() not in ('null', 'none', 'nan', '') else ""
@@ -644,58 +844,106 @@ def detail_buku(biblio_id):
             "Description":  desc,
             "DDC_Bersih":   ddc_bersih,
             "Multilabel":   multilabel,
+            "actual_jurusan": actual_jur,
+            "predicted_jurusan": predicted_jur,
         })
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
+
 # ─────────────────────────────────────────────
 # Endpoint: POST /api/buku/store
+# Menyimpan buku baru + langsung prediksi AI
 # ─────────────────────────────────────────────
 @app.route('/api/buku/store', methods=['POST'])
 def store_buku():
-    """Tambah buku baru ke database biblio."""
     try:
-        data = request.get_json() or {}
+        data = request.get_json(force=True) if request.is_json else request.form.to_dict()
 
         title = data.get('title', '').strip()
         sor = data.get('sor', '').strip()
         classification = data.get('classification', '').strip()
 
-        if not title or not sor or not classification:
-            return jsonify({"error": "Field title, sor, dan classification wajib diisi."}), 400
+        if not title or not classification:
+            return jsonify({"error": "Field 'title' dan 'classification' wajib diisi."}), 400
 
+        # Build teks untuk prediksi AI
+        book_text = build_text(
+            title=title,
+            description=data.get('spec_detail_info', ''),
+            notes=data.get('notes', '')
+        )
+
+        # Prediksi jurusan menggunakan model AI
+        predicted_jur = "Umum"
+        predicted_conf = 0.0
+        multilabel_data = [{"label": "Umum", "probabilitas": 0.0, "metode": "default"}]
+
+        if book_text and tfidf_model is not None and clf_model is not None:
+            try:
+                multilabel_result = predict_multilabel(
+                    ddc_value=clean_ddc(classification),
+                    book_text=book_text,
+                    ddc_raw=classification
+                )
+                if multilabel_result:
+                    predicted_jur = multilabel_result[0]["label"]
+                    predicted_conf = multilabel_result[0]["probabilitas"]
+                    multilabel_data = multilabel_result
+            except Exception as e:
+                print(f"[WARN] Prediksi gagal untuk buku baru: {e}")
+                # Fallback ke DDC mapping
+                predicted_jur = ddc_to_jurusan(classification)
+                predicted_conf = 100.0
+                multilabel_data = [{"label": predicted_jur, "probabilitas": 100.0, "metode": "ddc_mapping"}]
+        else:
+            # Jika model tidak tersedia, gunakan DDC mapping
+            predicted_jur = ddc_to_jurusan(classification)
+            predicted_conf = 100.0
+            multilabel_data = [{"label": predicted_jur, "probabilitas": 100.0, "metode": "ddc_mapping"}]
+
+        # Insert ke database
         with engine.connect() as conn:
             insert_query = text("""
-                INSERT INTO biblio (title, sor, publish_year, isbn_issn, classification, 
-                    call_number, edition, collation, series_title, spec_detail_info, notes, 
-                    opac_hide, input_date, last_update)
-                VALUES (:title, :sor, :publish_year, :isbn_issn, :classification, 
-                    :call_number, :edition, :collation, :series_title, :spec_detail_info, :notes, 
-                    0, NOW(), NOW())
+                INSERT INTO biblio (
+                    title, sor, classification, publish_year, isbn_issn,
+                    call_number, edition, collation, series_title,
+                    spec_detail_info, notes, opac_hide,
+                    predicted_jurusan, predicted_confidence, predicted_multilabel,
+                    last_update
+                ) VALUES (
+                    :title, :sor, :classification, :publish_year, :isbn_issn,
+                    :call_number, :edition, :collation, :series_title,
+                    :spec_detail_info, :notes, 0,
+                    :predicted_jurusan, :predicted_confidence, :predicted_multilabel,
+                    NOW()
+                )
             """)
-            result = conn.execute(insert_query, {
+
+            conn.execute(insert_query, {
                 "title": title,
                 "sor": sor,
+                "classification": classification,
                 "publish_year": data.get('publish_year', ''),
                 "isbn_issn": data.get('isbn_issn', ''),
-                "classification": classification,
                 "call_number": data.get('call_number', ''),
                 "edition": data.get('edition', ''),
                 "collation": data.get('collation', ''),
                 "series_title": data.get('series_title', ''),
                 "spec_detail_info": data.get('spec_detail_info', ''),
                 "notes": data.get('notes', ''),
+                "predicted_jurusan": predicted_jur,
+                "predicted_confidence": round(predicted_conf, 2),
+                "predicted_multilabel": json.dumps(multilabel_data, ensure_ascii=False),
             })
             conn.commit()
 
-            new_id = result.lastrowid
-
         return jsonify({
-            "success": True,
             "message": f"Buku '{title}' berhasil ditambahkan.",
-            "biblio_id": new_id,
+            "predicted_jurusan": predicted_jur,
+            "predicted_confidence": round(predicted_conf, 2),
         }), 201
 
     except Exception as e:

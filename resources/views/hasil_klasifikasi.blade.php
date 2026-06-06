@@ -83,10 +83,21 @@
                 </span>
             </a>
 
-            <div class="flex items-center gap-3">
-                <a href="/" class="block rounded-full border border-[#1e3c72] bg-white px-5 py-2.5 text-center text-sm font-semibold text-[#1e3c72] shadow-sm transition-all hover:-translate-y-0.5 hover:bg-slate-50">
-                    Home
+            @auth
+            <!-- Mode Switcher -->
+            <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200 shadow-inner select-none">
+                <a href="{{ request()->fullUrlWithQuery(['mode' => 'database']) }}" 
+                   class="rounded-full px-4 py-1.5 text-xs font-bold transition-all duration-200 {{ $mode === 'database' ? 'bg-white text-[#1e3c72] shadow-sm' : 'text-slate-500 hover:text-slate-700' }}">
+                    Mode Offline
                 </a>
+                <a href="{{ request()->fullUrlWithQuery(['mode' => 'realtime']) }}" 
+                   class="rounded-full px-4 py-1.5 text-xs font-bold transition-all duration-200 {{ $mode === 'realtime' ? 'bg-white text-[#1e3c72] shadow-sm' : 'text-slate-500 hover:text-slate-700' }}">
+                    Mode Real-time
+                </a>
+            </div>
+            @endauth
+
+            <div class="flex items-center gap-3">
                 @auth
                 <a href="{{ route('buku.tambah') }}" class="block rounded-full border border-emerald-500 bg-white px-5 py-2.5 text-center text-sm font-semibold text-emerald-600 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-50">
                     <svg class="inline-block h-4 w-4 mr-1 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
@@ -120,8 +131,10 @@
                 <h2 class="text-sm font-bold text-white/90 uppercase tracking-wider">Filter & Navigasi</h2>
             </div>
 
-            <!-- Sidebar Form -->
+             <!-- Sidebar Form -->
             <form id="sideSearchForm" action="{{ route('klasifikasi.process') }}" method="GET" class="flex flex-col overflow-hidden">
+                <input type="hidden" name="mode" value="{{ $mode }}">
+                <input type="hidden" name="filter_mode" value="and">
                 
                 <!-- Pencarian -->
                 <div class="border-b border-slate-100 p-5">
@@ -131,18 +144,30 @@
                             <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </div>
                         <input type="text" id="sideKeyword" name="keyword" value="{{ $keyword }}"
-                               placeholder="Cari buku, DDC..." autocomplete="off"
+                               placeholder="Judul buku atau No. DDC (cth: 123)" autocomplete="off"
                                class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-[13px] text-slate-700 outline-none transition focus:border-[#1e3c72] focus:bg-white focus:ring-4 focus:ring-blue-50">
                     </div>
                     <button type="submit"
                             class="w-full rounded-xl bg-gradient-to-r from-[#1e3c72] to-blue-600 py-2.5 text-[12.5px] font-bold text-white shadow-md shadow-blue-900/20 transition hover:from-blue-800 hover:to-blue-700 active:scale-[0.98]">
                         Cari Buku
                     </button>
+
+                    <!-- Switcher Button Filter -->
+                    <div class="mt-4 grid grid-cols-2 gap-1 rounded-xl bg-slate-100 p-1 border border-slate-200">
+                        <button type="button" onclick="switchFilterTab('ai')" id="tabBtnAi"
+                                class="rounded-lg py-2 text-center text-[10.5px] font-extrabold tracking-wide uppercase transition-all duration-200 bg-white text-[#1e3c72] shadow-sm cursor-pointer select-none">
+                            Klasifikasi AI
+                        </button>
+                        <button type="button" onclick="switchFilterTab('ddc')" id="tabBtnDdc"
+                                class="rounded-lg py-2 text-center text-[10.5px] font-extrabold tracking-wide uppercase transition-all duration-200 text-slate-500 hover:text-slate-700 cursor-pointer select-none">
+                            Kelas DDC
+                        </button>
+                    </div>
             </div>
 
             <!-- Jurusan PNJ (Static Checkbox List) -->
-            <div class="border-b border-slate-100 p-5">
-                <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Filter Klasterisasi AI</label>
+            <div id="aiFilterSection" class="border-b border-slate-100 p-5 transition-all duration-300">
+                <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500">Filter Klasifikasi AI</label>
                 @php
                     $pnjClasses = [
                         'Teknik Informatika & Komputer',
@@ -168,61 +193,242 @@
                     @endforeach
                 </div>
 
-                <!-- Logic Operator Selector (AND vs OR) -->
-                @php
-                    $activeFilterMode = $filterMode ?? request('filter_mode', 'or');
-                @endphp
-                <div class="mt-4 border-t border-slate-100 pt-3">
-                    <span class="mb-2 block text-[10px] font-bold uppercase tracking-wider text-slate-400">Hubungan Antar Label</span>
-                    <div class="grid grid-cols-2 gap-1 rounded-xl bg-slate-100 p-1">
-                        <label class="flex cursor-pointer items-center justify-center rounded-lg py-1.5 text-center transition-all duration-200 {{ $activeFilterMode === 'or' ? 'bg-white shadow-sm font-semibold text-[#1e3c72]' : 'text-slate-500 hover:text-slate-700' }}">
-                            <input type="radio" name="filter_mode" value="or" class="sr-only" {{ $activeFilterMode === 'or' ? 'checked' : '' }} onchange="applyAiFilter()">
-                            <span class="text-[11px]">ATAU</span>
-                        </label>
-                        <label class="flex cursor-pointer items-center justify-center rounded-lg py-1.5 text-center transition-all duration-200 {{ $activeFilterMode === 'and' ? 'bg-white shadow-sm font-semibold text-[#1e3c72]' : 'text-slate-500 hover:text-slate-700' }}">
-                            <input type="radio" name="filter_mode" value="and" class="sr-only" {{ $activeFilterMode === 'and' ? 'checked' : '' }} onchange="applyAiFilter()">
-                            <span class="text-[11px]">DAN</span>
-                        </label>
-                    </div>
-                    <p class="mt-1.5 text-[10px] leading-normal text-slate-400">
-                        {{ $activeFilterMode === 'and' ? '* Buku harus terprediksi memiliki SEMUA kategori terpilih.' : '* Buku cukup terprediksi memiliki SALAH SATU kategori terpilih.' }}
-                    </p>
-                </div>
-
                 <button type="button" onclick="applyAiFilter()" class="mt-3.5 w-full rounded-lg bg-[#1e3c72] py-2 text-center text-[12.5px] font-bold text-white shadow-sm transition hover:bg-blue-900 active:scale-95">
                     Terapkan Filter
                 </button>
             </div>
             
-            <div class="p-5 pb-6 flex flex-col">
+            <div id="ddcCategorySection" class="p-5 pb-6 flex flex-col transition-all duration-300" style="display: none;">
                 <label class="mb-2.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500 shrink-0">Kategori DDC</label>
                 @php
-                    $ddcMurni = [
-                        ['000-099', 'Teknik Informatika & Komputer'],
-                        ['300-399', 'Administrasi Niaga'],
-                        ['500-509', 'Sains Umum'],
-                        ['510-519', 'Matematika'],
-                        ['620-629', 'Teknik Sipil & Mesin'],
-                        ['621-621', 'Teknik Elektro'],
-                        ['650-659', 'Akuntansi & Manajemen'],
-                        ['700-779', 'Teknik Grafika & Penerbitan'],
-                        ['100-299', 'Umum (Filsafat, Agama)'],
-                        ['400-499', 'Umum (Bahasa)'],
-                    ];
+                    $is300Active = preg_match('/^3\d0-3\d9$/', $keyword);
                 @endphp
 
-                <div class="mt-2 space-y-1.5 h-[226px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
-                    @foreach($ddcMurni as [$kode, $nama])
-                    <button type="button" onclick="applyDdcCategory('{{ $kode }}')"
-                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 {{ $keyword === $kode ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
-                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === $kode ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
-                            {{ explode('-', $kode)[0] }}
+                <div class="mt-2 space-y-1.5 h-[420px] overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-slate-50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300">
+                    
+                    <!-- 000 Karya Umum -->
+                    <button type="button" onclick="applyDdcCategory('000-069')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '000-069' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '000-069' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            000
                         </span>
-                        <span class="text-[12.5px] leading-snug transition {{ $keyword === $kode ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
-                            {{ $nama }}
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '000-069' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Karya Umum
                         </span>
                     </button>
-                    @endforeach
+
+                    <!-- 070 Jurnalisme dan Media Massa -->
+                    <button type="button" onclick="applyDdcCategory('070-079')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '070-079' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '070-079' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            070
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '070-079' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Jurnalisme dan Media Massa
+                        </span>
+                    </button>
+
+                    <!-- 100 Filsafat Dan Psikologi -->
+                    <button type="button" onclick="applyDdcCategory('100-180')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '100-180' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '100-180' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            100
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '100-180' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Filsafat Dan Psikologi
+                        </span>
+                    </button>
+
+                    <!-- 200 Agama -->
+                    <button type="button" onclick="applyDdcCategory('200-299')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '200-299' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '200-299' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            200
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '200-299' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Agama
+                        </span>
+                    </button>
+
+                    <!-- 300 Ilmu Sosial (Collapsible) -->
+                    <div class="flex flex-col gap-1 border border-slate-100 rounded-lg p-1 bg-slate-50/50">
+                        <button type="button" onclick="toggleSidebarDdc300(event)"
+                                class="group flex w-full items-center justify-between rounded-md px-2 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $is300Active ? 'bg-blue-50/70 border-blue-200' : 'bg-white' }}">
+                            <div class="flex items-center gap-2.5">
+                                <span class="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $is300Active ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                                    300
+                                </span>
+                                <span class="text-[12px] leading-snug transition {{ $is300Active ? 'font-bold text-[#1e3c72]' : 'font-semibold text-slate-600 group-hover:text-[#1e3c72]' }}">
+                                    Ilmu Sosial
+                                </span>
+                            </div>
+                            <svg id="sidebarChevron300" class="h-4 w-4 text-slate-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Sub-items panel -->
+                        <div id="sidebarDdc300Content" class="hidden pl-2 pr-1 py-1 flex flex-col gap-1 border-l border-slate-200 transition-all duration-300">
+                            @php
+                                $subDdc300 = [
+                                    ['300-309', '300', 'Sosiologi & Antropologi'],
+                                    ['310-319', '310', 'Statistik Umum'],
+                                    ['320-329', '320', 'Ilmu Politik & Pem.'],
+                                    ['330-339', '330', 'Ilmu Ekonomi'],
+                                    ['340-349', '340', 'Ilmu Hukum'],
+                                    ['350-359', '350', 'Adm. Negara & Militer'],
+                                    ['360-369', '360', 'Kesejahteraan Sosial'],
+                                    ['370-379', '370', 'Pendidikan'],
+                                    ['380-389', '380', 'Perdagangan & Trans.'],
+                                    ['390-399', '390', 'Adat, Etiket, Folklor'],
+                                ];
+                            @endphp
+                            @foreach($subDdc300 as [$kode, $tampil, $nama])
+                            <button type="button" onclick="applyDdcCategory('{{ $kode }}')"
+                                    class="group flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left transition hover:bg-blue-50 {{ $keyword === $kode ? 'bg-blue-50 ring-1 ring-blue-100/70' : '' }}">
+                                <span class="text-[11px] truncate leading-tight transition {{ $keyword === $kode ? 'font-bold text-[#1e3c72]' : 'text-slate-500 group-hover:text-[#1e3c72]' }}" title="{{ $nama }}">
+                                    {{ $nama }}
+                                </span>
+                                <span class="text-[9px] font-extrabold bg-slate-100 text-slate-400 px-1 py-0.5 rounded group-hover:bg-[#1e3c72] group-hover:text-white transition-colors {{ $keyword === $kode ? 'bg-[#1e3c72] text-white' : '' }}">
+                                    {{ $tampil }}
+                                </span>
+                            </button>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- 400 Bahasa -->
+                    <button type="button" onclick="applyDdcCategory('400-499')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '400-499' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '400-499' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            400
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '400-499' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Bahasa
+                        </span>
+                    </button>
+
+                    <!-- 500 Matematika, Sains -->
+                    <button type="button" onclick="applyDdcCategory('500-599')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '500-599' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '500-599' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            500
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '500-599' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Matematika, Sains
+                        </span>
+                    </button>
+
+                    <!-- 600 Ilmu teknik Dan Teknologi -->
+                    <button type="button" onclick="applyDdcCategory('600-620')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '600-620' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '600-620' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            600
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '600-620' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Ilmu teknik Dan Teknologi
+                        </span>
+                    </button>
+
+                    <!-- 621 Ilmu Terapan -->
+                    <button type="button" onclick="applyDdcCategory('621')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '621' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '621' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            621
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '621' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Ilmu Terapan
+                        </span>
+                    </button>
+
+                    <!-- 621 Ilmu teknik dan Sipil -->
+                    <button type="button" onclick="applyDdcCategory('621-624')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '621-624' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '621-624' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            621
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '621-624' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Ilmu teknik dan Sipil
+                        </span>
+                    </button>
+
+                    <!-- 650 Akuntansi -->
+                    <button type="button" onclick="applyDdcCategory('650-657')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '650-657' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '650-657' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            650
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '650-657' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Akuntansi
+                        </span>
+                    </button>
+
+                    <!-- 658 Manajemen -->
+                    <button type="button" onclick="applyDdcCategory('658')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '658' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '658' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            658
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '658' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Manajemen
+                        </span>
+                    </button>
+
+                    <!-- 670 Manufaktur -->
+                    <button type="button" onclick="applyDdcCategory('670-689')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '670-689' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '670-689' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            670
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '670-689' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Manufaktur
+                        </span>
+                    </button>
+
+                    <!-- 690 Teknik bangunan -->
+                    <button type="button" onclick="applyDdcCategory('691-699')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '691-699' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '691-699' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            690
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '691-699' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Teknik bangunan
+                        </span>
+                    </button>
+
+                    <!-- 700 Kesenian, Hiburan dan Olahraga -->
+                    <button type="button" onclick="applyDdcCategory('790-799')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '790-799' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '790-799' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            700
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '790-799' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Kesenian, Hiburan dan Olahraga
+                        </span>
+                    </button>
+
+                    <!-- 800 Kesastraan, Retorika, Fiksi dan Non-Fiksi -->
+                    <button type="button" onclick="applyDdcCategory('800-899')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '800-899' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '800-899' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            800
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '800-899' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Kesastraan, Retorika, Fiksi dan Non-Fiksi
+                        </span>
+                    </button>
+
+                    <!-- 900 Geografi Dan Sejarah -->
+                    <button type="button" onclick="applyDdcCategory('900-999')"
+                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 border border-slate-100 transition hover:bg-blue-50/80 hover:border-blue-200 text-left {{ $keyword === '900-999' ? 'bg-blue-50 ring-1 ring-blue-100 border-blue-200' : 'bg-white' }}">
+                        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 text-[10px] font-black text-slate-600 transition duration-300 group-hover:from-[#1e3c72] group-hover:to-blue-500 group-hover:text-white {{ $keyword === '900-999' ? 'from-[#1e3c72] to-blue-500 !text-white' : '' }}">
+                            900
+                        </span>
+                        <span class="text-[12px] leading-snug transition {{ $keyword === '900-999' ? 'font-bold text-[#1e3c72]' : 'font-medium text-slate-600 group-hover:text-[#1e3c72]' }}">
+                            Geografi Dan Sejarah
+                        </span>
+                    </button>
+
                 </div>
             </div>
         </form>
@@ -230,9 +436,7 @@
 
         <script>
             function applyAiFilter() {
-                // Selalu kosongkan keyword agar filter AI bekerja mandiri
-                // menampilkan SEMUA buku dari kategori yang dipilih
-                document.getElementById('sideKeyword').value = '';
+                // Submit form beserta keyword yang ada dan filter yang dipilih
                 document.getElementById('sideSearchForm').submit();
             }
 
@@ -353,12 +557,14 @@
                             @endif
                         </p>
 
+
+
                         <!-- ── MULTILABEL SECTION ───────────────────── -->
                         @if(!empty($buku['Multilabel']))
                         <div class="mb-3">
                             <div class="flex items-center gap-2 mb-2">
                                 <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                                    Klasifikasi Multilabel
+                                    Klasifikasi AI
                                 </p>
                                 @if(!empty($buku['has_notes']))
                                 <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 ring-1 ring-emerald-200" title="Klasifikasi menggunakan data Notes dari biblio">
@@ -410,11 +616,9 @@
                         <div class="mb-3 w-full rounded-xl border border-slate-200 bg-slate-50 p-3">
                             <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">DDC</div>
                             <div class="mt-1 text-xl font-black text-[#1e3c72] leading-tight">
-                                {{ $buku['Book_Code'] ?? '-' }}
+                                {{ isset($buku['DDC_Bersih']) ? sprintf('%03d', $buku['DDC_Bersih']) : ($buku['Book_Code'] ?? '-') }}
                             </div>
-                            @if(!empty($buku['Call_Number']) && $buku['Call_Number'] !== '-')
-                            <div class="mt-1 text-[10px] text-slate-500 leading-tight break-all">{{ $buku['Call_Number'] }}</div>
-                            @endif
+
                         </div>
 
                         <button onclick="showDetail({{ $buku['biblio_id'] ?? 0 }}, {{ json_encode($buku) }})"
@@ -514,15 +718,15 @@
             const modal   = document.getElementById('detailModal');
             const content = document.getElementById('detailContent');
 
-            // Bangun HTML detail
-            let multilabelHtml = '';
-            if (buku.Multilabel && buku.Multilabel.length) {
+            // Helper: build multilabel HTML
+            function buildMultilabelHtml(multilabel) {
+                if (!multilabel || !multilabel.length) return '';
                 const colors = ['#3b82f6','#22c55e','#f59e0b','#ec4899','#8b5cf6','#06b6d4','#ef4444','#64748b'];
-                multilabelHtml = `
+                return `
                     <div class="mb-4">
                         <p class="mb-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Klasifikasi Multilabel</p>
                         <div class="space-y-2">
-                            ${buku.Multilabel.map((l, i) => `
+                            ${multilabel.map((l, i) => `
                                 <div>
                                     <div class="flex justify-between text-[12px] mb-1">
                                         <span class="font-medium text-slate-700">${l.label}</span>
@@ -538,70 +742,89 @@
                     </div>`;
             }
 
-            content.innerHTML = `
-                <h2 class="mb-1 pr-8 text-xl font-extrabold leading-snug text-slate-800">${buku.Book_Title || 'Tanpa Judul'}</h2>
-                <p class="mb-5 text-sm text-slate-500">${buku.Author || '-'}</p>
+            // Helper: build full modal content
+            function buildModalContent(buku, multilabelHtml) {
+                return `
+                    <h2 class="mb-1 pr-8 text-xl font-extrabold leading-snug text-slate-800">${buku.Book_Title || 'Tanpa Judul'}</h2>
+                    <p class="mb-5 text-sm text-slate-500">${buku.Author || '-'}</p>
 
-                <div class="mb-5 grid grid-cols-2 gap-3 text-[13px]">
-                    <div class="rounded-lg bg-slate-50 p-3">
-                        <div class="text-[10px] font-bold uppercase text-slate-400">Tahun Terbit</div>
-                        <div class="mt-1 font-semibold text-slate-700">${buku.Year_Published || '-'}</div>
-                    </div>
-                    <div class="rounded-lg bg-slate-50 p-3">
-                        <div class="text-[10px] font-bold uppercase text-slate-400">Kode DDC</div>
-                        <div class="mt-1 font-semibold text-slate-700">${buku.Book_Code || '-'}</div>
-                    </div>
-                    <div class="rounded-lg bg-slate-50 p-3">
-                        <div class="text-[10px] font-bold uppercase text-slate-400">Call Number</div>
-                        <div class="mt-1 font-semibold text-slate-700">${buku.Call_Number || '-'}</div>
-                    </div>
-                    <div class="rounded-lg bg-slate-50 p-3">
-                        <div class="text-[10px] font-bold uppercase text-slate-400">Halaman</div>
-                        <div class="mt-1 font-semibold text-slate-700">${buku.Pages || '-'}</div>
-                    </div>
-                    <div class="col-span-2 rounded-lg bg-slate-50 p-3">
-                        <div class="text-[10px] font-bold uppercase text-slate-400">Penerbit</div>
-                        <div class="mt-1 font-semibold text-slate-700">${buku.Publisher || '-'}</div>
-                    </div>
-                </div>
+                    <div class="mb-5 grid grid-cols-2 gap-3 text-[13px]">
+                        <div class="rounded-lg bg-slate-50 p-3">
+                            <div class="text-[10px] font-bold uppercase text-slate-400">Tahun Terbit</div>
+                            <div class="mt-1 font-semibold text-slate-700">${buku.Year_Published || '-'}</div>
+                        </div>
+                        <div class="rounded-lg bg-slate-50 p-3">
+                            <div class="text-[10px] font-bold uppercase text-slate-400">Kode DDC</div>
+                            <div class="mt-1 font-semibold text-slate-700">${buku.Book_Code || '-'}</div>
+                        </div>
+                        <div class="rounded-lg bg-slate-50 p-3">
+                            <div class="text-[10px] font-bold uppercase text-slate-400">Call Number</div>
+                            <div class="mt-1 font-semibold text-slate-700">${buku.Call_Number || '-'}</div>
+                        </div>
+                        <div class="rounded-lg bg-slate-50 p-3">
+                            <div class="text-[10px] font-bold uppercase text-slate-400">Halaman</div>
+                            <div class="mt-1 font-semibold text-slate-700">${buku.Pages || '-'}</div>
+                        </div>
 
-                ${buku.Description ? `
-                <div class="mb-5 border-t border-slate-100 pt-5">
-                    <p class="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                        <svg class="inline-block h-4 w-4 mr-1 -mt-0.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        Deskripsi Buku
-                    </p>
-                    <div class="rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50/50 to-slate-50 p-4">
-                        <p class="text-[13px] leading-relaxed text-slate-600">${buku.Description}</p>
+                        <div class="col-span-2 rounded-lg bg-slate-50 p-3">
+                            <div class="text-[10px] font-bold uppercase text-slate-400">Penerbit</div>
+                            <div class="mt-1 font-semibold text-slate-700">${buku.Publisher || '-'}</div>
+                        </div>
                     </div>
-                </div>
-                ` : ''}
 
-                ${buku.Notes && buku.Notes !== '-' ? `
-                <div class="mb-5 ${buku.Description ? '' : 'border-t border-slate-100 pt-5'}">
-                    <div class="flex items-center gap-2 mb-2.5">
-                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                            <svg class="inline-block h-4 w-4 mr-1 -mt-0.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                            Catatan (Notes)
+                    ${buku.Description ? `
+                    <div class="mb-5 border-t border-slate-100 pt-5">
+                        <p class="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                            <svg class="inline-block h-4 w-4 mr-1 -mt-0.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            Deskripsi Buku
                         </p>
-                        <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 ring-1 ring-emerald-200">
-                            Digunakan untuk Klasifikasi AI
-                        </span>
+                        <div class="rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50/50 to-slate-50 p-4">
+                            <p class="text-[13px] leading-relaxed text-slate-600">${buku.Description}</p>
+                        </div>
                     </div>
-                    <div class="rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50/40 to-slate-50 p-4">
-                        <p class="text-[13px] leading-relaxed text-slate-600">${buku.Notes}</p>
+                    ` : ''}
+
+                    ${buku.Notes && buku.Notes !== '-' ? `
+                    <div class="mb-5 ${buku.Description ? '' : 'border-t border-slate-100 pt-5'}">
+                        <div class="flex items-center gap-2 mb-2.5">
+                            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                <svg class="inline-block h-4 w-4 mr-1 -mt-0.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                Catatan (Notes)
+                            </p>
+                            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 ring-1 ring-emerald-200">
+                                Digunakan untuk Klasifikasi AI
+                            </span>
+                        </div>
+                        <div class="rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50/40 to-slate-50 p-4">
+                            <p class="text-[13px] leading-relaxed text-slate-600">${buku.Notes}</p>
+                        </div>
                     </div>
-                </div>
-                ` : ''}
+                    ` : ''}
 
-                <div class="${(buku.Description || (buku.Notes && buku.Notes !== '-')) ? '' : 'border-t border-slate-100 pt-5'}">
-                    ${multilabelHtml}
-                </div>
-            `;
+                    <div id="multilabelSection" class="${(buku.Description || (buku.Notes && buku.Notes !== '-')) ? '' : 'border-t border-slate-100 pt-5'}">
+                        ${multilabelHtml}
+                    </div>
+                `;
+            }
 
+            // Tampilkan modal langsung dengan data inline (cepat)
+            content.innerHTML = buildModalContent(buku, buildMultilabelHtml(buku.Multilabel));
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             setTimeout(() => document.getElementById('detailCard').classList.add('scale-100'), 10);
+
+            // Fetch detail lengkap dari API (multilabel real-time untuk 1 buku)
+            fetch(`/buku/${id}`)
+                .then(r => r.json())
+                .then(detail => {
+                    if (detail && detail.Multilabel && detail.Multilabel.length > 0) {
+                        const section = document.getElementById('multilabelSection');
+                        if (section) {
+                            section.innerHTML = buildMultilabelHtml(detail.Multilabel);
+                        }
+                    }
+                })
+                .catch(() => { /* Tetap tampilkan data inline jika API gagal */ });
         }
 
         function closeDetail() {
@@ -685,6 +908,73 @@
 
         document.getElementById('doiModal').addEventListener('click', function(e) {
             if (e.target === this) closeDoi();
+        });
+
+        // ── Tab Switcher Logic ────────────────────────────────────
+        function switchFilterTab(tab) {
+            const tabAi = document.getElementById('tabBtnAi');
+            const tabDdc = document.getElementById('tabBtnDdc');
+            const secAi = document.getElementById('aiFilterSection');
+            const secDdc = document.getElementById('ddcCategorySection');
+            
+            if (!tabAi || !tabDdc || !secAi || !secDdc) return;
+
+            if (tab === 'ai') {
+                tabAi.classList.add('bg-white', 'text-[#1e3c72]', 'shadow-sm');
+                tabAi.classList.remove('text-slate-500', 'hover:text-slate-700');
+                tabDdc.classList.remove('bg-white', 'text-[#1e3c72]', 'shadow-sm');
+                tabDdc.classList.add('text-slate-500', 'hover:text-slate-700');
+                
+                secAi.style.display = 'block';
+                secDdc.style.display = 'none';
+                localStorage.setItem('activeFilterTab', 'ai');
+            } else {
+                tabDdc.classList.add('bg-white', 'text-[#1e3c72]', 'shadow-sm');
+                tabDdc.classList.remove('text-slate-500', 'hover:text-slate-700');
+                tabAi.classList.remove('bg-white', 'text-[#1e3c72]', 'shadow-sm');
+                tabAi.classList.add('text-slate-500', 'hover:text-slate-700');
+                
+                secDdc.style.display = 'flex';
+                secAi.style.display = 'none';
+                localStorage.setItem('activeFilterTab', 'ddc');
+            }
+        }
+        
+        function toggleSidebarDdc300(event) {
+            event.stopPropagation();
+            const content = document.getElementById('sidebarDdc300Content');
+            const chevron = document.getElementById('sidebarChevron300');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                chevron.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+        
+        // Auto-initialize tab on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const hasFilters = {{ !empty($filters) ? 'true' : 'false' }};
+            const keyword = "{{ $keyword }}";
+            const isRangeOrDdc = /^\d{3}(-\d{3})?$/.test(keyword);
+            
+            let savedTab = localStorage.getItem('activeFilterTab');
+            if (hasFilters) {
+                savedTab = 'ai';
+            } else if (isRangeOrDdc) {
+                savedTab = 'ddc';
+            }
+            
+            switchFilterTab(savedTab || 'ai');
+
+            // Auto-expand 300 section in sidebar if active search matches any 300 range
+            if (/^3\d0-3\d9$/.test(keyword)) {
+                const content = document.getElementById('sidebarDdc300Content');
+                const chevron = document.getElementById('sidebarChevron300');
+                if (content) content.classList.remove('hidden');
+                if (chevron) chevron.classList.add('rotate-180');
+            }
         });
     </script>
 

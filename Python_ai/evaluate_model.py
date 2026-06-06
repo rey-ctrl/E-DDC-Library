@@ -40,7 +40,7 @@ tfidf = model_data.get('tfidf')
 clf = model_data.get('clf')
 JURUSAN_LIST = model_data.get('jurusan_list')
 
-# Cek apakah model sudah memiliki metrik test set (format baru)
+# model memiliki metrik test set
 has_test_metrics = 'accuracy_test' in model_data
 
 print(f"    -> Model berhasil dimuat.")
@@ -95,17 +95,22 @@ def ddc_to_jurusan(kode_ddc_raw):
     if main <= 99:
         if 70 <= main <= 79:
             return "Teknik Grafika & Penerbitan"
-        return "Teknik Informatika & Komputer"
+        if main <= 9 or (20 <= main <= 29):
+            return "Teknik Informatika & Komputer"
+        return "Umum"
     elif main <= 199:
         return "Umum"
     elif main <= 299:
         return "Umum"
     elif main <= 399:
-        if main in (332, 336):
-            return "Akuntansi"
-        elif 370 <= main <= 379:
+        if 330 <= main <= 339:
+            if main in (332, 336):
+                return "Akuntansi"
+            return "Administrasi Niaga"
+        elif 380 <= main <= 389:
+            return "Administrasi Niaga"
+        else:
             return "Umum"
-        return "Administrasi Niaga"
     elif main <= 499:
         return "Umum"
     elif main <= 599:
