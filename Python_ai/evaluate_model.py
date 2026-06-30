@@ -11,7 +11,8 @@ warnings.filterwarnings('ignore')
 
 try:
     from dotenv import load_dotenv
-    load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+    load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'), override=True)
+    load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
 except ImportError:
     pass
 
@@ -60,9 +61,9 @@ else:
 print("\n[2/4] Menghubungkan ke database MySQL...")
 DB_HOST = os.getenv('DB_HOST', '127.0.0.1')
 DB_PORT = os.getenv('DB_PORT', '3306')
-DB_NAME = os.getenv('DB_NAME', 'opac')
-DB_USER = os.getenv('DB_USER', 'root')
-DB_PASS = os.getenv('DB_PASS', '')
+DB_NAME = os.getenv('DB_DATABASE') or os.getenv('DB_NAME', 'opac')
+DB_USER = os.getenv('DB_USERNAME') or os.getenv('DB_USER', 'root')
+DB_PASS = os.getenv('DB_PASSWORD') if os.getenv('DB_PASSWORD') is not None else os.getenv('DB_PASS', '')
 DB_URL  = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 engine  = create_engine(DB_URL)
 
@@ -99,6 +100,8 @@ def ddc_to_jurusan(kode_ddc_raw):
             return "Teknik Informatika & Komputer"
         return "Umum"
     elif main <= 199:
+        if 150 <= main <= 159:
+            return "Psikologi"
         return "Umum"
     elif main <= 299:
         return "Umum"
@@ -163,7 +166,7 @@ def ddc_to_jurusan(kode_ddc_raw):
             return "Teknik Grafika & Penerbitan"
         return "Umum"
     elif main <= 899:
-        return "Umum"
+        return "Novel & Sastra"
     else:
         return "Umum"
 

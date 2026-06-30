@@ -1,9 +1,6 @@
-# Dependensi Python untuk E-DDC AI API
+# Dependensi Python untuk E-DDC AI (Mode Offline)
 
-flask
-flask-cors
 numpy
-pandas
 sqlalchemy
 pymysql
 python-dotenv

@@ -49,6 +49,10 @@
         .badge-5 { background:#cffafe; color:#0e7490; }
         .badge-6 { background:#fee2e2; color:#b91c1c; }
         .badge-7 { background:#f1f5f9; color:#475569; }
+        .badge-8 { background:#e0f2fe; color:#0369a1; }
+        .badge-9 { background:#f0fdf4; color:#16a34a; }
+        .badge-10 { background:#faf5ff; color:#7e22ce; }
+        .badge-11 { background:#fff7ed; color:#c2410c; }
 
         .bar-0 { background: linear-gradient(90deg,#3b82f6,#60a5fa); }
         .bar-1 { background: linear-gradient(90deg,#22c55e,#4ade80); }
@@ -58,6 +62,10 @@
         .bar-5 { background: linear-gradient(90deg,#06b6d4,#22d3ee); }
         .bar-6 { background: linear-gradient(90deg,#ef4444,#f87171); }
         .bar-7 { background: linear-gradient(90deg,#64748b,#94a3b8); }
+        .bar-8 { background: linear-gradient(90deg,#0ea5e9,#38bdf8); }
+        .bar-9 { background: linear-gradient(90deg,#10b981,#34d399); }
+        .bar-10 { background: linear-gradient(90deg,#a855f7,#c084fc); }
+        .bar-11 { background: linear-gradient(90deg,#f97316,#fb923c); }
 
         /* Modal overlay */
         #detailModal { transition: opacity .2s ease; }
@@ -179,6 +187,8 @@
                         'Akuntansi',
                         'Matematika',
                         'Sains',
+                        'Novel & Sastra',
+                        'Psikologi',
                         'Umum',
                     ];
                     $activeFilters = (array) request('filters', []);
@@ -460,6 +470,24 @@
         <!-- ── KONTEN UTAMA ─────────────────────────────────────────── -->
         <main class="flex-1 min-w-0">
 
+            @if(session('success'))
+            <div class="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm font-medium text-emerald-700 animate-[fadeInUp_0.3s_ease_both]">
+                <div class="flex items-center gap-2">
+                    <svg class="h-5 w-5 shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    {{ session('success') }}
+                </div>
+            </div>
+            @endif
+
+            @if(session('error'))
+            <div class="mb-5 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-sm font-medium text-red-700 animate-[fadeInUp_0.3s_ease_both]">
+                <div class="flex items-center gap-2">
+                    <svg class="h-5 w-5 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                    {{ session('error') }}
+                </div>
+            </div>
+            @endif
+
             <!-- Info Bar -->
             <div class="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border-l-4 border-l-[#1e3c72] bg-white px-6 py-4 shadow-sm">
                 <div>
@@ -622,9 +650,25 @@
                         </div>
 
                         <button onclick="showDetail({{ $buku['biblio_id'] ?? 0 }}, {{ json_encode($buku) }})"
-                                class="w-full rounded-lg border border-[#1e3c72] bg-white py-2 text-[12px] font-semibold text-[#1e3c72] transition hover:bg-[#1e3c72] hover:text-white active:scale-95">
+                                class="w-full rounded-lg border border-[#1e3c72] bg-white py-2 text-[12px] font-semibold text-[#1e3c72] transition hover:bg-[#1e3c72] hover:text-white active:scale-95 mb-1.5">
                             Detail
                         </button>
+                        
+                        @auth
+                        <a href="{{ route('buku.edit', $buku['biblio_id']) }}"
+                           class="w-full text-center block rounded-lg border border-amber-500 bg-white py-2 text-[12px] font-semibold text-amber-600 transition hover:bg-amber-500 hover:text-white active:scale-95 mb-1.5">
+                            Edit
+                        </a>
+
+                        <form action="{{ route('buku.destroy', $buku['biblio_id']) }}" method="POST" class="w-full">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Yakin ingin menghapus buku ini?')"
+                                    class="w-full rounded-lg border border-red-500 bg-white py-2 text-[12px] font-semibold text-red-600 transition hover:bg-red-500 hover:text-white active:scale-95">
+                                Delete
+                            </button>
+                        </form>
+                        @endauth
                     </div>
                 </div>
             </div>

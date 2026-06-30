@@ -90,6 +90,15 @@
         <div class="absolute -bottom-40 left-1/2 h-96 w-96 animate-blob rounded-full bg-cyan-500 opacity-20 mix-blend-multiply blur-[100px] filter animation-delay-4000"></div>
 
         <div class="relative z-10 mx-auto max-w-4xl">
+            @if(session('success'))
+            <div class="mx-auto mb-6 max-w-md rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-300 backdrop-blur-md">
+                <div class="flex items-center justify-center gap-2">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    {{ session('success') }}
+                </div>
+            </div>
+            @endif
+
             <h1 class="mb-6 text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
                 Jelajahi <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Katalog Buku</span>
             </h1>

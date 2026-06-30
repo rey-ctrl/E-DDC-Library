@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DdcController;
 
 // ─── Halaman Utama ────────────────────────────────────────────────
 Route::get('/', function () {
@@ -13,12 +14,18 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.process');
 
 // ─── Tambah Buku (perlu login) ───────────────────────────────────
 Route::middleware('auth')->group(function () {
     Route::get('/buku/tambah', function () {
         return view('tambah_buku');
     })->name('buku.tambah');
+
+    Route::get('/buku/{id}/edit', [DdcController::class, 'edit'])->name('buku.edit');
+    Route::put('/buku/{id}', [DdcController::class, 'update'])->name('buku.update');
+    Route::delete('/buku/{id}', [DdcController::class, 'destroy'])->name('buku.destroy');
 
     Route::post('/buku/tambah', function (Request $request) {
         $request->validate([

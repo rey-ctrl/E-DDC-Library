@@ -10,7 +10,9 @@ import json
 # Load .env jika ada
 try:
     from dotenv import load_dotenv
-    load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+    # Load parent .env (Laravel root) first, then local .env if any
+    load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'), override=True)
+    load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
 except ImportError:
     pass
 
@@ -22,9 +24,9 @@ CORS(app)
 # ─────────────────────────────────────────────
 DB_HOST = os.getenv('DB_HOST', '127.0.0.1')
 DB_PORT = os.getenv('DB_PORT', '3306')
-DB_NAME = os.getenv('DB_NAME', 'opac')
-DB_USER = os.getenv('DB_USER', 'root')
-DB_PASS = os.getenv('DB_PASS', '')
+DB_NAME = os.getenv('DB_DATABASE') or os.getenv('DB_NAME', 'opac')
+DB_USER = os.getenv('DB_USERNAME') or os.getenv('DB_USER', 'root')
+DB_PASS = os.getenv('DB_PASSWORD') if os.getenv('DB_PASSWORD') is not None else os.getenv('DB_PASS', '')
 DB_URL  = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 engine = create_engine(DB_URL)
 
@@ -41,6 +43,8 @@ JURUSAN_LIST = [
     "Akuntansi",
     "Matematika",
     "Sains",
+    "Novel & Sastra",
+    "Psikologi",
     "Umum",
 ]
 
@@ -60,6 +64,8 @@ def ddc_to_jurusan(kode_ddc_raw):
             return "Teknik Informatika & Komputer"
         return "Umum"
     elif main <= 199:
+        if 150 <= main <= 159:
+            return "Psikologi"
         return "Umum"
     elif main <= 299:
         return "Umum"
@@ -124,7 +130,7 @@ def ddc_to_jurusan(kode_ddc_raw):
             return "Teknik Grafika & Penerbitan"
         return "Umum"
     elif main <= 899:
-        return "Umum"
+        return "Novel & Sastra"
     else:
         return "Umum"
 
@@ -359,10 +365,17 @@ KEYWORD_HINTS = {
         "sains", "science", "biologi", "biology", "kimia", "chemistry",
         "fisika", "physics", "astronomi", "alam", "ekologi", "lingkungan",
     ],
+    "Novel & Sastra": [
+        "sastra", "novel", "puisi", "cerpen", "prosa", "fiksi",
+        "kesusastraan", "pantun", "hikayat", "dongeng", "cerita"
+    ],
+    "Psikologi": [
+        "psikologi", "psychology", "mental", "jiwa", "kepribadian",
+        "terapi", "konseling", "perilaku", "psikolog", "emosi"
+    ],
     "Umum": [
         "agama", "islam", "shalat", "quran", "alkitab", "filsafat",
-        "psikologi", "bahasa", "sastra", "novel", "puisi", "cerpen",
-        "sejarah", "geografi", "terapi", "herbal", "penyakit", "obat",
+        "bahasa", "sejarah", "geografi", "herbal", "penyakit", "obat",
         "kesehatan", "health", "kedokteran", "medical", "farmasi",
         "gizi", "nutrisi", "diet", "diabetes", "kanker", "jantung",
         "stroke", "darah tinggi", "kolesterol", "pendidikan", "olahraga",
@@ -395,7 +408,8 @@ def keyword_boost(text, labels):
 
     # Boost: naikkan probabilitas jurusan yang cocok keyword
     boosted = []
-    total_boost = 15.0 * keyword_scores[best_jurusan]  
+    boost_pct = float(os.getenv('BOOST_PERCENTAGE', '15.0'))
+    total_boost = boost_pct * keyword_scores[best_jurusan]  
 
     for item in labels:
         new_item = item.copy()
@@ -946,6 +960,121 @@ def store_buku():
             "predicted_confidence": round(predicted_conf, 2),
         }), 201
 
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# ─────────────────────────────────────────────
+# Endpoint: PUT /api/buku/update/<int:biblio_id>
+# Mengupdate buku + memprediksi ulang AI jika teks berubah
+# ─────────────────────────────────────────────
+@app.route('/api/buku/update/<int:biblio_id>', methods=['PUT', 'POST'])
+def update_buku_api(biblio_id):
+    try:
+        data = request.get_json(force=True) if request.is_json else request.form.to_dict()
+
+        title = data.get('title', '').strip()
+        classification = data.get('classification', '').strip()
+
+        if not title or not classification:
+            return jsonify({"error": "Field 'title' dan 'classification' wajib diisi."}), 400
+
+        # Build teks untuk prediksi AI
+        book_text = build_text(
+            title=title,
+            description=data.get('spec_detail_info', ''),
+            notes=data.get('notes', '')
+        )
+
+        # Prediksi jurusan menggunakan model AI
+        predicted_jur = "Umum"
+        predicted_conf = 0.0
+        multilabel_data = [{"label": "Umum", "probabilitas": 0.0, "metode": "default"}]
+
+        if book_text and tfidf_model is not None and clf_model is not None:
+            try:
+                multilabel_result = predict_multilabel(
+                    ddc_value=clean_ddc(classification),
+                    book_text=book_text,
+                    ddc_raw=classification
+                )
+                if multilabel_result:
+                    predicted_jur = multilabel_result[0]["label"]
+                    predicted_conf = multilabel_result[0]["probabilitas"]
+                    multilabel_data = multilabel_result
+            except Exception as e:
+                print(f"[WARN] Prediksi gagal untuk update buku: {e}")
+                predicted_jur = ddc_to_jurusan(classification)
+                predicted_conf = 100.0
+                multilabel_data = [{"label": predicted_jur, "probabilitas": 100.0, "metode": "ddc_mapping"}]
+        else:
+            predicted_jur = ddc_to_jurusan(classification)
+            predicted_conf = 100.0
+            multilabel_data = [{"label": predicted_jur, "probabilitas": 100.0, "metode": "ddc_mapping"}]
+
+        # Update database
+        with engine.connect() as conn:
+            update_query = text("""
+                UPDATE biblio SET
+                    title = :title,
+                    sor = :sor,
+                    classification = :classification,
+                    publish_year = :publish_year,
+                    isbn_issn = :isbn_issn,
+                    call_number = :call_number,
+                    edition = :edition,
+                    collation = :collation,
+                    series_title = :series_title,
+                    spec_detail_info = :spec_detail_info,
+                    notes = :notes,
+                    predicted_jurusan = :predicted_jurusan,
+                    predicted_confidence = :predicted_confidence,
+                    predicted_multilabel = :predicted_multilabel,
+                    last_update = NOW()
+                WHERE biblio_id = :id
+            """)
+
+            conn.execute(update_query, {
+                "title": title,
+                "sor": data.get('sor', ''),
+                "classification": classification,
+                "publish_year": data.get('publish_year', ''),
+                "isbn_issn": data.get('isbn_issn', ''),
+                "call_number": data.get('call_number', ''),
+                "edition": data.get('edition', ''),
+                "collation": data.get('collation', ''),
+                "series_title": data.get('series_title', ''),
+                "spec_detail_info": data.get('spec_detail_info', ''),
+                "notes": data.get('notes', ''),
+                "predicted_jurusan": predicted_jur,
+                "predicted_confidence": round(predicted_conf, 2),
+                "predicted_multilabel": json.dumps(multilabel_data, ensure_ascii=False),
+                "id": biblio_id
+            })
+            conn.commit()
+
+        return jsonify({
+            "message": f"Buku '{title}' berhasil diupdate.",
+            "predicted_jurusan": predicted_jur,
+            "predicted_confidence": round(predicted_conf, 2),
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# ─────────────────────────────────────────────
+# Endpoint: DELETE /api/buku/delete/<int:biblio_id>
+# Menghapus buku dari database
+# ─────────────────────────────────────────────
+@app.route('/api/buku/delete/<int:biblio_id>', methods=['DELETE', 'POST'])
+def delete_buku_api(biblio_id):
+    try:
+        with engine.connect() as conn:
+            delete_query = text("DELETE FROM biblio WHERE biblio_id = :id")
+            conn.execute(delete_query, {"id": biblio_id})
+            conn.commit()
+        return jsonify({"message": "Buku berhasil dihapus."}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

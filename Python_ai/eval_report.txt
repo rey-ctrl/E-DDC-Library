@@ -9,29 +9,31 @@ Data Test (Hold-out)   : 1748 buku (20.0%)
 Label Dikoreksi (Train): 0 buku
 
 --- Metrik Evaluasi pada TEST SET (Label DDC Asli) ---
-Akurasi Test           : 89.07%
-F1-Score Test (Macro)  : 86.73%
-F1-Score Test (Weighted): 89.06%
+Akurasi Test           : 88.73%
+F1-Score Test (Macro)  : 84.06%
+F1-Score Test (Weighted): 88.65%
 
 --- Metrik Cross-Validation pada TRAINING SET ---
-Akurasi CV (Train)     : 88.34% (+/- 0.78%)
-F1 CV Macro (Train)    : 84.61%
-F1 CV Weighted (Train) : 88.24%
+Akurasi CV (Train)     : 86.90% (+/- 0.59%)
+F1 CV Macro (Train)    : 84.05%
+F1 CV Weighted (Train) : 86.83%
 
 === Detail per Jurusan (Test Set - Classification Report) ===
                                precision    recall  f1-score   support
 
-           Administrasi Niaga       0.92      0.89      0.91       350
-                    Akuntansi       0.90      0.94      0.92       137
-                   Matematika       0.89      0.92      0.91        53
-                        Sains       0.88      0.67      0.76        21
-               Teknik Elektro       0.90      0.86      0.88       169
-  Teknik Grafika & Penerbitan       0.81      0.79      0.80        48
-Teknik Informatika & Komputer       0.92      0.92      0.92       239
-                 Teknik Mesin       0.84      0.83      0.83       180
-                 Teknik Sipil       0.80      0.88      0.84       126
-                         Umum       0.90      0.92      0.91       425
+           Administrasi Niaga       0.91      0.91      0.91       350
+                    Akuntansi       0.96      0.94      0.95       137
+                   Matematika       0.94      0.91      0.92        53
+               Novel & Sastra       0.91      0.91      0.91        65
+                    Psikologi       0.64      0.67      0.65        27
+                        Sains       1.00      0.38      0.55        21
+               Teknik Elektro       0.89      0.91      0.90       169
+  Teknik Grafika & Penerbitan       0.71      0.81      0.76        48
+Teknik Informatika & Komputer       0.93      0.92      0.93       239
+                 Teknik Mesin       0.82      0.84      0.83       180
+                 Teknik Sipil       0.86      0.94      0.90       126
+                         Umum       0.89      0.86      0.87       333
 
                      accuracy                           0.89      1748
-                    macro avg       0.88      0.86      0.87      1748
+                    macro avg       0.87      0.83      0.84      1748
                  weighted avg       0.89      0.89      0.89      1748

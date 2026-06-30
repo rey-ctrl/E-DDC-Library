@@ -8,14 +8,22 @@ from sklearn.metrics import classification_report, accuracy_score, f1_score
 import pickle
 import re
 import os
+import sys
 import warnings
+import argparse
 warnings.filterwarnings('ignore')
 
 try:
     from dotenv import load_dotenv
-    load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+    load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'), override=True)
+    load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
 except ImportError:
     pass
+
+# Parse arguments for Skripsi tuning
+parser = argparse.ArgumentParser()
+parser.add_argument('--cleaning_threshold', type=float, default=0.75, help='Confidence threshold for label cleaning')
+args, unknown = parser.parse_known_args()
 
 print("=" * 65)
 print("  E-DDC - Training Model Hybrid (2-Pass Label Cleaning)")
@@ -37,6 +45,8 @@ JURUSAN_LIST = [
     "Akuntansi",
     "Matematika",
     "Sains",
+    "Novel & Sastra",
+    "Psikologi",
     "Umum",
 ]
 
@@ -55,6 +65,8 @@ def ddc_to_jurusan(kode_ddc_raw):
             return "Teknik Informatika & Komputer"
         return "Umum"
     elif main <= 199:
+        if 150 <= main <= 159:
+            return "Psikologi"
         return "Umum"
     elif main <= 299:
         return "Umum"
@@ -119,7 +131,7 @@ def ddc_to_jurusan(kode_ddc_raw):
             return "Teknik Grafika & Penerbitan"
         return "Umum"
     elif main <= 899:
-        return "Umum"
+        return "Novel & Sastra"
     else:
         return "Umum"
 
@@ -130,9 +142,9 @@ def ddc_to_jurusan(kode_ddc_raw):
 print("\n[1/11] Menghubungkan ke database MySQL (opac)...")
 DB_HOST = os.getenv('DB_HOST', '127.0.0.1')
 DB_PORT = os.getenv('DB_PORT', '3306')
-DB_NAME = os.getenv('DB_NAME', 'opac')
-DB_USER = os.getenv('DB_USER', 'root')
-DB_PASS = os.getenv('DB_PASS', '')
+DB_NAME = os.getenv('DB_DATABASE') or os.getenv('DB_NAME', 'opac')
+DB_USER = os.getenv('DB_USERNAME') or os.getenv('DB_USER', 'root')
+DB_PASS = os.getenv('DB_PASSWORD') if os.getenv('DB_PASSWORD') is not None else os.getenv('DB_PASS', '')
 DB_URL  = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 engine  = create_engine(DB_URL)
 
@@ -306,9 +318,9 @@ print(f"    -> Model Pass 1 selesai dilatih pada {len(y_train_ddc)} data trainin
 print("\n[8/11] LABEL CLEANING - Mendeteksi & memperbaiki DDC (training set saja)...")
 
 # Logika: Jika prediksi teks BERBEDA dari label DDC,
-# DAN model YAKIN (confidence >= 75%), maka label DDC kemungkinan SALAH.
+# DAN model YAKIN (confidence >= threshold), maka label DDC kemungkinan SALAH.
 # Ganti label dengan prediksi teks (yang belajar dari mayoritas data benar).
-CONFIDENCE_THRESHOLD = 0.75
+CONFIDENCE_THRESHOLD = args.cleaning_threshold
 
 disagreements = y_train_pred_text != y_train_ddc
 high_conf = y_train_conf >= CONFIDENCE_THRESHOLD

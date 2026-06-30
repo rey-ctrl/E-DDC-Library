@@ -24,7 +24,8 @@ warnings.filterwarnings('ignore')
 
 try:
     from dotenv import load_dotenv
-    load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+    load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'), override=True)
+    load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
 except ImportError:
     pass
 
@@ -39,9 +40,9 @@ print("=" * 65)
 print("\n[1/6] Menghubungkan ke database MySQL...")
 DB_HOST = os.getenv('DB_HOST', '127.0.0.1')
 DB_PORT = os.getenv('DB_PORT', '3306')
-DB_NAME = os.getenv('DB_NAME', 'opac')
-DB_USER = os.getenv('DB_USER', 'root')
-DB_PASS = os.getenv('DB_PASS', '')
+DB_NAME = os.getenv('DB_DATABASE') or os.getenv('DB_NAME', 'opac')
+DB_USER = os.getenv('DB_USERNAME') or os.getenv('DB_USER', 'root')
+DB_PASS = os.getenv('DB_PASSWORD') if os.getenv('DB_PASSWORD') is not None else os.getenv('DB_PASS', '')
 DB_URL  = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 engine  = create_engine(DB_URL)
 
@@ -250,10 +251,17 @@ KEYWORD_HINTS = {
         "sains", "science", "biologi", "biology", "kimia", "chemistry",
         "fisika", "physics", "astronomi", "alam", "ekologi", "lingkungan",
     ],
+    "Novel & Sastra": [
+        "sastra", "novel", "puisi", "cerpen", "prosa", "fiksi",
+        "kesusastraan", "pantun", "hikayat", "dongeng", "cerita"
+    ],
+    "Psikologi": [
+        "psikologi", "psychology", "mental", "jiwa", "kepribadian",
+        "terapi", "konseling", "perilaku", "psikolog", "emosi"
+    ],
     "Umum": [
         "agama", "islam", "shalat", "quran", "alkitab", "filsafat",
-        "psikologi", "bahasa", "sastra", "novel", "puisi", "cerpen",
-        "sejarah", "geografi", "terapi", "herbal", "penyakit", "obat",
+        "bahasa", "sejarah", "geografi", "herbal", "penyakit", "obat",
         "kesehatan", "health", "kedokteran", "medical", "farmasi",
         "gizi", "nutrisi", "diet", "diabetes", "kanker", "jantung",
         "stroke", "darah tinggi", "kolesterol", "pendidikan", "olahraga",
