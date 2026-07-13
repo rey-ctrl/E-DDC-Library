@@ -52,7 +52,7 @@ JURUSAN_LIST = [
 
 def ddc_to_jurusan(kode_ddc_raw):
     s = str(kode_ddc_raw).strip()
-    m = re.search(r'(\d{3})(?:\.?(\d+))?', s)
+    m = re.search(r'(\d{1,3})(?:\.?(\d+))?', s)
     if not m:
         return "Umum"
     main = int(m.group(1))
@@ -169,7 +169,7 @@ print(f"    -> Berhasil menarik {len(df)} baris data buku.")
 print("\n[2/11] Membersihkan kode DDC & mapping awal ke jurusan PNJ...")
 
 def clean_ddc(text):
-    match = re.search(r'(\d{3})', str(text).strip())
+    match = re.search(r'(\d{1,3})', str(text).strip())
     if match:
         return int(match.group(1))
     return None

@@ -1,0 +1,22 @@
+================================================================================
+             LAPORAN PERBANDINGAN ALGORITMA KLASIFIKASI E-DDC
+             (Dengan Penambahan Heuristic Boost / Kata Kunci)
+================================================================================
+
+Total Dataset       : 8740 buku
+Data Training (80%) : 6992 buku
+Data Test (20%)     : 1748 buku
+Jumlah Fitur TF-IDF : 15000
+
+                                         Model Accuracy Precision (Macro) Recall (Macro) F1-Score (Macro) Precision (Weighted) Recall (Weighted) F1-Score (Weighted) Time (s)
+SGD Classifier + Heuristic Boost (Sistem Anda)   89.07%            87.49%         83.78%           84.44%               89.25%            89.07%              88.96%  0.1931s
+    Linear Support Vector Machine (Linear SVC)   88.84%            85.77%         85.19%           84.98%               89.00%            88.84%              88.82%  0.2277s
+                   SGD Classifier (Model Anda)   88.73%            87.17%         83.37%           84.06%               88.96%            88.73%              88.65%  0.0502s
+                      Logistic Regression (LR)   84.44%            79.79%         82.51%           80.36%               84.98%            84.44%              84.47%  0.7923s
+                 Multinomial Naive Bayes (MNB)   75.86%            70.25%         55.10%           57.74%               74.70%            75.86%              73.39%  0.0146s
+
+Kesimpulan Analisis:
+- Heuristic Boost (Kata Kunci) yang diterapkan di atas model SGD Classifier meningkatkan akurasi model lebih lanjut.
+- Kombinasi ini (Hybrid System) membantu memperbaiki prediksi pada buku-buku yang memiliki tingkat keyakinan (confidence) yang rendah.
+- SGD Classifier dengan loss 'modified_huber' memberikan probabilitas prediksi (predict_proba) yang mulus,
+  sangat cocok untuk diintegrasikan dalam klasifikasi multi-label (lintas jurusan) pada E-DDC.

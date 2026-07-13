@@ -495,21 +495,34 @@
                         <span class="text-sm text-red-500 font-semibold">⚠ Server AI tidak aktif. Jalankan <code class="bg-red-50 px-1 rounded">python api.py</code> terlebih dahulu.</span>
                     @elseif(!empty($keyword) || !empty($filters))
                         <div class="flex flex-col gap-1.5">
-                            <span class="text-sm text-slate-600">
-                                Ditemukan <b class="text-[#1e3c72]">{{ $pagination['total'] ?? count($books) }}</b> hasil pencarian.
-                            </span>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-sm text-slate-600">
+                                    Ditemukan <b class="text-[#1e3c72]">{{ $pagination['total'] ?? count($books) }}</b> hasil
+                                    @if(isset($pagination) && $pagination['total_pages'] > 1)
+                                        <span class="text-slate-400 text-xs ml-1">(Hal. {{ $pagination['page'] }}/{{ $pagination['total_pages'] }})</span>
+                                    @endif
+                                </span>
+                                @if(!empty($filters))
+                                    @php $modeColor = ($filterMode ?? 'and') === 'and' ? 'bg-blue-600' : 'bg-emerald-600'; @endphp
+                                    <span class="inline-flex items-center gap-1 rounded-full {{ $modeColor }} px-2 py-0.5 text-[10px] font-extrabold text-white uppercase tracking-wider">
+                                        <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"/></svg>
+                                        Mode {{ strtoupper($filterMode ?? 'and') }}
+                                    </span>
+                                @endif
+                            </div>
                             @if(!empty($filters))
-                                <div class="flex flex-wrap items-center gap-1.5 mt-1">
+                                <div class="flex flex-wrap items-center gap-1.5 mt-0.5">
                                     @foreach($filters as $index => $f)
                                         <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-semibold text-[#1e3c72] border border-blue-100/70">
+                                            <svg class="h-2.5 w-2.5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
                                             {{ $f }}
-                                            <button type="button" onclick="removeFilter('{{ $f }}')" class="hover:text-red-500 transition-colors focus:outline-none ml-0.5">
+                                            <button type="button" onclick="removeFilter('{{ $f }}')" class="hover:text-red-500 transition-colors focus:outline-none ml-0.5" title="Hapus filter ini">
                                                 <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
                                             </button>
                                         </span>
                                         @if($index < count($filters) - 1)
-                                            <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">
-                                                {{ $filterMode ?? 'or' }}
+                                            <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded {{ ($filterMode ?? 'and') === 'and' ? 'bg-blue-100 text-blue-600' : 'bg-emerald-100 text-emerald-600' }} uppercase">
+                                                {{ $filterMode ?? 'and' }}
                                             </span>
                                         @endif
                                     @endforeach
@@ -519,6 +532,9 @@
                     @elseif(isset($pagination))
                         <span class="text-sm text-slate-600">
                             Menampilkan <b class="text-[#1e3c72]">{{ count($books) }}</b> dari total <b class="text-[#1e3c72]">{{ $pagination['total'] }}</b> buku
+                            @if(isset($pagination) && $pagination['total_pages'] > 1)
+                                <span class="text-slate-400 text-xs ml-1">(Hal. {{ $pagination['page'] }}/{{ $pagination['total_pages'] }})</span>
+                            @endif
                         </span>
                     @endif
                 </div>
@@ -605,11 +621,13 @@
                             <!-- Mode: Labels Only (badges) -->
                             <div class="multilabel-badges">
                                 <div class="flex flex-wrap gap-1.5">
-                                    @foreach($buku['Multilabel'] as $j => $label)
+                                    @php $badgeIdx = 0; @endphp
+                                    @foreach($buku['Multilabel'] as $label)
                                         @if($label['probabilitas'] >= 5)
-                                        <span class="badge-{{ $j }} inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold">
+                                        <span class="badge-{{ $badgeIdx }} inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold">
                                             {{ $label['label'] }}
                                         </span>
+                                        @php $badgeIdx++; @endphp
                                         @endif
                                     @endforeach
                                 </div>
@@ -618,17 +636,21 @@
                             <!-- Mode: With Percentages (progress bars) -->
                             <div class="multilabel-bars hidden">
                                 <div class="space-y-1.5">
-                                    @foreach($buku['Multilabel'] as $j => $label)
+                                    @php $barIdx = 0; @endphp
+                                    @foreach($buku['Multilabel'] as $label)
+                                    @if($label['probabilitas'] >= 5)
                                     <div class="flex items-center gap-2">
                                         <span class="w-[170px] shrink-0 truncate text-[11px] text-slate-500">{{ $label['label'] }}</span>
                                         <div class="relative h-2 flex-1 rounded-full bg-slate-100 overflow-hidden">
-                                            <div class="bar-{{ $j }} prob-bar h-full rounded-full"
+                                            <div class="bar-{{ $barIdx }} prob-bar h-full rounded-full"
                                                  style="width: {{ $label['probabilitas'] }}%"></div>
                                         </div>
                                         <span class="w-10 shrink-0 text-right text-[11px] font-semibold text-slate-600">
                                             {{ number_format($label['probabilitas'], 1) }}%
                                         </span>
                                     </div>
+                                    @php $barIdx++; @endphp
+                                    @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -676,21 +698,40 @@
             @empty
             <!-- Empty State -->
             <div class="flex flex-col items-center justify-center rounded-2xl bg-white px-8 py-20 text-center shadow-sm">
-                <div class="mb-4 text-7xl">📚</div>
                 @if($apiError)
+                    <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50">
+                        <svg class="h-8 w-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                    </div>
                     <h3 class="mb-2 text-lg font-bold text-red-500">Server AI Tidak Aktif</h3>
                     <p class="max-w-sm text-[14px] text-slate-500">
                         Pastikan server Python sudah berjalan dengan perintah:<br>
                         <code class="mt-2 inline-block rounded bg-slate-100 px-3 py-1 text-[13px] font-mono text-slate-700">python Python_ai/api.py</code>
                     </p>
+                @elseif(!empty($filters))
+                    <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50">
+                        <svg class="h-8 w-8 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"/></svg>
+                    </div>
+                    <h3 class="mb-2 text-lg font-bold text-slate-700">Tidak Ada Buku yang Cocok</h3>
+                    <p class="max-w-sm text-[14px] text-slate-500 mb-4">
+                        Tidak ada buku yang memiliki <b>semua</b> label berikut secara bersamaan:<br>
+                        <span class="mt-1.5 inline-block font-semibold text-[#1e3c72]">{{ implode(' + ', $filters) }}</span>
+                    </p>
+                    <p class="text-[13px] text-slate-400">
+                        Kombinasi ini memang tidak ada di koleksi perpustakaan.<br>
+                        Coba pilih hanya 1 prodi, atau kurangi jumlah filter.
+                    </p>
                 @else
+                    <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100">
+                        <svg class="h-8 w-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
                     <h3 class="mb-2 text-lg font-bold text-slate-700">Buku Tidak Ditemukan</h3>
                     <p class="max-w-sm text-[14px] text-slate-500">
-                        Tidak ada koleksi yang cocok dengan <b class="text-slate-700">"{{ $keyword }}"</b>.
+                        Tidak ada koleksi yang cocok dengan <b class="text-slate-700">"{{ $keyword }}"</b>.<br>
                         Coba kata kunci lain atau pilih kategori DDC di sidebar.
                     </p>
                 @endif
             </div>
+
             @endforelse
             </div>
 
@@ -765,7 +806,21 @@
             // Helper: build multilabel HTML
             function buildMultilabelHtml(multilabel) {
                 if (!multilabel || !multilabel.length) return '';
-                const colors = ['#3b82f6','#22c55e','#f59e0b','#ec4899','#8b5cf6','#06b6d4','#ef4444','#64748b'];
+                // Warna per-prodi (12 kelas PNJ) — sinkron dengan badge-0..badge-11 di CSS
+                const colors = [
+                    '#3b82f6', // Teknik Informatika & Komputer
+                    '#22c55e', // Teknik Sipil
+                    '#f59e0b', // Teknik Mesin
+                    '#ec4899', // Teknik Elektro
+                    '#8b5cf6', // Teknik Grafika & Penerbitan
+                    '#06b6d4', // Administrasi Niaga
+                    '#ef4444', // Akuntansi
+                    '#64748b', // Matematika
+                    '#0ea5e9', // Sains
+                    '#10b981', // Novel & Sastra
+                    '#a855f7', // Psikologi
+                    '#f97316', // Umum
+                ];
                 return `
                     <div class="mb-4">
                         <p class="mb-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Klasifikasi Multilabel</p>

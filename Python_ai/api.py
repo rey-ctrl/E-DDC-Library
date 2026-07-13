@@ -51,7 +51,7 @@ JURUSAN_LIST = [
 # DDC Mapping Multilabel
 def ddc_to_jurusan(kode_ddc_raw):
     s = str(kode_ddc_raw).strip()
-    m = re.search(r'(\d{3})(?:\.?(\d+))?', s)
+    m = re.search(r'(\d{1,3})(?:\.?(\d+))?', s)
     if not m:
         return "Umum"
     main = int(m.group(1))
@@ -116,7 +116,7 @@ def ddc_to_jurusan(kode_ddc_raw):
         elif main <= 665:
             return "Teknik Mesin"
         elif main <= 669:
-            return "Teknik Sipil"
+            return "Teknik Mesin"  # 666-669: Metalurgi, keramik, kaca -> Teknik Mesin
         elif main <= 685:
             return "Teknik Mesin"
         elif main == 686:
@@ -264,7 +264,7 @@ def ensure_multilabel_column():
 def clean_ddc(text_val):
     if text_val is None:
         return None
-    match = re.search(r'(\d{3})', str(text_val).strip())
+    match = re.search(r'(\d{1,3})', str(text_val).strip())
     if match:
         return int(match.group(1))
     return None
@@ -331,39 +331,70 @@ KEYWORD_HINTS = {
         "mesin", "engine", "turbin", "pompa", "pneumatik", "hidrolik",
         "termodinamika", "manufaktur", "pengelasan", "welding", "cnc",
         "otomotif", "motor", "refrigerasi", "hvac", "perancangan mesin",
+        # Tambahan kuat
+        "taguchi", "robust design", "quality engineering", "perpindahan panas",
+        "heat transfer", "fluid mechanics", "mekanika fluida", "thermodynamics",
+        "kinetika", "kinetics", "tribologi", "tribology", "bahan bakar",
+        "combustion", "pembakaran", "pengecoran", "casting", "machining",
+        "permesinan", "teknik industri", "industrial engineering",
     ],
     "Teknik Elektro": [
         "elektronika", "rangkaian", "listrik", "electrical", "circuit",
         "mikrokontroler", "arduino", "plc", "sensor", "transistor",
         "tegangan", "arus", "daya listrik", "transformator", "relay",
         "robotik", "robot", "telekomunikasi", "sinyal", "antena",
+        # Tambahan kuat
+        "instrumentasi", "instrumentation", "kontrol", "control system",
+        "sistem kontrol", "otomasi", "automation", "dsp", "fpga",
+        "power electronics", "elektronika daya", "motor listrik",
     ],
     "Teknik Grafika & Penerbitan": [
         "cetak", "percetakan", "printing", "grafika", "desain grafis",
         "layout", "tipografi", "penerbitan", "publishing", "offset",
         "fotografi", "photography", "illustrasi", "prepress", "jurnalistik",
         "jurnalisme", "wartawan", "pers", "berita", "komunikasi massa",
-        "pemotretan", "fotograsi", "photo shoot", "photoshoot", "pemotret", "potret"
+        "pemotretan", "fotograsi", "photo shoot", "photoshoot", "pemotret", "potret",
+        "media massa", "redaksi", "editing naskah", "kemasan", "jilid", "penjilidan", "tinta"
     ],
     "Administrasi Niaga": [
         "manajemen", "management", "pemasaran", "marketing", "bisnis",
         "business", "perdagangan", "ekspor", "impor", "logistik",
         "sumber daya manusia", "sdm", "hrm", "organisasi", "kepemimpinan",
         "leadership", "wirausaha", "entrepreneur", "e-commerce",
+        # Tambahan kuat
+        "supply chain", "rantai pasok", "inventory", "procurement",
+        "operasional", "operations management", "project management",
+        "manajemen proyek", "strategi bisnis", "business strategy",
     ],
     "Akuntansi": [
         "akuntansi", "accounting", "audit", "auditing", "pajak", "tax", "neraca",
-        "laporan keuangan", "financial", "anggaran", "budget", "debit",
+        "laporan keuangan", "financial statement", "anggaran", "budget", "debit",
         "kredit", "jurnal akuntansi", "aset", "liabilitas", "ekuitas",
+        # Tambahan kuat
+        "general ledger", "buku besar", "piutang", "hutang", "receivable",
+        "payable", "depreciation", "depresiasi", "amortisasi", "leasing",
+        "konsolidasi", "consolidation", "ifrs", "gaap", "revenue recognition",
+        "cost accounting", "akuntansi biaya", "managerial accounting",
+        "akuntansi manajerial", "pembukuan", "bookkeeping", "intermediate accounting",
     ],
     "Matematika": [
         "matematika", "mathematics", "kalkulus", "calculus", "aljabar",
         "algebra", "statistik", "statistics", "probabilitas", "logika",
         "diskrit", "numerik", "geometri", "trigonometri", "matriks",
+        # Tambahan kuat
+        "diferensial", "integral", "persamaan diferensial", "differential equation",
+        "analisis numerik", "numerical analysis", "riset operasi", "operations research",
+        "optimasi", "optimization", "graph theory", "teori graf",
     ],
     "Sains": [
         "sains", "science", "biologi", "biology", "kimia", "chemistry",
         "fisika", "physics", "astronomi", "alam", "ekologi", "lingkungan",
+        "laboratorium", "eksperimen", "praktikum", "sel", "gen", "molekul",
+        "tumbuhan", "hewan", "tata surya", "bumi", "antariksa",
+        # Tambahan kuat
+        "mikrobiologi", "microbiology", "biokimia", "biochemistry",
+        "genetika", "genetics", "farmakologi", "pharmacology",
+        "geologi", "geology", "mineralogi", "botani", "zoologi",
     ],
     "Novel & Sastra": [
         "sastra", "novel", "puisi", "cerpen", "prosa", "fiksi",
@@ -371,7 +402,9 @@ KEYWORD_HINTS = {
     ],
     "Psikologi": [
         "psikologi", "psychology", "mental", "jiwa", "kepribadian",
-        "terapi", "konseling", "perilaku", "psikolog", "emosi"
+        "terapi", "konseling", "perilaku", "psikolog", "emosi",
+        "kognitif", "perilaku manusia", "gangguan jiwa", "perkembangan anak",
+        "interaksi sosial", "kecemasan", "depresi", "stres", "psikoanalisis"
     ],
     "Umum": [
         "agama", "islam", "shalat", "quran", "alkitab", "filsafat",
@@ -381,6 +414,70 @@ KEYWORD_HINTS = {
         "stroke", "darah tinggi", "kolesterol", "pendidikan", "olahraga",
     ],
 }
+
+# Keyword sangat spesifik yang SELALU override label utama (terlepas dari confidence)
+# Dipakai untuk memperbaiki buku yang DDC-nya salah di katalog perpustakaan
+STRONG_TITLE_OVERRIDES = {
+    "Akuntansi": [
+        r'\baccounting\b', r'\bakuntansi\b', r'\baudit(?:ing)?\b',
+        r'\btax\s+accounting\b', r'\bintermediate\s+accounting\b',
+        r'\bfinancial\s+accounting\b', r'\bcost\s+accounting\b',
+        r'\bmanagerial\s+accounting\b', r'\bperpajakan\b',
+        r'\blaporan\s+keuangan\b', r'\bgeneral\s+ledger\b',
+        r'\bbuku\s+besar\b', r'\bifrs\b', r'\bgaap\b',
+    ],
+    "Teknik Mesin": [
+        r'\btaguchi\b', r'\bheat\s+transfer\b', r'\bperpindahan\s+panas\b',
+        r'\btermodinamika\b', r'\bthermodynamics\b',
+        r'\bmechanical\s+engineering\b', r'\bteknik\s+mesin\b',
+        r'\bfluid\s+mechanics\b', r'\bmekanika\s+fluida\b',
+        r'\bmanufacturing\b', r'\bpengelasan\b', r'\bwelding\b',
+        r'\bcnc\b', r'\bmachining\b', r'\bpermesinan\b',
+        r'\brobust\s+design\b', r'\bquality\s+engineering\b',
+        # Tambahan metalurgi
+        r'\blogam\b', r'\bmetalurgi\b', r'\bmetallurgy\b',
+        r'\bpengerjaan\s+logam\b', r'\bmetal\s+work\b',
+        r'\bpengecoran\b', r'\bcasting\b', r'\bfoundry\b',
+        r'\bkorosi\b', r'\bcorrosion\b',
+    ],
+    "Teknik Informatika & Komputer": [
+        r'\bpemrograman\b', r'\bprogramming\b', r'\balgorithm\b',
+        r'\bdata\s+structures?\b', r'\bdatabase\b',
+        r'\bmachine\s+learning\b', r'\bdeep\s+learning\b',
+        r'\bartificial\s+intelligence\b', r'\bkecerdasan\s+buatan\b',
+        r'\bsoftware\s+engineering\b', r'\brekayasa\s+perangkat\s+lunak\b',
+    ],
+    "Teknik Sipil": [
+        r'\bfundamentals?\s+of\s+(?:soil|structural|hydraulic)\b',
+        r'\bgeoteknik\b', r'\bgeotechnical\b',
+        r'\bhidrologi\b', r'\bhydrology\b',
+        r'\bperkerasan\s+jalan\b', r'\bpavement\b',
+        r'\bstruktur\s+beton\b', r'\breinforced\s+concrete\b',
+    ],
+    "Teknik Elektro": [
+        r'\binstrumentation\b', r'\binstrumentasi\b',
+        r'\bpower\s+electronics\b', r'\belektronika\s+daya\b',
+        r'\bcontrol\s+system\b', r'\bsistem\s+kontrol\b',
+        r'\btelekomunikasi\b', r'\btelecommunications?\b',
+        r'\bmikrokontroler\b', r'\bmicrocontroller\b',
+    ],
+    "Matematika": [
+        r'\bcalculus\b', r'\bkalkulus\b',
+        r'\bdifferential\s+equations?\b', r'\bpersamaan\s+diferensial\b',
+        r'\bnumerical\s+analysis\b', r'\banalisis\s+numerik\b',
+        r'\blinear\s+algebra\b', r'\baljabar\s+linear\b',
+        r'\boperations?\s+research\b', r'\briset\s+operasi\b',
+    ],
+    "Sains": [
+        r'\bmicrobiology\b', r'\bmikrobiologi\b',
+        r'\bbiochemistry\b', r'\bbiokimia\b',
+        r'\bphysics\b', r'\bfisika\b',
+        r'\borganic\s+chemistry\b', r'\bkimia\s+organik\b',
+        r'\bgenetics\b', r'\bgenetika\b',
+        r'\bphysical\s+chemistry\b',
+    ],
+}
+
 
 def keyword_boost(text, labels):
   
@@ -406,9 +503,23 @@ def keyword_boost(text, labels):
     # Jurusan dengan keyword paling banyak cocok
     best_jurusan = max(keyword_scores, key=keyword_scores.get)
 
+    # --- PENCEGAHAN OVER-BOOSTING (CONTEXT-AWARE BYPASS) ---
+    # Jika jurusan terbaik terdeteksi sebagai IT karena kata kunci umum seperti 'komputer', 
+    # tetapi ada kata kunci Akuntansi atau Administrasi Niaga, batalkan boost IT.
+    if best_jurusan == "Teknik Informatika & Komputer":
+        other_specialties = ["Akuntansi", "Administrasi Niaga", "Matematika", "Teknik Sipil", "Teknik Mesin"]
+        has_other = any(spec in keyword_scores for spec in other_specialties)
+        if has_other:
+            # Cari jurusan alternatif non-IT yang memiliki kata kunci terbanyak
+            alternatives = {k: v for k, v in keyword_scores.items() if k != "Teknik Informatika & Komputer"}
+            if alternatives:
+                best_jurusan = max(alternatives, key=alternatives.get)
+            else:
+                return labels # Batalkan boost sepenuhnya jika ada konflik kontekstual
+
     # Boost: naikkan probabilitas jurusan yang cocok keyword
     boosted = []
-    boost_pct = float(os.getenv('BOOST_PERCENTAGE', '15.0'))
+    boost_pct = float(os.getenv('BOOST_PERCENTAGE', '5.0'))
     total_boost = boost_pct * keyword_scores[best_jurusan]  
 
     for item in labels:
@@ -430,6 +541,77 @@ def keyword_boost(text, labels):
     # Re-sort
     boosted.sort(key=lambda x: x["probabilitas"], reverse=True)
     return boosted
+
+
+def apply_title_keyword_override(labels, book_text):
+    """
+    Override kuat berbasis keyword sangat spesifik di judul/teks.
+    Selalu aktif (tidak tergantung confidence) — mengatasi buku
+    yang DDC-nya salah di katalog perpustakaan.
+    
+    Contoh:
+    - 'Intermediate Accounting' (DDC 567/Sains) -> override ke Akuntansi
+    - 'Taguchi Methods' (DDC 871/Novel) -> override ke Teknik Mesin
+    """
+    if not labels or not book_text:
+        return labels
+
+    text_lower = book_text.lower()
+    matched_overrides = {}  # jurusan -> jumlah match
+
+    for jurusan, patterns in STRONG_TITLE_OVERRIDES.items():
+        count = sum(1 for pat in patterns if re.search(pat, text_lower, re.IGNORECASE))
+        if count > 0:
+            matched_overrides[jurusan] = count
+
+    if not matched_overrides:
+        return labels
+
+    # Jurusan override dengan match terbanyak
+    best_override = max(matched_overrides, key=matched_overrides.get)
+    current_top = labels[0]["label"]
+
+    # Hanya override jika berbeda dari top saat ini
+    if best_override == current_top:
+        return labels
+
+    # Cek apakah override ini reasonable (tidak konflik)
+    # Jangan override jika match hanya 1 dan top label sudah punya confidence > 85%
+    if matched_overrides[best_override] == 1 and labels[0]["probabilitas"] > 85.0:
+        return labels
+
+    # Temukan target jurusan dalam daftar
+    target_idx = next(
+        (i for i, l in enumerate(labels) if l["label"] == best_override), -1
+    )
+
+    if target_idx >= 0:
+        # Tukar ke posisi pertama
+        promoted = labels.pop(target_idx)
+        old_top_prob = labels[0]["probabilitas"]
+        # Beri probability yang cukup dominan
+        promoted["probabilitas"] = max(
+            promoted["probabilitas"], min(80.0, old_top_prob + 15.0)
+        )
+        labels.insert(0, promoted)
+    else:
+        # Tambahkan label baru
+        labels.insert(0, {
+            "label": best_override,
+            "probabilitas": 75.0,
+            "metode": "title_override"
+        })
+
+    # Re-normalisasi
+    total = sum(l["probabilitas"] for l in labels)
+    if total > 0:
+        for l in labels:
+            l["probabilitas"] = round(l["probabilitas"] / total * 100, 2)
+
+    labels.sort(key=lambda x: x["probabilitas"], reverse=True)
+    labels = [l for l in labels if l["probabilitas"] >= 15.0]
+    return labels
+
 
 def apply_iot_rules(text, labels):
     if not text or not labels:
@@ -511,6 +693,111 @@ def apply_exclusion_rules(labels):
     return labels
 
 
+def apply_ddc_sanity_check(labels, ddc_raw):
+    """
+    Post-processing berbasis DDC: jika label teratas dari model AI
+    secara domain JELAS bertentangan dengan kode DDC buku,
+    promosikan label DDC ke posisi pertama.
+    
+    Contoh kasus yang diperbaiki:
+    - 'Perpindahan Panas' (DDC 536 -> Sains, model -> Akuntansi) => koreksi ke Sains
+    - 'Taguchi Methods' (DDC 620 -> Teknik Mesin, model -> Novel) => koreksi ke Teknik Mesin
+    - 'Intermediate Accounting' (DDC 657 -> Akuntansi, model -> Sains) => koreksi ke Akuntansi
+    """
+    if not labels or not ddc_raw:
+        return labels
+
+    ddc_jurusan = ddc_to_jurusan(ddc_raw)
+    if ddc_jurusan == "Umum":
+        return labels  # DDC tidak cukup spesifik, jangan koreksi
+
+    top_label = labels[0]["label"]
+    if top_label == ddc_jurusan:
+        return labels  # Sudah cocok
+
+    # Pasangan domain yang JELAS tidak kompatibel:
+    # key = jurusan DDC, value = label-label yang TIDAK boleh jadi top jika DDC mengatakan key
+    HARD_INCOMPATIBLE = {
+        "Teknik Mesin": {
+            "Novel & Sastra", "Psikologi", "Akuntansi", "Administrasi Niaga"
+        },
+        "Teknik Sipil": {
+            "Novel & Sastra", "Psikologi", "Akuntansi", "Administrasi Niaga"
+        },
+        "Teknik Elektro": {
+            "Novel & Sastra", "Psikologi", "Akuntansi", "Administrasi Niaga"
+        },
+        "Teknik Informatika & Komputer": {
+            "Novel & Sastra", "Psikologi", "Akuntansi", "Administrasi Niaga"
+        },
+        "Teknik Grafika & Penerbitan": {
+            "Psikologi", "Akuntansi", "Administrasi Niaga", "Matematika", "Sains"
+        },
+        "Matematika": {
+            "Novel & Sastra", "Psikologi", "Akuntansi", "Administrasi Niaga",
+            "Teknik Mesin", "Teknik Sipil"
+        },
+        "Sains": {
+            "Novel & Sastra", "Psikologi", "Akuntansi", "Administrasi Niaga"
+        },
+        "Akuntansi": {
+            "Novel & Sastra", "Psikologi", "Sains",
+            "Teknik Mesin", "Teknik Sipil", "Teknik Elektro",
+            "Teknik Grafika & Penerbitan"
+        },
+        "Administrasi Niaga": {
+            "Novel & Sastra", "Sains", "Matematika",
+            "Teknik Mesin", "Teknik Sipil", "Teknik Elektro"
+        },
+        "Novel & Sastra": {
+            "Teknik Mesin", "Teknik Sipil", "Teknik Elektro",
+            "Matematika", "Sains", "Akuntansi"
+        },
+        "Psikologi": {
+            "Teknik Mesin", "Teknik Sipil", "Teknik Elektro",
+            "Matematika", "Sains", "Akuntansi"
+        },
+    }
+
+    if ddc_jurusan not in HARD_INCOMPATIBLE:
+        return labels
+    if top_label not in HARD_INCOMPATIBLE[ddc_jurusan]:
+        return labels
+
+    # Temukan label DDC di dalam daftar prediksi
+    ddc_idx = next(
+        (i for i, l in enumerate(labels) if l["label"] == ddc_jurusan), -1
+    )
+
+    if ddc_idx >= 0:
+        # Angkat label DDC ke posisi pertama dan swap dengan top saat ini
+        promoted = labels.pop(ddc_idx)
+        old_top_prob = labels[0]["probabilitas"]
+        # Berikan probabilitas yang masuk akal (setidaknya sama dengan yg lama)
+        promoted["probabilitas"] = max(
+            promoted["probabilitas"], min(75.0, old_top_prob + 10.0)
+        )
+        labels.insert(0, promoted)
+    else:
+        # DDC jurusan tidak ada dalam prediksi, tambahkan sebagai label baru
+        labels.insert(0, {
+            "label": ddc_jurusan,
+            "probabilitas": 70.0,
+            "metode": "ddc_correction"
+        })
+
+    # Re-normalisasi agar total = 100%
+    total = sum(l["probabilitas"] for l in labels)
+    if total > 0:
+        for l in labels:
+            l["probabilitas"] = round(l["probabilitas"] / total * 100, 2)
+
+    # Sort ulang dan filter threshold
+    labels.sort(key=lambda x: x["probabilitas"], reverse=True)
+    labels = [l for l in labels if l["probabilitas"] >= 15.0]
+    return labels
+
+
 # ─────────────────────────────────────────────
 # Prediksi Multilabel -> Jurusan PNJ
 # ─────────────────────────────────────────────
@@ -541,10 +828,17 @@ def predict_multilabel(ddc_value=None, book_text=None, ddc_raw=None, threshold=0
             # Terapkan aturan IoT
             labels = apply_iot_rules(book_text, labels)
 
-            # Terapkan aturan eksklusi
+            # Terapkan aturan eksklusi (Teknik vs Niaga)
             labels = apply_exclusion_rules(labels)
 
-            # Saring kembali jika ada label di bawah 15% setelah boost/eksklusi
+            # Terapkan sanity check berbasis DDC (koreksi misklasifikasi blatant)
+            if ddc_raw:
+                labels = apply_ddc_sanity_check(labels, ddc_raw)
+
+            # Override berbasis keyword kuat di judul (mengatasi DDC salah di katalog)
+            labels = apply_title_keyword_override(labels, book_text)
+
+            # Saring kembali jika ada label di bawah 15% setelah semua post-processing
             labels = [l for l in labels if l["probabilitas"] >= 15.0]
 
             return labels
@@ -865,6 +1159,103 @@ def detail_buku(biblio_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
+
+# ─────────────────────────────────────────────
+# Endpoint: POST /api/admin/recompute
+# Force re-compute predicted_multilabel untuk SEMUA buku
+# menggunakan pipeline AI + DDC sanity check terbaru
+# ─────────────────────────────────────────────
+@app.route('/api/admin/recompute', methods=['POST'])
+def recompute_all():
+    """Re-prediksi seluruh database dengan model & aturan terkini."""
+    if tfidf_model is None or clf_model is None:
+        return jsonify({"error": "Model belum dimuat. Jalankan train_model.py dulu."}), 503
+
+    try:
+        with engine.connect() as conn:
+            rows = conn.execute(text("""
+                SELECT biblio_id, title, spec_detail_info, notes, classification
+                FROM biblio
+                WHERE opac_hide = 0
+                  AND classification IS NOT NULL
+                  AND classification != ''
+                ORDER BY biblio_id ASC
+            """)).mappings().all()
+
+        total = len(rows)
+        updated = 0
+        errors = 0
+        batch = []
+
+        print(f"[RECOMPUTE] Mulai recompute {total} buku...")
+
+        for row in rows:
+            try:
+                book_text = build_text(
+                    title=row["title"],
+                    description=row.get("spec_detail_info"),
+                    notes=row.get("notes")
+                )
+                multilabel = predict_multilabel(
+                    ddc_value=clean_ddc(row["classification"]),
+                    book_text=book_text,
+                    ddc_raw=row["classification"]
+                )
+                if not multilabel:
+                    jur = ddc_to_jurusan(row["classification"])
+                    multilabel = [{"label": jur, "probabilitas": 100.0, "metode": "ddc_mapping"}]
+
+                batch.append({
+                    "bid":  row["biblio_id"],
+                    "ml":   json.dumps(multilabel, ensure_ascii=False),
+                    "jur":  multilabel[0]["label"],
+                    "conf": round(multilabel[0]["probabilitas"], 2)
+                })
+                updated += 1
+
+            except Exception as e:
+                errors += 1
+                print(f"[WARN] Error biblio_id={row['biblio_id']}: {e}")
+
+            # Flush ke DB setiap 100 buku
+            if len(batch) >= 100:
+                with engine.connect() as conn:
+                    for u in batch:
+                        conn.execute(text("""
+                            UPDATE biblio
+                            SET predicted_multilabel  = :ml,
+                                predicted_jurusan     = :jur,
+                                predicted_confidence  = :conf
+                            WHERE biblio_id = :bid
+                        """), u)
+                    conn.commit()
+                print(f"[RECOMPUTE] {updated}/{total} diproses...")
+                batch = []
+
+        # Flush sisa
+        if batch:
+            with engine.connect() as conn:
+                for u in batch:
+                    conn.execute(text("""
+                        UPDATE biblio
+                        SET predicted_multilabel  = :ml,
+                            predicted_jurusan     = :jur,
+                            predicted_confidence  = :conf
+                        WHERE biblio_id = :bid
+                    """), u)
+                conn.commit()
+
+        print(f"[RECOMPUTE] Selesai: {updated} diupdate, {errors} error.")
+        return jsonify({
+            "message": f"Recompute selesai: {updated} buku diupdate, {errors} error.",
+            "total":   total,
+            "updated": updated,
+            "errors":  errors
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 # ─────────────────────────────────────────────

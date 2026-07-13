@@ -55,7 +55,7 @@ df = pd.read_sql(query, engine)
 # ─────────────────────────────────────────────
 def ddc_to_jurusan(kode_ddc_raw):
     s = str(kode_ddc_raw).strip()
-    m = re.search(r'(\d{3})(?:\.?(\d+))?', s)
+    m = re.search(r'(\d{1,3})(?:\.?(\d+))?', s)
     if not m:
         return "Umum"
     main = int(m.group(1))
@@ -139,7 +139,7 @@ def ddc_to_jurusan(kode_ddc_raw):
         return "Umum"
 
 def clean_ddc(text):
-    match = re.search(r'(\d{3})', str(text).strip())
+    match = re.search(r'(\d{1,3})', str(text).strip())
     if match:
         return int(match.group(1))
     return None
@@ -244,7 +244,8 @@ KEYWORD_HINTS = {
         "layout", "tipografi", "penerbitan", "publishing", "offset",
         "fotografi", "photography", "illustrasi", "prepress", "jurnalistik",
         "jurnalisme", "wartawan", "pers", "berita", "komunikasi massa",
-        "pemotretan", "fotograsi", "photo shoot", "photoshoot", "pemotret", "potret"
+        "pemotretan", "fotograsi", "photo shoot", "photoshoot", "pemotret", "potret",
+        "media massa", "redaksi", "editing naskah", "kemasan", "jilid", "penjilidan", "tinta"
     ],
     "Administrasi Niaga": [
         "manajemen", "management", "pemasaran", "marketing", "bisnis",
@@ -265,6 +266,8 @@ KEYWORD_HINTS = {
     "Sains": [
         "sains", "science", "biologi", "biology", "kimia", "chemistry",
         "fisika", "physics", "astronomi", "alam", "ekologi", "lingkungan",
+        "laboratorium", "eksperimen", "praktikum", "sel", "gen", "molekul",
+        "tumbuhan", "hewan", "tata surya", "bumi", "antariksa"
     ],
     "Novel & Sastra": [
         "sastra", "novel", "puisi", "cerpen", "prosa", "fiksi",
@@ -272,7 +275,9 @@ KEYWORD_HINTS = {
     ],
     "Psikologi": [
         "psikologi", "psychology", "mental", "jiwa", "kepribadian",
-        "terapi", "konseling", "perilaku", "psikolog", "emosi"
+        "terapi", "konseling", "perilaku", "psikolog", "emosi",
+        "kognitif", "perilaku manusia", "gangguan jiwa", "perkembangan anak",
+        "interaksi sosial", "kecemasan", "depresi", "stres", "psikoanalisis"
     ],
     "Umum": [
         "agama", "islam", "shalat", "quran", "alkitab", "filsafat",
@@ -290,16 +295,37 @@ def keyword_boost(text, labels):
     if top_conf >= 60.0:
         return labels
     text_lower = text.lower()
+    
+    # Hitung skor keyword untuk setiap jurusan
     keyword_scores = {}
     for jurusan, keywords in KEYWORD_HINTS.items():
         score = sum(1 for kw in keywords if kw in text_lower)
         if score > 0:
             keyword_scores[jurusan] = score
+            
     if not keyword_scores:
         return labels
+        
     best_jurusan = max(keyword_scores, key=keyword_scores.get)
+    
+    # --- PENCEGAHAN OVER-BOOSTING (CONTEXT-AWARE BYPASS) ---
+    # Jika jurusan terbaik terdeteksi sebagai IT karena kata kunci umum seperti 'komputer', 
+    # tetapi ada kata kunci Akuntansi atau Administrasi Niaga, batalkan boost IT.
+    if best_jurusan == "Teknik Informatika & Komputer":
+        other_specialties = ["Akuntansi", "Administrasi Niaga", "Matematika", "Teknik Sipil", "Teknik Mesin"]
+        has_other = any(spec in keyword_scores for spec in other_specialties)
+        if has_other:
+            # Cari jurusan alternatif non-IT yang memiliki kata kunci terbanyak
+            alternatives = {k: v for k, v in keyword_scores.items() if k != "Teknik Informatika & Komputer"}
+            if alternatives:
+                best_jurusan = max(alternatives, key=alternatives.get)
+            else:
+                return labels # Batalkan boost sepenuhnya jika ada konflik kontekstual
+                
     boosted = []
-    total_boost = 15.0 * keyword_scores[best_jurusan]
+    # Kurangi kekuatan boost dari 15.0 menjadi 5.0 (Soft Boosting)
+    total_boost = 5.0 * keyword_scores[best_jurusan]
+    
     for item in labels:
         new_item = item.copy()
         if item["label"] == best_jurusan:
@@ -308,12 +334,15 @@ def keyword_boost(text, labels):
             reduction = total_boost / max(len(labels) - 1, 1)
             new_item["probabilitas"] = max(0.0, item["probabilitas"] - reduction)
         boosted.append(new_item)
+        
     total_prob = sum(b["probabilitas"] for b in boosted)
     if total_prob > 0:
         for b in boosted:
             b["probabilitas"] = round(b["probabilitas"] / total_prob * 100, 2)
+            
     boosted.sort(key=lambda x: x["probabilitas"], reverse=True)
     return boosted
+
 
 def apply_iot_rules(text, labels):
     if not text or not labels:
