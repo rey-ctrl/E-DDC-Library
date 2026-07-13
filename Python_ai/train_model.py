@@ -158,6 +158,7 @@ query = """
     WHERE classification IS NOT NULL 
       AND classification != ''
       AND classification != 'NONE'
+      AND opac_hide = 0
 """
 df = pd.read_sql(query, engine)
 print(f"    -> Berhasil menarik {len(df)} baris data buku.")

@@ -1,5 +1,6 @@
 import os
 import re
+import csv
 from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
 
@@ -99,16 +100,24 @@ def ddc_to_jurusan(kode_ddc_raw):
     else:
         return "Umum"
 
-# Query semua buku dari database (tanpa filter opac_hide agar mencakup 16.000 buku)
+# Load biblio_ids from CSV
+csv_path = "dataset_opac_8740.csv"
+if not os.path.exists(csv_path):
+    # try parent directory
+    csv_path = "../dataset_opac_8740.csv"
+
+biblio_ids = []
+with open(csv_path, mode='r', encoding='utf-8') as f:
+    reader = csv.reader(f, delimiter=';')
+    header = next(reader)
+    for row in reader:
+        if row:
+            biblio_ids.append(int(row[0]))
+
+# Query the database
 with engine.connect() as conn:
-    query = text("""
-        SELECT biblio_id, classification, predicted_jurusan 
-        FROM biblio 
-        WHERE classification IS NOT NULL 
-          AND classification != ''
-          AND classification != 'NONE'
-    """)
-    res = conn.execute(query)
+    query = text("SELECT biblio_id, classification, predicted_jurusan FROM biblio WHERE biblio_id IN :ids")
+    res = conn.execute(query, {"ids": biblio_ids})
     rows = res.fetchall()
 
 total = len(rows)
