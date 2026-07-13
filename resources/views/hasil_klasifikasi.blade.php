@@ -502,13 +502,7 @@
                                         <span class="text-slate-400 text-xs ml-1">(Hal. {{ $pagination['page'] }}/{{ $pagination['total_pages'] }})</span>
                                     @endif
                                 </span>
-                                @if(!empty($filters))
-                                    @php $modeColor = ($filterMode ?? 'and') === 'and' ? 'bg-blue-600' : 'bg-emerald-600'; @endphp
-                                    <span class="inline-flex items-center gap-1 rounded-full {{ $modeColor }} px-2 py-0.5 text-[10px] font-extrabold text-white uppercase tracking-wider">
-                                        <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"/></svg>
-                                        Mode {{ strtoupper($filterMode ?? 'and') }}
-                                    </span>
-                                @endif
+
                             </div>
                             @if(!empty($filters))
                                 <div class="flex flex-wrap items-center gap-1.5 mt-0.5">
@@ -623,7 +617,7 @@
                                 <div class="flex flex-wrap gap-1.5">
                                     @php $badgeIdx = 0; @endphp
                                     @foreach($buku['Multilabel'] as $label)
-                                        @if($label['probabilitas'] >= 5)
+                                        @if($label['probabilitas'] >= 15)
                                         <span class="badge-{{ $badgeIdx }} inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold">
                                             {{ $label['label'] }}
                                         </span>
@@ -638,7 +632,7 @@
                                 <div class="space-y-1.5">
                                     @php $barIdx = 0; @endphp
                                     @foreach($buku['Multilabel'] as $label)
-                                    @if($label['probabilitas'] >= 5)
+                                    @if($label['probabilitas'] >= 15)
                                     <div class="flex items-center gap-2">
                                         <span class="w-[170px] shrink-0 truncate text-[11px] text-slate-500">{{ $label['label'] }}</span>
                                         <div class="relative h-2 flex-1 rounded-full bg-slate-100 overflow-hidden">

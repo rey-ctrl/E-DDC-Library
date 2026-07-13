@@ -117,7 +117,7 @@ def ddc_to_jurusan(kode_ddc_raw):
         elif main <= 665:
             return "Teknik Mesin"
         elif main <= 669:
-            return "Teknik Sipil"
+            return "Teknik Mesin"  # 666-669: Metalurgi, keramik, kaca -> Teknik Mesin
         elif main <= 685:
             return "Teknik Mesin"
         elif main == 686:

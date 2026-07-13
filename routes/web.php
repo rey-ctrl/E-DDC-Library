@@ -95,6 +95,7 @@ Route::match(['get', 'post'], '/klasifikasi', function (Request $request) {
             'filters'     => is_array($filters) ? implode(',', $filters) : $filters,
             'filter_mode' => $filterMode,
             'page'        => $page,
+            'per_page'    => 20,
             'mode'        => $mode
         ]);
 

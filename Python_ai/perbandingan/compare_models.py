@@ -15,6 +15,7 @@ warnings.filterwarnings('ignore')
 
 try:
     from dotenv import load_dotenv
+    load_dotenv(os.path.join(os.path.dirname(__file__), '..', '..', '.env'), override=True)
     load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'), override=True)
     load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
 except ImportError:
@@ -525,8 +526,8 @@ print(df_results.to_string(index=False, formatters={
 }))
 print("=" * 80)
 
-# Simpan hasil perbandingan ke file text
-comparison_file = os.path.join(os.path.dirname(__file__), 'model_comparison.txt')
+# Simpan hasil perbandingan ke file text (di folder perbandingan/)
+comparison_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model_comparison.txt')
 with open(comparison_file, 'w', encoding='utf-8') as f:
     f.write("=" * 80 + "\n")
     f.write("             LAPORAN PERBANDINGAN ALGORITMA KLASIFIKASI E-DDC\n")

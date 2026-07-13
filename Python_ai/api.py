@@ -897,6 +897,7 @@ def search_buku():
                 WHERE b.opac_hide = 0 
                   AND b.classification IS NOT NULL 
                   AND b.classification != ''
+                  AND b.classification REGEXP '[0-9]'
             """
 
             count_base = """
@@ -904,6 +905,7 @@ def search_buku():
                 WHERE b.opac_hide = 0
                   AND b.classification IS NOT NULL
                   AND b.classification != ''
+                  AND b.classification REGEXP '[0-9]'
             """
 
             params = {}

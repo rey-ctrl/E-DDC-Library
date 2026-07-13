@@ -283,8 +283,23 @@ def keyword_boost(text_val, labels):
     if not keyword_scores:
         return labels
     best_jurusan = max(keyword_scores, key=keyword_scores.get)
+
+    # --- PENCEGAHAN OVER-BOOSTING (CONTEXT-AWARE BYPASS) ---
+    # Jika jurusan terbaik terdeteksi sebagai IT karena kata kunci umum seperti 'komputer',
+    # tetapi ada kata kunci Akuntansi atau Administrasi Niaga, batalkan boost IT.
+    if best_jurusan == "Teknik Informatika & Komputer":
+        other_specialties = ["Akuntansi", "Administrasi Niaga", "Matematika", "Teknik Sipil", "Teknik Mesin"]
+        has_other = any(spec in keyword_scores for spec in other_specialties)
+        if has_other:
+            # Cari jurusan alternatif non-IT yang memiliki kata kunci terbanyak
+            alternatives = {k: v for k, v in keyword_scores.items() if k != "Teknik Informatika & Komputer"}
+            if alternatives:
+                best_jurusan = max(alternatives, key=alternatives.get)
+            else:
+                return labels  # Batalkan boost sepenuhnya jika ada konflik kontekstual
+
     boosted = []
-    total_boost = 15.0 * keyword_scores[best_jurusan]
+    total_boost = 5.0 * keyword_scores[best_jurusan]
     for item in labels:
         new_item = item.copy()
         if item["label"] == best_jurusan:

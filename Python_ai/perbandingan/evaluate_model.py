@@ -25,8 +25,8 @@ print("=" * 65)
 # ─────────────────────────────────────────────
 # 1. Load Model & Info
 # ─────────────────────────────────────────────
-MODEL_DIR = os.path.dirname(__file__)
-HYBRID_PATH = os.path.join(MODEL_DIR, 'MODEL_HYBRID.pickle')
+MODEL_DIR = os.path.dirname(os.path.abspath(__file__))
+HYBRID_PATH = os.path.join(MODEL_DIR, '..', 'MODEL_HYBRID.pickle')
 
 if not os.path.exists(HYBRID_PATH):
     print(f"[ERROR] Model tidak ditemukan di: {HYBRID_PATH}")
@@ -299,7 +299,7 @@ report_str = classification_report(y_true, y_pred)
 print(report_str)
 
 # Simpan laporan evaluasi ke file
-report_path = os.path.join(MODEL_DIR, 'eval_report.txt')
+report_path = os.path.join(MODEL_DIR, 'eval_report.txt')  # tersimpan di folder perbandingan/
 with open(report_path, 'w', encoding='utf-8') as f:
     f.write("=" * 65 + "\n")
     f.write("  E-DDC - Laporan Evaluasi Performa Model AI\n")
