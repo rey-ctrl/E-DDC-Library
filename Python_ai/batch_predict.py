@@ -455,7 +455,6 @@ with engine.connect() as conn:
         WHERE classification IS NOT NULL
           AND classification != ''
           AND classification != 'NONE'
-          AND opac_hide = 0
     """)
     rows = conn.execute(query).mappings().all()
 
@@ -543,7 +542,7 @@ with engine.connect() as conn:
     
     # Verifikasi jumlah NULL
     verify_null = conn.execute(text(
-        "SELECT COUNT(*) FROM biblio WHERE (predicted_jurusan IS NULL OR predicted_jurusan = '') AND opac_hide = 0 AND classification IS NOT NULL AND classification != ''"
+        "SELECT COUNT(*) FROM biblio WHERE (predicted_jurusan IS NULL OR predicted_jurusan = '') AND classification IS NOT NULL AND classification != ''"
     )).scalar()
 
 print(f"\n    Buku dengan prediksi: {verify}")
