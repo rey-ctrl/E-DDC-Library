@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="/logo-whitemode.png">
     <title>Edit Buku - E-DDC | Sistem Klasifikasi Perpustakaan</title>
     <meta name="description" content="Edit data buku dalam database E-DDC.">
 

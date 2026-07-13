@@ -923,7 +923,9 @@ def search_buku():
                     ddc_val = int(m_ddc.group(1))
                     where_extra += f" AND CAST(SUBSTRING(b.classification, 1, 3) AS UNSIGNED) = {ddc_val}"
                 else:
-                    where_extra += " AND b.title LIKE :kw"
+                    # Hanya cari berdasarkan judul buku dan nomor DDC (classification)
+                    # Notes dan deskripsi (spec_detail_info) TIDAK diikutkan dalam pencarian
+                    where_extra += " AND (b.title LIKE :kw OR b.classification LIKE :kw)"
                     params["kw"] = f"%{keyword}%"
 
             # ── Filter jurusan (SQL-based, menggunakan predicted_multilabel dengan fallback ke predicted_jurusan) ──

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="/logo-whitemode.png">
     <title>Hasil Pencarian "{{ $keyword }}" - E-DDC</title>
     <meta name="description" content="Hasil klasifikasi multilabel DDC untuk kata kunci: {{ $keyword }}">
 
